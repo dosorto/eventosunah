@@ -26,10 +26,6 @@ class EventoFactory extends Factory
             'Fecha Final' => $this->faker->date(),
             'HoraInicio' => $this->faker->time(),
             'HoraFin' => $this->faker->time(),
-            'Lugar' => $this->faker->address,
-            'IdConferencia' => function () {
-                return Conferencia::factory()->create()->id;
-            },
             'IdModalidad' => function () {
                 return Modalidad::factory()->create()->id;
             },
