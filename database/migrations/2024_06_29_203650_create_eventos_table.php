@@ -20,7 +20,6 @@ return new class extends Migration
             $table->date('Fecha Final');
             $table->time('HoraInicio');
             $table->time('HoraFin');
-            $table->string('Lugar');
             $table->unsignedBigInteger('IdModalidad');
             $table->unsignedBigInteger('IdLocalidad');
             $table->unsignedBigInteger('IdConferencia');
