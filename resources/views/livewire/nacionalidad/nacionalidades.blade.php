@@ -22,8 +22,7 @@
             @if($isOpen)
                 @include('livewire.nacionalidad.create')
             @endif
-    
-            
+
 
 
 <div class="relative overflow-x-auto  sm:rounded-lg">
