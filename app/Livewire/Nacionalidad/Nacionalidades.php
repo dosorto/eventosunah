@@ -5,6 +5,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Nacionalidad;
 
+
 class Nacionalidades extends Component
 {
     use WithPagination;
@@ -12,7 +13,7 @@ class Nacionalidades extends Component
     public $isOpen = 0;
     public function render()
     {
-        $nacionalidades = Nacionalidad::where('Nacionalidad', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(10);
+        $nacionalidades = Nacionalidad::where('Nacionalidad', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(5);
         return view('livewire.nacionalidad.nacionalidades', ['nacionalidades' => $nacionalidades]);
     }
     public function create()
