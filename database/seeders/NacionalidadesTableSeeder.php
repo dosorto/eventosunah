@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Nacionalidad;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Nacionalidad;
 
-class NacionalidadSeeder extends Seeder
+class NacionalidadesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

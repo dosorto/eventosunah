@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfils', function (Blueprint $table) {
+        Schema::create('nacionalidads', function (Blueprint $table) {
             $table->id();
-            $table->string('Numero de Cuenta')->unique()->nullable();
-            $table->string('Correo Institucional')->unique()->nullable();
-            $table->unsignedBigInteger('IdPersona');
+            $table->string('nombreNacionalidad');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perfils');
+        Schema::dropIfExists('nacionalidades');
     }
 };
