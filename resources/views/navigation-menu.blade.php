@@ -17,9 +17,6 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
-<<<<<<< HEAD
-               
-=======
                 @can("admin-modalidad")
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('modalidad')">
@@ -28,17 +25,12 @@
                 </div>
                 @endcan
                 @can("admin-nacionalidad")
->>>>>>> mafer
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('nacionalidad') }}" :active="request()->routeIs('nacionalidad')">
                         {{ __('Nacionalidad') }}
                     </x-nav-link>
                 </div>
-<<<<<<< HEAD
-               
-=======
                 @endcan
->>>>>>> mafer
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
