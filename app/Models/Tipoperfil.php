@@ -9,5 +9,5 @@ class Tipoperfil extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Tipo Perfil'];
+    protected $fillable = ['tipoperfil'];
 }
