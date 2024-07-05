@@ -60,7 +60,7 @@
         <tbody>
         @foreach($nacionalidades as $nacionalidad)
                     <tr class="bg-white border-b hover:bg-gray-50">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $estudiante->id }}</th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $nacionalidad->id }}</th>
                         <td class="px-6 py-4">{{ $nacionalidad->nombreNacionalidad }}</td>
                         <td class="px-6 py-4">
                         <button wire:click="edit({{ $nacionalidad->id }})" class="font-medium text-blue-600 hover:underline">Editar</button>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Nacionalidades;
+namespace App\Livewire\Nacionalidad;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Nacionalidad;
