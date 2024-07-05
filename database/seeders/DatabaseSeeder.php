@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+
 use App\Models\User;
-use App\Models\Nacionalidad;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,8 +17,22 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
        $this->call([
+           PermissionSeeder::class,
            NacionalidadesTableSeeder::class,
+           ModalidadSeeder::class,
            UserTableSeeder::class,
+           FirmaSeeder::class,
+           TipoPerfilSeeder::class,
+           DepartamentoSeeder::class,
+           CarreraSeeder::class,
+           LocalidadSeeder::class,
+           PersonaSeeder::class,
+           PerfilSeeder::class,
+           ConferencistaSeeder::class,
+           ConferenciaSeeder::class,
+           EventoSeeder::class,
+           DiplomaSeeder::class,
+           AsistenciaSeeder::class
        ]);
     }
 }

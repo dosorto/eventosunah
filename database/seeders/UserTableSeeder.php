@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -19,6 +20,13 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678')
         ]);
+        $role = Role::create(['name' => 'root']);
+         
+        $permissions = Permission::pluck('id','id')->all();
+       
+        $role->syncPermissions($permissions);
+         
+        $user->assignRole([$role->id]);
 
     }
 }

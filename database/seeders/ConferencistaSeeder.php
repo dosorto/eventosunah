@@ -4,15 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Nacionalidad;
-
-class NacionalidadesTableSeeder extends Seeder
+use App\Models\Conferencista;
+class ConferencistaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Nacionalidad::factory()->count(50)->create();
+        Conferencista::factory()->count(100)->create();
     }
 }
