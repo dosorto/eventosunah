@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Nacionalidad;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Nacionalidad>
@@ -14,11 +15,12 @@ class NacionalidadFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Nacionalidad::class;
     public function definition(): array
     {
         return [
-            'Nacionalidad' => $this->faker->unique()->name(),
-            'created_by' => 1
+            'nombreNacionalidad' => $this->faker->country(),
+            'created_by' => 1,
         ];
     }
 }
