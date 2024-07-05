@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Conferencia;
-
 class ConferenciaSeeder extends Seeder
 {
     /**
@@ -13,6 +12,6 @@ class ConferenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        Conferencia::factory()->count(500)->create();
+        Conferencia::factory()->count(100)->create();
     }
 }

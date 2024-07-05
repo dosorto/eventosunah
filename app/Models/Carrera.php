@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Carrera extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
     protected $fillable = ['Nombre Carrera','IdDepartamento'];
 }

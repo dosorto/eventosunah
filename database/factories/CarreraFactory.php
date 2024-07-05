@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Departamento;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,7 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CarreraFactory extends Factory
 {
-    
     /**
      * Define the model's default state.
      *
@@ -17,6 +17,7 @@ class CarreraFactory extends Factory
      */
     public function definition(): array
     {
+        $DepartamentoId = Departamento::inRandomOrder()->first()->id;
         $carreras = [
             'Ingeniería en Sistemas',
             'Ingeniería Agroindustrial',
@@ -25,9 +26,7 @@ class CarreraFactory extends Factory
         ];
         return [
             'Nombre Carrera' => $this->faker->randomElement($carreras),
-            'IdDepartamento' => function () {
-                return \App\Models\Departamento::factory()->create()->id;
-            },
+            'IdDepartamento' => $DepartamentoId,
             'created_by' => 1
         ];
     }

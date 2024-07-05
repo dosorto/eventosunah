@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Localidad;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Localidad;
+
 class LocalidadSeeder extends Seeder
 {
     /**
@@ -12,6 +13,6 @@ class LocalidadSeeder extends Seeder
      */
     public function run(): void
     {
-        Localidad::factory()->count(500)->create();
+        Localidad::factory()->count(50)->create();
     }
 }

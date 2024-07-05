@@ -17,8 +17,14 @@ class DepartamentoFactory extends Factory
     public function definition(): array
     {
         return [
+<<<<<<< HEAD
            'Departamento' => $this->faker->randomElement(['Ingeniería en Sistemas','Ingeniería Agroindustrial', 'Ciencias Políticas']),
            'created_by' => 1
         ];
+=======
+            'Departamento' => $this->faker->randomElement(['Ingeniería', 'Ciencias Políticas']),
+            'created_by' => 1
+         ];
+>>>>>>> origin/mafer
     }
 }

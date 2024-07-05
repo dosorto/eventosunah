@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Asistencia;
-
 class AsistenciaSeeder extends Seeder
 {
     /**
@@ -13,6 +12,6 @@ class AsistenciaSeeder extends Seeder
      */
     public function run(): void
     {
-      Asistencia::factory()->count(500)->create();
+        Asistencia::factory()->count(500)->create();
     }
 }

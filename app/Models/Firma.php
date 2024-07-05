@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Firma extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
     protected $fillable = ['Nombre','Firma','Sello'];
 }
-

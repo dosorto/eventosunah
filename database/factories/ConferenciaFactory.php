@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Conferencista;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Conferencia>
  */
@@ -16,6 +16,7 @@ class ConferenciaFactory extends Factory
      */
     public function definition(): array
     {
+        $conferencistaId = Conferencista::inRandomOrder()->first()->id;
         return [
            'Nombre' => $this->faker->sentence,
             'Descripcion' => $this->faker->paragraph,
@@ -24,9 +25,7 @@ class ConferenciaFactory extends Factory
             'HoraFin' => $this->faker->time(),
             'Lugar' => $this->faker->address,
             'Link reunion' => $this->faker->url,
-            'IdConferencista' => function () {
-                return \App\Models\Conferencista::factory()->create()->id;
-            },
+            'IdConferencista' => $conferencistaId,
             'created_by' => 1,
         ];
     }

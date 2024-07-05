@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Perfil extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
     protected $fillable = ['Numero de Cuenta','Correo Institucional','IdPersona'];
 }

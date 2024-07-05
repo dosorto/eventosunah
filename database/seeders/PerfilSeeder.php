@@ -13,6 +13,6 @@ class PerfilSeeder extends Seeder
      */
     public function run(): void
     {
-        Perfil::factory()->count(500)->create();
+        Perfil::factory()->count(50)->create();
     }
 }

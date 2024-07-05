@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nacionalidads', function (Blueprint $table) {
+        Schema::create('tipoperfils', function (Blueprint $table) {
             $table->id();
-            $table->string('Nacionalidad')->unique();
+            $table->string('Tipo Perfil');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nacionalidads');
+        Schema::dropIfExists('tipoperfils');
     }
 };

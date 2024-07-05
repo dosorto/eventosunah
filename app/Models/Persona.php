@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Persona extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
     protected $fillable = ['DNI','nombre','apellido','correo','Fecha de nacimiento','Sexo','Direccion','Telefono','IdNacionalidad','IdTipoPerfil'];
 }

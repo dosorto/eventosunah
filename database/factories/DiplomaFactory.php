@@ -20,19 +20,16 @@ class DiplomaFactory extends Factory
      */
     public function definition(): array
     {
+        $conferenciaId = Conferencia::inRandomOrder()->first()->id;
+        $eventoId = Evento::inRandomOrder()->first()->id;
+        $firmaId = Firma::inRandomOrder()->first()->id;
         return [
             'codigo' => $this->faker->uuid,
             'URL' => $this->faker->url,
             'Fecha' => $this->faker->date(),
-            'IdConferencia' => function () {
-                return Conferencia::factory()->create()->id;
-            },
-            'IdEvento' => function () {
-                return Evento::factory()->create()->id;
-            },
-            'IdFirma' => function () {
-                return Firma::factory()->create()->id;
-            },
+            'IdConferencia' => $conferenciaId,
+            'IdEvento' => $eventoId,
+            'IdFirma' => $firmaId,
             'created_by' => 1,
         ];
     }

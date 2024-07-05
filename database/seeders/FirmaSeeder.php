@@ -12,6 +12,6 @@ class FirmaSeeder extends Seeder
      */
     public function run(): void
     {
-        Firma::factory()->count(500)->create();
+        Firma::factory()->count(5)->create();
     }
 }

@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre Carrera');
-            $table->unsignedBigInteger('IdDepartamento');
+            $table->date('Fecha');
+            $table->binary('Asistencia');
+            $table->unsignedBigInteger('IdPersona');
+            $table->unsignedBigInteger('IdEvento');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('IdDepartamento')->references('id')->on('departamentos')->onDelete('restrict');
-        });
+            $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
+            $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
+    });
     }
 
     /**
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('asistencias');
     }
 };

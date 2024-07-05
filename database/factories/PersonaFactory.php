@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Nacionalidad;
+use App\Models\Tipoperfil;
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Persona>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class PersonaFactory extends Factory
 {
@@ -16,8 +17,10 @@ class PersonaFactory extends Factory
      */
     public function definition(): array
     {
+        $nacionalidadId = Nacionalidad::inRandomOrder()->first()->id;
+        $tipoPerfilId = Tipoperfil::inRandomOrder()->first()->id;
         return [
-            'DNI' => $this->faker->regexify('[0-9]{8}[A-Z]{1}'), // Genera un DNI español simulado
+            'DNI' => $this->faker->regexify('[0-9]{8}[A-Z]{1}'), 
             'nombre' => $this->faker->firstName(),
             'apellido' => $this->faker->lastName(),
             'correo' => $this->faker->safeEmail(),
@@ -25,12 +28,8 @@ class PersonaFactory extends Factory
             'Sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'Direccion' => $this->faker->address(),
             'Telefono' => $this->faker->phoneNumber(),
-            'IdNacionalidad' => function () {
-                return \App\Models\Nacionalidad::factory()->create()->id; 
-            },
-            'IdTipoPerfil' => function () {
-                return \App\Models\Tipoperfil::factory()->create()->id; 
-            },
+            'IdNacionalidad' => $nacionalidadId,
+            'IdTipoPerfil' => $tipoPerfilId,
             'created_by' => 1
         ];
     }

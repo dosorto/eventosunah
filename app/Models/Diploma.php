@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Diploma extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
     protected $fillable = ['Codigo','URL','Fecha','IdConferencia','IdEvento','IdFirma'];
 }

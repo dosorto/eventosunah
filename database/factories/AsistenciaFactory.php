@@ -18,15 +18,13 @@ class AsistenciaFactory extends Factory
      */
     public function definition(): array
     {
+        $personaId = Persona::inRandomOrder()->first()->id;
+        $eventoId = Evento::inRandomOrder()->first()->id;
         return [
             'Fecha' => $this->faker->date(),
             'Asistencia' => $this->faker->boolean(),
-            'IdPersona' => function () {
-                return Persona::factory()->create()->id;
-            },
-            'IdEvento' => function () {
-                return Evento::factory()->create()->id;
-            },
+            'IdPersona' => $personaId,
+            'IdEvento' => $eventoId,
             'created_by' => 1
         ];
     }

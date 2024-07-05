@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Tipoperfil extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Nombre'];
+    protected $fillable = ['Tipo Perfil'];
 }
-

@@ -17,8 +17,8 @@ class ModalidadFactory extends Factory
     public function definition(): array
     {
         return [
-           'Modalidad' => $this->faker->randomElement(['Presencial', 'Virtual']),
-            'created_by'=>1
+          'modalidad' => $this->faker->randomElement(['Presencial', 'Virtual']),
+          'created_by'=>1
         ];
     }
 }

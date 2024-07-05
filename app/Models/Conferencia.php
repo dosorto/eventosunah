@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Conferencia extends BaseModel
 {
     use HasFactory;
-    use HasFactory;
     use SoftDeletes;
     protected $fillable = ['Nombre','Descripcion','Fecha','HoraInicio','HoraFin','Lugar','Link Reunion', 'IdConferencista'];
 }

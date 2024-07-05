@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Persona;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Perfil>
  */
@@ -16,12 +16,11 @@ class PerfilFactory extends Factory
      */
     public function definition(): array
     {
+        $PersonaId = Persona::inRandomOrder()->first()->id;
         return [
             'Numero de Cuenta' => $this->faker->unique()->numerify('###########'), 
             'Correo Institucional' => $this->faker->unique()->safeEmail(),
-            'IdPersona' => function () {
-                return \App\Models\Persona::factory()->create()->id; 
-            },
+            'IdPersona' => $PersonaId,
             'created_by' => 1
         ];
     }

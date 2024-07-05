@@ -18,6 +18,9 @@ class EventoFactory extends Factory
      */
     public function definition(): array
     {
+        $ModalidadId = Modalidad::inRandomOrder()->first()->id;
+        $LocalidadId = Localidad::inRandomOrder()->first()->id;
+        $conferenciaId = Conferencia::inRandomOrder()->first()->id;
         return [
            'Nombre' => $this->faker->sentence,
             'Descripcion' => $this->faker->paragraph,
@@ -26,15 +29,9 @@ class EventoFactory extends Factory
             'Fecha Final' => $this->faker->date(),
             'HoraInicio' => $this->faker->time(),
             'HoraFin' => $this->faker->time(),
-            'IdModalidad' => function () {
-                return Modalidad::factory()->create()->id;
-            },
-            'IdLocalidad' => function () {
-                return Localidad::factory()->create()->id;
-            },
-            'IdConferencia' => function () {
-                return Conferencia::factory()->create()->id;
-            },
+            'IdModalidad'=> $ModalidadId,
+            'IdLocalidad' =>$LocalidadId,
+            'IdConferencia' => $conferenciaId,
             'created_by' => 1
         ];
     }

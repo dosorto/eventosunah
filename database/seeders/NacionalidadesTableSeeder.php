@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Nacionalidad;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Nacionalidad;
 
-class NacionalidadSeeder extends Seeder
+class NacionalidadesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Nacionalidad::factory()->count(500)->create();
+        Nacionalidad::factory()->count(50)->create();
     }
 }
