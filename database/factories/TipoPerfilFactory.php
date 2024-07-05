@@ -1,0 +1,24 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TipoPerfil>
+ */
+class TipoPerfilFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'Tipo Perfil' => $this->faker->randomElement(['Estudiante', 'Docente', 'Empleado', 'Externo']),
+            'created_by' => 1
+        ];
+    }
+}

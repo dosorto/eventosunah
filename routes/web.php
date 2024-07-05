@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Nacionalidad\Nacionalidades;
-
+use App\Livewire\Modalidad\Modalidades;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -16,5 +16,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/nacionalidad', Nacionalidades::class)->name('nacionalidad');
+    Route::get('/modalidad', Modalidades::class)->name('modalidad');
 });
 
