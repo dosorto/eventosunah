@@ -198,8 +198,6 @@
         <li><a href="/">Home</a></li>
         <li><a href="/login">Acceder</a></li>
         <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
       </ul>
       <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
     </nav>
@@ -207,7 +205,7 @@
 
   <section class="hero-section">
     <div class="content">
-      <h2>Gestión De Eventos de UNAH-Choluteca</h2>
+      <h2>Gestión De Eventos De UNAH-Choluteca</h2>
       <p>
         La gestión de eventos es una parte fundamental de la administración de una organización.
 
