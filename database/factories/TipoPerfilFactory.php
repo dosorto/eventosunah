@@ -17,7 +17,7 @@ class TipoPerfilFactory extends Factory
     public function definition(): array
     {
         return [
-            'Tipo Perfil' => $this->faker->randomElement(['Estudiante', 'Docente', 'Empleado', 'Externo']),
+            'tipoperfil' => $this->faker->randomElement(['Estudiante', 'Docente', 'Empleado', 'Externo']),
             'created_by' => 1
         ];
     }

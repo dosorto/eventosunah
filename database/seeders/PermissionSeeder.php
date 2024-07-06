@@ -16,6 +16,8 @@ class PermissionSeeder extends Seeder
         $permissions = [
             'admin-modalidad',
             'admin-nacionalidad',
+            'admin-tipoPerfil',
+            'admin-localidad',
 
          ];
          

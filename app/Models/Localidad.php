@@ -10,5 +10,5 @@ class Localidad extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Nombre localidad'];
+    protected $fillable = ['localidad'];
 }
