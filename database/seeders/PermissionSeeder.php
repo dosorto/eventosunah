@@ -17,6 +17,7 @@ class PermissionSeeder extends Seeder
             'admin-modalidad',
             'admin-nacionalidad',
             'admin-tipoPerfil',
+            'admin-localidad',
 
          ];
          

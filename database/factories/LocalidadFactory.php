@@ -17,7 +17,7 @@ class LocalidadFactory extends Factory
     public function definition(): array
     {
         return [
-            'Nombre Localidad' => $this->faker->randomElement(['CURLP', 'CU','UNAH VS']),
+            'localidad' => $this->faker->randomElement(['CURLP', 'CU','UNAH VS']),
             'created_by'=>1
         ];
     }
