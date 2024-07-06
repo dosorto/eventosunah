@@ -10,5 +10,10 @@ class Carrera extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Nombre Carrera','IdDepartamento'];
+    protected $fillable = ['carrera','IdDepartamento'];
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'IdDepartamento');
 }
+}
+

@@ -25,7 +25,7 @@ class CarreraFactory extends Factory
             'Administración',
         ];
         return [
-            'Nombre Carrera' => $this->faker->randomElement($carreras),
+            'carrera' => $this->faker->randomElement($carreras),
             'IdDepartamento' => $DepartamentoId,
             'created_by' => 1
         ];
