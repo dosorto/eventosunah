@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Nacionalidad\Nacionalidades;
 use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
+use App\Livewire\Departamento\Departamentos;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,5 +22,6 @@ Route::middleware([
     Route::get('/modalidad', Modalidades::class)->name('modalidad');
     Route::get('/tipoperfil', Tipoperfiles::class)->name('tipoperfil');
     Route::get('/localidad', Localidades::class)->name('localidad');
+    Route::get('/departamento', Departamentos::class)->name('departamento');
 });
 

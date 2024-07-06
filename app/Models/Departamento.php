@@ -10,5 +10,5 @@ class Departamento extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Departamento'];
+    protected $fillable = ['departamento'];
 }
