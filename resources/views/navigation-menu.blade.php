@@ -24,6 +24,13 @@
                     </x-nav-link>
                 </div>
                 @endcan
+                @can("admin-localidad")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('localidad') }}" :active="request()->routeIs('localidad')">
+                        {{ __('Localidad') }}
+                    </x-nav-link>
+                </div>
+                @endcan
                 @can("admin-nacionalidad")
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('nacionalidad') }}" :active="request()->routeIs('nacionalidad')">
