@@ -45,6 +45,15 @@
                     </x-nav-link>
                 </div>
                 @endcan
+
+                 
+                @can("admin-departamento")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('departamento') }}" :active="request()->routeIs('departamento')">
+                        {{ __('Departamento') }}
+                    </x-nav-link>
+                </div>
+                @endcan
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
