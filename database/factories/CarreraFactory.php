@@ -18,14 +18,8 @@ class CarreraFactory extends Factory
     public function definition(): array
     {
         $DepartamentoId = Departamento::inRandomOrder()->first()->id;
-        $carreras = [
-            'Ingeniería en Sistemas',
-            'Ingeniería Agroindustrial',
-            'Comercio',
-            'Administración',
-        ];
         return [
-            'carrera' => $this->faker->randomElement($carreras),
+            'carrera' => $this->faker->text(),
             'IdDepartamento' => $DepartamentoId,
             'created_by' => 1
         ];

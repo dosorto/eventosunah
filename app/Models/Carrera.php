@@ -14,6 +14,6 @@ class Carrera extends BaseModel
     public function departamento()
     {
         return $this->belongsTo(Departamento::class, 'IdDepartamento');
-}
+    }
 }
 

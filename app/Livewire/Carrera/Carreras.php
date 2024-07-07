@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire\Carrera;
+use App\Models\Departamento;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Carrera;
@@ -8,7 +9,7 @@ use App\Models\Carrera;
 class Carreras extends Component
 {
     use WithPagination;
-    public $carrera, $departamento_id, $search;
+    public $carrera, $IdDepartamento, $carrera_id, $search;
     public $isOpen = 0;
         public function render()
 {
@@ -18,6 +19,13 @@ class Carreras extends Component
                     ->paginate(8);
                     
     return view('livewire.Carrera.carreras', ['carreras' => $carreras]);
+}
+
+public $departamentos;
+
+public function mount()
+{
+    $this->departamentos = Departamento::all();  
 }
 
     public function create()
@@ -35,20 +43,25 @@ class Carreras extends Component
     }
     private function resetInputFields(){
         $this->carrera = '';
+        $this->IdDepartamento = '';
+
     }
 
     public function store()
     {
         $this->validate([
             'carrera' => 'required',
+            'IdDepartamento' => 'required',
         ]);
    
-        Carrera::updateOrCreate(['id' => $this->departamento_id], [
+        Carrera::updateOrCreate(['id' => $this->carrera_id], [
             'carrera' => $this->carrera,
+            'IdDepartamento' => $this->IdDepartamento,
+
         ]);
   
         session()->flash('message', 
-            $this->departamento_id ? 'Carrera Actualizada correctamente!' : 'Carrera creada correctamente!');
+            $this->carrera_id ? 'Carrera Actualizada correctamente!' : 'Carrera creada correctamente!');
   
         $this->closeModal();
         $this->resetInputFields();
@@ -56,8 +69,9 @@ class Carreras extends Component
     public function edit($id)
     {
         $carrera = Carrera::findOrFail($id);
-        $this->departamento_id = $id;
+        $this->carrera_id = $id;
         $this->carrera = $carrera->carrera;
+        $this->IdDepartamento = $carrera->IdDepartamento;
     
         $this->openModal();
     }
