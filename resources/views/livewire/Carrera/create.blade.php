@@ -22,7 +22,7 @@
                         </div>
                     <div class="mb-4">
                         <label for="departamentoSelect" class="block text-gray-700 text-sm font-bold mb-2">Departamento:</label>
-                        <select id="departamentoSelect" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="departamento">
+                        <select  wire:model="IdDepartamento" id="departamentoSelect" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="departamento">
                             <option value="">Seleccione un Departamento</option>
                             @foreach($departamentos as $depto)
                                 <option value="{{ $depto->id }}">{{ $depto->departamento }}</option> 
