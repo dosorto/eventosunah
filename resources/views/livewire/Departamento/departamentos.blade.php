@@ -29,7 +29,7 @@
 <div class="relative overflow-x-auto  sm:rounded-lg">
     <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
         <div>
-            <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Nuevo</button>
+            <button wire:click="create()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded my-3">Nuevo</button>
         
         </div>
         <label for="table-search" class="sr-only">Search</label>
