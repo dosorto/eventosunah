@@ -24,10 +24,41 @@
                     </x-nav-link>
                 </div>
                 @endcan
+                @can("admin-localidad")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('localidad') }}" :active="request()->routeIs('localidad')">
+                        {{ __('Localidad') }}
+                    </x-nav-link>
+                </div>
+                @endcan
                 @can("admin-nacionalidad")
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('nacionalidad') }}" :active="request()->routeIs('nacionalidad')">
                         {{ __('Nacionalidad') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+                @can("admin-tipoPerfil")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('tipoperfil') }}" :active="request()->routeIs('tipoperfil')">
+                        {{ __('Tipo Perfil') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                 
+                @can("admin-departamento")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('departamento') }}" :active="request()->routeIs('departamento')">
+                        {{ __('Departamento') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                @can("admin-carrera")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('carrera') }}" :active="request()->routeIs('carrera')">
+                        {{ __('Carrera') }}
                     </x-nav-link>
                 </div>
                 @endcan

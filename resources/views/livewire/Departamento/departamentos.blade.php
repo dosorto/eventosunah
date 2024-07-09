@@ -61,7 +61,7 @@
         @foreach($departamentos as $departamento)
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $departamento->id }}</th>
-                        <td class="px-6 py-4">{{ $departamento->Departamento }}</td>
+                        <td class="px-6 py-4">{{ $departamento->departamento }}</td>
                         <td class="px-6 py-4">
                         <button wire:click="edit({{ $departamento->id }})" class="font-medium text-blue-600 hover:underline">Editar</button>
                             <button wire:click="delete({{$departamento->id }})" class="font-medium text-red-600 hover:underline">Borrar</button>
