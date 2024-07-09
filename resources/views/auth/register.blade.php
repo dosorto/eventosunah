@@ -26,7 +26,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to bottom, #1254a1 23%, #ffd973 95%);
+            background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
         }
 
         .container {
@@ -164,21 +164,24 @@
             width: 100%;
             border: none;
             outline: none;
-            color: #fff;
+            color: #000;
+            font-weight: 500;
             border-radius: 5px;
             margin: 25px 0;
-            background-color: #4070f4;
+            --tw-bg-opacity: 1;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
             transition: all 0.3s linear;
             cursor: pointer;
         }
 
         .container form .btnText {
+            font-weight: 500;
             font-size: 14px;
-            font-weight: 400;
         }
 
         form button:hover {
-            background-color: #265df2;
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity)) /* #ca8a04 */;
         }
 
         form button i,
@@ -244,7 +247,8 @@
         }
 
         .navbar .logo span {
-            color: #ffd973;
+            --tw-bg-opacity: 1;
+            color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
         }
 
         .navbar .menu-links {
@@ -260,7 +264,8 @@
         }
 
         .navbar a:hover {
-            color: #ffd973;
+            --tw-bg-opacity: 1;
+            color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
         }
 
         #close-menu-btn {
