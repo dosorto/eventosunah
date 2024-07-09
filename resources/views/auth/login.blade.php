@@ -10,7 +10,7 @@
     <!-- Agrega tus estilos CSS personalizados aquí -->
     <style>
         /* ===== Google Font Import - Poformsins ===== */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
         * {
             margin: 0;
@@ -25,7 +25,7 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(to bottom, #1254a1 23%, #ffd973 95%);
-            ;
+        
         }
 
         .container {
