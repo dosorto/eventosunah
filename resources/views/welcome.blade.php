@@ -104,6 +104,18 @@
       transition: 0.2s ease;
     }
 
+    .menu-links li button {
+      background: #facc15;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
     .hero-section .content button:hover {
       background: #ca8a04;
     }

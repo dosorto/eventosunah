@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <!-- Agrega tus estilos CSS personalizados aquí -->
     <style>
         /* ===== Google Font Import - Poformsins ===== */
@@ -352,7 +352,7 @@
                 </div>
             </div>
 
-            <!-- Registration Form -->
+            <!-- Registro Usuario 2 -->
             <div class="form signup">
                 <span class="title">Registro</span>
 
@@ -364,12 +364,12 @@
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="email" name="email" required>
+                        <input type="email" placeholder="Correo electrónico" id="email2" name="email2" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Crear contraseña" id="password"
-                            name="password" required>
+                        <input type="password" class="password" placeholder="Crear contraseña" id="password2"
+                            name="password2" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
@@ -389,11 +389,10 @@
                             ahora</a></span>
                 </div>
             </div>
+            
 
         </div>
     </div>
-
-    <script src="Login.js"></script>
     <script>
         const pwShowHide = document.querySelectorAll(".showHidePw");
         const pwFields = document.querySelectorAll(".password");
@@ -424,6 +423,19 @@
             container.classList.remove("active");
         });
     </script>
+     <script>
+    const header = document.querySelector("header");
+    const hamburgerBtn = document.querySelector("#hamburger-btn");
+    const closeMenuBtn = document.querySelector("#close-menu-btn");
+
+    // Toggle mobile menu on hamburger button click
+    hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+
+    // Close mobile menu on close button click
+    closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
+  </script>
+
+</body>
 </body>
 
 </html>
