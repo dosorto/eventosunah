@@ -107,26 +107,26 @@
             border: none;
             outline: none;
             font-size: 16px;
-            border-bottom: 2px solid #ccc;
+            border-bottom: 2px solid #000;
             border-top: 2px solid transparent;
             transition: all 0.2s ease;
         }
 
         .input-field input:is(:focus, :valid) {
-            border-bottom-color: #000000;
+            border-bottom-color: #facc15;
         }
 
         .input-field i {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
+            color: #000;
             font-size: 23px;
             transition: all 0.2s ease;
         }
 
         .input-field input:is(:focus, :valid)~i {
-            color: #000000;
+            color: #facc15;
         }
 
         .input-field i.icon {
@@ -153,7 +153,7 @@
 
         .checkbox-content input {
             margin-right: 10px;
-            accent-color: #1967b1;
+            accent-color: #facc15;
         }
 
         .form .text {
