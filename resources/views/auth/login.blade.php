@@ -24,7 +24,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to bottom, #1254a1 23%, #ffd973 95%);
+            background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
         
         }
 
@@ -176,18 +176,20 @@
 
         .form .button input {
             border: none;
-            color: #fff;
+            color: #000;
             font-size: 17px;
             font-weight: 500;
             letter-spacing: 1px;
             border-radius: 6px;
-            background-color: #1967b1;
+            --tw-bg-opacity: 1;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .button input:hover {
-            background-color: #1254b2;
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity)) /* #ca8a04 */;
         }
 
         .form .login-signup {
@@ -219,7 +221,7 @@
         }
 
         .navbar .logo span {
-            color: #ffd973;
+            color: #facc15;
         }
 
         .navbar .menu-links {
@@ -235,7 +237,7 @@
         }
 
         .navbar a:hover {
-            color: #ffd973;
+            color: #facc15;
         }
 
         #close-menu-btn {
