@@ -33,7 +33,7 @@
                             <label for="exampleFormControlInput1"
                                 class="block text-gray-700 text-sm font-bold mb-2  dark:text-white">Localidad:</label>
                             <input type="text"
-                                class="shadow  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                class="shadow  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="exampleFormControlInput1" placeholder="Localidad" wire:model="localidad">
                             @error('localidad') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>

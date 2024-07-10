@@ -28,6 +28,16 @@
             justify-content: center;
             background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
         }
+        
+        .focus\:ring-yellow-500:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(234 179 8 / var(--tw-ring-opacity)) /* #eab308 */;
+}
+
+.focus\:border-yellow-500:focus {
+    --tw-border-opacity: 1;
+    border-color: rgb(234 179 8 / var(--tw-border-opacity)) /* #eab308 */;
+}
 
         .container {
             position: relative;
@@ -354,35 +364,35 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>DNI</label>
-                            <input type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI"
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI"
                                 required>
                             @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Nombre</label>
-                            <input type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre"
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre"
                                 wire:model="Nomnre" required>
                             @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Apellido</label>
-                            <input type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido"
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido"
                                 wire:model="Apellido" required>
                             @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Correo Electrónico</label>
-                            <input type="email" placeholder="Ingrese su correo" id="correo" name="correo"
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email" placeholder="Ingrese su correo" id="correo" name="correo"
                                 wire:model="Correo" required>
                             @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Tipo Perfil</label>
-                            <select id="id_Perfil" name="id_Perfil" wire:model="TipoPerfil" required>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Perfil" name="id_Perfil" wire:model="TipoPerfil" required>
                                 <option value="" disabled selected>Seleccione tipo perfil</option>
                                 <option value="">Estudiante</option>
                                 <option value="">Docente</option>
@@ -393,14 +403,14 @@
 
                         <div class="input-field">
                             <label>Fecha de Nacimiento</label>
-                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date" id="fecha_nacimiento" name="fecha_nacimiento"
                                 wire:model="FechaNacimiento" required>
                             @error('FechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Sexo</label>
-                            <select id="sexo" name="sexo" wire:model="IdSexo" required>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo" wire:model="IdSexo" required>
                                 <option value="" disabled selected>Seleccione su sexo</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
@@ -410,14 +420,14 @@
 
                         <div class="input-field">
                             <label>Teléfono</label>
-                            <input type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono"
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono"
                                 wire:model="Telefono" required>
                             @error('Telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Nacionalidad</label>
-                            <select id="id_Nacionalidad" name="id_Nacionalidad" wire:model="IdNacionalidad" required>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad" name="id_Nacionalidad" wire:model="IdNacionalidad" required>
                                 <option value="" disabled selected>Seleccione su nacionalidad</option>
                                 <option value="">Hondureña</option>
                                 <option value="">Guatemalteca</option>
@@ -427,7 +437,7 @@
 
                         <div class="input-field">
                             <label>Dirección</label>
-                            <input class="direccion" id="direccion" name="direccion"
+                            <input  class="direccion focus:ring-yellow-500 focus:border-yellow-500" id="direccion" name="direccion"
                                 placeholder="Escribe tu dirección..." wire:model="direccion" required></input>
                         </div>
                         @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror

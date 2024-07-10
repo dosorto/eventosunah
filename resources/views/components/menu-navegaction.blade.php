@@ -68,7 +68,7 @@
                            <form method="POST" action="{{ route('logout') }}" x-data>
                               @csrf
 
-                              <x-dropdown-link href="{{ route('logout') }}" class="text-red-800 dark:text-red-800 hover:bg-red-100" @click.prevent="$root.submit();">
+                              <x-dropdown-link href="{{ route('logout') }}" class="text-red-800 dark:text-gray-100 hover:bg-red-100 " @click.prevent="$root.submit();">
                                  {{ __('Cerrar Sesión') }}
                               </x-dropdown-link>
                            </form>
@@ -81,7 +81,7 @@
       </div>
    </nav>
 
-   <aside id="logo-sidebar"
+   <aside id="logo-sidebar" 
       class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidebar">
       <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
