@@ -1,11 +1,7 @@
 <div>
-
-   
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
-            Nacionalidades
-        </h2>
-    
-
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white m-2">
+        Nacionalidades
+    </h2>
     <div class=" dark:bg-gray-900">
         <div class="">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4  dark:bg-gray-900">
@@ -72,7 +68,8 @@
                                     class="bg-white border-b hover:bg-gray-50  dark:bg-gray-900 dark:hover:bg-gray-600  dark:text-white">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap  dark:text-white">
-                                        {{ $nacionalidad->id }}</th>
+                                        {{ $nacionalidad->id }}
+                                    </th>
                                     <td class="px-6 py-4">{{ $nacionalidad->nombreNacionalidad }}</td>
                                     <td class="px-6 py-4">
                                         <button wire:click="edit({{ $nacionalidad->id }})"

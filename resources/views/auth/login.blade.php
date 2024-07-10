@@ -315,7 +315,7 @@
     </header>
     <div class="container">
         <div class="forms">
-            <div class="form login active">
+            <div class="form login active dark:bg-gray-900">
                 <span class="title">Iniciar sesión</span>
 
                 <form method="POST" action="{{ route('login') }}">
