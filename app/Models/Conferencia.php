@@ -9,5 +9,9 @@ class Conferencia extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Nombre','Descripcion','Fecha','HoraInicio','HoraFin','Lugar','Link Reunion', 'IdConferencista'];
+    protected $fillable = ['nombre','descripcion','fecha','horaInicio','horaFin','lugar','linkreunion', 'idConferencista'];
+    public function conferencista()
+    {
+        return $this->belongsTo(Conferencista::class, 'idConferencista');
+    }
 }
