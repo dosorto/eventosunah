@@ -43,7 +43,7 @@
     }
 
     .navbar .logo span {
-      color: #ffd973;
+      color: #facc15;
     }
 
     .navbar .menu-links {
@@ -59,12 +59,12 @@
     }
 
     .navbar a:hover {
-      color: #ffd973;
+      color: #facc15;
     }
 
     .hero-section {
       height: 100vh;
-      background: linear-gradient(to bottom, #1254a1 23%, #ffd973 95%);
+      background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
       background-position: center;
       background-size: cover;
       display: flex;
@@ -92,7 +92,7 @@
     }
 
     .hero-section .content button {
-      background: #1967b1;
+      background: #facc15;
       color: #fff;
       padding: 12px 30px;
       border: none;
@@ -104,8 +104,20 @@
       transition: 0.2s ease;
     }
 
+    .menu-links li button {
+      background: #facc15;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
     .hero-section .content button:hover {
-      background: #1254b2;
+      background: #ca8a04;
     }
 
     #close-menu-btn {
@@ -195,9 +207,8 @@
       <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
       <ul class="menu-links">
         <span id="close-menu-btn" class="material-symbols-outlined">close</span>
-        <li><a href="/">Home</a></li>
         <li><a href="/login">Acceder</a></li>
-        <li><a href="#">Acerca de</a></li>
+        <li><a href="/register">Registrarme</a></li>
       </ul>
       <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
     </nav>
@@ -210,7 +221,7 @@
         La gestión de eventos es una parte fundamental de la administración de una organización.
 
       </p>
-      <button><a href="/login" style="text-decoration: none; color: #ffffff;">Acceder ahora</a></button>
+      <button><a href="/login" style="text-decoration: none; color: #000; font-weight: 500;">Acceder ahora</a></button>
     </div>
   </section>
 
