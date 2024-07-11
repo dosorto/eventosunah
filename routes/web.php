@@ -7,6 +7,8 @@ use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
 use App\Livewire\Departamento\Departamentos;
 use App\Livewire\Carrera\Carreras;
+use App\Livewire\Rol\Roles;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,5 +27,7 @@ Route::middleware([
     Route::get('/localidad', Localidades::class)->name('localidad');
     Route::get('/departamento', Departamentos::class)->name('departamento');
     Route::get('/carrera', Carreras::class)->name('carrera');
+    Route::get('/rol', Roles::class)->name('rol');
 });
+
 

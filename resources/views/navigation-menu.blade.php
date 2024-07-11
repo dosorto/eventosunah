@@ -45,7 +45,6 @@
                     </x-nav-link>
                 </div>
                 @endcan
-
                  
                 @can("admin-departamento")
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -59,6 +58,13 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('carrera') }}" :active="request()->routeIs('carrera')">
                         {{ __('Carrera') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+                @can("admin-rol")
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('rol') }}" :active="request()->routeIs('rol')">
+                        {{ __('Rol') }}
                     </x-nav-link>
                 </div>
                 @endcan
