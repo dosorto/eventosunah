@@ -380,7 +380,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Registrar">
+                        <a href="/register"><input type="button" value="Registrar"></a>
                     </div>
                 </form>
 
