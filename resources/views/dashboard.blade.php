@@ -14,7 +14,6 @@
             align-items: center;
             justify-content: center;
             width: calc(100% / 4 - 15px);
-            background: #fff;
             padding: 15px 14px;
             border-radius: 12px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -99,7 +98,6 @@
         /* left box */
         .sales-boxes .recent-sales {
             width: 65%;
-            background: #fff;
             padding: 20px 30px;
             margin: 0 20px;
             border-radius: 12px;
@@ -130,7 +128,6 @@
 
         .sales-boxes .sales-details li a {
             font-size: 18px;
-            color: #333;
             font-size: 400;
             text-decoration: none;
         }
@@ -143,7 +140,8 @@
 
         .sales-boxes .box .button a {
             color: #fff;
-            background: #0A2558;
+            --tw-bg-opacity: 1;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
             padding: 4px 12px;
             font-size: 15px;
             font-weight: 400;
@@ -153,13 +151,13 @@
         }
 
         .sales-boxes .box .button a:hover {
-            background: #0d3073;
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity)) /* #ca8a04 */;
         }
 
         /* Right box */
         .sales-boxes .top-sales {
             width: 35%;
-            background: #fff;
             padding: 20px 30px;
             margin: 0 20px 0 0;
             border-radius: 12px;
@@ -192,7 +190,6 @@
         .price {
             font-size: 17px;
             font-weight: 400;
-            color: #333;
         }
 
         @media (max-width: 1150px) {
@@ -245,10 +242,8 @@
             }
         }
     </style>
-    <div
-        class="bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white overflow-hidden shadow-xl sm:rounded-lg p-2 border-2 border-gray-200 rounded-lg dark:border-gray-700 mt-15">
-        <div class="overview-boxes">
-            <div class="box">
+        <div class="overview-boxes ml-0" >
+            <div class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Total Order</div>
                     <div class="number">40,876</div>
@@ -259,7 +254,7 @@
                 </div>
                 <i class='bx bx-cart-alt cart'></i>
             </div>
-            <div class="box">
+            <div class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Total Sales</div>
                     <div class="number">38,876</div>
@@ -270,7 +265,7 @@
                 </div>
                 <i class='bx bxs-cart-add cart two'></i>
             </div>
-            <div class="box">
+            <div class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Total Profit</div>
                     <div class="number">$12,876</div>
@@ -281,7 +276,7 @@
                 </div>
                 <i class='bx bx-cart cart three'></i>
             </div>
-            <div class="box">
+            <div class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Total Return</div>
                     <div class="number">11,086</div>
@@ -294,11 +289,13 @@
             </div>
         </div>
         <div class="sales-boxes">
-            <div class="recent-sales box">
+            <div class="recent-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="title">Recent Sales</div>
                 <div class="sales-details">
                     <ul class="details">
                         <li class="topic">Date</li>
+                        <li><a href="#">02 Jan 2021</a></li>
+                        <li><a href="#">02 Jan 2021</a></li>
                         <li><a href="#">02 Jan 2021</a></li>
                         <li><a href="#">02 Jan 2021</a></li>
                         <li><a href="#">02 Jan 2021</a></li>
@@ -348,7 +345,7 @@
                     <a href="#">See All</a>
                 </div>
             </div>
-            <div class="top-sales box">
+            <div class="top-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="title">Top Seling Product</div>
                 <ul class="top-sales-details">
                     <li>
@@ -409,5 +406,5 @@
                 </ul>
             </div>
         </div>
-    </div>
+    
 </x-layouts.app>
