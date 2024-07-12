@@ -182,7 +182,7 @@
             color: #000;
             font-weight: 500;
             border-radius: 5px;
-            margin: 20px 0;
+            margin: 18px 0;
             --tw-bg-opacity: 1;
             background-color: rgb(250 204 21 / var(--tw-bg-opacity))
                 /* #facc15 */
