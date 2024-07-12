@@ -30,6 +30,8 @@ class PersonaFactory extends Factory
             'Telefono' => $this->faker->phoneNumber(),
             'IdNacionalidad' => $nacionalidadId,
             'IdTipoPerfil' => $tipoPerfilId,
+            'Numero de Cuenta' => $this->faker->unique()->numerify('###########'), 
+            'Correo Institucional' => $this->faker->unique()->safeEmail(),
             'created_by' => 1
         ];
     }
