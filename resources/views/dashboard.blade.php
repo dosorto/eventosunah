@@ -264,7 +264,7 @@
                     <div class="number">40</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Up from yesterday</span>
+                        <span class="text">registrados</span>
                     </div>
                 </div>
                 <svg class="cart w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -279,11 +279,11 @@
             <div
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
-                    <div class="box-topic">Locales</div>
+                    <div class="box-topic">Presenciales</div>
                     <div class="number">3</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Up from yesterday</span>
+                        <span class="text">En localidades</span>
                     </div>
                 </div>
                 <svg class="cart two w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -294,14 +294,34 @@
                 </svg>
 
             </div>
+
             <div
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
-                    <div class="box-topic">Concluidos</div>
+                    <div class="box-topic">Virtuales</div>
+                    <div class="number">16</div>
+                    <div class="indicator">
+                        <i class='bx bx-down-arrow-alt down'></i>
+                        <span class="text">En plataformas</span>
+                    </div>
+                </div>
+                <svg class="cart four w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                        d="M5 3a2 2 0 0 0-2 2v5h18V5a2 2 0 0 0-2-2H5ZM3 14v-2h18v2a2 2 0 0 1-2 2h-6v3h2a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2h2v-3H5a2 2 0 0 1-2-2Z"
+                        clip-rule="evenodd" />
+                </svg>
+
+            </div>
+
+            <div
+                class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                <div class="right-side">
+                    <div class="box-topic">Finalizados</div>
                     <div class="number">12</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Up from yesterday</span>
+                        <span class="text">Finalizados</span>
                     </div>
                 </div>
                 <svg class="cart three w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -315,23 +335,6 @@
                 </svg>
 
 
-            </div>
-            <div
-                class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="right-side">
-                    <div class="box-topic">Usuarios</div>
-                    <div class="number">11,086</div>
-                    <div class="indicator">
-                        <i class='bx bx-down-arrow-alt down'></i>
-                        <span class="text">Down From Today</span>
-                    </div>
-                </div>
-                <svg class="cart four w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
-                        d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z"
-                        clip-rule="evenodd" />
-                </svg>
             </div>
         </div>
         <div class="sales-boxes">
