@@ -6,7 +6,7 @@
 
 <div class=" dark:bg-gray-900">
     <div class="">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-900">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
                     role="alert">
@@ -28,7 +28,7 @@
 
 
 
-            <div class="relative overflow-x-auto  sm:rounded-lg  dark:bg-gray-900">
+            <div class="relative overflow-x-auto  sm:rounded-lg  dark:bg-gray-800">
                 <div
                     class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4 ">
                     <div>
@@ -51,8 +51,8 @@
                             placeholder="Buscar...">
                     </div>
                 </div>
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500  dark:bg-gray-900">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800  dark:text-white">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
 
                             <th scope="col" class="px-6 py-3 ">
@@ -69,9 +69,9 @@
                     <tbody>
                         @foreach($tipoperfiles as $tipoperfil)
                             <tr
-                                class="bg-white border-b hover:bg-gray-50  dark:bg-gray-900 dark:hover:bg-gray-600  dark:text-white">
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap  dark:text-white">
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $tipoperfil->id }}</th>
                                 <td class="px-6 py-4">{{ $tipoperfil->tipoperfil }}</td>
                                 <td class="px-6 py-4">
