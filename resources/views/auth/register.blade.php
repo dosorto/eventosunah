@@ -45,10 +45,10 @@
 
         .container {
             position: relative;
-            max-width: 900px;
-            width: 80%;
+            max-width: 910px;
+            width: 90%;
             border-radius: 6px;
-            padding: 30px;
+            padding: 40px;
             margin: 0 15px;
             background-color: #fff;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -181,7 +181,7 @@
             color: #000;
             font-weight: 500;
             border-radius: 5px;
-            margin: 25px 0;
+            margin: 10px 0;
             --tw-bg-opacity: 1;
             background-color: rgb(250 204 21 / var(--tw-bg-opacity))
                 /* #facc15 */
@@ -364,8 +364,7 @@
         </nav>
     </header>
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
-    <div class="container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <div class="container">
         <h1>Registro Personas</h1>
 
         <form method="POST" action="{{ route('register') }}">
@@ -428,17 +427,7 @@
                                 name="CuentaEstudiante">
                         </div>
 
-                        <div class="input-field docente" style="display: none;">
-                            <label>Correo Institucional</label>
-                            <input type="email" placeholder="Ingrese su correo institucional"
-                                id="correo_institucional_docente" name="correo_institucional_docente">
-                        </div>
-
-                        <div class="input-field docente" style="display: none;">
-                            <label>Número de Registro</label>
-                            <input type="text" placeholder="Ingrese su número de registro" id="numero_registro"
-                                name="numero_registro">
-                        </div>
+                        
 
                         <div class="input-field">
                             <label>Fecha de Nacimiento</label>
@@ -499,18 +488,14 @@
     <script>
         const tipoPerfil = document.getElementById('IdTipoPerfil');
         const estudianteFields = document.querySelectorAll('.estudiante');
-        const docenteFields = document.querySelectorAll('.docente');
 
         tipoPerfil.addEventListener('change', () => {
             if (tipoPerfil.value === 'Estudiante') {
                 estudianteFields.forEach(field => field.style.display = 'block');
-                docenteFields.forEach(field => field.style.display = 'none');
-            } else if (tipoPerfil.value === 'Docente') {
-                docenteFields.forEach(field => field.style.display = 'block');
-                estudianteFields.forEach(field => field.style.display = 'none');
+            }else if  (tipoPerfil.value === 'Docente') {
+                estudianteFields.forEach(field => field.style.display = 'block');
             } else {
                 estudianteFields.forEach(field => field.style.display = 'none');
-                docenteFields.forEach(field => field.style.display = 'none');
             }
         });
     </script>
