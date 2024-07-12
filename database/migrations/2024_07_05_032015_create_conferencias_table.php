@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('conferencias', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Descripcion',500);
-            $table->date('Fecha');
-            $table->time('HoraInicio');
-            $table->time('HoraFin');
-            $table->string('Lugar');
-            $table->string('Link reunion');
-            $table->unsignedBigInteger('IdConferencista');
+            $table->string('nombre');
+            $table->string('descripcion',500);
+            $table->date('fecha');
+            $table->time('horaInicio');
+            $table->time('horaFin');
+            $table->string('lugar');
+            $table->string('linkreunion');
+            $table->unsignedBigInteger('idConferencista');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('IdConferencista')->references('id')->on('conferencistas')->onDelete('restrict');
+            $table->foreign('idConferencista')->references('id')->on('conferencistas')->onDelete('restrict');
         });
     }
 
