@@ -352,7 +352,7 @@
                 </div>
             </div>
 
-            <!-- Registro Usuario 2 -->
+            <!-- Registro Usuario -->
             <div class="form signup">
                 <span class="title">Registro</span>
 
@@ -364,23 +364,23 @@
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="email2" name="email2" required>
+                        <input type="email" placeholder="Correo electrónico" id="email2" name="email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Crear contraseña" id="password2"
-                            name="password2" required>
+                        <input type="password" class="password" placeholder="Crear contraseña" id="password"
+                            name="password" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
                         <input type="password" class="password" placeholder="Confirmar contraseña"
-                            id="password_confirmation" name="password_confirmation" required>
+                            id="password_confirmation" name="password_confirmation" autocomplete="new-password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
                     <div class="input-field button">
-                        <a href="/register"><input type="button" value="Registrar"></a>
+                       <input type="submit" value="Registrar">
                     </div>
                 </form>
 
