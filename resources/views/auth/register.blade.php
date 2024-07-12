@@ -126,6 +126,7 @@
             flex-direction: column;
             margin: 4px 0;
         }
+        
 
         form .fields .input-field .direccion {
             display: flex;
@@ -181,7 +182,7 @@
             color: #000;
             font-weight: 500;
             border-radius: 5px;
-            margin: 10px 0;
+            margin: 20px 0;
             --tw-bg-opacity: 1;
             background-color: rgb(250 204 21 / var(--tw-bg-opacity))
                 /* #facc15 */
@@ -419,12 +420,14 @@
                             <label>Correo Institucional</label>
                             <input type="email" placeholder="Ingrese su correo institucional" id="correo_institucional"
                                 name="CorreoInstitucional">
+                            @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field estudiante" style="display: none;">
                             <label>Cuenta de Estudiante</label>
                             <input type="text" placeholder="Ingrese su cuenta de estudiante" id="cuenta_estudiante"
-                                name="CuentaEstudiante">
+                                name="Cuenta">
+                            @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         
@@ -491,9 +494,9 @@
 
         tipoPerfil.addEventListener('change', () => {
             if (tipoPerfil.value === 'Estudiante') {
-                estudianteFields.forEach(field => field.style.display = 'block');
+                estudianteFields.forEach(field => field.style.display = 'flex');
             }else if  (tipoPerfil.value === 'Docente') {
-                estudianteFields.forEach(field => field.style.display = 'block');
+                estudianteFields.forEach(field => field.style.display = 'flex');
             } else {
                 estudianteFields.forEach(field => field.style.display = 'none');
             }
