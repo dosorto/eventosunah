@@ -18,14 +18,14 @@ class ConferenciaFactory extends Factory
     {
         $conferencistaId = Conferencista::inRandomOrder()->first()->id;
         return [
-           'Nombre' => $this->faker->sentence,
-            'Descripcion' => $this->faker->paragraph,
-            'Fecha' => $this->faker->date(),
-            'HoraInicio' => $this->faker->time(),
-            'HoraFin' => $this->faker->time(),
-            'Lugar' => $this->faker->address,
-            'Link reunion' => $this->faker->url,
-            'IdConferencista' => $conferencistaId,
+           'nombre' => $this->faker->sentence,
+            'descripcion' => $this->faker->paragraph,
+            'fecha' => $this->faker->date(),
+            'horaInicio' => $this->faker->time(),
+            'horaFin' => $this->faker->time(),
+            'lugar' => $this->faker->address,
+            'linkreunion' => $this->faker->url,
+            'idConferencista' => $conferencistaId,
             'created_by' => 1,
         ];
     }
