@@ -424,7 +424,7 @@
                         </div>
 
                         <div class="input-field estudiante" style="display: none;">
-                            <label>Cuenta de Estudiante</label>
+                            <label>Número de cuenta</label>
                             <input type="text" placeholder="Ingrese su cuenta de estudiante" id="cuenta_estudiante"
                                 name="Cuenta">
                             @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
