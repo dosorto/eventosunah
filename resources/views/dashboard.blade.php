@@ -145,7 +145,7 @@
             }
 
             .sales-boxes .box .button a {
-                color: #fff;
+                color: #000;
                 --tw-bg-opacity: 1;
                 background-color: rgb(250 204 21 / var(--tw-bg-opacity))
                     /* #facc15 */
