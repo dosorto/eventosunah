@@ -64,8 +64,8 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $localidad->id }}</th>
                         <td class="px-6 py-4">{{ $localidad->localidad }}</td>
                         <td class="px-6 py-4">
-                        <button wire:click="edit({{ $localidad->id }})" class="font-medium text-blue-600 hover:underline">Editar</button>
-                            <button wire:click="delete({{$localidad->id }})" class="font-medium text-red-600 hover:underline">Borrar</button>
+                        <button wire:click="edit({{ $localidad->id }})" class="px-5 py-2.5 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">Editar</button>
+                            <button wire:click="delete({{$localidad->id }})" class="px-5 py-2.5 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">Borrar</button>
                         </td>
                     </tr>
                     @endforeach
