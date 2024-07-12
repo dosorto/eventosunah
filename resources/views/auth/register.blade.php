@@ -202,6 +202,14 @@
             ;
         }
 
+        form button i,
+        form .backBtn i {
+            margin: 0 6px;
+        }
+
+        form .backBtn i {
+            transform: rotate(180deg);
+        }
 
         form .buttons {
             display: flex;
@@ -378,7 +386,7 @@
                             </select>
                             @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-
+                        
                         <div class="input-field">
                             <label>DNI</label>
                             <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
