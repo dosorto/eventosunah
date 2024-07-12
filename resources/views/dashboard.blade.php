@@ -277,7 +277,7 @@
 
             </div>
             <div
-                class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                class="box transition bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Presenciales</div>
                     <div class="number">3</div>
