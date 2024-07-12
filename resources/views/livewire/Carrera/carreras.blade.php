@@ -6,7 +6,7 @@
 
 <div class="  dark:bg-gray-900">
     <div class="">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-900">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
                     <div class="flex">
@@ -37,8 +37,8 @@
             <input wire:model.live="search" type="text" id="table-search-users" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700  dark:text-white" placeholder="Buscar...">
         </div>
     </div>
-                <table class="w-full text-sm text-left text-gray-500  dark:bg-gray-900">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800  dark:text-white">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">No.</th>
                             <th scope="col" class="px-6 py-3">Carrera</th>
@@ -48,8 +48,8 @@
                     </thead>
                     <tbody>
                         @foreach($carreras as $carrera)
-                        <tr class="bg-white border-b hover:bg-gray-50  dark:bg-gray-900 dark:hover:bg-gray-600  dark:text-white">
-                            <td class="px-6 py-4 dark:text-white">{{ $carrera->id }}</td>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $carrera->id }}</td>
                             <td class="px-6 py-4">{{ $carrera->carrera }}</td>
                             <td class="px-6 py-4">{{ $carrera->departamento->departamento }}</td>
                             <td class="px-6 py-4">
