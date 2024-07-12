@@ -301,7 +301,7 @@
                     <div class="box-topic">Virtuales</div>
                     <div class="number">16</div>
                     <div class="indicator">
-                        <i class='bx bx-down-arrow-alt down'></i>
+                    <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">En plataformas</span>
                     </div>
                 </div>
