@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio RRHH</title>
+  <title>Inicio Eventos UNAH</title>
   <link rel="stylesheet" href="">
   <!-- Google Fonts Links For Icon -->
   <style>
@@ -99,6 +99,18 @@
       font-size: 1rem;
       border-radius: 6px;
       margin-top: 38px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .menu-links li button {
+      background: #facc15;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: 500;
       transition: 0.2s ease;

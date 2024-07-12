@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <!-- Agrega tus estilos CSS personalizados aquí -->
     <style>
         /* ===== Google Font Import - Poformsins ===== */
@@ -107,26 +107,26 @@
             border: none;
             outline: none;
             font-size: 16px;
-            border-bottom: 2px solid #ccc;
+            border-bottom: 2px solid #000;
             border-top: 2px solid transparent;
             transition: all 0.2s ease;
         }
 
         .input-field input:is(:focus, :valid) {
-            border-bottom-color: #000000;
+            border-bottom-color: #facc15;
         }
 
         .input-field i {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
+            color: #000;
             font-size: 23px;
             transition: all 0.2s ease;
         }
 
         .input-field input:is(:focus, :valid)~i {
-            color: #000000;
+            color: #facc15;
         }
 
         .input-field i.icon {
@@ -153,7 +153,7 @@
 
         .checkbox-content input {
             margin-right: 10px;
-            accent-color: #1967b1;
+            accent-color: #facc15;
         }
 
         .form .text {
@@ -315,7 +315,7 @@
     </header>
     <div class="container">
         <div class="forms">
-            <div class="form login active">
+            <div class="form login active dark:bg-gray-900">
                 <span class="title">Iniciar sesión</span>
 
                 <form method="POST" action="{{ route('login') }}">
@@ -352,7 +352,7 @@
                 </div>
             </div>
 
-            <!-- Registration Form -->
+            <!-- Registro Usuario -->
             <div class="form signup">
                 <span class="title">Registro</span>
 
@@ -364,7 +364,7 @@
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="email" name="email" required>
+                        <input type="email" placeholder="Correo electrónico" id="email2" name="email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
@@ -374,13 +374,13 @@
                     </div>
                     <div class="input-field">
                         <input type="password" class="password" placeholder="Confirmar contraseña"
-                            id="password_confirmation" name="password_confirmation" required>
+                            id="password_confirmation" name="password_confirmation" autocomplete="new-password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Registrar">
+                       <a href="/register"><input type="submit" value="Registrar"></a>
                     </div>
                 </form>
 
@@ -389,11 +389,10 @@
                             ahora</a></span>
                 </div>
             </div>
+            
 
         </div>
     </div>
-
-    <script src="Login.js"></script>
     <script>
         const pwShowHide = document.querySelectorAll(".showHidePw");
         const pwFields = document.querySelectorAll(".password");
