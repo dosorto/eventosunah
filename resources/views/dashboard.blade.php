@@ -343,7 +343,7 @@
                 <div class="title">Próximos Eventos</div>
                 <div class="sales-details">
                     <ul class="details">
-                        <li class="topic">Date</li>
+                        <li class="topic">Fecha</li>
                         <li><a href="#">02 Jan 2021</a></li>
                         <li><a href="#">02 Jan 2021</a></li>
                         <li><a href="#">02 Jan 2021</a></li>
@@ -354,18 +354,7 @@
                         <li><a href="#">02 Jan 2021</a></li>
                         <li><a href="#">02 Jan 2021</a></li>
                     </ul>
-                    <ul class="details">
-                        <li class="topic">Conferencista</li>
-                        <li><a href="#">Alex Doe</a></li>
-                        <li><a href="#">David Mart</a></li>
-                        <li><a href="#">Roe Parter</a></li>
-                        <li><a href="#">Diana Penty</a></li>
-                        <li><a href="#">Martin Paw</a></li>
-                        <li><a href="#">Doe Alex</a></li>
-                        <li><a href="#">Aiana Lexa</a></li>
-                        <li><a href="#">Rexel Mags</a></li>
-                        <li><a href="#">Tiana Loths</a></li>
-                    </ul>
+
                     <ul class="details">
                         <li class="topic">Evento</li>
                         <li><a href="#">Delivered</a></li>
@@ -378,6 +367,20 @@
                         <li><a href="#">Pending</a></li>
                         <li><a href="#">Delivered</a></li>
                     </ul>
+
+                    <ul class="details">
+                        <li class="topic">Modalidad</li>
+                        <li><a href="#">Virtual</a></li>
+                        <li><a href="#">Virtual</a></li>
+                        <li><a href="#">Virtual</a></li>
+                        <li><a href="#">Presencial</a></li>
+                        <li><a href="#">Presencial</a></li>
+                        <li><a href="#">Presencial</a></li>
+                        <li><a href="#">Virtual</a></li>
+                        <li><a href="#">Presencial</a></li>
+                        <li><a href="#">Presencial</a></li>
+                    </ul>
+                   
                     <ul class="details">
                         <li class="topic">Inscritos</li>
                         <li><a href="#">204</a></li>
@@ -404,10 +407,10 @@
                             <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
+                                    Kite Siki
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@flowbite.com
+                                    email@gmail.com
                                 </p>
                             </div>
                         </a>
@@ -418,10 +421,10 @@
                             <img src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="">
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
+                                    Oli Manu
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@flowbite.com
+                                    email@gmail.com
                                 </p>
                             </div>
                         </a>
@@ -432,10 +435,10 @@
                             <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
+                                    Cornert Sims
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@flowbite.com
+                                    email@yahoo.com
                                 </p>
                             </div>
                         </a>
@@ -446,10 +449,10 @@
                             <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
+                                    Joser Olet
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@flowbite.com
+                                    Olet@gmail.com
                                 </p>
                             </div>
                         </a>
@@ -460,10 +463,10 @@
                             <img src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="">
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
+                                    Mani Sims
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@flowbite.com
+                                    email@gmail.com
                                 </p>
                             </div>
                         </a>
@@ -474,10 +477,10 @@
                             <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
+                                    Osmeru Sone
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@flowbite.com
+                                    email@gmail.com
                                 </p>
                             </div>
                         </a>
@@ -486,13 +489,13 @@
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-4.jpg" alt="">
                             <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-               Neil Sims
-            </p>
-            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-               email@flowbite.com
-            </p>
-         </div>
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    nelik@gmail.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">4</span>
                     </li>
@@ -500,13 +503,13 @@
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="">
                             <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-               Neil Sims
-            </p>
-            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-               email@flowbite.com
-            </p>
-         </div>
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Masi Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@gmail.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">2</span>
                     </li>

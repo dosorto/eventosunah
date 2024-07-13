@@ -1,10 +1,10 @@
 <x-form-section submit="updateProfileInformation" class="p-4 sm:ml-64">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Información del perfil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Actualice la información del perfil y la dirección de correo electrónico de su cuenta.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -67,16 +67,16 @@
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2 dark:text-white">
-                    {{ __('Your email address is unverified.') }}
+                    {{ __('Su dirección de correo electrónico no está verificada.') }}
 
                     <button type="button" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                        {{ __('Haga clic aquí para volver a enviar el correo electrónico de verificación.') }}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                        {{ __('A new verification link has been sent to your email address.') }}
+                        {{ __('Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.') }}
                     </p>
                 @endif
             @endif
@@ -85,11 +85,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Guardado.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Guardar') }}
         </x-button>
     </x-slot>
 </x-form-section>
