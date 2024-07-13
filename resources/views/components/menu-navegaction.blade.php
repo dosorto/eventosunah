@@ -68,7 +68,9 @@
                            <form method="POST" action="{{ route('logout') }}" x-data>
                               @csrf
 
-                              <x-dropdown-link href="{{ route('logout') }}" class="text-red-800 dark:text-gray-100 hover:bg-red-100 " @click.prevent="$root.submit();">
+                              <x-dropdown-link href="{{ route('logout') }}"
+                                 class="text-red-800 dark:text-gray-100 hover:bg-red-100 "
+                                 @click.prevent="$root.submit();">
                                  {{ __('Cerrar Sesión') }}
                               </x-dropdown-link>
                            </form>
@@ -81,7 +83,7 @@
       </div>
    </nav>
 
-   <aside id="logo-sidebar" 
+   <aside id="logo-sidebar"
       class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidebar">
       <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -204,7 +206,7 @@
                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             </li>
             <li>
-              <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
+               <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                   <svg
                      class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -216,8 +218,29 @@
                         d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                   </svg>
                   <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-              </x-nav-link>
+               </x-nav-link>
             </li>
+            <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
+               <div class="flex items-center mb-3">
+                  <span
+                     class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">Bienvenido</span>
+                  <button type="button"
+                     class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
+                     data-dismiss-target="#dropdown-cta" aria-label="Close">
+                     <span class="sr-only">Close</span>
+                     <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                     </svg>
+                  </button>
+               </div>
+               <p class="mb-3 text-sm text-blue-800 dark:text-blue-400">
+                  Este es tu panel de control donde puedes ver y administrar tus eventos.
+               </p>
+               <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                  href="{{ route('profile.show') }}"> Ver y administrar Perfil</a>
+            </div>
          </ul>
       </div>
    </aside>

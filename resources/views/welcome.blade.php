@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio Eventos UNAH</title>
+  <title>Eventos UNAH</title>
   <link rel="stylesheet" href="">
   <!-- Google Fonts Links For Icon -->
   <style>
@@ -200,8 +200,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 </head>
-
-<body>
+<section>
   <header>
     <nav class="navbar">
       <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
@@ -219,7 +218,6 @@
       <h2>Gestión De Eventos De UNAH-Choluteca</h2>
       <p>
         La gestión de eventos es una parte fundamental de la administración de una organización.
-
       </p>
       <button><a href="/login" style="text-decoration: none; color: #000; font-weight: 500;">Acceder ahora</a></button>
     </div>
@@ -236,7 +234,6 @@
     // Close mobile menu on close button click
     closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
   </script>
-
-</body>
+  </body>
 
 </html>

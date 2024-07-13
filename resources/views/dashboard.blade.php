@@ -402,55 +402,111 @@
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
-                            <span class="product">Vuitton Sungses</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@flowbite.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">10</span>
                     </li>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="">
-                            <span class="product">Hourglass Jeans </span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@flowbite.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">8</span>
                     </li>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
-                            <span class="product">Nike lop</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@flowbite.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">8</span>
                     </li>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
-                            <span class="product">Hermesi Scarves.</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@flowbite.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">7</span>
                     </li>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="">
-                            <span class="product">Ladies hutdd</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@flowbite.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">5</span>
                     </li>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
-                            <span class="product">Womens tur</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    email@flowbite.com
+                                </p>
+                            </div>
                         </a>
                         <span class="price">5</span>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-4.jpg" alt="">
-                            <span class="product">Addidas Running</span>
+                            <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+               Neil Sims
+            </p>
+            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+               email@flowbite.com
+            </p>
+         </div>
                         </a>
                         <span class="price">4</span>
                     </li>
                     <li>
                         <a href="#">
                             <img src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="">
-                            <span class="product">Bilack Osort</span>
+                            <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+               Neil Sims
+            </p>
+            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+               email@flowbite.com
+            </p>
+         </div>
                         </a>
                         <span class="price">2</span>
                     </li>
