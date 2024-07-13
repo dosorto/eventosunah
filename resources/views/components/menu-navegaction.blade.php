@@ -223,7 +223,7 @@
             <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
                <div class="flex items-center mb-3">
                   <span
-                     class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">Bienvenido</span>
+                     class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">¡Bienvenido!</span>
                   <button type="button"
                      class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
                      data-dismiss-target="#dropdown-cta" aria-label="Close">
@@ -235,8 +235,8 @@
                      </svg>
                   </button>
                </div>
-               <p class="mb-3 text-sm text-blue-800 dark:text-blue-400">
-                  Este es tu panel de control donde puedes ver y administrar tus eventos.
+               <p class="mb-3 text-sm text-gray-800 dark:text-gray-400">
+                Este es tu panel de control donde puedes ver y administrar tus eventos.
                </p>
                <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
                   href="{{ route('profile.show') }}"> Ver y administrar Perfil</a>

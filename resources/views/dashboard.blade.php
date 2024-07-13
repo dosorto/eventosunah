@@ -86,8 +86,8 @@
             }
 
             .box .cart.four {
-                color: #e05260;
-                background: #f7d4d7;
+                color: #9b6dff;
+                background: #d8c7ff;
             }
 
             .total-order {
