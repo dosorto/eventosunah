@@ -126,7 +126,7 @@
             flex-direction: column;
             margin: 4px 0;
         }
-        
+
 
         form .fields .input-field .direccion {
             display: flex;
@@ -386,7 +386,7 @@
                             </select>
                             @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-                        
+
                         <div class="input-field">
                             <label>DNI</label>
                             <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
@@ -430,7 +430,7 @@
                             @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
-                        
+
 
                         <div class="input-field">
                             <label>Fecha de Nacimiento</label>
@@ -495,12 +495,23 @@
         tipoPerfil.addEventListener('change', () => {
             if (tipoPerfil.value === 'Estudiante') {
                 estudianteFields.forEach(field => field.style.display = 'flex');
-            }else if  (tipoPerfil.value === 'Docente') {
+            } else if (tipoPerfil.value === 'Docente') {
                 estudianteFields.forEach(field => field.style.display = 'flex');
             } else {
                 estudianteFields.forEach(field => field.style.display = 'none');
             }
         });
+    </script>
+    <script>
+        const header = document.querySelector("header");
+        const hamburgerBtn = document.querySelector("#hamburger-btn");
+        const closeMenuBtn = document.querySelector("#close-menu-btn");
+
+        // Toggle mobile menu on hamburger button click
+        hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+
+        // Close mobile menu on close button click
+        closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
 </body>
 

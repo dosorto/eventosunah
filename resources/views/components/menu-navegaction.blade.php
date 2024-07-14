@@ -14,10 +14,9 @@
                      </path>
                   </svg>
                </button>
-               <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                  <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                  <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">EVENTOS
-                     UNAH</span>
+               <a href="/dashboard" class="flex ms-2 md:me-24">
+                  <img src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" alt="Logo" height="90px" width="90px" />
+                  <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"></span>
                </a>
 
             </div>
@@ -220,7 +219,7 @@
                   <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
                </x-nav-link>
             </li>
-            <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
+            {{-- <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
                <div class="flex items-center mb-3">
                   <span
                      class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">¡Bienvenido!</span>
@@ -236,11 +235,12 @@
                   </button>
                </div>
                <p class="mb-3 text-sm text-gray-800 dark:text-gray-400">
-                Este es tu panel de control donde puedes ver y administrar tus eventos.
+                  Este es tu panel de control donde puedes ver y administrar tus eventos.
                </p>
                <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
                   href="{{ route('profile.show') }}"> Ver y administrar Perfil</a>
             </div>
+            --}}
          </ul>
       </div>
    </aside>

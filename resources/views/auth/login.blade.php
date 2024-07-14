@@ -1,313 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
 
-    <!DOCTYPE html>
-    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Agrega tus estilos CSS personalizados aquí -->
+    <style>
+        /* ===== Google Font Import - Poformsins ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
-        <!-- Agrega tus estilos CSS personalizados aquí -->
-        <style>
-            /* ===== Google Font Import - Poformsins ===== */
-            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Poppins', sans-serif;
-            }
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
 
-            body {
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
+        }
 
-            }
+        .container {
+            position: relative;
+            max-width: 430px;
+            width: 100%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 0 20px;
+        }
 
-            .container {
-                position: relative;
-                max-width: 430px;
-                width: 100%;
-                background: #fff;
-                border-radius: 10px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-                margin: 0 20px;
-            }
+        .container .forms {
+            display: flex;
+            align-items: center;
+            height: 440px;
+            width: 200%;
+            transition: height 0.2s ease;
+        }
 
-            .container .forms {
-                display: flex;
-                align-items: center;
-                height: 440px;
-                width: 200%;
-                transition: height 0.2s ease;
-            }
+        .container .form {
+            width: 50%;
+            padding: 30px;
+            background-color: #fff;
+            transition: margin-left 0.18s ease;
+        }
 
+        .container.active .login {
+            margin-left: -50%;
+            opacity: 0;
+            transition: margin-left 0.18s ease, opacity 0.15s ease;
+        }
 
-            .container .form {
-                width: 50%;
-                padding: 30px;
-                background-color: #fff;
-                transition: margin-left 0.18s ease;
-            }
+        .container .signup {
+            opacity: 0;
+            transition: opacity 0.09s ease;
+        }
 
-            .container.active .login {
-                margin-left: -50%;
-                opacity: 0;
-                transition: margin-left 0.18s ease, opacity 0.15s ease;
-            }
+        .container.active .signup {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
 
-            .container .signup {
-                opacity: 0;
-                transition: opacity 0.09s ease;
-            }
+        .container.active .forms {
+            height: 600px;
+        }
 
-            .container.active .signup {
-                opacity: 1;
-                transition: opacity 0.2s ease;
-            }
+        .container .form .title {
+            position: relative;
+            font-size: 27px;
+            font-weight: 600;
+        }
 
-            .container.active .forms {
-                height: 600px;
-            }
+        .form .title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            background-color: #1254a1;
+            border-radius: 25px;
+        }
 
-            .container .form .title {
-                position: relative;
-                font-size: 27px;
-                font-weight: 600;
-            }
+        .form .input-field {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin-top: 30px;
+        }
 
-            .form .title::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                height: 3px;
-                width: 30px;
-                background-color: #1254a1;
-                border-radius: 25px;
-            }
+        .input-field input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding: 0 35px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-bottom: 2px solid #000;
+            border-top: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
 
-            .form .input-field {
-                position: relative;
-                height: 50px;
-                width: 100%;
-                margin-top: 30px;
-            }
+        .input-field input:is(:focus, :valid) {
+            border-bottom-color: #facc15;
+        }
 
-            .input-field input {
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                padding: 0 35px;
-                border: none;
-                outline: none;
-                font-size: 16px;
-                border-bottom: 2px solid #000;
-                border-top: 2px solid transparent;
-                transition: all 0.2s ease;
-            }
+        .input-field i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            font-size: 23px;
+            transition: all 0.2s ease;
+        }
 
-            .input-field input:is(:focus, :valid) {
-                border-bottom-color: #facc15;
-            }
+        .input-field input:is(:focus, :valid)~i {
+            color: #facc15;
+        }
 
-            .input-field i {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #000;
-                font-size: 23px;
-                transition: all 0.2s ease;
-            }
+        .input-field i.icon {
+            left: 0;
+        }
 
-            .input-field input:is(:focus, :valid)~i {
-                color: #facc15;
-            }
+        .input-field i.showHidePw {
+            right: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
 
-            .input-field i.icon {
-                left: 0;
-            }
+        .form .checkbox-text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
 
-            .input-field i.showHidePw {
-                right: 0;
-                cursor: pointer;
+        .checkbox-text .checkbox-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-content input {
+            margin-right: 10px;
+            accent-color: #facc15;
+        }
+
+        .form .text {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form a.text {
+            color: #1254a1;
+            text-decoration: none;
+        }
+
+        .form a:hover {
+            text-decoration: underline;
+        }
+
+        .form .button {
+            margin-top: 35px;
+        }
+
+        .form .button input {
+            border: none;
+            color: #000;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            --tw-bg-opacity: 1;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity))
+                /* #facc15 */
+            ;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button input:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity))
+                /* #ca8a04 */
+            ;
+        }
+
+        .form .login-signup {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        header .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;  
+        }
+
+        .navbar .logo {
+            color: #fff;
+            font-weight: 600;
+            font-size: 2.1rem;
+            text-decoration: none;
+        }
+
+        .navbar .logo span {
+            color: #facc15;
+        }
+
+        .navbar .menu-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .navbar a:hover {
+            color: #facc15;
+        }
+
+        #close-menu-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #hamburger-btn {
+            color: #fff;
+            cursor: pointer;
+            display: nones;
+        }
+
+        @media (max-width: 768px) {
+            header {
                 padding: 10px;
             }
 
-            .form .checkbox-text {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
 
-            .checkbox-text .checkbox-content {
-                display: flex;
-                align-items: center;
-            }
 
-            .checkbox-content input {
-                margin-right: 10px;
-                accent-color: #facc15;
-            }
-
-            .form .text {
-                color: #333;
-                font-size: 14px;
-            }
-
-            .form a.text {
-                color: #1254a1;
-                text-decoration: none;
-            }
-
-            .form a:hover {
-                text-decoration: underline;
-            }
-
-            .form .button {
-                margin-top: 35px;
-            }
-
-            .form .button input {
-                border: none;
-                color: #000;
-                font-size: 17px;
-                font-weight: 500;
-                letter-spacing: 1px;
-                border-radius: 6px;
-                --tw-bg-opacity: 1;
-                background-color: rgb(250 204 21 / var(--tw-bg-opacity))
-                    /* #facc15 */
-                ;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .button input:hover {
-                --tw-bg-opacity: 1;
-                background-color: rgb(202 138 4 / var(--tw-bg-opacity))
-                    /* #ca8a04 */
-                ;
-            }
-
-            .form .login-signup {
-                margin-top: 30px;
-                text-align: center;
-            }
-
-            header {
-                position: fixed;
-                top: 0;
+            header.show-mobile-menu::before {
+                content: "";
+                position: absolute;
                 left: 0;
+                top: 0;
                 width: 100%;
-                padding: 20px;
-            }
-
-            header .navbar {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                max-width: 1200px;
-                margin: 0 auto;
+                height: 100%;
+                backdrop-filter: blur(5px);
             }
 
             .navbar .logo {
-                color: #fff;
-                font-weight: 600;
-                font-size: 2.1rem;
-                text-decoration: none;
+                font-size: 1.7rem;
             }
 
-            .navbar .logo span {
-                color: #facc15;
+
+            #hamburger-btn,
+            #close-menu-btn {
+                display: block;
             }
 
             .navbar .menu-links {
-                display: flex;
-                list-style: none;
-                gap: 35px;
+                position: fixed;
+                top: 0;
+                left: -250px;
+                width: 250px;
+                height: 100vh;
+                background: #fff;
+                flex-direction: column;
+                padding: 70px 40px 0;
+                transition: left 0.2s ease;
+            }
+
+            header.show-mobile-menu .navbar .menu-links {
+                left: 0;
             }
 
             .navbar a {
-                color: #fff;
-                text-decoration: none;
-                transition: 0.2s ease;
+                color: #000;
             }
+        }
+    </style>
+</head>
 
-            .navbar a:hover {
-                color: #facc15;
-            }
-
-            #close-menu-btn {
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                cursor: pointer;
-                display: none;
-            }
-
-            #hamburger-btn {
-                color: #fff;
-                cursor: pointer;
-                display: none;
-            }
-
-            @media (max-width: 768px) {
-                header {
-                    padding: 10px;
-                }
-
-                header.show-mobile-menu::before {
-                    content: "";
-                    position: fixed;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    backdrop-filter: blur(5px);
-                }
-
-                .navbar .logo {
-                    font-size: 1.7rem;
-                }
-
-
-                #hamburger-btn,
-                #close-menu-btn {
-                    display: block;
-                }
-
-                .navbar .menu-links {
-                    position: fixed;
-                    top: 0;
-                    left: -250px;
-                    width: 250px;
-                    height: 100vh;
-                    background: #fff;
-                    flex-direction: column;
-                    padding: 70px 40px 0;
-                    transition: left 0.2s ease;
-                }
-
-                header.show-mobile-menu .navbar .menu-links {
-                    left: 0;
-                }
-
-                .navbar a {
-                    color: #000;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
+<body>
+    <section>
         <header>
             <nav class="navbar">
                 <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
@@ -401,36 +403,48 @@
 
             </div>
         </div>
-        <script>
-            const pwShowHide = document.querySelectorAll(".showHidePw");
-            const pwFields = document.querySelectorAll(".password");
+    </section>
+    <script>
+        const pwShowHide = document.querySelectorAll(".showHidePw");
+        const pwFields = document.querySelectorAll(".password");
 
-            pwShowHide.forEach(eyeIcon => {
-                eyeIcon.addEventListener("click", () => {
-                    pwFields.forEach(pwField => {
-                        if (pwField.type === "password") {
-                            pwField.type = "text";
-                            eyeIcon.classList.replace("uil-eye-slash", "uil-eye");
-                        } else {
-                            pwField.type = "password";
-                            eyeIcon.classList.replace("uil-eye", "uil-eye-slash");
-                        }
-                    });
+        pwShowHide.forEach(eyeIcon => {
+            eyeIcon.addEventListener("click", () => {
+                pwFields.forEach(pwField => {
+                    if (pwField.type === "password") {
+                        pwField.type = "text";
+                        eyeIcon.classList.replace("uil-eye-slash", "uil-eye");
+                    } else {
+                        pwField.type = "password";
+                        eyeIcon.classList.replace("uil-eye", "uil-eye-slash");
+                    }
                 });
             });
+        });
 
-            const signUp = document.querySelector(".signup-link");
-            const login = document.querySelector(".login-link");
-            const container = document.querySelector(".container");
+        const signUp = document.querySelector(".signup-link");
+        const login = document.querySelector(".login-link");
+        const container = document.querySelector(".container");
 
-            signUp.addEventListener("click", () => {
-                container.classList.add("active");
-            });
+        signUp.addEventListener("click", () => {
+            container.classList.add("active");
+        });
 
-            login.addEventListener("click", () => {
-                container.classList.remove("active");
-            });
-        </script>
-    </body>
+        login.addEventListener("click", () => {
+            container.classList.remove("active");
+        });
+    </script>
+    <script>
+        const header = document.querySelector("header");
+        const hamburgerBtn = document.querySelector("#hamburger-btn");
+        const closeMenuBtn = document.querySelector("#close-menu-btn");
 
-    </html>
+        // Toggle mobile menu on hamburger button click
+        hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+
+        // Close mobile menu on close button click
+        closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
+    </script>
+</body>
+
+</html>
