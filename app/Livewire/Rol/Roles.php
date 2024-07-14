@@ -98,7 +98,8 @@ class Roles extends Component
             session()->flash('message', 'Rol actualizado');
 
             $this->reset();
-            $this->isOpen = false;
+            $this->closeModal();
+       
 
         } catch (\Exception $e) {
             session()->flash('error', 'Error al actualizar rol: ' . $e->getMessage());
@@ -111,7 +112,10 @@ class Roles extends Component
         Role::findOrFail($roleId)->delete();
         session()->flash('message', 'Rol eliminado');
     }
-
+    public function closeModal()
+    {
+        $this->isOpen = false;
+    }
     private function resetInputFields()
     {
         $this->name = '';

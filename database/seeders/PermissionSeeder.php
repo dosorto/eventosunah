@@ -23,6 +23,8 @@ class PermissionSeeder extends Seeder
             'admin-persona',
             'admin-rol',
             'admin-conferencia',
+            'admin-conferencista',
+            'admin-evento',
 
          ];
          
