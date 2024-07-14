@@ -71,7 +71,7 @@ class Conferencias extends Component
             'horaFin' => 'required',
             'lugar' => 'required',
             'linkreunion' => 'required',
-            'idConferencista' => 'required', // Asegúrate de que este campo esté incluido en la validación
+            'idConferencista' => 'required', 
         ]);
 
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
@@ -103,7 +103,7 @@ class Conferencias extends Component
         $this->horaFin = $conferencia->horaFin;
         $this->lugar = $conferencia->lugar;
         $this->linkreunion = $conferencia->linkreunion;
-        $this->idConferencista = $conferencia->conferencista_id;
+        $this->idConferencista = $conferencia->idConferencista;
 
         $this->openModal();
     }
