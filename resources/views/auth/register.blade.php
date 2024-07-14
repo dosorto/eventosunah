@@ -248,6 +248,7 @@
             left: 0;
             width: 100%;
             padding: 20px;
+            z-index: 1;
         }
 
         header .navbar {

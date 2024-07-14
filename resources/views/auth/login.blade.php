@@ -47,6 +47,7 @@
             transition: height 0.2s ease;
         }
 
+
         .container .form {
             width: 50%;
             padding: 30px;
@@ -214,7 +215,7 @@
             align-items: center;
             justify-content: space-between;
             max-width: 1200px;
-            margin: 0 auto;  
+            margin: 0 auto;
         }
 
         .navbar .logo {
@@ -255,7 +256,7 @@
         #hamburger-btn {
             color: #fff;
             cursor: pointer;
-            display: nones;
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -263,11 +264,9 @@
                 padding: 10px;
             }
 
-
-
             header.show-mobile-menu::before {
                 content: "";
-                position: absolute;
+                position: fixed;
                 left: 0;
                 top: 0;
                 width: 100%;
