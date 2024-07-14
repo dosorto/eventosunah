@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre Carrera');
+            $table->string('carrera');
             $table->unsignedBigInteger('IdDepartamento');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('IdDepartamento')->references('id')->on('departamentos')->onDelete('restrict');
         });
     }
 

@@ -10,5 +10,20 @@ class Evento extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Nombre','Descripcion','Organizador','Fecha Inicio', 'Fecha Final','Hora Inicio','Hora Final','IdModalidad','IdLocalidad','IdConferencia'];
+    protected $fillable = ['nombreevento','descripcion','organizador','fechainicio', 'fechafinal','horainicio','horafin','idmodalidad','idlocalidad','idconferencia'];
+
+    public function modalidad()
+    {
+        return $this->belongsTo(Modalidad::class, 'idmodalidad');
+    }
+
+    public function localidad()
+    {
+        return $this->belongsTo(Localidad::class, 'idlocalidad');
+    }
+
+    public function conferencia()
+    {
+        return $this->belongsTo(Conferencia::class, 'idconferencia');
+    }
 }
