@@ -69,22 +69,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($nombreeventos as $evento)
+                        @foreach($nombreeventos as $nombreevento)
                             <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="px-6 py-4">{{ $evento->id }}</td>
-                                <td class="px-6 py-4">{{ $evento->nombreevento }}</td>
-                                <td class="px-6 py-4">{{ $evento->descripcion }}</td>
-                                <td class="px-6 py-4">{{ $evento->organizador }}</td>
-                                <td class="px-6 py-4">{{ $evento->fechainicio }}</td>
-                                <td class="px-6 py-4">{{ $evento->fechafinal }}</td>
-                                <td class="px-6 py-4">{{ $evento->horainicio }}</td>
-                                <td class="px-6 py-4">{{ $evento->horafin }}</td>
-                                <td class="px-6 py-4">{{ $evento->modalidad->modalidad }}</td>
-                                <td class="px-6 py-4">{{ $evento->localidad->localidad }}</td>
-                                <td class="px-6 py-4">{{ $evento->conferencia->nombre }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->id }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->nombreevento }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->descripcion }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->organizador }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->fechainicio }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->fechafinal }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->horainicio }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->horafin }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
+                                <td class="px-6 py-4">{{ $nombreevento->conferencia->nombre }}</td>
                                 <td class="px-6 py-4">
-                                    <button wire:click="edit({{ $evento->id }})" class="text-blue-600 hover:underline">Editar</button>
-                                    <button wire:click="delete({{ $evento->id }})" class="text-red-600 hover:underline">Borrar</button>
+                                    <button wire:click="edit({{ $nombreevento->id }})" class="text-blue-600 hover:underline">Editar</button>
+                                    <button wire:click="delete({{ $nombreevento->id }})" class="text-red-600 hover:underline">Borrar</button>
                                 </td>
 
                             </tr>
