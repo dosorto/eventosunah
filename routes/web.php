@@ -7,16 +7,13 @@ use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
 use App\Livewire\Departamento\Departamentos;
 use App\Livewire\Carrera\Carreras;
-<<<<<<< HEAD
 use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\Persona\Personas;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DetailsController;
 
-=======
 use App\Livewire\Evento\Eventos;
->>>>>>> origin/acxel
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,7 +32,6 @@ Route::middleware([
     Route::get('/localidad', Localidades::class)->name('localidad');
     Route::get('/departamento', Departamentos::class)->name('departamento');
     Route::get('/carrera', Carreras::class)->name('carrera');
-<<<<<<< HEAD
     Route::get('/rol', Roles::class)->name('rol');
     Route::get('/conferencia', Conferencias::class)->name('conferencia');
     Route::get('/persona', Personas::class)->name('persona');   
@@ -44,9 +40,7 @@ Route::middleware([
     //Route::post('/register/details', [DetailsController::class, 'store'])->name('storeDetails');
         
     
-=======
     Route::get('/evento', Eventos::class)->name('nombreEvento');
->>>>>>> origin/acxel
 });
 
 
