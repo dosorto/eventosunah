@@ -25,7 +25,7 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
-        
+
         }
 
         .container {
@@ -182,14 +182,18 @@
             letter-spacing: 1px;
             border-radius: 6px;
             --tw-bg-opacity: 1;
-            background-color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity))
+                /* #facc15 */
+            ;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .button input:hover {
             --tw-bg-opacity: 1;
-            background-color: rgb(202 138 4 / var(--tw-bg-opacity)) /* #ca8a04 */;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity))
+                /* #ca8a04 */
+            ;
         }
 
         .form .login-signup {
@@ -203,6 +207,7 @@
             left: 0;
             width: 100%;
             padding: 20px;
+            z-index: 1;
         }
 
         header .navbar {
@@ -303,96 +308,101 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
-            <ul class="menu-links">
-                <span id="close-menu-btn" class="material-symbols-outlined">close</span>
-                <li><a href="/">Home</a></li>
-            </ul>
-            <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="forms">
-            <div class="form login active dark:bg-gray-900">
-                <span class="title">Iniciar sesión</span>
+    <section>
+        <header>
+            <nav class="navbar">
+                <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
+                <ul class="menu-links">
+                    <span id="close-menu-btn" class="material-symbols-outlined">close</span>
+                    <li><a href="/">Home</a></li>
+                </ul>
+                <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="forms">
+                <div class="form login active dark:bg-gray-900">
+                    <span class="title">Iniciar sesión</span>
 
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="input-field">
-                        <input type="email" id="email" name="email" placeholder="Correo electrónico" required autofocus>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="password" name="password" class="password" placeholder="Contraseña"
-                            required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="remember_me" name="remember">
-                            <label for="remember_me" class="text">Recuérdame</label>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="input-field">
+                            <input type="email" id="email" name="email" placeholder="Correo electrónico" required
+                                autofocus>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" id="password" name="password" class="password"
+                                placeholder="Contraseña" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
                         </div>
 
-                        <a href="{{ route('password.request') }}" class="text">¿No recuerdas la contraseña?</a>
-                    </div>
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                <input type="checkbox" id="remember_me" name="remember">
+                                <label for="remember_me" class="text">Recuérdame</label>
+                            </div>
 
-                    <div class="input-field button">
-                        <input type="submit" value="Iniciar">
-                    </div>
-                </form>
+                            <a href="{{ route('password.request') }}" class="text">¿No recuerdas la contraseña?</a>
+                        </div>
 
-                <div class="login-signup">
-                    <span class="text">¿No tienes cuenta?
-                        <a href="#" class="text signup-link">Registrarse</a>
-                    </span>
+                        <div class="input-field button">
+                            <input type="submit" value="Iniciar">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                        <span class="text">¿No tienes cuenta?
+                            <a href="#" class="text signup-link">Registrarse</a>
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Registro Usuario 2 -->
-            <div class="form signup">
-                <span class="title">Registro</span>
+                <!-- Registro Usuario -->
+                <div class="form signup">
+                    <span class="title">Registro</span>
 
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
 
-                    <div class="input-field">
-                        <input type="text" placeholder="Nombre completo" id="name" name="name" required>
-                        <i class="uil uil-user"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="email2" name="email2" required>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="password" placeholder="Crear contraseña" id="password2"
-                            name="password2" required>
-                        <i class="uil uil-lock icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirmar contraseña"
-                            id="password_confirmation" name="password_confirmation" required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
+                        <div class="input-field">
+                            <input type="text" placeholder="Nombre completo" id="name" name="name" required>
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" placeholder="Correo electrónico" id="email2" name="email" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Crear contraseña" id="password"
+                                name="password" required>
+                            <i class="uil uil-lock icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Confirmar contraseña"
+                                id="password_confirmation" name="password_confirmation" autocomplete="new-password"
+                                required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
 
-                    <div class="input-field button">
-                        <input type="button" value="Registrar">
-                    </div>
-                </form>
+                        <div class="input-field button">
+                            <a href="/register"><input type="submit" value="Registrar"></a>
+                        </div>
+                    </form>
 
-                <div class="login-signup">
-                    <span class="text">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text login-link">Iniciar
-                            ahora</a></span>
+                    <div class="login-signup">
+                        <span class="text">¿Ya tienes cuenta? <a href="{{ route('login') }}"
+                                class="text login-link">Iniciar
+                                ahora</a></span>
+                    </div>
                 </div>
-            </div>
-            
 
+
+            </div>
         </div>
-    </div>
+    </section>
     <script>
         const pwShowHide = document.querySelectorAll(".showHidePw");
         const pwFields = document.querySelectorAll(".password");
@@ -423,19 +433,17 @@
             container.classList.remove("active");
         });
     </script>
-     <script>
-    const header = document.querySelector("header");
-    const hamburgerBtn = document.querySelector("#hamburger-btn");
-    const closeMenuBtn = document.querySelector("#close-menu-btn");
+    <script>
+        const header = document.querySelector("header");
+        const hamburgerBtn = document.querySelector("#hamburger-btn");
+        const closeMenuBtn = document.querySelector("#close-menu-btn");
 
-    // Toggle mobile menu on hamburger button click
-    hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+        // Toggle mobile menu on hamburger button click
+        hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
 
-    // Close mobile menu on close button click
-    closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
-  </script>
-
-</body>
+        // Close mobile menu on close button click
+        closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
+    </script>
 </body>
 
 </html>

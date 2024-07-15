@@ -1,12 +1,12 @@
 
 <div>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white m-2">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
         Tipos De Perfiles
     </h2>
 
 <div class=" dark:bg-gray-900">
     <div class="">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-900">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
                     role="alert">
@@ -28,7 +28,7 @@
 
 
 
-            <div class="relative overflow-x-auto  sm:rounded-lg  dark:bg-gray-900">
+            <div class="relative overflow-x-auto  sm:rounded-lg  dark:bg-gray-800">
                 <div
                     class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4 ">
                     <div>
@@ -51,8 +51,8 @@
                             placeholder="Buscar...">
                     </div>
                 </div>
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500  dark:bg-gray-900">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800  dark:text-white">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
 
                             <th scope="col" class="px-6 py-3 ">
@@ -69,17 +69,37 @@
                     <tbody>
                         @foreach($tipoperfiles as $tipoperfil)
                             <tr
-                                class="bg-white border-b hover:bg-gray-50  dark:bg-gray-900 dark:hover:bg-gray-600  dark:text-white">
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap  dark:text-white">
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $tipoperfil->id }}</th>
                                 <td class="px-6 py-4">{{ $tipoperfil->tipoperfil }}</td>
                                 <td class="px-6 py-4">
-                                    <button wire:click="edit({{ $tipoperfil->id }})"
-                                        class="font-medium text-blue-600 hover:underline">Editar</button>
-                                    <button wire:click="delete({{ $tipoperfil->id }})"
-                                        class="font-medium text-red-600 hover:underline">Borrar</button>
-                                </td>
+                                <button wire:click="edit({{ $tipoperfil->id }})"
+                                            class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
+                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                                            </svg>
+
+
+                                            Editar
+                                        </button>
+                                        <button wire:click="delete({{ $tipoperfil->id }})"
+                                            class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                            </svg>
+
+                                            Borrar
+                                        </button> </td>
                             </tr>
                         @endforeach
                     </tbody>

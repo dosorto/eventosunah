@@ -28,23 +28,27 @@
             justify-content: center;
             background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
         }
-        
-        .focus\:ring-yellow-500:focus {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(234 179 8 / var(--tw-ring-opacity)) /* #eab308 */;
-}
 
-.focus\:border-yellow-500:focus {
-    --tw-border-opacity: 1;
-    border-color: rgb(234 179 8 / var(--tw-border-opacity)) /* #eab308 */;
-}
+        .focus\:ring-yellow-500:focus {
+            --tw-ring-opacity: 1;
+            --tw-ring-color: rgb(234 179 8 / var(--tw-ring-opacity))
+                /* #eab308 */
+            ;
+        }
+
+        .focus\:border-yellow-500:focus {
+            --tw-border-opacity: 1;
+            border-color: rgb(234 179 8 / var(--tw-border-opacity))
+                /* #eab308 */
+            ;
+        }
 
         .container {
             position: relative;
-            max-width: 900px;
-            width: 80%;
+            max-width: 910px;
+            width: 90%;
             border-radius: 6px;
-            padding: 30px;
+            padding: 40px;
             margin: 0 15px;
             background-color: #fff;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -123,6 +127,7 @@
             margin: 4px 0;
         }
 
+
         form .fields .input-field .direccion {
             display: flex;
             width: 840px;
@@ -177,9 +182,11 @@
             color: #000;
             font-weight: 500;
             border-radius: 5px;
-            margin: 25px 0;
+            margin: 18px 0;
             --tw-bg-opacity: 1;
-            background-color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity))
+                /* #facc15 */
+            ;
             transition: all 0.3s linear;
             cursor: pointer;
         }
@@ -191,7 +198,9 @@
 
         form button:hover {
             --tw-bg-opacity: 1;
-            background-color: rgb(202 138 4 / var(--tw-bg-opacity)) /* #ca8a04 */;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity))
+                /* #ca8a04 */
+            ;
         }
 
         form button i,
@@ -239,6 +248,7 @@
             left: 0;
             width: 100%;
             padding: 20px;
+            z-index: 1;
         }
 
         header .navbar {
@@ -258,7 +268,9 @@
 
         .navbar .logo span {
             --tw-bg-opacity: 1;
-            color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
+            color: rgb(250 204 21 / var(--tw-bg-opacity))
+                /* #facc15 */
+            ;
         }
 
         .navbar .menu-links {
@@ -275,7 +287,9 @@
 
         .navbar a:hover {
             --tw-bg-opacity: 1;
-            color: rgb(250 204 21 / var(--tw-bg-opacity)) /* #facc15 */;
+            color: rgb(250 204 21 / var(--tw-bg-opacity))
+                /* #facc15 */
+            ;
         }
 
         #close-menu-btn {
@@ -352,8 +366,7 @@
         </nav>
     </header>
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
-    <div class="container inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <div class="container">
         <h1>Registro Personas</h1>
 
         <form method="POST" action="{{ route('register') }}">
@@ -362,55 +375,75 @@
                 <div class="details personal">
                     <span class="title">Detalles Personales</span>
                     <div class="fields">
-                        <div class="input-field">
-                            <label>DNI</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI"
-                                required>
-                            @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="input-field">
-                            <label>Nombre</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre"
-                                wire:model="Nomnre" required>
-                            @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="input-field">
-                            <label>Apellido</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido"
-                                wire:model="Apellido" required>
-                            @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="input-field">
-                            <label>Correo Electrónico</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email" placeholder="Ingrese su correo" id="correo" name="correo"
-                                wire:model="Correo" required>
-                            @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
 
                         <div class="input-field">
                             <label>Tipo Perfil</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Perfil" name="id_Perfil" wire:model="TipoPerfil" required>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
+                                name="IdTipoPerfil" wire:model="TipoPerfil" required>
                                 <option value="" disabled selected>Seleccione tipo perfil</option>
-                                <option value="">Estudiante</option>
-                                <option value="">Docente</option>
-                                <option value="">Externo</option>
+                                <option value="Estudiante">Estudiante</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Externo">Externo</option>
                             </select>
                             @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
+                            <label>DNI</label>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI" required>
+                            @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="input-field">
+                            <label>Nombre</label>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="Nomnre" required>
+                            @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="input-field">
+                            <label>Apellido</label>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="Apellido"
+                                required>
+                            @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="input-field">
+                            <label>Correo Electrónico</label>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
+                                placeholder="Ingrese su correo" id="correo" name="correo" wire:model="Correo" required>
+                            @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="input-field estudiante" style="display: none;">
+                            <label>Correo Institucional</label>
+                            <input type="email" placeholder="Ingrese su correo institucional" id="correo_institucional"
+                                name="CorreoInstitucional">
+                            @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="input-field estudiante" style="display: none;">
+                            <label>Número de cuenta</label>
+                            <input type="text" placeholder="Ingrese su cuenta de estudiante" id="cuenta_estudiante"
+                                name="Cuenta">
+                            @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+
+
+                        <div class="input-field">
                             <label>Fecha de Nacimiento</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date" id="fecha_nacimiento" name="fecha_nacimiento"
-                                wire:model="FechaNacimiento" required>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date"
+                                id="fecha_nacimiento" name="fecha_nacimiento" wire:model="FechaNacimiento" required>
                             @error('FechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Sexo</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo" wire:model="IdSexo" required>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo"
+                                wire:model="IdSexo" required>
                                 <option value="" disabled selected>Seleccione su sexo</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
@@ -420,14 +453,16 @@
 
                         <div class="input-field">
                             <label>Teléfono</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono"
-                                wire:model="Telefono" required>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel"
+                                placeholder="Ingrese su teléfono" id="telefono" name="telefono" wire:model="Telefono"
+                                required>
                             @error('Telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="input-field">
                             <label>Nacionalidad</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad" name="id_Nacionalidad" wire:model="IdNacionalidad" required>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad"
+                                name="id_Nacionalidad" wire:model="IdNacionalidad" required>
                                 <option value="" disabled selected>Seleccione su nacionalidad</option>
                                 <option value="">Hondureña</option>
                                 <option value="">Guatemalteca</option>
@@ -437,10 +472,11 @@
 
                         <div class="input-field">
                             <label>Dirección</label>
-                            <input  class="direccion focus:ring-yellow-500 focus:border-yellow-500" id="direccion" name="direccion"
-                                placeholder="Escribe tu dirección..." wire:model="direccion" required></input>
+                            <input class=" focus:ring-yellow-500 focus:border-yellow-500" id="direccion"
+                                name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion"
+                                required></input>
+                            @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-                        @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -451,24 +487,32 @@
         </form>
     </div>
 
+
+
     <script>
-        const form = document.querySelector("form"),
-            nextBtn = form.querySelector(".nextBtn"),
-            backBtn = form.querySelector(".backBtn"),
-            allInput = form.querySelectorAll(".first input");
+        const tipoPerfil = document.getElementById('IdTipoPerfil');
+        const estudianteFields = document.querySelectorAll('.estudiante');
 
+        tipoPerfil.addEventListener('change', () => {
+            if (tipoPerfil.value === 'Estudiante') {
+                estudianteFields.forEach(field => field.style.display = 'flex');
+            } else if (tipoPerfil.value === 'Docente') {
+                estudianteFields.forEach(field => field.style.display = 'flex');
+            } else {
+                estudianteFields.forEach(field => field.style.display = 'none');
+            }
+        });
+    </script>
+    <script>
+        const header = document.querySelector("header");
+        const hamburgerBtn = document.querySelector("#hamburger-btn");
+        const closeMenuBtn = document.querySelector("#close-menu-btn");
 
-        nextBtn.addEventListener("click", () => {
-            allInput.forEach(input => {
-                if (input.value != "") {
-                    form.classList.add('secActive');
-                } else {
-                    form.classList.remove('secActive');
-                }
-            })
-        })
+        // Toggle mobile menu on hamburger button click
+        hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
 
-        backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+        // Close mobile menu on close button click
+        closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
 </body>
 
