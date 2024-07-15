@@ -197,26 +197,26 @@
                  </svg>
                  <span class="flex-1 ms-3 whitespace-nowrap">Roles</span>
 
-                  </a>
-               @endcan
+               </x-nav-link>
+           @endcan
             </li>
             <li>
                @can("admin-conferencista")
-                  <a href="{{ route('conferencista') }}" :active="request()->routeIs('conferencista')"
-                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
-                     <svg
-                        class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                           d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-                     </svg>
-                     <span class="flex-1 ms-3 whitespace-nowrap">conferencista</span>
+               <x-nav-link href="{{ route('conferencista') }}" :active="request()->routeIs('conferencista')"
+                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                 <svg
+                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                   <path
+                     d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                 </svg>
+                 <span class="flex-1 ms-3 whitespace-nowrap">conferencista</span>
 
-                  </a>
+               </x-nav-link>
                @endcan
             </li>
             <li>
-            @can("admin-nacionalidad")
+               @can("admin-nacionalidad")
                <x-nav-link href="{{ route('nacionalidad') }}" :active="request()->routeIs('nacionalidad')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -226,12 +226,11 @@
                      d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                  </svg>
                  <span class="flex-1 ms-3 whitespace-nowrap">Nacionalidad</span>
-
                </x-nav-link>
-            @endcan
+               @endcan
             </li>
             <li>
-            @can("admin-carrera")
+               @can("admin-carrera")
                <x-nav-link href="{{ route('carrera') }}" :active="request()->routeIs('carrera')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -246,7 +245,7 @@
             @endcan
             </li>
             <li>
-            @can("admin-modalidad")
+               @can("admin-modalidad")
                <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('nodalidad')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -260,7 +259,7 @@
             @endcan
             </li>
             <li>
-            @can("admin-departamento")
+               @can("admin-departamento")
                <x-nav-link href="{{ route('departamento') }}" :active="request()->routeIs('departamento')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -274,7 +273,7 @@
             @endcan
             </li>
             <li>
-            @can("admin-localidad")
+               @can("admin-localidad")
                <x-nav-link href="{{ route('localidad') }}" :active="request()->routeIs('localidad')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -288,7 +287,7 @@
             @endcan
             </li>
             <li>
-            @can("admin-tipoPerfil")
+               @can("admin-tipoPerfil")
                <x-nav-link href="{{ route('tipoperfil') }}" :active="request()->routeIs('tipoperfil')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -302,7 +301,7 @@
             @endcan
             </li>
             <li>
-            @can("admin-persona")
+               @can("admin-persona")
                <x-nav-link href="{{ route('persona') }}" :active="request()->routeIs('persona')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
@@ -319,7 +318,7 @@
                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             </li>
             <li>
-               <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
+               <x-nav-link
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                   <svg
                      class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -333,7 +332,7 @@
                   <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
                </x-nav-link>
             </li>
-            {{-- <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
+            <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
                <div class="flex items-center mb-3">
                   <span
                      class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">¡Bienvenido!</span>
@@ -351,10 +350,11 @@
                <p class="mb-3 text-sm text-gray-800 dark:text-gray-400">
                   Este es tu panel de control donde puedes ver y administrar tus eventos.
                </p>
-               <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
-                  href="{{ route('profile.show') }}"> Ver y administrar Perfil</a>
+               <x-nav-link
+                  class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                  href="{{ route('profile.show') }}"> Ver y administrar Perfil</x-nav-link>
             </div>
-            --}}
+
          </ul>
       </div>
    </aside>
