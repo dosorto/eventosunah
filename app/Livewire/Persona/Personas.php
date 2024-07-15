@@ -1,89 +1,142 @@
 <?php
 
-namespace App\Livewire\Carrera;
-use App\Models\Departamento;
-use Livewire\WithPagination;
-use Livewire\Component;
-use App\Models\Carrera;
+namespace App\Livewire\Persona;
 
-class Carreras extends Component
+use App\Models\Nacionalidad;
+use App\Models\Tipoperfil;
+use App\Models\Persona;
+use App\Models\User;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class Personas extends Component
 {
     use WithPagination;
-    public $carrera, $IdDepartamento, $carrera_id, $search;
+
+    public $persona_id, $IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
     public $isOpen = 0;
-        public function render()
-{
-    $carreras = Carrera::with('departamento')
-                    ->where('carrera', 'like', '%'.$this->search.'%')
-                    ->orderBy('id', 'ASC')
-                    ->paginate(8);
-                    
-    return view('livewire.Carrera.carreras', ['carreras' => $carreras]);
-}
 
-public $departamentos;
+    public $user;
+    public $nacionalidades;
+    public $tipoperfiles;
 
-public function mount()
-{
-    $this->departamentos = Departamento::all();  
-}
+    public function mount()
+    {
+        $this->user = User::all();
+        $this->nacionalidades = Nacionalidad::all();
+        $this->tipoperfiles = Tipoperfil::all();
+    }
+
+    public function render()
+    {
+        $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
+            ->where('nombre', 'like', '%' . $this->search . '%')
+            ->orderBy('id', 'ASC')
+            ->paginate(5);
+
+        return view('livewire.persona.personas', ['personas' => $personas]);
+    }
 
     public function create()
     {
         $this->resetInputFields();
         $this->openModal();
     }
+
     public function openModal()
     {
         $this->isOpen = true;
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
-    private function resetInputFields(){
-        $this->carrera = '';
-        $this->IdDepartamento = '';
 
+    private function resetInputFields()
+    {
+        $this->persona_id = '';
+        $this->IdUsuario = '';
+        $this->dni = '';
+        $this->nombre = '';
+        $this->apellido = '';
+        $this->correo = '';
+        $this->correoInstitucional = '';
+        $this->fechaNacimiento = '';
+        $this->sexo = '';
+        $this->direccion = '';
+        $this->telefono = '';
+        $this->numeroCuenta = '';
+        $this->IdNacionalidad = '';
+        $this->IdTipoPerfil = '';
     }
 
     public function store()
     {
         $this->validate([
-            'carrera' => 'required',
-            'IdDepartamento' => 'required',
+            'IdUsuario' => 'required',
+            'dni' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'correo' => 'required|email',
+            'correoInstitucional' => 'nullable|email',
+            'fechaNacimiento' => 'required|date',
+            'sexo' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'numeroCuenta' => 'nullable',
+            'IdNacionalidad' => 'required',
+            'IdTipoPerfil' => 'required',
         ]);
-   
-        Carrera::updateOrCreate(['id' => $this->carrera_id], [
-            'carrera' => $this->carrera,
-            'IdDepartamento' => $this->IdDepartamento,
 
+        Persona::updateOrCreate(['id' => $this->persona_id], [
+            'IdUsuario' => $this->IdUsuario,
+            'dni' => $this->dni,
+            'nombre' => $this->nombre,
+            'apellido' => $this->apellido,
+            'correo' => $this->correo,
+            'correoInstitucional' => $this->correoInstitucional,
+            'fechaNacimiento' => $this->fechaNacimiento,
+            'sexo' => $this->sexo,
+            'direccion' => $this->direccion,
+            'telefono' => $this->telefono,
+            'numeroCuenta' => $this->numeroCuenta,
+            'IdNacionalidad' => $this->IdNacionalidad,
+            'IdTipoPerfil' => $this->IdTipoPerfil,
         ]);
-  
-        session()->flash('message', 
-            $this->carrera_id ? 'Carrera Actualizada correctamente!' : 'Carrera creada correctamente!');
-  
+
+        session()->flash('message', $this->persona_id ? 'Persona actualizada correctamente!' : 'Persona creada correctamente!');
+
         $this->closeModal();
         $this->resetInputFields();
+        $this->render(); // Recargar datos
     }
+
     public function edit($id)
     {
-        $carrera = Carrera::findOrFail($id);
-        $this->carrera_id = $id;
-        $this->carrera = $carrera->carrera;
-        $this->IdDepartamento = $carrera->IdDepartamento;
-    
+        $persona = Persona::findOrFail($id);
+        $this->persona_id = $id;
+        $this->IdUsuario = $persona->IdUsuario;
+        $this->dni = $persona->dni;
+        $this->nombre = $persona->nombre;
+        $this->apellido = $persona->apellido;
+        $this->correo = $persona->correo;
+        $this->correoInstitucional = $persona->correoInstitucional;
+        $this->fechaNacimiento = $persona->fechaNacimiento;
+        $this->sexo = $persona->sexo;
+        $this->direccion = $persona->direccion;
+        $this->telefono = $persona->telefono;
+        $this->numeroCuenta = $persona->numeroCuenta;
+        $this->IdNacionalidad = $persona->IdNacionalidad;
+        $this->IdTipoPerfil = $persona->IdTipoPerfil;
+
         $this->openModal();
     }
-     
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     public function delete($id)
     {
-        Carrera::find($id)->delete();
-        session()->flash('message', 'Registro Eliminado correctamente!');
+        Persona::find($id)->delete();
+        session()->flash('message', 'Registro eliminado correctamente!');
+        $this->render(); // Recargar datos
     }
 }

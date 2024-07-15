@@ -9,6 +9,10 @@ use App\Livewire\Departamento\Departamentos;
 use App\Livewire\Carrera\Carreras;
 use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
+use App\Livewire\Persona\Personas;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DetailsController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,6 +33,16 @@ Route::middleware([
     Route::get('/carrera', Carreras::class)->name('carrera');
     Route::get('/rol', Roles::class)->name('rol');
     Route::get('/conferencia', Conferencias::class)->name('conferencia');
+    Route::get('/persona', Personas::class)->name('persona');   
+    // Route::post('/register', [RegisterController::class, 'register'])->name('register');
+    //Route::get('/register/details/{userId}', [DetailsController::class, 'showForm'])->name('registerDetails');
+    //Route::post('/register/details', [DetailsController::class, 'store'])->name('storeDetails');
+        
+    
 });
+
+
+
+
 
 

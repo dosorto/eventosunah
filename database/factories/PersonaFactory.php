@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Nacionalidad;
 use App\Models\Tipoperfil;
+use App\Models\User;
 /*
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -18,21 +19,24 @@ class PersonaFactory extends Factory
     public function definition(): array
     {
         $nacionalidadId = Nacionalidad::inRandomOrder()->first()->id;
+        $usuarioId = User::inRandomOrder()->first()->id;
         $tipoPerfilId = Tipoperfil::inRandomOrder()->first()->id;
         return [
-            'DNI' => $this->faker->regexify('[0-9]{8}[A-Z]{1}'), 
+           'IdUsuario' => $usuarioId,
+            'dni' => $this->faker->regexify('[0-9]{8}[A-Z]{1}'), 
             'nombre' => $this->faker->firstName(),
             'apellido' => $this->faker->lastName(),
             'correo' => $this->faker->safeEmail(),
-            'Fecha de nacimiento' => $this->faker->date(),
-            'Sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
-            'Direccion' => $this->faker->address(),
-            'Telefono' => $this->faker->phoneNumber(),
+            'fechaNacimiento' => $this->faker->date(),
+            'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
+            'direccion' => $this->faker->address(),
+            'telefono' => $this->faker->phoneNumber(),
             'IdNacionalidad' => $nacionalidadId,
             'IdTipoPerfil' => $tipoPerfilId,
-            'Numero de Cuenta' => $this->faker->unique()->numerify('###########'), 
-            'Correo Institucional' => $this->faker->unique()->safeEmail(),
+            'numeroCuenta' => $this->faker->unique()->numerify('###########'), 
+            'correoInstitucional' => $this->faker->unique()->safeEmail(),
             'created_by' => 1
         ];
     }
 }
+
