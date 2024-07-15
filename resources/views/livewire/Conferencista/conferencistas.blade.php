@@ -17,7 +17,7 @@
                 @endif
 
                 @if($isOpen)
-                    @include('livewire.Conferencista.create')
+                    @include('livewire.Conferencista.create') <!-- Asegúrate que esta ruta sea correcta -->
                 @endif
 
                 <div class="relative overflow-x-auto sm:rounded-lg">
@@ -39,8 +39,8 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-white">
                             <tr>
                                 <th scope="col" class="px-6 py-3">No.</th>
-                                <th scope="col" class="px-6 py-3">Titulo</th>
-                                <th scope="col" class="px-6 py-3">Descripcion</th>
+                                <th scope="col" class="px-6 py-3">Título</th>
+                                <th scope="col" class="px-6 py-3">Descripción</th>
                                 <th scope="col" class="px-6 py-3">Foto</th>
                                 <th scope="col" class="px-6 py-3">Conferencista</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
@@ -52,7 +52,13 @@
                                 <td class="px-6 py-4 dark:text-white">{{ $conferencista->id }}</td>
                                 <td class="px-6 py-4">{{ $conferencista->Titulo }}</td>
                                 <td class="px-6 py-4">{{ $conferencista->Descripcion }}</td>
-                                <td class="px-6 py-4">{{ $conferencista->Foto }}</td>
+                                <td class="px-6 py-4">
+                                    @if($conferencista->Foto)
+                                        <img src="{{ asset(str_replace('public', 'storage', $conferencista->Foto)) }}" alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                    @else
+                                        Sin foto
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4">{{ $conferencista->persona->nombre }} {{ $conferencista->persona->apellido }}</td>
                                 <td class="px-6 py-4">
                                     <button wire:click="edit({{ $conferencista->id }})" class="text-blue-600 hover:underline">Editar</button>

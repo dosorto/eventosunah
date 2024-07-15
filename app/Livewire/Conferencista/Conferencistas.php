@@ -67,9 +67,13 @@ class Conferencistas extends Component
     {
         $this->validate();
 
-        // Subir la foto si se seleccionó una
+        // Subir la foto si se seleccionó una nueva
         if ($this->foto) {
             $this->foto = $this->foto->store('public/conferencistas'); // Guarda la imagen en storage/public/conferencistas
+        } elseif ($this->conferencista_id) {
+            // Si no se seleccionó una nueva foto pero se está editando, mantener la foto actual
+            $conferencista = Conferencista::findOrFail($this->conferencista_id);
+            $this->foto = $conferencista->Foto;
         }
 
         Conferencista::updateOrCreate(['id' => $this->conferencista_id], [
@@ -91,8 +95,8 @@ class Conferencistas extends Component
         $this->conferencista_id = $id;
         $this->titulo = $conferencista->Titulo;
         $this->descripcion = $conferencista->Descripcion;
-        $this->foto = $conferencista->Foto;
         $this->IdPersona = $conferencista->IdPersona;
+        // No asignar directamente $this->foto aquí
 
         $this->openModal();
     }
