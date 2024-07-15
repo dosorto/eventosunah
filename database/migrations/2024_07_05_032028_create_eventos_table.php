@@ -13,25 +13,26 @@ return new class extends Migration
     {
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Descripcion',500);
-            $table->string('Organizador');
-            $table->date('Fecha Inicio');
-            $table->date('Fecha Final');
-            $table->time('HoraInicio');
-            $table->time('HoraFin');
-            $table->unsignedBigInteger('IdModalidad');
-            $table->unsignedBigInteger('IdLocalidad');
-            $table->unsignedBigInteger('IdConferencia');
+            $table->string('nombreevento');
+            $table->string('descripcion',500);
+            $table->string('organizador');
+            $table->date('fechainicio');
+            $table->date('fechafinal');
+            $table->time('horainicio');
+            $table->time('horafin');
+            $table->unsignedBigInteger('idmodalidad');
+            $table->unsignedBigInteger('idlocalidad');
+            $table->unsignedBigInteger('idconferencia');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('IdModalidad')->references('id')->on('modalidads')->onDelete('restrict');
-            $table->foreign('IdLocalidad')->references('id')->on('localidads')->onDelete('restrict');
-            $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
+            $table->foreign('idmodalidad')->references('id')->on('modalidads')->onDelete('restrict');
+            $table->foreign('idlocalidad')->references('id')->on('localidads')->onDelete('restrict');
+            $table->foreign('idconferencia')->references('id')->on('conferencias')->onDelete('restrict');
         });
+
     }
 
     /**

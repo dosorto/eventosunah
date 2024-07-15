@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eventos UNAH</title>
+  <title>Inicio RRHH</title>
   <link rel="stylesheet" href="">
   <!-- Google Fonts Links For Icon -->
   <style>
