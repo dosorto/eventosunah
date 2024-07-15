@@ -37,5 +37,3 @@ Route::middleware([
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
 });
-
-Route::get('/conferencista', Conferencistas::class)->name('practica');
