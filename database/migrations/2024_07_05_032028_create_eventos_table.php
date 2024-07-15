@@ -32,6 +32,7 @@ return new class extends Migration
             $table->foreign('idlocalidad')->references('id')->on('localidads')->onDelete('restrict');
             $table->foreign('idconferencia')->references('id')->on('conferencias')->onDelete('restrict');
         });
+
     }
 
     /**

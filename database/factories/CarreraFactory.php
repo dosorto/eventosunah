@@ -19,7 +19,7 @@ class CarreraFactory extends Factory
     {
         $DepartamentoId = Departamento::inRandomOrder()->first()->id;
         return [
-            'carrera' => $this->faker->text(),
+            'carrera' => $this->faker->text(10),
             'IdDepartamento' => $DepartamentoId,
             'created_by' => 1
         ];

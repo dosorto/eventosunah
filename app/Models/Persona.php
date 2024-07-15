@@ -9,5 +9,20 @@ class Persona extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['DNI','nombre','apellido','correo','Fecha de nacimiento','Sexo','Direccion','Telefono','IdNacionalidad','IdTipoPerfil'];
+    protected $fillable = ['IdUsuario','dni','nombre','apellido','correo','correoInstitucional','fechaNacimiento','sexo', 'direccion', 'telefono', 'numeroCuenta', 'IdNacionalidad','IdTipoPerfil'];
+    
+    public function nacionalidad()
+    {
+        return $this->belongsTo(Nacionalidad::class, 'IdNacionalidad');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'IdUsuario');
+    }
+
+    public function tipoPerfil()
+    {
+        return $this->belongsTo(TipoPerfil::class, 'IdTipoPerfil');
+    }
 }
