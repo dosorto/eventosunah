@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->string('DNI');
+            $table->unsignedBigInteger('IdUsuario');
+            $table->string('dni');
             $table->string('nombre');
             $table->string('apellido');
             $table->string('correo');
-            $table->date('Fecha de nacimiento');
-            $table->string('Sexo');
-            $table->string('Direccion');
-            $table->string('Telefono');
+            $table->string('correoInstitucional')->nullable();
+            $table->date('fechaNacimiento');
+            $table->string('sexo');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('numeroCuenta');
             $table->unsignedBigInteger('IdNacionalidad');
             $table->unsignedBigInteger('IdTipoPerfil');
             $table->integer("created_by");
@@ -32,6 +35,7 @@ return new class extends Migration
             $table->foreign('IdNacionalidad')->references('id')->on('nacionalidads')->onDelete('restrict');
             $table->foreign('IdTipoPerfil')->references('id')->on('tipoperfils')->onDelete('restrict');
         });
+
     }
 
     /**

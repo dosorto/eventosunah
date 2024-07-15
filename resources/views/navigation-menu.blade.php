@@ -1,6 +1,4 @@
-
 <div></div>
-
 <div>
    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -118,7 +116,7 @@
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-yellow-400 dark:text-white dark:hover:bg-gray-700">Diplomados</a>
                   </li>
                   <li>
-                     <a href="/evento"
+                     <a href="#"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-yellow-400 dark:text-white dark:hover:bg-gray-700">Coloquios</a>
                   </li>
                </ul>
@@ -233,5 +231,9 @@
 
    </div>
 
+<<<<<<< HEAD
+</div>
+>>>>>>> main
+=======
 </div>
 >>>>>>> main

@@ -20,7 +20,6 @@ class PermissionSeeder extends Seeder
             'admin-localidad',
             'admin-departamento',
             'admin-carrera',
-            'admin-evento',
 
          ];
          

@@ -7,7 +7,12 @@ use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
 use App\Livewire\Departamento\Departamentos;
 use App\Livewire\Carrera\Carreras;
+use App\Livewire\Rol\Roles;
+use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\Evento\Eventos;
+use App\Livewire\Persona\Personas;
+use App\Livewire\Conferencista\Conferencistas;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,6 +31,9 @@ Route::middleware([
     Route::get('/localidad', Localidades::class)->name('localidad');
     Route::get('/departamento', Departamentos::class)->name('departamento');
     Route::get('/carrera', Carreras::class)->name('carrera');
-    Route::get('/evento', Eventos::class)->name('nombreEvento');
+    Route::get('/rol', Roles::class)->name('rol');
+    Route::get('/conferencia', Conferencias::class)->name('conferencia');
+    Route::get('/evento', Eventos::class)->name('evento');
+    Route::get('/persona', Personas::class)->name('persona');
+    Route::get('/conferencista', Conferencistas::class)->name('conferencista');
 });
-

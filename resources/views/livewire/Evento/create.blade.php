@@ -106,7 +106,7 @@
                                 wire:model="idconferencia">
                                 <option value="">Seleccione una Conferencia</option>
                                 @foreach($conferencias as $conferencia)
-                                    <option value="{{ $conferencia->id }}">{{ $conferencia->Nombre }}</option>
+                                    <option value="{{ $conferencia->id }}">{{ $conferencia->nombre }}</option>
                                 @endforeach
                             </select>
                             @error('idconferencia') <span class="text-red-500">{{ $message }}</span>@enderror
