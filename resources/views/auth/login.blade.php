@@ -424,7 +424,7 @@
         const signUp = document.querySelector(".signup-link");
         const login = document.querySelector(".login-link");
         const container = document.querySelector(".container");
-
+        
         signUp.addEventListener("click", () => {
             container.classList.add("active");
         });
