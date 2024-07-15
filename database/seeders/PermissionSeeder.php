@@ -20,9 +20,13 @@ class PermissionSeeder extends Seeder
             'admin-localidad',
             'admin-departamento',
             'admin-carrera',
+<<<<<<< HEAD
             'admin-persona',
             'admin-rol',
             'admin-conferencia',
+=======
+            'admin-evento',
+>>>>>>> origin/acxel
 
          ];
          

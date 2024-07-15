@@ -14,10 +14,9 @@
                      </path>
                   </svg>
                </button>
-               <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                  <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                  <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">EVENTOS
-                     UNAH</span>
+               <a href="/dashboard" class="flex ms-2 md:me-24">
+                  <img src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" alt="Logo" height="70px" width="70px" />
+                  <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">EVENTOS UNAH</span>
                </a>
 
             </div>
@@ -68,7 +67,9 @@
                            <form method="POST" action="{{ route('logout') }}" x-data>
                               @csrf
 
-                              <x-dropdown-link href="{{ route('logout') }}" class="text-red-800 dark:text-gray-100 hover:bg-red-100 " @click.prevent="$root.submit();">
+                              <x-dropdown-link href="{{ route('logout') }}"
+                                 class="text-red-800 dark:text-gray-100 hover:bg-red-100 "
+                                 @click.prevent="$root.submit();">
                                  {{ __('Cerrar Sesión') }}
                               </x-dropdown-link>
                            </form>
@@ -81,16 +82,16 @@
       </div>
    </nav>
 
-   <aside id="logo-sidebar" 
+   <aside id="logo-sidebar"
       class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidebar">
       <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
          <ul class="space-y-2 font-medium">
             <li>
-               <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
+               <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                   <svg
-                     class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     class="w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                      <path
                         d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -98,14 +99,14 @@
                         d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                   </svg>
                   <span class="ms-3">Dashboard</span>
-               </a>
+               </x-nav-link>
             </li>
             <li>
-               <button type="button"
+               <button type="button "
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-yellow-400 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                   <svg
-                     class="w-6 h-6  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     class="w-6 h-6  text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                      viewBox="0 0 24 24">
                      <path fill-rule="evenodd"
@@ -149,6 +150,7 @@
                </ul>
             </li>
             <li>
+<<<<<<< HEAD
                @can("admin-rol")
                   <a href="{{ route('rol') }}" :active="request()->routeIs('rol')"
                      class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
@@ -241,23 +243,84 @@
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                   <svg
                      class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+=======
+               <x-nav-link href="{{ route('nacionalidad') }}" :active="request()->routeIs('nacionalidad')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                  </svg>
+                  <span class="flex-1 ms-3 whitespace-nowrap">Nacionalidad</span>
+
+               </x-nav-link>
+            </li>
+            <li>
+               <x-nav-link href="{{ route('carrera') }}" :active="request()->routeIs('carrera')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                  </svg>
+                  <span class="flex-1 ms-3 whitespace-nowrap">Carrera</span>
+
+               </x-nav-link>
+            </li>
+            <li>
+               <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('modalidad')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                  </svg>
+                  <span class="flex-1 ms-3 whitespace-nowrap">Modalidad</span>
+               </x-nav-link>
+            </li>
+            <li>
+               <x-nav-link href="{{ route('departamento') }}" :active="request()->routeIs('departamento')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                     <path
+                        d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                  </svg>
+                  <span class="flex-1 ms-3 whitespace-nowrap">Departamento</span>
+               </x-nav-link>
+            </li>
+            <li>
+               <x-nav-link href="{{ route('tipoperfil') }}" :active="request()->routeIs('tipoperfil')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+>>>>>>> origin/acxel
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                      <path
                         d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                   </svg>
+<<<<<<< HEAD
                   <span class="flex-1 ms-3 whitespace-nowrap">Tipo Perfil</span>
                </a>
                @endcan
+=======
+                  <span class=" flex-1 ms-3 whitespace-nowrap">Tipo</span>
+               </x-nav-link>
+>>>>>>> origin/acxel
             </li>
             
             <li>
                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             </li>
             <li>
-               <a href="#"
+               <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                   <svg
-                     class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                      <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                      <path
@@ -266,8 +329,30 @@
                         d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                   </svg>
                   <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-               </a>
+               </x-nav-link>
             </li>
+            {{-- <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-yellow-50 dark:bg-blue-900" role="alert">
+               <div class="flex items-center mb-3">
+                  <span
+                     class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">¡Bienvenido!</span>
+                  <button type="button"
+                     class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
+                     data-dismiss-target="#dropdown-cta" aria-label="Close">
+                     <span class="sr-only">Close</span>
+                     <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                     </svg>
+                  </button>
+               </div>
+               <p class="mb-3 text-sm text-gray-800 dark:text-gray-400">
+                  Este es tu panel de control donde puedes ver y administrar tus eventos.
+               </p>
+               <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                  href="{{ route('profile.show') }}"> Ver y administrar Perfil</a>
+            </div>
+            --}}
          </ul>
       </div>
    </aside>

@@ -126,7 +126,7 @@
             flex-direction: column;
             margin: 4px 0;
         }
-        
+
 
         form .fields .input-field .direccion {
             display: flex;
@@ -248,6 +248,7 @@
             left: 0;
             width: 100%;
             padding: 20px;
+            z-index: 1;
         }
 
         header .navbar {
@@ -376,6 +377,7 @@
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 
+<<<<<<< HEAD
         <!-- Modal content -->
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
@@ -398,6 +400,26 @@
                             <span class="sr-only">Cerrar modal</span>
                         </button>
                     </div>
+=======
+                        <div class="input-field">
+                            <label>Tipo Perfil</label>
+                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
+                                name="IdTipoPerfil" wire:model="TipoPerfil" required>
+                                <option value="" disabled selected>Seleccione tipo perfil</option>
+                                <option value="Estudiante">Estudiante</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Externo">Externo</option>
+                            </select>
+                            @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="input-field">
+                            <label>DNI</label>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI" required>
+                            @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+>>>>>>> origin/acxel
 
                     <!-- Formulario de Crear Persona -->
                     <div class="details personal">
@@ -450,6 +472,7 @@
                                 @error('apellido') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
+<<<<<<< HEAD
                             <div class="input-field">
                                 <label>Correo Electrónico</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
@@ -457,6 +480,9 @@
                                     required>
                                 @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
+=======
+
+>>>>>>> origin/acxel
 
                             <div class="input-field estudiante">
                                 <label>Correo Institucional</label>
