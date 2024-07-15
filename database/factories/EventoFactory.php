@@ -22,16 +22,16 @@ class EventoFactory extends Factory
         $LocalidadId = Localidad::inRandomOrder()->first()->id;
         $conferenciaId = Conferencia::inRandomOrder()->first()->id;
         return [
-           'Nombre' => $this->faker->sentence,
-            'Descripcion' => $this->faker->paragraph,
-            'Organizador' => $this->faker->company,
-            'Fecha Inicio' => $this->faker->date(),
-            'Fecha Final' => $this->faker->date(),
-            'HoraInicio' => $this->faker->time(),
-            'HoraFin' => $this->faker->time(),
-            'IdModalidad'=> $ModalidadId,
-            'IdLocalidad' =>$LocalidadId,
-            'IdConferencia' => $conferenciaId,
+           'nombreevento' => $this->faker->sentence,
+            'descripcion' => $this->faker->paragraph,
+            'organizador' => $this->faker->company,
+            'fechainicio' => $this->faker->date(),
+            'fechafinal' => $this->faker->date(),
+            'horainicio' => $this->faker->time(),
+            'horafin' => $this->faker->time(),
+            'idmodalidad'=> $ModalidadId,
+            'idlocalidad' =>$LocalidadId,
+            'idconferencia' => $conferenciaId,
             'created_by' => 1
         ];
     }
