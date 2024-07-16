@@ -56,11 +56,11 @@
                             @foreach($roles as $rol)
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $rol->id }}</th>
-                                <td class="px-6 py-4">{{ $rol->name }}</td>
+                                <td class="px-6 py-4  text-gray-600 dark:text-gray-400">{{ $rol->name }}</td>
                                 <td class="px-6 py-4">
-                                    <div class="divide-y divide-gray-300 dark:divide-gray-700">
+                                    <div class="divide-y divide-gray-300 dark:divide-gray-600">
                                         @foreach ($rol->permissions as $permission)
-                                            <div class="py-1">{{ $permission->name }}</div>
+                                            <div class="py-1 text-gray-600 dark:text-gray-400 ">{{ $permission->name }}</div>
                                         @endforeach
                                     </div>
                                 </td>
