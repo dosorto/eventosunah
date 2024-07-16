@@ -57,7 +57,7 @@
                         </thead>
                         <tbody>
                             @foreach($conferencistas as $conferencista)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4 dark:text-white">{{ $conferencista->id }}</td>
                                     <td class="px-6 py-4">{{ $conferencista->Titulo }}</td>
                                     <td class="px-6 py-4">{{ $conferencista->Descripcion }}</td>
