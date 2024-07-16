@@ -56,7 +56,7 @@
                         </thead>
                         <tbody>
                             @foreach($carreras as $carrera)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/50">
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $carrera->id }}
                                     </td>
