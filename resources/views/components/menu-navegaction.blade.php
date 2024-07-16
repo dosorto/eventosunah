@@ -43,8 +43,7 @@
                         class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-yellow-300 dark:focus:ring-gray-600"
                         aria-expanded="false" data-dropdown-toggle="dropdown-user">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full"
-                           src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                        <img class="w-9 h-9 rounded-full" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&amp;color=000&amp;background=facc15">
                      </button>
                   </div>
                   <div
@@ -246,7 +245,7 @@
             </li>
             <li>
                @can("admin-modalidad")
-               <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('nodalidad')"
+               <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('modalidad')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
                    class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
