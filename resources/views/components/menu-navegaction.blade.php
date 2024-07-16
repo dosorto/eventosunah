@@ -130,7 +130,7 @@
                         class="  hover:bg-yellow-400 dark:hover:bg-gray-700  flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group dark:text-white">Congreso</a>
                   </li>
                   <li>
-                     <a href="#"
+                     <a href="{{ route('evento') }}" :active="request()->routeIs('evento')"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Coloqio</a>
                   </li>
                   <li>
@@ -246,7 +246,7 @@
             </li>
             <li>
                @can("admin-modalidad")
-               <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('nodalidad')"
+               <x-nav-link href="{{ route('modalidad') }}" :active="request()->routeIs('modalidad')"
                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                  <svg
                    class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
