@@ -58,7 +58,7 @@
         .containerRegister form .formRegister {
             position: absolute;
             background-color: #fff;
-            transition: 0.3s ease;
+            transition: 0.15s ease;
         }
 
         .containerRegister form .formRegister.second {
@@ -150,7 +150,7 @@
             align-items: center;
             justify-content: center;
             height: 45px;
-            max-width: 200px;
+            max-width: 266px;
             width: 100%;
             border: none;
             outline: none;
@@ -234,7 +234,7 @@
             align-items: center;
             height: 440px;
             width: 200%;
-            transition: height 0.2s ease;
+            transition: height 0.5s ease;
         }
 
 
@@ -242,24 +242,24 @@
             width: 50%;
             padding: 30px;
             background-color: #fff;
-            transition: margin-left 0.18s ease;
+            transition: margin-left 0.20s ease;
         }
 
         .container.active .login {
             margin-left: -50%;
             opacity: 0;
-            transition: margin-left 0.18s ease, opacity 0.15s ease;
+            transition: margin-left 0.20s ease, opacity 0.20s ease;
         }
 
         .container .signup {
 
             opacity: 0;
-            transition: opacity 0.09s ease;
+            transition: opacity 0.15s ease;
         }
 
         .container.active .signup {
             opacity: 1;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.15s ease;
         }
 
         .container.active .forms {
@@ -300,7 +300,7 @@
             font-size: 16px;
             border-bottom: 2px solid #000;
             border-top: 2px solid transparent;
-            transition: all 0.2s ease;
+            transition: all 0.5s ease;
         }
 
         .container .input-field input:is(:focus, :valid) {
@@ -313,7 +313,7 @@
             transform: translateY(-50%);
             color: #000;
             font-size: 23px;
-            transition: all 0.2s ease;
+            transition: all 0.5s ease;
         }
 
         .container .input-field input:is(:focus, :valid)~i {
@@ -377,7 +377,7 @@
                 /* #facc15 */
             ;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
         }
 
         .container .button input:hover {
@@ -543,138 +543,10 @@
 
                 <div class="login-signup">
                     <span class="text">¿No tienes cuenta?
-                        <a href="#" class="text signup-link">Registrarse</a>
+                        <a href="/register" class="text signup-link">Registrarse</a>
                     </span>
                 </div>
             </div>
-
-            <!-- Registro Usuario -->
-            <div class="form signup containerRegister">
-                <span class="title">Registro De Usuario</span>
-
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <div class="formRegister first">
-                        <div class="details personal">
-                            <h1>Detalles Personales</h1>
-                            <div class="fields">
-                                <div class="inputRegister">
-                                    <label>DNI</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                        placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI" required>
-                                    @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Nombre</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                        placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="Nomnre"
-                                        required>
-                                    @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Apellido</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                        placeholder="Ingrese su apellido" id="apellido" name="apellido"
-                                        wire:model="Apellido" required>
-                                    @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Correo Electrónico</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
-                                        placeholder="Ingrese su correo" id="correo" name="correo" wire:model="Correo"
-                                        required>
-                                    @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Fecha de Nacimiento</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date"
-                                        id="fecha_nacimiento" name="fecha_nacimiento" wire:model="FechaNacimiento"
-                                        required>
-                                    @error('FechaNacimiento') <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Sexo</label>
-                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo"
-                                        wire:model="IdSexo" required>
-                                        <option value="" disabled selected>Seleccione su sexo</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-                                    </select>
-                                    @error('Sexo') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Teléfono</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel"
-                                        placeholder="Ingrese su teléfono" id="telefono" name="telefono"
-                                        wire:model="Telefono" required>
-                                    @error('Telefono') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Nacionalidad</label>
-                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad"
-                                        name="id_Nacionalidad" wire:model="IdNacionalidad" required>
-                                        <option value="" disabled selected>Seleccione su nacionalidad</option>
-                                        <option value="">Hondureña</option>
-                                        <option value="">Guatemalteca</option>
-                                        @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span>
-                                        @enderror
-                                    </select>
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Dirección</label>
-                                    <input class=" focus:ring-yellow-500 focus:border-yellow-500" id="direccion"
-                                        name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion"
-                                        required></input>
-                                    @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Tipo Perfil</label>
-                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
-                                        name="IdTipoPerfil" wire:model="TipoPerfil" required>
-                                        <option value="" disabled selected>Seleccione tipo perfil</option>
-                                        <option value="Estudiante">Estudiante</option>
-                                        <option value="Docente">Docente</option>
-                                        <option value="Externo">Externo</option>
-                                    </select>
-                                    @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="inputRegister estudiante" style="display: none;">
-                                    <label id="correoLabel">Correo Institucional</label>
-                                    <input type="email" placeholder="Ingrese su correo institucional"
-                                        id="correo_institucional" name="CorreoInstitucional">
-                                    @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="inputRegister estudiante" style="display: none;">
-                                    <label id="numeroLabel">Número de cuenta</label>
-                                    <input type="text" placeholder="Ingrese su cuenta de estudiante"
-                                        id="cuenta_estudiante" name="Cuenta">
-                                    @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <button wire:click.prevent="store()" class="submit">
-                            <span class="btnText">Registrar</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-
         </div>
     </div>
     <script>

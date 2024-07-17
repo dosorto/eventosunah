@@ -124,48 +124,24 @@
                   </svg>
                </button>
                <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                  <li>
-                     <a href="#"
-                        class="  hover:bg-yellow-400 dark:hover:bg-gray-700  flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group dark:text-white">Congreso</a>
+               @can("admin-conferencia")   
+               <li>
+                     <x-nav-link href="{{ route('conferencia') }}" :active="request()->routeIs('conferencia')"
+                        class="  hover:bg-yellow-400 dark:hover:bg-gray-700  flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group dark:text-white">Conferencia</x-nav-link>
                   </li>
+                  @endcan
+                  @can("admin-evento")
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Coloqio</a>
+                     <x-nav-link 
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Evento</x-nav-link>
                   </li>
+                  @endcan
+                  @can("admin-conferencista")
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 ">Conferencia</a>
+                     <x-nav-link href="{{ route('conferencista') }}" :active="request()->routeIs('conferencista')" 
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 ">Conferencista</x-nav-link>
                   </li>
-
-                  <li>
-                     @can("admin-conferencia")
-                   <x-nav-link href="{{ route('conferencia') }}" :active="request()->routeIs('conferencia')"
-                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
-                     <svg
-                        class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 18 20">
-                        <path
-                          d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                     </svg>
-                     <span class="flex-1 ms-3 whitespace-nowrap">Conferencias</span>
-                   </x-nav-link>
-                @endcan
-                  </li>
-                  <li>
-                     @can("admin-conferencista")
-                   <x-nav-link href="{{ route('conferencista') }}" :active="request()->routeIs('conferencista')"
-                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
-                     <svg
-                        class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 18 20">
-                        <path
-                          d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                     </svg>
-                     <span class="flex-1 ms-3 whitespace-nowrap">Conferencista</span>
-                   </x-nav-link>
-                @endcan
+                  @endcan
                   </li>
                   <li>
                      @can("admin-evento")
@@ -195,21 +171,6 @@
                      d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                  </svg>
                  <span class="flex-1 ms-3 whitespace-nowrap">Roles</span>
-
-               </x-nav-link>
-            @endcan
-            </li>
-            <li>
-               @can("admin-conferencista")
-               <x-nav-link href="{{ route('conferencista') }}" :active="request()->routeIs('conferencista')"
-                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
-                 <svg
-                   class="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                   <path
-                     d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-                 </svg>
-                 <span class="flex-1 ms-3 whitespace-nowrap">conferencista</span>
 
                </x-nav-link>
             @endcan
