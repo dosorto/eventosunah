@@ -596,21 +596,6 @@
                 });
             });
         });
-
-        const signUp = document.querySelector(".signup-link");
-        const login = document.querySelector(".login-link");
-        const container = document.querySelector(".container");
-
-        signUp.addEventListener("click", () => {
-            container.classList.add("active");
-            container.classList.remove("max");
-        });
-
-        login.addEventListener("click", () => {
-            container.classList.remove("active");
-            container.classList.add("max");
-
-        });
     </script>
     <script>
         const header = document.querySelector("header");
