@@ -1,7 +1,7 @@
 <!-- Conferencias.blade.php (Vista Livewire) -->
 
 <div>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white m-2">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
         Conferencias
     </h2>
 

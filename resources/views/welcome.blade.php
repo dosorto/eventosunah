@@ -208,7 +208,7 @@
         <ul class="menu-links">
           <span id="close-menu-btn" class="material-symbols-outlined">close</span>
           <li><a href="/login">Acceder</a></li>
-          <li><a href="/register">Registrarme</a></li>
+          <li><a href="/register">Registrarse</a></li>
         </ul>
         <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
       </nav>
