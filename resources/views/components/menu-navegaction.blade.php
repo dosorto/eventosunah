@@ -133,12 +133,19 @@
                   @can("admin-evento")
                   <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                      <a href="{{ route('evento') }}" :active="request()->routeIs('evento')"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Coloqio</a>
 =======
                      <x-nav-link 
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Evento</x-nav-link>
 >>>>>>> origin/acxel
+=======
+                     <a href="{{ route('evento') }}" :active="request()->routeIs('evento')"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Coloqio</a>
+                     <x-nav-link 
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Evento</x-nav-link>
+>>>>>>> origin/denisse
                   </li>
                   @endcan
                   @can("admin-conferencista")

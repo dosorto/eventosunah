@@ -15,7 +15,10 @@ use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/denisse
 Route::get('/', function () {
     return view('welcome');
 });
