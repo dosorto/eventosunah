@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Tipoperfil\Tipoperfiles;
+use App\Models\Evento;
 use Illuminate\Support\Facades\Route;
 // ruta de la vista de login
 
@@ -15,6 +16,7 @@ use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Http\Controllers\Login\RegistrarUsarioController;
+use App\Livewire\Prueba;
 
 
 Route::get('/', function () {
@@ -43,4 +45,9 @@ Route::middleware([
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
 Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('register');
+
+Route::get('/prueba', function () {
+    return view('livewire.prueba');
+});
+
 

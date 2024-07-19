@@ -184,7 +184,7 @@
         }
 
         .containerRegister form .backBtn i {
-            transformRegister: rotate(180deg);
+            transform: rotate(180deg);
         }
 
         .containerRegister form .buttons {
@@ -659,10 +659,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="buttons">
+                            <div class="backBtn login-link">
+                                <span class="btnText">Anterior</span>
+                            </div>
 
-                        <button wire:click.prevent="store()" class="submit">
-                            <span class="btnText">Registrar</span>
-                        </button>
+                            <button wire:click.prevent="store()" type="submit">
+                                <span class="btnText">Registrar</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
