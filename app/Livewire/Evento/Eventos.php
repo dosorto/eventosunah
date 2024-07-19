@@ -10,7 +10,6 @@ use Livewire\Component;
 use App\Models\Evento;
 
 class Eventos extends Component
-
 {
     use WithPagination;
 
@@ -121,9 +120,7 @@ class Eventos extends Component
 
     public function delete($id)
     {
-        
         Evento::find($id)->delete();
         session()->flash('message', 'Registro Eliminado correctamente!');
     }
-
 }

@@ -514,13 +514,11 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="input-field">
-                        <input type="text" placeholder="Nombre completo" id="nombre" name="nombre" required>
-                        @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <input type="text" placeholder="Nombre completo" id="name" name="name" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="correo" name="correo" required>
-                        @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <input type="email" placeholder="Correo electrónico" id="email2" name="email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
@@ -544,120 +542,130 @@
 
             <!-- Registro Usuario -->
             <div class="form signup containerRegister">
-    <span class="title">Registro De Usuario</span>
+                <span class="title">Registro De Usuario</span>
 
-    <form method="POST" wire:submit.prevent="store">
-        @csrf
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <div class="formRegister first">
+                        <div class="details personal">
+                            <h1>Detalles Personales</h1>
+                            <div class="fields">
+                                <div class="inputRegister">
+                                    <label>DNI</label>
+                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                        placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI" required>
+                                    @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
 
-        <!-- Campo oculto para el ID del usuario -->
-        <input type="hidden" id="IdUsuario" name="IdUsuario" wire:model="IdUsuario">
+                                <div class="inputRegister">
+                                    <label>Nombre</label>
+                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                        placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="Nomnre"
+                                        required>
+                                    @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
 
-        <div class="formRegister first">
-            <div class="details personal">
-                <h1>Detalles Personales</h1>
-                <div class="fields">
-                    <div class="inputRegister">
-                        <label>DNI</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
-                        @error('dni') <span class="text-red-500">{{ $message }}</span> @enderror
+                                <div class="inputRegister">
+                                    <label>Apellido</label>
+                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
+                                        placeholder="Ingrese su apellido" id="apellido" name="apellido"
+                                        wire:model="Apellido" required>
+                                    @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Correo Electrónico</label>
+                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
+                                        placeholder="Ingrese su correo" id="correo" name="correo" wire:model="Correo"
+                                        required>
+                                    @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Fecha de Nacimiento</label>
+                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date"
+                                        id="fecha_nacimiento" name="fecha_nacimiento" wire:model="FechaNacimiento"
+                                        required>
+                                    @error('FechaNacimiento') <span class="text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Sexo</label>
+                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo"
+                                        wire:model="IdSexo" required>
+                                        <option value="" disabled selected>Seleccione su sexo</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                    @error('Sexo') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Teléfono</label>
+                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel"
+                                        placeholder="Ingrese su teléfono" id="telefono" name="telefono"
+                                        wire:model="Telefono" required>
+                                    @error('Telefono') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Nacionalidad</label>
+                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad"
+                                        name="id_Nacionalidad" wire:model="IdNacionalidad" required>
+                                        <option value="" disabled selected>Seleccione su nacionalidad</option>
+                                        <option value="">Hondureña</option>
+                                        <option value="">Guatemalteca</option>
+                                        @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span>
+                                        @enderror
+                                    </select>
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Dirección</label>
+                                    <input class=" focus:ring-yellow-500 focus:border-yellow-500" id="direccion"
+                                        name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion"
+                                        required></input>
+                                    @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="inputRegister">
+                                    <label>Tipo Perfil</label>
+                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
+                                        name="IdTipoPerfil" wire:model="TipoPerfil" required>
+                                        <option value="" disabled selected>Seleccione tipo perfil</option>
+                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="Docente">Docente</option>
+                                        <option value="Externo">Externo</option>
+                                        {{-- <option value="Empleado">Empleado</option> --}}
+                                    </select>
+                                    @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="inputRegister estudiante" style="display: none;">
+                                    <label id="correoLabel">Correo Institucional</label>
+                                    <input type="email" placeholder="Ingrese su correo institucional"
+                                        id="correo_institucional" name="CorreoInstitucional">
+                                    @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="inputRegister estudiante" style="display: none;">
+                                    <label id="numeroLabel">Número de cuenta</label>
+                                    <input type="text" placeholder="Ingrese su cuenta de estudiante"
+                                        id="cuenta_estudiante" name="Cuenta">
+                                    @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <button wire:click.prevent="store()" class="submit">
+                            <span class="btnText">Registrar</span>
+                        </button>
                     </div>
-
-                    <div class="inputRegister">
-                        <label>Nombre</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="nombre" required>
-                        @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister">
-                        <label>Apellido</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="apellido" required>
-                        @error('apellido') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister">
-                        <label>Correo Electrónico</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email" placeholder="Ingrese su correo" id="correo" name="correo" wire:model="correo" required>
-                        @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister">
-                        <label>Fecha de Nacimiento</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date" id="fecha_nacimiento" name="fechaNacimiento" wire:model="fechaNacimiento" required>
-                        @error('fechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister">
-                        <label>Sexo</label>
-                        <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo" wire:model="sexo" required>
-                            <option value="" disabled selected>Seleccione su sexo</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                        </select>
-                        @error('sexo') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister">
-                        <label>Teléfono</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono" wire:model="telefono" required>
-                        @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="input-field">
-                        <label>Nacionalidad</label>
-                        <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdNacionalidad" name="IdNacionalidad" wire:model="IdNacionalidad" required>
-                            <option value="" disabled selected>Seleccione su nacionalidad</option>
-                            @foreach($nacionalidades as $nacionalidad)
-                                <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombreNacionalidad }}</option>
-                            @endforeach
-                        </select>
-                        @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister">
-                        <label>Dirección</label>
-                        <input class="focus:ring-yellow-500 focus:border-yellow-500" id="direccion" name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion" required></input>
-                        @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="input-field">
-                        <label>Tipo Perfil</label>
-                        <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil" name="IdTipoPerfil" wire:model="IdTipoPerfil" required>
-                            <option value="" disabled selected>Seleccione tipo perfil</option>
-                            @foreach($tipoperfiles as $tipoPerfil)
-                                <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
-                            @endforeach
-                        </select>
-                        @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister estudiante" style="display: none;">
-                        <label id="correoLabel">Correo Institucional</label>
-                        <input type="email" placeholder="Ingrese su correo institucional" id="correoInstitucional" name="correoInstitucional" wire:model="correoInstitucional">
-                        @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="inputRegister estudiante" style="display: none;">
-                        <label id="numeroLabel">Número de cuenta</label>
-                        <input type="text" placeholder="Ingrese su cuenta de estudiante" id="numeroCuenta" name="numeroCuenta" wire:model="numeroCuenta">
-                        @error('numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
-                </div>
+                </form>
             </div>
-
-            <button wire:click.prevent="store()" class="submit">
-                <span class="btnText">Registrar</span>
-            </button>
-        </div>
-    </form>
-</div>
-
-
-            <button wire:click.prevent="store()" class="submit">
-                <span class="btnText">Registrar</span>
-            </button>
-        </div>
-    </form>
-</div>
 
 
         </div>

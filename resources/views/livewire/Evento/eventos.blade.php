@@ -1,5 +1,5 @@
 <div>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white m-2">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
         Eventos
     </h2>
 
@@ -69,7 +69,7 @@
                     </thead>
                     <tbody>
                         @foreach($nombreeventos as $nombreevento)
-                            <tr class="bg-white border-b hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4">{{ $nombreevento->id }}</td>
                                 <td class="px-6 py-4">{{ $nombreevento->nombreevento }}</td>
                                 <td class="px-6 py-4">{{ $nombreevento->descripcion }}</td>

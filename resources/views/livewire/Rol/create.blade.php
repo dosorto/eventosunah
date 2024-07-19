@@ -31,8 +31,8 @@
                             <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 @forelse($permissions ?? [] as $permission)
                                     <label class="flex items-center">
-                                        <input wire:model="selectedPermissions" type="checkbox" name="selectedPermissions[]" value="{{ $permission->id }}" class="form-checkbox">
-                                        <span class="ml-2 text-gray-800">{{ $permission->name }}</span>
+                                        <input wire:model="selectedPermissions" type="checkbox" name="selectedPermissions[]" value="{{ $permission->id }}" class="form-checkbox text-yellow-500 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                        <span class="ml-2 dark:text-white text-gray-800">{{ $permission->name }}</span>
                                     </label>
                                 @empty
                                     <p>No se encontraron permisos.</p>
