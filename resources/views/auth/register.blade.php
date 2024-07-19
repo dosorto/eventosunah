@@ -5,13 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <title>Registro Persona</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Agrega tus estilos CSS personalizados aquí -->
     <style>
-        /* ===== Google Font Import - Poppins ===== */
+        /* ===== Google Font Import - Poformsins ===== */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
         * {
@@ -22,57 +20,34 @@
         }
 
         body {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
+
         }
 
-        .focus\:ring-yellow-500:focus {
-            --tw-ring-opacity: 1;
-            --tw-ring-color: rgb(234 179 8 / var(--tw-ring-opacity))
-                /* #eab308 */
-            ;
-        }
 
-        .focus\:border-yellow-500:focus {
-            --tw-border-opacity: 1;
-            border-color: rgb(234 179 8 / var(--tw-border-opacity))
-                /* #eab308 */
-            ;
-        }
-
-        .container {
+        .containerRegister {
             position: relative;
             max-width: 910px;
+            height: 570px;
             width: 90%;
             border-radius: 6px;
             padding: 40px;
-            margin: 0 15px;
             background-color: #fff;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .container h1 {
+        .containerRegister h1 {
             position: relative;
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 500;
             color: #333;
         }
 
-        .container h1::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            height: 3px;
-            width: 27px;
-            border-radius: 8px;
-            background-color: #4070f4;
-        }
-
-        .container form {
+        .containerRegister form {
             position: relative;
             margin-top: 16px;
             min-height: 440px;
@@ -80,47 +55,47 @@
             overflow: hidden;
         }
 
-        .container form .form {
+        .containerRegister form .formRegister {
             position: absolute;
             background-color: #fff;
-            transition: 0.3s ease;
+            transition: 0.2s ease;
         }
 
-        .container form .form.second {
+        .containerRegister form .formRegister.second {
             opacity: 0;
             pointer-events: none;
             transform: translateX(100%);
         }
 
-        form.secActive .form.second {
+        .containerRegister form.secActive .formRegister.second {
             opacity: 1;
             pointer-events: auto;
             transform: translateX(0);
         }
 
-        form.secActive .form.first {
+        .containerRegister form.secActive .formRegister.first {
             opacity: 0;
             pointer-events: none;
             transform: translateX(-100%);
         }
 
-        .container form .title {
+        .containerRegister form .title {
             display: block;
             margin-bottom: 8px;
             font-size: 16px;
             font-weight: 500;
             margin: 6px 0;
-            color: #333;
+            color: #facc15;
         }
 
-        .container form .fields {
+        .containerRegister form .fields {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
         }
 
-        form .fields .input-field {
+        .containerRegister form .fields .inputRegister {
             display: flex;
             width: calc(100% / 3 - 15px);
             flex-direction: column;
@@ -128,20 +103,20 @@
         }
 
 
-        form .fields .input-field .direccion {
+        .containerRegister form .fields .inputRegister .direccion {
             display: flex;
             width: 840px;
             flex-direction: column;
             margin: 4px 0;
         }
 
-        .input-field label {
+        .containerRegister .inputRegister label {
             font-size: 12px;
             font-weight: 500;
             color: #2e2e2e;
         }
 
-        .input-field input,
+        .containerRegister .inputRegister input,
         select,
         textarea {
             outline: none;
@@ -155,27 +130,27 @@
             margin: 8px 0;
         }
 
-        .input-field input :focus,
-        .input-field select:focus .input-field textarea:focus {
+        .containerRegister .inputRegister input :focus,
+        .containerRegister .inputRegister select:focus .inputRegister textarea:focus {
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
         }
 
-        .input-field select,
-        .input-field input .input-field textarea[type="date"] {
+        .containerRegister .inputRegister select,
+        .inputRegister input .inputRegister textarea[type="date"] {
             color: #707070;
         }
 
-        .input-field input[type="date"]:valid {
+        .containerRegister .inputRegister input[type="date"]:valid {
             color: #333;
         }
 
-        .container form button,
+        .containerRegister form button,
         .backBtn {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 45px;
-            max-width: 200px;
+            max-width: 266px;
             width: 100%;
             border: none;
             outline: none;
@@ -191,56 +166,228 @@
             cursor: pointer;
         }
 
-        .container form .btnText {
+        .containerRegister form .btnText {
             font-weight: 500;
             font-size: 14px;
         }
 
-        form button:hover {
+        .containerRegister form button:hover {
             --tw-bg-opacity: 1;
             background-color: rgb(202 138 4 / var(--tw-bg-opacity))
                 /* #ca8a04 */
             ;
         }
 
-        form button i,
+        .containerRegister form button i,
         form .backBtn i {
             margin: 0 6px;
         }
 
-        form .backBtn i {
-            transform: rotate(180deg);
+        .containerRegister form .backBtn i {
+            transformRegister: rotate(180deg);
         }
 
-        form .buttons {
+        .containerRegister form .buttons {
             display: flex;
             align-items: center;
         }
 
-        form .buttons button,
+        .containerRegister form .buttons button,
         .backBtn {
             margin-right: 14px;
         }
 
         @media (max-width: 750px) {
-            .container form {
+            .containerRegister form {
                 overflow-y: scroll;
             }
 
-            .container form::-webkit-scrollbar {
+            .containerRegister form::-webkit-scrollbar {
                 display: none;
             }
 
-            form .fields .input-field {
+            .containerRegister form .fields .inputRegister {
                 width: calc(100% / 2 - 15px);
             }
         }
 
         @media (max-width: 550px) {
-            form .fields .input-field {
+            .containerRegister form .fields .inputRegister {
                 width: 100%;
             }
         }
+
+        .max {
+            max-width: 430px;
+        }
+
+        .container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 900px;
+            margin: 0 20px;
+        }
+
+        .container .forms {
+            display: flex;
+            align-items: center;
+            height: 540px;
+            width: 200%;
+            transition: height 0.2s ease;
+        }
+
+
+        .container .form {
+            width: 50%;
+            height: 540px;
+            padding: 30px;
+            background-color: #fff;
+            transition: margin-left 0.10s ease;
+        }
+
+        .container.active .login {
+            margin-left: -50%;
+            opacity: 0;
+            transition: margin-left 0.10s ease, opacity 0.12s ease;
+        }
+
+        .container .signup {
+
+            opacity: 0;
+            transition: opacity 0.08s ease;
+        }
+
+        .container.active .signup {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        .container.active .forms {
+            height: 600px;
+        }
+
+        .container .form .title {
+            position: relative;
+            font-size: 27px;
+            font-weight: 600;
+        }
+
+        .container .form .title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            background-color: #1254a1;
+            border-radius: 25px;
+        }
+
+        .container .form .input-field {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .container .input-field input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding: 0 35px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-bottom: 2px solid #000;
+            border-top: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .container .input-field input:is(:focus, :valid) {
+            border-bottom-color: #facc15;
+        }
+
+        .container .input-field i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            font-size: 23px;
+            transition: all 0.2s ease;
+        }
+
+        .container .input-field input:is(:focus, :valid)~i {
+            color: #facc15;
+        }
+
+        .input-field i.icon {
+            left: 0;
+        }
+
+        .container .input-field i.showHidePw {
+            right: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .container .form .checkbox-text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .container .checkbox-text .checkbox-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .checkbox-content input {
+            margin-right: 10px;
+            accent-color: #facc15;
+        }
+
+        .container .form .text {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .container .form a.text {
+            color: #1254a1;
+            text-decoration: none;
+        }
+
+        .container .form a:hover {
+            text-decoration: underline;
+        }
+
+        .container .form .button {
+            margin-top: 35px;
+        }
+
+        .container .form .button input {
+            border: none;
+            color: #000;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            --tw-bg-opacity: 1;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity))
+                /* #facc15 */
+            ;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .container .button input:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity))
+                /* #ca8a04 */
+            ;
+        }
+
 
         header {
             position: fixed;
@@ -267,10 +414,7 @@
         }
 
         .navbar .logo span {
-            --tw-bg-opacity: 1;
-            color: rgb(250 204 21 / var(--tw-bg-opacity))
-                /* #facc15 */
-            ;
+            color: #facc15;
         }
 
         .navbar .menu-links {
@@ -286,10 +430,7 @@
         }
 
         .navbar a:hover {
-            --tw-bg-opacity: 1;
-            color: rgb(250 204 21 / var(--tw-bg-opacity))
-                /* #facc15 */
-            ;
+            color: #facc15;
         }
 
         #close-menu-btn {
@@ -365,142 +506,222 @@
             <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
         </nav>
     </header>
-    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
-    <div class="container">
-        <h1>Registro Personas</h1>
+    <div class="container max ">
+        <div class="forms">
+            <div class="form login active dark:bg-gray-900">
+                <span class="title">Registro De Usuario</span>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <div class="form first">
-                <div class="details personal">
-                    <span class="title">Detalles Personales</span>
-                    <div class="fields">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <div class="input-field">
+                        <input type="text" placeholder="Nombre completo" id="nombre" name="nombre" required>
+                        @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" placeholder="Correo electrónico" id="correo" name="correo" required>
+                        @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Crear contraseña" id="password"
+                            name="password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Confirmar contraseña"
+                            id="password_confirmation" name="password_confirmation" autocomplete="new-password"
+                            required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
 
-                        <div class="input-field">
-                            <label>Tipo Perfil</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
-                                name="IdTipoPerfil" wire:model="TipoPerfil" required>
-                                <option value="" disabled selected>Seleccione tipo perfil</option>
-                                <option value="Estudiante">Estudiante</option>
-                                <option value="Docente">Docente</option>
-                                <option value="Externo">Externo</option>
-                            </select>
-                            @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="input-field login-signup button text signup-link">
+                        <input class="text" style="text-align: center;" value="Siguiente">
+                    </div>
+                </form>
+            </div>
 
-                        <div class="input-field">
-                            <label>DNI</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI" required>
-                            @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+            <!-- Registro Usuario -->
+            <div class="form signup containerRegister">
+    <span class="title">Registro De Usuario</span>
 
-                        <div class="input-field">
-                            <label>Nombre</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="Nomnre" required>
-                            @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+    <form method="POST" wire:submit.prevent="store">
+        @csrf
 
-                        <div class="input-field">
-                            <label>Apellido</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="Apellido"
-                                required>
-                            @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+        <!-- Campo oculto para el ID del usuario -->
+        <input type="hidden" id="IdUsuario" name="IdUsuario" wire:model="IdUsuario">
 
-                        <div class="input-field">
-                            <label>Correo Electrónico</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
-                                placeholder="Ingrese su correo" id="correo" name="correo" wire:model="Correo" required>
-                            @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+        <div class="formRegister first">
+            <div class="details personal">
+                <h1>Detalles Personales</h1>
+                <div class="fields">
+                    <div class="inputRegister">
+                        <label>DNI</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
+                        @error('dni') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field estudiante" style="display: none;">
-                            <label>Correo Institucional</label>
-                            <input type="email" placeholder="Ingrese su correo institucional" id="correo_institucional"
-                                name="CorreoInstitucional">
-                            @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="inputRegister">
+                        <label>Nombre</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="nombre" required>
+                        @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field estudiante" style="display: none;">
-                            <label>Número de cuenta</label>
-                            <input type="text" placeholder="Ingrese su cuenta de estudiante" id="cuenta_estudiante"
-                                name="Cuenta">
-                            @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="inputRegister">
+                        <label>Apellido</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="apellido" required>
+                        @error('apellido') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
+                    <div class="inputRegister">
+                        <label>Correo Electrónico</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email" placeholder="Ingrese su correo" id="correo" name="correo" wire:model="correo" required>
+                        @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
+                    <div class="inputRegister">
+                        <label>Fecha de Nacimiento</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date" id="fecha_nacimiento" name="fechaNacimiento" wire:model="fechaNacimiento" required>
+                        @error('fechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field">
-                            <label>Fecha de Nacimiento</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date"
-                                id="fecha_nacimiento" name="fecha_nacimiento" wire:model="FechaNacimiento" required>
-                            @error('FechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="inputRegister">
+                        <label>Sexo</label>
+                        <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo" wire:model="sexo" required>
+                            <option value="" disabled selected>Seleccione su sexo</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                        @error('sexo') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field">
-                            <label>Sexo</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo"
-                                wire:model="IdSexo" required>
-                                <option value="" disabled selected>Seleccione su sexo</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Femenino</option>
-                            </select>
-                            @error('Sexo') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="inputRegister">
+                        <label>Teléfono</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono" wire:model="telefono" required>
+                        @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field">
-                            <label>Teléfono</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel"
-                                placeholder="Ingrese su teléfono" id="telefono" name="telefono" wire:model="Telefono"
-                                required>
-                            @error('Telefono') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="input-field">
+                        <label>Nacionalidad</label>
+                        <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdNacionalidad" name="IdNacionalidad" wire:model="IdNacionalidad" required>
+                            <option value="" disabled selected>Seleccione su nacionalidad</option>
+                            @foreach($nacionalidades as $nacionalidad)
+                                <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombreNacionalidad }}</option>
+                            @endforeach
+                        </select>
+                        @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field">
-                            <label>Nacionalidad</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad"
-                                name="id_Nacionalidad" wire:model="IdNacionalidad" required>
-                                <option value="" disabled selected>Seleccione su nacionalidad</option>
-                                <option value="">Hondureña</option>
-                                <option value="">Guatemalteca</option>
-                                @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
-                            </select>
-                        </div>
+                    <div class="inputRegister">
+                        <label>Dirección</label>
+                        <input class="focus:ring-yellow-500 focus:border-yellow-500" id="direccion" name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion" required></input>
+                        @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-                        <div class="input-field">
-                            <label>Dirección</label>
-                            <input class=" focus:ring-yellow-500 focus:border-yellow-500" id="direccion"
-                                name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion"
-                                required></input>
-                            @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="input-field">
+                        <label>Tipo Perfil</label>
+                        <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil" name="IdTipoPerfil" wire:model="IdTipoPerfil" required>
+                            <option value="" disabled selected>Seleccione tipo perfil</option>
+                            @foreach($tipoperfiles as $tipoPerfil)
+                                <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
+                            @endforeach
+                        </select>
+                        @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="inputRegister estudiante" style="display: none;">
+                        <label id="correoLabel">Correo Institucional</label>
+                        <input type="email" placeholder="Ingrese su correo institucional" id="correoInstitucional" name="correoInstitucional" wire:model="correoInstitucional">
+                        @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="inputRegister estudiante" style="display: none;">
+                        <label id="numeroLabel">Número de cuenta</label>
+                        <input type="text" placeholder="Ingrese su cuenta de estudiante" id="numeroCuenta" name="numeroCuenta" wire:model="numeroCuenta">
+                        @error('numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
                 </div>
-
-                <button wire:click.prevent="store()" class="submit">
-                    <span class="btnText">Registrar</span>
-                </button>
             </div>
-        </form>
+
+            <button wire:click.prevent="store()" class="submit">
+                <span class="btnText">Registrar</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+            <button wire:click.prevent="store()" class="submit">
+                <span class="btnText">Registrar</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+        </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tipoPerfil = document.getElementById('IdTipoPerfil');
+            const estudianteFields = document.querySelectorAll('.estudiante');
+            const label1 = document.getElementById('correoLabel');
+            const input1 = document.getElementById('correo_institucional');
+            const label2 = document.getElementById('numeroLabel');
+            const input2 = document.getElementById('cuenta_estudiante');
 
-
+            tipoPerfil.addEventListener('change', () => {
+                if (tipoPerfil.value === 'Estudiante') {
+                    estudianteFields.forEach(field => field.style.display = 'flex');
+                    label1.textContent = 'Correo Institucional';
+                    input1.placeholder = 'Ingrese correo institucional';
+                    label2.textContent = 'Número de Cuenta';
+                    input2.placeholder = 'Número de cuenta';
+                } else if (tipoPerfil.value === 'Docente') {
+                    estudianteFields.forEach(field => field.style.display = 'flex');
+                    label1.textContent = 'Correo Institucional';
+                    input1.placeholder = 'Ingrese correo Institucional';
+                    label2.textContent = 'Identificación de docente';
+                    input2.placeholder = 'Numero de empleado';
+                } else {
+                    estudianteFields.forEach(field => field.style.display = 'none');
+                }
+            });
+        });
+    </script>
 
     <script>
-        const tipoPerfil = document.getElementById('IdTipoPerfil');
-        const estudianteFields = document.querySelectorAll('.estudiante');
+        const pwShowHide = document.querySelectorAll(".showHidePw");
+        const pwFields = document.querySelectorAll(".password");
 
-        tipoPerfil.addEventListener('change', () => {
-            if (tipoPerfil.value === 'Estudiante') {
-                estudianteFields.forEach(field => field.style.display = 'flex');
-            } else if (tipoPerfil.value === 'Docente') {
-                estudianteFields.forEach(field => field.style.display = 'flex');
-            } else {
-                estudianteFields.forEach(field => field.style.display = 'none');
-            }
+        pwShowHide.forEach(eyeIcon => {
+            eyeIcon.addEventListener("click", () => {
+                pwFields.forEach(pwField => {
+                    if (pwField.type === "password") {
+                        pwField.type = "text";
+                        eyeIcon.classList.replace("uil-eye-slash", "uil-eye");
+                    } else {
+                        pwField.type = "password";
+                        eyeIcon.classList.replace("uil-eye", "uil-eye-slash");
+                    }
+                });
+            });
+        });
+
+        const signUp = document.querySelector(".signup-link");
+        const login = document.querySelector(".login-link");
+        const container = document.querySelector(".container");
+
+        signUp.addEventListener("click", () => {
+            container.classList.add("active");
+            container.classList.remove("max");
+        });
+
+        login.addEventListener("click", () => {
+            container.classList.remove("active");
+            container.classList.add("max");
+
         });
     </script>
     <script>

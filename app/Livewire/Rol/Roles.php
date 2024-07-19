@@ -18,7 +18,12 @@ class Roles extends Component
     public $search = '';
     public $selectedPermissions = [];
     public $isOpen = false;
+    protected $rules = [
+        'name' => 'required|unique:roles,name',
+        'selectedPermissions' => 'required|array',
+    ];
 
+    protected $listeners = ['roleStored' => '$refresh'];
     public function mount()
     {
         $this->permissions = Permission::all();
@@ -62,7 +67,7 @@ class Roles extends Component
         $role->syncPermissions($permissionIds);
 
         session()->flash('message', 'Role creado exitosamente.');
-
+        $this->emit('roleStored');
         $this->reset();
         $this->isOpen = false;
     }
@@ -96,7 +101,7 @@ class Roles extends Component
             $role->syncPermissions($permissionIds);
 
             session()->flash('message', 'Rol actualizado');
-
+            $this->emit('roleStored');
             $this->reset();
             $this->closeModal();
        
@@ -122,4 +127,3 @@ class Roles extends Component
         $this->selectedPermissions = [];
     }
 }
-

@@ -28,14 +28,19 @@ class Personas extends Component
     }
 
     public function render()
-    {
-        $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
-            ->where('nombre', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
-            ->paginate(5);
+{
+    $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
+        ->where('nombre', 'like', '%' . $this->search . '%')
+        ->orderBy('id', 'ASC')
+        ->paginate(5);
 
-        return view('livewire.persona.personas', ['personas' => $personas]);
-    }
+    return view('livewire.persona.personas', [
+        'personas' => $personas,
+        'nacionalidades' => $this->nacionalidades,
+        'tipoperfiles' => $this->tipoperfiles
+    ]);
+}
+
 
     public function create()
     {
@@ -137,4 +142,3 @@ class Personas extends Component
         session()->flash('message', 'Registro eliminado correctamente!');
     }
 }
-
