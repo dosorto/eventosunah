@@ -43,9 +43,6 @@ Route::middleware([
 });
 
 
-Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
-Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('register');
-
 Route::get('/prueba', function () {
     return view('livewire.prueba');
 });
