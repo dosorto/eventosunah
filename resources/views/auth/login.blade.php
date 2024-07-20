@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.login-layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
-</head>
+@section('app-content')
 
-<body>
     <header>
         <nav class="navbar">
             <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
@@ -30,7 +21,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-field">
-                        <input type="email" id="email" name="email" placeholder="Correo electrónico" required autofocus>
+                        <input type="email" id="email" name="email" placeholder="Correo electrónico" required
+                            autofocus>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
@@ -63,7 +55,7 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const tipoPerfil = document.getElementById('IdTipoPerfil');
             const estudianteFields = document.querySelectorAll('.estudiante');
             const label1 = document.getElementById('correoLabel');
@@ -120,6 +112,5 @@
         // Close mobile menu on close button click
         closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
-</body>
-
-</html>
+    
+@endsection
