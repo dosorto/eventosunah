@@ -40,7 +40,7 @@
                   </div>
                   <div>
                      <button type="button"
-                        class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-yellow-300 dark:focus:ring-gray-600"
+                        class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                         aria-expanded="false" data-dropdown-toggle="dropdown-user">
                         <span class="sr-only">Open user menu</span>
                         <img class="w-9 h-9 rounded-full" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&amp;color=000&amp;background=facc15">
@@ -132,9 +132,14 @@
                   @endcan
                   @can("admin-evento")
                   <li>
+
+                     <a href="{{ route('evento') }}" :active="request()->routeIs('evento')"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Coloqio</a>
+
                      <a href="{{ route('evento') }}" :active="request()->routeIs('evento')"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Eventos</a>
                     
+
                   </li>
                   @endcan
                   @can("admin-conferencista")
