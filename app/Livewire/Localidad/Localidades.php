@@ -4,7 +4,7 @@ namespace App\Livewire\Localidad;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Localidad;
-
+use App\Models\Evento;
 class Localidades extends Component
 {
     use WithPagination;
@@ -64,7 +64,15 @@ class Localidades extends Component
      */
     public function delete($id)
     {
-        Localidad::find($id)->delete();
-        session()->flash('message', 'Registro Eliminado correctamente!');
+       
+        $eventosAsociados = Evento::where('IdLocalidad', $id)->exists();
+    
+        if ($eventosAsociados) {
+            session()->flash('message', 'No se puede eliminar la localidad porque está asociada a uno o más eventos.');
+        } else {
+          
+            Localidad::find($id)->delete();
+            session()->flash('message', 'Localidad eliminada correctamente!');
+        }
     }
 }

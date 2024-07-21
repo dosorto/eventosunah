@@ -59,12 +59,4 @@
     </div>
 </div>
 
-@push('scripts')
-    <script>
-        document.addEventListener('livewire:load', function () {
-            Livewire.on('roleStored', function () {
-                location.reload();
-            });
-        });
-    </script>
-@endpush
+

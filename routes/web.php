@@ -13,8 +13,10 @@ use App\Livewire\Departamento\Departamentos;
 use App\Livewire\Carrera\Carreras;
 use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
+use App\Livewire\Conferencia\CrearConferencia;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
+use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 
 Route::get('/', function () {
@@ -39,6 +41,7 @@ Route::middleware([
     Route::get('/conferencia', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
     Route::get('/evento', Eventos::class)->name('evento');
+    Route::get('/asistencia', Asistencias::class)->name('asistencia');
 });
 
 

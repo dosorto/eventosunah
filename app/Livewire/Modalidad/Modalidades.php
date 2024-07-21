@@ -4,7 +4,7 @@ namespace App\Livewire\Modalidad;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Modalidad;
-
+use App\Models\Evento;
 class Modalidades extends Component
 {
     use WithPagination;
@@ -64,7 +64,15 @@ class Modalidades extends Component
      */
     public function delete($id)
     {
-        Modalidad::find($id)->delete();
-        session()->flash('message', 'Registro Eliminado correctamente!');
+        
+        $eventosAsociados = Evento::where('IdModalidad', $id)->exists();
+    
+        if ($eventosAsociados) {
+            session()->flash('message', 'No se puede eliminar la modalidad porque está asociada a uno o más eventos.');
+        } else {
+            
+            Modalidad::find($id)->delete();
+            session()->flash('message', 'Modalidad eliminada correctamente!');
+        }
     }
 }
