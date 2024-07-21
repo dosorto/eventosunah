@@ -14,11 +14,9 @@ use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
 use App\Http\Controllers\Login\RegistrarUsarioController;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/denisse
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,9 +39,13 @@ Route::middleware([
     Route::get('/conferencia', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
     Route::get('/evento', Eventos::class)->name('evento');
-    Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
-    Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('register');
+    
 });
+
+Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
+Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('registerpost');
+
+Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPersona'])->name('nueva-persona');
 
 
 

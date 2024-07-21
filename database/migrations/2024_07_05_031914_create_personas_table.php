@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('sexo');
             $table->string('direccion');
             $table->string('telefono');
-            $table->string('numeroCuenta');
+            $table->string('numeroCuenta')->nullable();
             $table->unsignedBigInteger('IdNacionalidad');
             $table->unsignedBigInteger('IdTipoPerfil');
-            $table->integer("created_by");
+            $table->integer("created_by")->nullable();
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
