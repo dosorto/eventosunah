@@ -38,40 +38,6 @@
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="mb-4">
-                                <label for="exampleFormControlInput3"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Fecha de Inicio:</label>
-                                <input type="date"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="exampleFormControlInput3" wire:model="fechainicio">
-                                @error('fechainicio') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="exampleFormControlInput4"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Fecha Final:</label>
-                                <input type="date"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="exampleFormControlInput4" wire:model="fechafinal">
-                                @error('fechafinal') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="exampleFormControlInput5"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
-                                <input type="time"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="exampleFormControlInput5" wire:model="horainicio">
-                                @error('horainicio') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="exampleFormControlInput6"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Hora de Fin:</label>
-                                <input type="time"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="exampleFormControlInput6" wire:model="horafin">
-                                @error('horafin') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="mb-4">
                                 <label for="modalidadSelect"
                                     class="block text-gray-700 text-sm font-bold mb-2">Modalidad:</label>
                                 <select id="modalidadSelect"
@@ -97,19 +63,6 @@
                                 </select>
                                 @error('idlocalidad') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="conferenciaSelect"
-                                class="block text-gray-700 text-sm font-bold mb-2">Conferencia:</label>
-                            <select id="conferenciaSelect"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                wire:model="idconferencia">
-                                <option value="">Seleccione una Conferencia</option>
-                                @foreach($conferencias as $conferencia)
-                                    <option value="{{ $conferencia->id }}">{{ $conferencia->nombre }}</option>
-                                @endforeach
-                            </select>
-                            @error('idconferencia') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                     </div>
                 </div>

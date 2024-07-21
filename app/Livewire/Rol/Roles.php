@@ -18,7 +18,12 @@ class Roles extends Component
     public $search = '';
     public $selectedPermissions = [];
     public $isOpen = false;
+    protected $rules = [
+        'name' => 'required|unique:roles,name',
+        'selectedPermissions' => 'required|array',
+    ];
 
+    protected $listeners = ['roleStored' => '$refresh'];
     public function mount()
     {
         $this->permissions = Permission::all();
@@ -34,6 +39,7 @@ class Roles extends Component
     public function create()
     {
         $this->resetInputFields();
+        $this->permissions = Permission::all();
         $this->isOpen = true;
     }
 
@@ -62,7 +68,7 @@ class Roles extends Component
         $role->syncPermissions($permissionIds);
 
         session()->flash('message', 'Role creado exitosamente.');
-
+        $this->permissions = Permission::all();
         $this->reset();
         $this->isOpen = false;
     }
@@ -72,6 +78,7 @@ class Roles extends Component
         $this->role = $role;
         $this->name = $role->name;
         $this->selectedPermissions = $role->permissions->pluck('id')->toArray();
+        $this->permissions = Permission::all();
         $this->isOpen = true;
     }
 
@@ -96,7 +103,7 @@ class Roles extends Component
             $role->syncPermissions($permissionIds);
 
             session()->flash('message', 'Rol actualizado');
-
+            $this->permissions = Permission::all();
             $this->reset();
             $this->closeModal();
        
@@ -109,9 +116,16 @@ class Roles extends Component
 
     public function delete($roleId)
     {
-        Role::findOrFail($roleId)->delete();
+        $role = Role::findOrFail($roleId);
+
+        if ($role->users()->exists()) {
+            session()->flash('error', 'No se puede eliminar el rol porque tiene usuarios asignados.');
+            return;
+        }
+        $role->delete();
         session()->flash('message', 'Rol eliminado');
     }
+    
     public function closeModal()
     {
         $this->isOpen = false;
@@ -122,4 +136,3 @@ class Roles extends Component
         $this->selectedPermissions = [];
     }
 }
-

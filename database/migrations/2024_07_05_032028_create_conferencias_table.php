@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('conferencias', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('IdEvento');
             $table->string('nombre');
             $table->string('descripcion',500);
             $table->date('fecha');
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
-
+            $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
             $table->foreign('idConferencista')->references('id')->on('conferencistas')->onDelete('restrict');
         });
     }
