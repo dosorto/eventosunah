@@ -540,7 +540,8 @@
                             </div>
 
                             <div class="inputRegister">
-                                <label>Sexo</label>
+               
+                            <label>Sexo</label>
                                 <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo" wire:model="sexo" required>
                                     <option value="" disabled selected>Seleccione su sexo</option>
                                     <option value="M">Masculino</option>
