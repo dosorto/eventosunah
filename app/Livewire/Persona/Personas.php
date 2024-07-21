@@ -42,6 +42,7 @@ class Personas extends Component
 }
 
 
+
     public function create()
     {
         $this->resetInputFields();
