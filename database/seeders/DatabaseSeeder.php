@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
            PersonaSeeder::class,
            PerfilSeeder::class,
            ConferencistaSeeder::class,
-           ConferenciaSeeder::class,
            EventoSeeder::class,
+           ConferenciaSeeder::class,
            DiplomaSeeder::class,
            AsistenciaSeeder::class
        ]);

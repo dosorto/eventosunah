@@ -76,7 +76,7 @@ class Departamentos extends Component
         $carrerasAsociadas = Carrera::where('IdDepartamento', $id)->exists();
 
         if ($carrerasAsociadas) {
-            session()->flash('error', 'No se puede eliminar el departamento porque está asociado a una o más carreras.');
+            session()->flash('message', 'No se puede eliminar el departamento porque está asociado a una o más carreras.');
         } else {
             Departamento::find($id)->delete();
             session()->flash('message', 'Departamento eliminado correctamente!');

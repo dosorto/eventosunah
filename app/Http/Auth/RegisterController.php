@@ -68,7 +68,7 @@ class RegisterController extends Controller
     $defaultRoleId = 4; 
 
     $user->roles()->attach($defaultRoleId);
-
-    return $user;
+    // redireccionar a la ruta practica
+    return redirect()->route('practica');
 }
 }
