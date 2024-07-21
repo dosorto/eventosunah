@@ -14,15 +14,16 @@ class Conferencistas extends Component
 
     public $titulo, $descripcion, $foto, $IdPersona, $conferencista_id, $search;
     public $isOpen = 0;
-    public $personas;
+    public $inputSearchPersona = '';
+    public $searchPersonas = [];
 
     protected $rules = [
         'titulo' => 'required',
         'descripcion' => 'required',
-        'foto' => 'nullable|image|max:1024', // Ajusta el tamaño máximo según tus necesidades
+        'foto' => 'nullable|image|max:1024', 
         'IdPersona' => 'required',
     ];
-
+    public $personas;
     public function mount()
     {
         $this->personas = Persona::all();
@@ -36,6 +37,21 @@ class Conferencistas extends Component
             ->paginate(5);
 
         return view('livewire.conferencista.conferencistas', ['conferencistas' => $conferencistas]);
+    }
+
+    public function updatedInputSearchPersona()
+    {
+        $this->searchPersonas = Persona::where('nombre', 'like', '%' . $this->inputSearchPersona . '%')
+            ->orWhere('apellido', 'like', '%' . $this->inputSearchPersona . '%')
+            ->get();
+    }
+
+    public function selectPersona($personaId)
+    {
+        $this->IdPersona = $personaId;
+        $persona = Persona::find($personaId);
+        $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
+        $this->searchPersonas = [];
     }
 
     public function create()
@@ -61,6 +77,8 @@ class Conferencistas extends Component
         $this->foto = '';
         $this->IdPersona = '';
         $this->conferencista_id = null;
+        $this->inputSearchPersona = '';
+        $this->searchPersonas = [];
     }
 
     public function store()
@@ -96,7 +114,12 @@ class Conferencistas extends Component
         $this->titulo = $conferencista->Titulo;
         $this->descripcion = $conferencista->Descripcion;
         $this->IdPersona = $conferencista->IdPersona;
-        // No asignar directamente $this->foto aquí
+
+        // Solo se necesita el ID para buscar la persona, no asignar la foto aquí
+        $persona = Persona::find($this->IdPersona);
+        if ($persona) {
+            $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
+        }
 
         $this->openModal();
     }
