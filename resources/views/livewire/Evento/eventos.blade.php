@@ -57,13 +57,8 @@
                             <th scope="col" class="px-6 py-3">Nombre Evento</th>
                             <th scope="col" class="px-6 py-3">Descripción</th>
                             <th scope="col" class="px-6 py-3">Organizador</th>
-                            <th scope="col" class="px-6 py-3">Fecha Inicio</th>
-                            <th scope="col" class="px-6 py-3">Fecha Final</th>
-                            <th scope="col" class="px-6 py-3">Hora Inicio</th>
-                            <th scope="col" class="px-6 py-3">Hora Fin</th>
                             <th scope="col" class="px-6 py-3">Modalidad</th>
                             <th scope="col" class="px-6 py-3">Localidad</th>
-                            <th scope="col" class="px-6 py-3">Conferencia</th>
                             <th scope="col" class="px-6 py-3">Acciones</th>
                         </tr>
                     </thead>
@@ -74,16 +69,15 @@
                                 <td class="px-6 py-4">{{ $nombreevento->nombreevento }}</td>
                                 <td class="px-6 py-4">{{ $nombreevento->descripcion }}</td>
                                 <td class="px-6 py-4">{{ $nombreevento->organizador }}</td>
-                                <td class="px-6 py-4">{{ $nombreevento->fechainicio }}</td>
-                                <td class="px-6 py-4">{{ $nombreevento->fechafinal }}</td>
-                                <td class="px-6 py-4">{{ $nombreevento->horainicio }}</td>
-                                <td class="px-6 py-4">{{ $nombreevento->horafin }}</td>
                                 <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
                                 <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
-                                <td class="px-6 py-4">{{ $nombreevento->conferencia->nombre }}</td>
                                 <td class="px-6 py-4">
                                     <button wire:click="edit({{ $nombreevento->id }})" class="text-blue-600 hover:underline">Editar</button>
                                     <button wire:click="delete({{ $nombreevento->id }})" class="text-red-600 hover:underline">Borrar</button>
+                                    <a href="{{ route('conferencia', ['evento' => $nombreevento->id]) }}" class="text-green-600 hover:underline">
+                                        Agregar Conferencia
+                                    </a>
+
                                 </td>
 
                             </tr>
