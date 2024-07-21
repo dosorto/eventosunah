@@ -542,10 +542,77 @@
                     </div>
                 </form>
 
-                <div class="login-signup">
-                    <span class="text">¿No tienes cuenta?
-                        <a href="/register" class="text signup-link">Registrarse</a>
-                    </span>
+<<<<<<< HEAD
+            <!-- Registro Usuario 2 -->
+            <div class="form signup">
+                <span class="title">Registro</span>
+=======
+                <!-- Registro Usuario -->
+                <div class="form signup">
+                    <span class="title">Registro</span>
+>>>>>>> origin/acxel
+
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+<<<<<<< HEAD
+                    <div class="input-field">
+                        <input type="text" placeholder="Nombre completo" id="name" name="name" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" placeholder="Correo electrónico" id="email2" name="email2" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Crear contraseña" id="password2"
+                            name="password2" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Confirmar contraseña"
+                            id="password_confirmation" name="password_confirmation" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" value="Registrar">
+                    </div>
+                </form>
+=======
+                        <div class="input-field">
+                            <input type="text" placeholder="Nombre completo" id="name" name="name" required>
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" placeholder="Correo electrónico" id="email2" name="email" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Crear contraseña" id="password"
+                                name="password" required>
+                            <i class="uil uil-lock icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Confirmar contraseña"
+                                id="password_confirmation" name="password_confirmation" autocomplete="new-password"
+                                required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+
+                        <div class="input-field button">
+                            <a href="/register"><input type="submit" value="Registrar"></a>
+                        </div>
+                    </form>
+>>>>>>> origin/acxel
+
+                    <div class="login-signup">
+                        <span class="text">¿Ya tienes cuenta? <a href="{{ route('login') }}"
+                                class="text login-link">Iniciar
+                                ahora</a></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -597,6 +664,21 @@
             });
         });
     </script>
+<<<<<<< HEAD
+     <script>
+    const header = document.querySelector("header");
+    const hamburgerBtn = document.querySelector("#hamburger-btn");
+    const closeMenuBtn = document.querySelector("#close-menu-btn");
+
+    // Toggle mobile menu on hamburger button click
+    hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+
+    // Close mobile menu on close button click
+    closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
+  </script>
+
+</body>
+=======
     <script>
         const header = document.querySelector("header");
         const hamburgerBtn = document.querySelector("#hamburger-btn");
@@ -608,6 +690,7 @@
         // Close mobile menu on close button click
         closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
+>>>>>>> origin/acxel
 </body>
 
 </html>
