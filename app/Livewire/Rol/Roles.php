@@ -109,7 +109,7 @@ class Roles extends Component
        
 
         } catch (\Exception $e) {
-            session()->flash('error', 'Error al actualizar rol: ' . $e->getMessage());
+            session()->flash('message', 'Error al actualizar rol: ' . $e->getMessage());
             Log::error('Error updating role: ' . $e->getMessage());
         }
     }
