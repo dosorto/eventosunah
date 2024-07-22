@@ -119,7 +119,7 @@ class Roles extends Component
         $role = Role::findOrFail($roleId);
 
         if ($role->users()->exists()) {
-            session()->flash('error', 'No se puede eliminar el rol porque tiene usuarios asignados.');
+            session()->flash('message', 'No se puede eliminar el rol porque tiene usuarios asignados.');
             return;
         }
         $role->delete();
