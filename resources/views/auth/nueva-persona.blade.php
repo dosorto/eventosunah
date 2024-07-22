@@ -503,7 +503,8 @@
                 @csrf
 
                 <!-- Campo oculto para el ID del user -->
-                <input type="hidden" name="IdUser" id="IdUser" value= "{{ $user->id }}">
+                <input type="hidden" name="User" id="User" value= "{{ $user }}">
+                <input type="hidden" name="UserC" id="UserC" value= "{{ $password }}">
 
                 <div class="formRegister first">
                     <div class="details personal">
