@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Evento;
+use App\Models\Conferencia;
 
 class DashboardController extends Controller
 {
@@ -13,9 +14,13 @@ class DashboardController extends Controller
 
     public function index()
     {
+        
 
         // contar la cantidad de eventos que hay en la base de datos
         $cantidadEventos = Evento::count();
+
+        // ordenar las conferencias por fecha fecha y seleccionar las primeras 10
+        $conferencias = Conferencia::orderBy('fecha', 'desc')->take(10)->get();
 
 
         // contar los eventos por modalidad 'Presencial', 'Virtual'
@@ -27,10 +32,13 @@ class DashboardController extends Controller
             ->where('modalidads.modalidad', 'Virtual')
             ->count();
 
+
+
         return view('dashboard', [
             'cantidadEventos' => $cantidadEventos,
             'eventosPresenciales' => $eventosPresenciales,
-            'eventosVirtuales' => $eventosVirtuales
+            'eventosVirtuales' => $eventosVirtuales,
+            'conferencias' => $conferencias
         ]);
     }
 }

@@ -337,62 +337,74 @@
         <div class="sales-boxes">
             <div
                 class="recent-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="title">Próximos Eventos</div>
+                <div class="title">Próximas Conferencias</div>
                 <div class="sales-details">
-                    <ul class="details">
-                        <li class="topic">Fecha</li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                        <li><a href="#">02 Jan 2021</a></li>
-                    </ul>
+                    
 
-                    <ul class="details">
-                        <li class="topic">Evento</li>
-                        <li><a href="#">Delivered</a></li>
-                        <li><a href="#">Pending</a></li>
-                        <li><a href="#">Returned</a></li>
-                        <li><a href="#">Delivered</a></li>
-                        <li><a href="#">Pending</a></li>
-                        <li><a href="#">Returned</a></li>
-                        <li><a href="#">Delivered</a></li>
-                        <li><a href="#">Pending</a></li>
-                        <li><a href="#">Delivered</a></li>
-                    </ul>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                    Fecha
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Nombre
+                </th>
+                <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                    Lugar
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Conferencista
+                </th>
+            </tr>
+        </thead>
+        <tbody>
 
-                    <ul class="details">
-                        <li class="topic">Modalidad</li>
-                        <li><a href="#">Virtual</a></li>
-                        <li><a href="#">Virtual</a></li>
-                        <li><a href="#">Virtual</a></li>
-                        <li><a href="#">Presencial</a></li>
-                        <li><a href="#">Presencial</a></li>
-                        <li><a href="#">Presencial</a></li>
-                        <li><a href="#">Virtual</a></li>
-                        <li><a href="#">Presencial</a></li>
-                        <li><a href="#">Presencial</a></li>
-                    </ul>
+            @foreach ($conferencias as $conferencia)
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-4">
+                        <div class="flex items
+                        -center">
+                            <div>
+                                <p class="font-semibold dark:text-gray-200">{{ $conferencia->fecha }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items
+                        -center">
+                            <div>
+                                <p class="font-semibold dark:text-gray-200">{{ $conferencia->nombre }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items
+                        -center">
+                            <div>
+                                <p class="font-semibold dark:text-gray-200">{{ $conferencia->lugar }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items
+                        -center">
+                            <div>
+                                <p class="font-semibold dark:text-gray-200">{{ $conferencia->conferencista->persona->nombre }}</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            
+        </tbody>
+    </table>
+</div>
 
-                    <ul class="details">
-                        <li class="topic">Inscritos</li>
-                        <li><a href="#">204</a></li>
-                        <li><a href="#">24</a></li>
-                        <li><a href="#">25</a></li>
-                        <li><a href="#">70</a></li>
-                        <li><a href="#">56</a></li>
-                        <li><a href="#">44</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">23</a></li>
-                        <li><a href="#">46</a></li>
-                    </ul>
                 </div>
                 <div class="button">
-                    <a href="#">Todos</a>
+                    <a href="{{route('conferencia')}}">Todos</a>
                 </div>
             </div>
             <div
