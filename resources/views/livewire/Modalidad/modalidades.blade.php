@@ -35,7 +35,6 @@
                         <div>
                             <button wire:click="create()"
                                 class="bg-yellow-500 hover:bg-yellow-600 hover:bg-ywllow-600 text-white font-bold py-2 px-4 rounded my-3">Nuevo</button>
-
                         </div>
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative">
@@ -69,13 +68,15 @@
                         </thead>
                         <tbody>
                             @foreach($modalidades as $modalidad)
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <tr
+                                    class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $modalidad->id }}</th>
+                                        {{ $modalidad->id }}
+                                    </th>
                                     <td class="px-6 py-4">{{ $modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">
-                                    <button wire:click="edit({{ $modalidad->id }})"
+                                        <button wire:click="edit({{ $modalidad->id }})"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -99,7 +100,8 @@
                                             </svg>
 
                                             Borrar
-                                        </button> </td>
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
