@@ -1,10 +1,10 @@
 <div>
 
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
-        Carreras
+        Asistencias
     </h2>
 
-    <div class="  dark:bg-gray-900">
+    <div class="dark:bg-gray-900">
         <div class="">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800">
                 @if (session()->has('message'))
@@ -19,7 +19,7 @@
                 @endif
 
                 @if($isOpen)
-                    @include('livewire.Carrera.create')
+                    @include('livewire.Asistencia.create')
                 @endif
 
                 <div class="relative overflow-x-auto sm:rounded-lg">
@@ -40,8 +40,8 @@
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input wire:model.live="search" type="text" id="table-search-users"
-                                class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700  dark:text-white"
+                            <input wire:model.live="search" type="text" id="table-search-asistencias"
+                                class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white"
                                 placeholder="Buscar...">
                         </div>
                     </div>
@@ -49,21 +49,25 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">No.</th>
-                                <th scope="col" class="px-6 py-3">Carrera</th>
-                                <th scope="col" class="px-6 py-3">Departamento</th>
+                                <th scope="col" class="px-6 py-3">Fecha</th>
+                                <th scope="col" class="px-6 py-3">Asistencia</th>
+                                <th scope="col" class="px-6 py-3">Persona</th>
+                                <th scope="col" class="px-6 py-3">Evento</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($carreras as $carrera)
+                            @foreach($asistencias as $asistencia)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $carrera->id }}
+                                        {{ $asistencia->id }}
                                     </td>
-                                    <td class="px-6 py-4">{{ $carrera->carrera }}</td>
-                                    <td class="px-6 py-4">{{ $carrera->departamento->departamento }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->Fecha }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->Asistencia }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->persona->nombre }} {{ $asistencia->persona->apellido }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->evento->nombreevento }}</td>
                                     <td class="px-6 py-4">
-                                        <button wire:click="edit({{ $carrera->id }})"
+                                        <button wire:click="edit({{ $asistencia->id }})"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -76,7 +80,7 @@
 
                                             Editar
                                         </button>
-                                        <button wire:click="delete({{ $carrera->id }})"
+                                        <button wire:click="delete({{ $asistencia->id }})"
                                             class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -94,7 +98,7 @@
                         </tbody>
                     </table>
                     <br>
-                    {{ $carreras->links() }}
+                    {{ $asistencias->links() }}
                     <br>
                 </div>
             </div>

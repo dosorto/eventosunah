@@ -124,7 +124,7 @@
             font-weight: 400;
             color: #333;
             border-radius: 5px;
-            border: 1px solid #aaa;
+            border: 1px solid;
             padding: 0 15px;
             height: 42px;
             margin: 8px 0;
@@ -184,7 +184,7 @@
         }
 
         .containerRegister form .backBtn i {
-            transformRegister: rotate(180deg);
+            transform: rotate(180deg);
         }
 
         .containerRegister form .buttons {
@@ -195,6 +195,7 @@
         .containerRegister form .buttons button,
         .backBtn {
             margin-right: 14px;
+            margin-left: 10px;
         }
 
         @media (max-width: 750px) {

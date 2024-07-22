@@ -11,24 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('conferencias', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombreevento');
             $table->string('descripcion',500);
-            $table->date('fecha');
-            $table->time('horaInicio');
-            $table->time('horaFin');
-            $table->string('lugar');
-            $table->string('linkreunion');
-            $table->unsignedBigInteger('idConferencista');
+            $table->string('organizador');
+            $table->unsignedBigInteger('idmodalidad');
+            $table->unsignedBigInteger('idlocalidad');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('idConferencista')->references('id')->on('conferencistas')->onDelete('restrict');
+            $table->foreign('idmodalidad')->references('id')->on('modalidads')->onDelete('restrict');
+            $table->foreign('idlocalidad')->references('id')->on('localidads')->onDelete('restrict');
         });
+
     }
 
     /**
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('conferencias');
+        Schema::dropIfExists('eventos');
     }
 };

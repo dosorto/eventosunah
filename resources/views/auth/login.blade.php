@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.login-layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
-    <!-- Agrega tus estilos CSS personalizados aquí -->
-    <style>
-        /* ===== Google Font Import - Poformsins ===== */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+@section('app-content')
 
+<<<<<<< HEAD
         * {
             margin: 0;
             padding: 0;
@@ -336,6 +327,42 @@
                                 placeholder="Contraseña" required>
                             <i class="uil uil-lock icon"></i>
                             <i class="uil uil-eye-slash showHidePw"></i>
+=======
+    <header>
+        <nav class="navbar">
+            <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
+            <ul class="menu-links">
+                <span id="close-menu-btn" class="material-symbols-outlined">close</span>
+                <li><a href="/">Home</a></li>
+                <li><a href="/register">Registrarse</a></li>
+            </ul>
+            <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
+        </nav>
+    </header>
+    <div class="container max ">
+        <div class="forms">
+            <div class="form login active dark:bg-gray-900">
+                <span class="title">Iniciar sesión</span>
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="input-field">
+                        <input type="email" id="email" name="email" placeholder="Correo electrónico" required
+                            autofocus>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="password" name="password" class="password" placeholder="Contraseña"
+                            required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="remember_me" name="remember">
+                            <label for="remember_me" class="text">Recuérdame</label>
+>>>>>>> origin/main
                         </div>
 
                         <div class="checkbox-text">
@@ -359,6 +386,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- Registro Usuario -->
                 <div class="form signup">
                     <span class="title">Registro</span>
@@ -397,12 +425,51 @@
                                 class="text login-link">Iniciar
                                 ahora</a></span>
                     </div>
+=======
+                <div class="login-signup">
+                    <span class="text">¿No tienes cuenta?
+                        <a href="/register" class="text signup-link">Registrarse</a>
+                    </span>
+>>>>>>> origin/main
                 </div>
 
 
             </div>
         </div>
+<<<<<<< HEAD
     </section>
+=======
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tipoPerfil = document.getElementById('IdTipoPerfil');
+            const estudianteFields = document.querySelectorAll('.estudiante');
+            const label1 = document.getElementById('correoLabel');
+            const input1 = document.getElementById('correo_institucional');
+            const label2 = document.getElementById('numeroLabel');
+            const input2 = document.getElementById('cuenta_estudiante');
+
+            tipoPerfil.addEventListener('change', () => {
+                if (tipoPerfil.value === 'Estudiante') {
+                    estudianteFields.forEach(field => field.style.display = 'flex');
+                    label1.textContent = 'Correo Institucional';
+                    input1.placeholder = 'Ingrese correo institucional';
+                    label2.textContent = 'Número de Cuenta';
+                    input2.placeholder = 'Número de cuenta';
+                } else if (tipoPerfil.value === 'Docente') {
+                    estudianteFields.forEach(field => field.style.display = 'flex');
+                    label1.textContent = 'Correo Institucional';
+                    input1.placeholder = 'Ingrese correo Institucional';
+                    label2.textContent = 'Identificación de docente';
+                    input2.placeholder = 'Numero de empleado';
+                } else {
+                    estudianteFields.forEach(field => field.style.display = 'none');
+                }
+            });
+        });
+    </script>
+
+>>>>>>> origin/main
     <script>
         const pwShowHide = document.querySelectorAll(".showHidePw");
         const pwFields = document.querySelectorAll(".password");
@@ -444,6 +511,11 @@
         // Close mobile menu on close button click
         closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
+<<<<<<< HEAD
 </body>
 
 </html>
+=======
+    
+@endsection
+>>>>>>> origin/main

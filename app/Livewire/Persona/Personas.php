@@ -28,14 +28,24 @@ class Personas extends Component
     }
 
     public function render()
-    {
-        $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
-            ->where('nombre', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
-            ->paginate(5);
+{
+    $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
+        ->where('nombre', 'like', '%' . $this->search . '%')
+        ->orderBy('id', 'ASC')
+        ->paginate(5);
 
+    return view('livewire.persona.personas', [
+        'personas' => $personas,
+        'nacionalidades' => $this->nacionalidades,
+        'tipoperfiles' => $this->tipoperfiles
+    ]);
+}
+
+<<<<<<< HEAD
         return view('livewire.persona.personas', ['personas' => $personas]);
     }
+=======
+>>>>>>> origin/main
 
     public function create()
     {

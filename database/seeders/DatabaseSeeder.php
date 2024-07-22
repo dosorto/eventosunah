@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
            LocalidadSeeder::class,
            PersonaSeeder::class,
            ConferencistaSeeder::class,
-           ConferenciaSeeder::class,
            EventoSeeder::class,
+           ConferenciaSeeder::class,
            DiplomaSeeder::class,
            AsistenciaSeeder::class
        ]);
