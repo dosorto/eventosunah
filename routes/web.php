@@ -38,7 +38,7 @@ Route::middleware([
     Route::get('/departamento', Departamentos::class)->name('departamento');
     Route::get('/carrera', Carreras::class)->name('carrera');
     Route::get('/rol', Roles::class)->name('rol');
-    Route::get('/conferencia', Conferencias::class)->name('conferencia');
+    Route::get('/conferencia/{evento?}', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
     Route::get('/evento', Eventos::class)->name('evento');
     Route::get('/asistencia', Asistencias::class)->name('asistencia');

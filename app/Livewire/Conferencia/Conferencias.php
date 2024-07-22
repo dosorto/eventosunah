@@ -177,4 +177,18 @@ class Conferencias extends Component
         Conferencia::find($id)->delete();
         session()->flash('message', 'Registro eliminado correctamente!');
     }
+
+
+    public function mount(Evento $evento)
+    {
+        if ($evento->id) {
+            $this->openModal();
+            $this->IdEvento = $evento->id;
+            $this->inputSearchEvento = $evento->nombreevento; 
+              
+        }
+
+    }
+    
+
 }

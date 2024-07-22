@@ -48,7 +48,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="persona" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Persona:</label>
-                            <input wire:model="inputSearchPersona"
+                            <input wire:model.live="inputSearchPersona"
                             class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                             type="text" placeholder="Buscar persona...">
                             @if(!empty($inputSearchPersona) && !empty($searchPersonas))
@@ -66,7 +66,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="evento" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Evento:</label>
-                            <input wire:model.debounce.300ms="inputSearchEvento"
+                            <input wire:model.live="inputSearchEvento"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 type="text" placeholder="Buscar evento...">
                             @if(!empty($inputSearchEvento) && !empty($searchEventos))
