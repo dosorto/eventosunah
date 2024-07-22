@@ -16,6 +16,8 @@ use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
 use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
+use App\Http\Controllers\Dashboard\DashboardController;
+
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
@@ -28,9 +30,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/nacionalidad', Nacionalidades::class)->name('nacionalidad');
     Route::get('/modalidad', Modalidades::class)->name('modalidad');
     Route::get('/tipoperfil', Tipoperfiles::class)->name('tipoperfil');
@@ -48,6 +48,11 @@ Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('reg
 Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('registerpost');
 
 Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPersona'])->name('nueva-persona');
+
+
+
+
+
 
 
 
