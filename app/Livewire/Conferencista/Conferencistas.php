@@ -36,7 +36,7 @@ class Conferencistas extends Component
             ->orderBy('id', 'ASC')
             ->paginate(5);
 
-        return view('livewire.conferencista.conferencistas', ['conferencistas' => $conferencistas]);
+        return view('livewire.Conferencista.conferencistas', ['conferencistas' => $conferencistas]);
     }
 
     public function updatedInputSearchPersona()
