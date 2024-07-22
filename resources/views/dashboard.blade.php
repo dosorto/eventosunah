@@ -260,7 +260,7 @@
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Eventos</div>
-                    <div class="number">40</div>
+                    <div class="number">{{ $cantidadEventos }}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Registrados</span>
@@ -277,7 +277,7 @@
                 class="box transition bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Presenciales</div>
-                    <div class="number">3</div>
+                    <div class="number">{{ $eventosPresenciales }}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">En localidades</span>
@@ -296,7 +296,7 @@
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Virtuales</div>
-                    <div class="number">16</div>
+                    <div class="number">{{$eventosVirtuales}}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">En plataformas</span>
@@ -315,7 +315,7 @@
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Finalizados</div>
-                    <div class="number">12</div>
+                    <div class="number">{{ $cantidadEventos }}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Finalizados</span>
