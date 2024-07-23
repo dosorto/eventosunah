@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $cantidadEventos = Evento::count();
 
         // ordenar las conferencias por fecha fecha y seleccionar las primeras 10
-        $conferencias = Conferencia::orderBy('fecha', 'desc')->take(10)->get();
+        $conferencias = Conferencia::orderBy('fecha', 'desc')->take(5)->get();
 
 
         // contar los eventos por modalidad 'Presencial', 'Virtual'

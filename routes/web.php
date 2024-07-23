@@ -14,6 +14,7 @@ use App\Livewire\Carrera\Carreras;
 use App\Livewire\Persona\Personas;
 use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
+use App\Livewire\VistaConferencia\VistaConferencias;
 use App\Livewire\Conferencia\CrearConferencia;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
@@ -46,6 +47,7 @@ Route::middleware([
     Route::get('/evento', Eventos::class)->name('evento');
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
+    Route::get('/vistaconferencia', VistaConferencias::class)->name('vistaconferencia');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
