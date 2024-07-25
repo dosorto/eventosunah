@@ -28,7 +28,8 @@
                     class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
                     <div>
                         <button wire:click="create()"
-                            class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded my-3">Nuevo</button>
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded my-3">Nuevo</button>
+
                     </div>
                     <label for="table-search" class="sr-only">Buscar</label>
                     <div class="relative">
@@ -49,6 +50,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                         <tr>
                             <th scope="col" class="px-6 py-3">No.</th>
+                            <th scope="col" class="px-6 py-3">Evento</th>
                             <th scope="col" class="px-6 py-3">Nombre</th>
                             <th scope="col" class="px-6 py-3">Descripción</th>
                             <th scope="col" class="px-6 py-3">Fecha</th>
@@ -65,6 +67,7 @@
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white">
                                     {{ $conferencia->id }}</td>
+                                <td class="px-6 py-4">{{ $conferencia->evento->nombreevento }}</td>
                                 <td class="px-6 py-4 font-medium  whitespace-nowrap">
                                     {{ $conferencia->nombre }}</td>
                                 <td class="px-6 py-4 font-medium  whitespace-nowrap">

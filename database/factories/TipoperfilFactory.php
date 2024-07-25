@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TipoPerfil>
  */
-class TipoPerfilFactory extends Factory
+class TipoperfilFactory extends Factory
 {
     /**
      * Define the model's default state.

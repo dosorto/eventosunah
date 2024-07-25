@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>registro</title>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <!-- Agrega tus estilos CSS personalizados aquí -->
     <style>
@@ -124,7 +124,7 @@
             font-weight: 400;
             color: #333;
             border-radius: 5px;
-            border: 1px solid #aaa;
+            border: 1px solid;
             padding: 0 15px;
             height: 42px;
             margin: 8px 0;
@@ -184,7 +184,7 @@
         }
 
         .containerRegister form .backBtn i {
-            transformRegister: rotate(180deg);
+            transform: rotate(180deg);
         }
 
         .containerRegister form .buttons {
@@ -195,6 +195,7 @@
         .containerRegister form .buttons button,
         .backBtn {
             margin-right: 14px;
+            margin-left: 10px;
         }
 
         @media (max-width: 750px) {
@@ -511,14 +512,14 @@
             <div class="form login active dark:bg-gray-900">
                 <span class="title">Registro De Usuario</span>
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('registerpost') }}">
                     @csrf
                     <div class="input-field">
                         <input type="text" placeholder="Nombre completo" id="name" name="name" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="email2" name="email" required>
+                        <input type="email" placeholder="Correo electrónico" id="email" name="email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
@@ -534,215 +535,87 @@
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
-                    <div class="input-field login-signup button text signup-link">
-                        <input class="text" style="text-align: center;" value="Siguiente">
+                    <div class="input-field button text">
+                        <input type="submit" style="text-align: center;" value="Siguiente">
                     </div>
                 </form>
             </div>
-
-            <!-- Registro Usuario -->
-            <div class="form signup containerRegister">
-                <span class="title">Registro De Usuario</span>
-
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <div class="formRegister first">
-                        <div class="details personal">
-                            <h1>Detalles Personales</h1>
-                            <div class="fields">
-                                <div class="inputRegister">
-                                    <label>DNI</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                        placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="DNI" required>
-                                    @error('DNI') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Nombre</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                        placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="Nomnre"
-                                        required>
-                                    @error('Nombre') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Apellido</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                        placeholder="Ingrese su apellido" id="apellido" name="apellido"
-                                        wire:model="Apellido" required>
-                                    @error('Apellido') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Correo Electrónico</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
-                                        placeholder="Ingrese su correo" id="correo" name="correo" wire:model="Correo"
-                                        required>
-                                    @error('Correo') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Fecha de Nacimiento</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date"
-                                        id="fecha_nacimiento" name="fecha_nacimiento" wire:model="FechaNacimiento"
-                                        required>
-                                    @error('FechaNacimiento') <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Sexo</label>
-                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo"
-                                        wire:model="IdSexo" required>
-                                        <option value="" disabled selected>Seleccione su sexo</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-                                    </select>
-                                    @error('Sexo') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Teléfono</label>
-                                    <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel"
-                                        placeholder="Ingrese su teléfono" id="telefono" name="telefono"
-                                        wire:model="Telefono" required>
-                                    @error('Telefono') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Nacionalidad</label>
-                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="id_Nacionalidad"
-                                        name="id_Nacionalidad" wire:model="IdNacionalidad" required>
-                                        <option value="" disabled selected>Seleccione su nacionalidad</option>
-                                        <option value="">Hondureña</option>
-                                        <option value="">Guatemalteca</option>
-                                        @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span>
-                                        @enderror
-                                    </select>
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Dirección</label>
-                                    <input class=" focus:ring-yellow-500 focus:border-yellow-500" id="direccion"
-                                        name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion"
-                                        required></input>
-                                    @error('Direccion') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="inputRegister">
-                                    <label>Tipo Perfil</label>
-                                    <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
-                                        name="IdTipoPerfil" wire:model="TipoPerfil" required>
-                                        <option value="" disabled selected>Seleccione tipo perfil</option>
-                                        <option value="Estudiante">Estudiante</option>
-                                        <option value="Docente">Docente</option>
-                                        <option value="Externo">Externo</option>
-                                        {{-- <option value="Empleado">Empleado</option> --}}
-                                    </select>
-                                    @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="inputRegister estudiante" style="display: none;">
-                                    <label id="correoLabel">Correo Institucional</label>
-                                    <input type="email" placeholder="Ingrese su correo institucional"
-                                        id="correo_institucional" name="CorreoInstitucional">
-                                    @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="inputRegister estudiante" style="display: none;">
-                                    <label id="numeroLabel">Número de cuenta</label>
-                                    <input type="text" placeholder="Ingrese su cuenta de estudiante"
-                                        id="cuenta_estudiante" name="Cuenta">
-                                    @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <button wire:click.prevent="store()" class="submit">
-                            <span class="btnText">Registrar</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const tipoPerfil = document.getElementById('IdTipoPerfil');
-            const estudianteFields = document.querySelectorAll('.estudiante');
-            const label1 = document.getElementById('correoLabel');
-            const input1 = document.getElementById('correo_institucional');
-            const label2 = document.getElementById('numeroLabel');
-            const input2 = document.getElementById('cuenta_estudiante');
-
-            tipoPerfil.addEventListener('change', () => {
-                if (tipoPerfil.value === 'Estudiante') {
-                    estudianteFields.forEach(field => field.style.display = 'flex');
-                    label1.textContent = 'Correo Institucional';
-                    input1.placeholder = 'Ingrese correo institucional';
-                    label2.textContent = 'Número de Cuenta';
-                    input2.placeholder = 'Número de cuenta';
-                } else if (tipoPerfil.value === 'Docente') {
-                    estudianteFields.forEach(field => field.style.display = 'flex');
-                    label1.textContent = 'Correo Institucional';
-                    input1.placeholder = 'Ingrese correo Institucional';
-                    label2.textContent = 'Identificación de docente';
-                    input2.placeholder = 'Numero de empleado';
-                } else {
-                    estudianteFields.forEach(field => field.style.display = 'none');
-                }
-            });
-        });
-    </script>
-
-    <script>
-        const pwShowHide = document.querySelectorAll(".showHidePw");
-        const pwFields = document.querySelectorAll(".password");
-
-        pwShowHide.forEach(eyeIcon => {
-            eyeIcon.addEventListener("click", () => {
-                pwFields.forEach(pwField => {
-                    if (pwField.type === "password") {
-                        pwField.type = "text";
-                        eyeIcon.classList.replace("uil-eye-slash", "uil-eye");
-                    } else {
-                        pwField.type = "password";
-                        eyeIcon.classList.replace("uil-eye", "uil-eye-slash");
-                    }
-                });
-            });
-        });
-
-        const signUp = document.querySelector(".signup-link");
-        const login = document.querySelector(".login-link");
-        const container = document.querySelector(".container");
-
-        signUp.addEventListener("click", () => {
-            container.classList.add("active");
-            container.classList.remove("max");
-        });
-
-        login.addEventListener("click", () => {
-            container.classList.remove("active");
-            container.classList.add("max");
-
-        });
-    </script>
-    <script>
-        const header = document.querySelector("header");
-        const hamburgerBtn = document.querySelector("#hamburger-btn");
-        const closeMenuBtn = document.querySelector("#close-menu-btn");
-
-        // Toggle mobile menu on hamburger button click
-        hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
-
-        // Close mobile menu on close button click
-        closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
-    </script>
 </body>
 
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tipoPerfil = document.getElementById('IdTipoPerfil');
+        const estudianteFields = document.querySelectorAll('.estudiante');
+        const label1 = document.getElementById('correoLabel');
+        const input1 = document.getElementById('correo_institucional');
+        const label2 = document.getElementById('numeroLabel');
+        const input2 = document.getElementById('cuenta_estudiante');
+
+        tipoPerfil.addEventListener('change', () => {
+            if (tipoPerfil.value === 'Estudiante') {
+                estudianteFields.forEach(field => field.style.display = 'flex');
+                label1.textContent = 'Correo Institucional';
+                input1.placeholder = 'Ingrese correo institucional';
+                label2.textContent = 'Número de Cuenta';
+                input2.placeholder = 'Número de cuenta';
+            } else if (tipoPerfil.value === 'Docente') {
+                estudianteFields.forEach(field => field.style.display = 'flex');
+                label1.textContent = 'Correo Institucional';
+                input1.placeholder = 'Ingrese correo Institucional';
+                label2.textContent = 'Identificación de docente';
+                input2.placeholder = 'Numero de empleado';
+            } else {
+                estudianteFields.forEach(field => field.style.display = 'none');
+            }
+        });
+    });
+</script>
+
+<script>
+    const pwShowHide = document.querySelectorAll(".showHidePw");
+    const pwFields = document.querySelectorAll(".password");
+
+    pwShowHide.forEach(eyeIcon => {
+        eyeIcon.addEventListener("click", () => {
+            pwFields.forEach(pwField => {
+                if (pwField.type === "password") {
+                    pwField.type = "text";
+                    eyeIcon.classList.replace("uil-eye-slash", "uil-eye");
+                } else {
+                    pwField.type = "password";
+                    eyeIcon.classList.replace("uil-eye", "uil-eye-slash");
+                }
+            });
+        });
+    });
+
+    const signUp = document.querySelector(".signup-link");
+    const login = document.querySelector(".login-link");
+    const container = document.querySelector(".container");
+
+    signUp.addEventListener("click", () => {
+        container.classList.add("active");
+        container.classList.remove("max");
+    });
+
+    login.addEventListener("click", () => {
+        container.classList.remove("active");
+        container.classList.add("max");
+
+    });
+</script>
+<script>
+    const header = document.querySelector("header");
+    const hamburgerBtn = document.querySelector("#hamburger-btn");
+    const closeMenuBtn = document.querySelector("#close-menu-btn");
+
+    // Toggle mobile menu on hamburger button click
+    hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+
+    // Close mobile menu on close button click
+    closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
+</script>

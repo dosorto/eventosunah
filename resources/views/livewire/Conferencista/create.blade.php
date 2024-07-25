@@ -1,5 +1,5 @@
 <div>
-    <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400" x-show="isOpen">
+    <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400" x-show="isOpen">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity">
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="persona" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Persona:</label>
-                            <input type="text" wire:model.debounce.500ms="inputSearchPersona"
+                            <input type="text" wire:model.live="inputSearchPersona"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="persona" placeholder="Buscar persona...">
                             @if (count($searchPersonas) > 0)

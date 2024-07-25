@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
 use App\Models\User;
+use App\Models\Persona;
+use App\Models\Nacionalidad;
+use App\Models\Tipoperfil;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrarUsarioController extends Controller
 {
@@ -29,8 +33,12 @@ class RegistrarUsarioController extends Controller
 
     public function store(Request $request)
     {
-       
-
+        // validar los datos
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => $this->passwordRules(),
+        // ]);
 
         $user = User::create([
             'name' => $request['name'],
@@ -38,7 +46,14 @@ class RegistrarUsarioController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->route('register');
+        return $this->storePersona($user);
+    }
+
+    public function storePersona(User $user)
+    {
+        $nacionalidades = Nacionalidad::all();
+        $tipoperfiles = Tipoperfil::all();
+        return view('auth.nueva-persona', ['user' => $user, 'nacionalidades' => $nacionalidades, 'tipoperfiles' => $tipoperfiles]);
     }
 
     public function passwordRules()
@@ -49,6 +64,36 @@ class RegistrarUsarioController extends Controller
             'min:8',
             'confirmed'
         ];
+    }
+
+    public function registrarPersona(Request $request)
+    {
+        $user = User::find($request->IdUser);
+        // dd($user);
+        $persona = new Persona();
+        $persona->IdUsuario = $request->IdUser;
+        $persona->dni = $request->dni;
+        $persona->nombre = $request->nombre;
+        $persona->apellido = $request->apellido;
+        $persona->correo = $request->correo;
+        $persona->correoInstitucional = $request->correoInstitucional;
+        $persona->fechaNacimiento = $request->fechaNacimiento;
+        $persona->sexo = $request->sexo;
+        $persona->direccion = $request->direccion;
+        $persona->telefono = $request->telefono;
+        $persona->numeroCuenta = $request->numeroCuenta;
+        $persona->IdNacionalidad = $request->IdNacionalidad;
+        $persona->IdTipoPerfil = $request->IdTipoPerfil;
+        $persona->created_by = $user->id;
+        // correo institucional y numero de cuenta son opcionales, registrar si trae
+        $persona->correoInstitucional = $request->correo_institucional;
+        $persona->numeroCuenta = $request->cuenta_estudiante;
+        $persona->save();
+
+        // iniciar sesion al usuario actual
+        Auth::login($user);
+
+        return redirect()->route('dashboard');
     }
 
 

@@ -6,38 +6,92 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Conferencia;
 use App\Models\Conferencista;
+use App\Models\Evento;
 
 class Conferencias extends Component
 {
     use WithPagination;
 
-    public $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search;
+    public $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
     public $isOpen = 0;
-    public $conferencistas; // Declarar la propiedad $conferencistas
+    public $inputSearchConferencista = '';
+    public $searchConferencistas = [];
+    public $inputSearchEvento = '';
+    public $searchEventos = [];
 
     public function render()
     {
-        $conferencias = Conferencia::with('conferencista')
-                        ->where('nombre', 'like', '%'.$this->search.'%')
-                        ->orderBy('id', 'ASC')
-                        ->paginate(8);
+        $conferencias = Conferencia::with('conferencista', 'evento')
+            ->where('nombre', 'like', '%'.$this->search.'%')
+            ->orderBy('id', 'ASC')
+            ->paginate(8);
+
+        $eventos = Evento::all();
 
         return view('livewire.Conferencia.conferencias', [
             'conferencias' => $conferencias,
-            'conferencistas' => Conferencista::all(), // Obtener y pasar los conferencistas a la vista
+            'eventos' => $eventos,
+            'searchConferencistas' => $this->searchConferencistas
         ]);
     }
 
-    public function mount()
+    public function updatedInputSearchEvento()
     {
-        $this->conferencistas = Conferencista::all();  
+        $query = Evento::query();
+
+        // Busca por nombre del evento si se proporciona
+        if (!empty($this->inputSearchEvento)) {
+            $query->where('nombreevento', 'like', '%' . $this->inputSearchEvento . '%');
+        }
+
+        // Busca por IdEvento si se proporciona
+        if (!empty($this->IdEvento)) {
+            $query->where('id', $this->IdEvento);
+        }
+
+        $this->searchEventos = $query->get();
     }
+
+    public function selectEvento($eventoId)
+    {
+        $this->IdEvento = $eventoId;
+        $evento = Evento::find($eventoId);
+        $this->inputSearchEvento = $evento->nombreevento;
+        $this->searchEventos = [];
+    }
+
+    public function updatedInputSearchConferencista()
+    {
+        $this->searchConferencistas = Conferencista::whereHas('persona', function ($query) {
+            $query->where('nombre', 'like', '%' . $this->inputSearchConferencista . '%')
+                  ->orWhere('apellido', 'like', '%' . $this->inputSearchConferencista . '%');
+        })->get();
+    }
+
+    public function selectConferencista($conferencistaId)
+    {
+        $this->idConferencista = $conferencistaId;
+        $conferencista = Conferencista::find($conferencistaId);
+        if ($conferencista) {
+            $this->inputSearchConferencista = $conferencista->persona->nombre . ' ' . $conferencista->persona->apellido;
+        }
+        $this->searchConferencistas = [];
+    }
+   
+    
 
     public function create()
     {
         $this->resetInputFields();
         $this->openModal();
     }
+
+    public function agregarConferencia($eventoId)
+    {
+        $this->IdEvento = $eventoId;
+        $this->create();
+    }
+    
 
     public function openModal()
     {
@@ -59,11 +113,15 @@ class Conferencias extends Component
         $this->lugar = '';
         $this->linkreunion = '';
         $this->idConferencista = '';
+        $this->inputSearchConferencista = '';
+        $this->searchConferencistas = [];
+        $this->IdEvento = '';
     }
 
     public function store()
     {
         $this->validate([
+            'IdEvento' => 'required',
             'nombre' => 'required',
             'descripcion' => 'required',
             'fecha' => 'required',
@@ -71,10 +129,11 @@ class Conferencias extends Component
             'horaFin' => 'required',
             'lugar' => 'required',
             'linkreunion' => 'required',
-            'idConferencista' => 'required', 
+            'idConferencista' => 'required'
         ]);
 
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
+            'IdEvento' => $this->IdEvento,
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'fecha' => $this->fecha,
@@ -82,11 +141,10 @@ class Conferencias extends Component
             'horaFin' => $this->horaFin,
             'lugar' => $this->lugar,
             'linkreunion' => $this->linkreunion,
-            'idConferencista' => $this->idConferencista, 
+            'idConferencista' => $this->idConferencista,
         ]);
-        
 
-        session()->flash('message', $this->conferencia_id ? 'Conferencia Actualizada correctamente!' : 'Conferencia creada correctamente!');
+        session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -96,6 +154,7 @@ class Conferencias extends Component
     {
         $conferencia = Conferencia::findOrFail($id);
         $this->conferencia_id = $id;
+        $this->IdEvento = $conferencia->IdEvento;
         $this->nombre = $conferencia->nombre;
         $this->descripcion = $conferencia->descripcion;
         $this->fecha = $conferencia->fecha;
@@ -105,12 +164,31 @@ class Conferencias extends Component
         $this->linkreunion = $conferencia->linkreunion;
         $this->idConferencista = $conferencia->idConferencista;
 
+        $conferencista = Conferencista::find($this->idConferencista);
+        if ($conferencista) {
+            $this->inputSearchConferencista = $conferencista->persona->nombre . ' ' . $conferencista->persona->apellido;
+        }
+
         $this->openModal();
     }
 
     public function delete($id)
     {
         Conferencia::find($id)->delete();
-        session()->flash('message', 'Registro Eliminado correctamente!');
+        session()->flash('message', 'Registro eliminado correctamente!');
     }
+
+
+    public function mount(Evento $evento)
+    {
+        if ($evento->id) {
+            $this->openModal();
+            $this->IdEvento = $evento->id;
+            $this->inputSearchEvento = $evento->nombreevento; 
+              
+        }
+
+    }
+    
+
 }
