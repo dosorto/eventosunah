@@ -2,6 +2,10 @@
 
 use App\Livewire\Tipoperfil\Tipoperfiles;
 use Illuminate\Support\Facades\Route;
+// ruta de la vista de login
+
+
+// rutas de los componentes
 use App\Livewire\Nacionalidad\Nacionalidades;
 use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
@@ -10,6 +14,9 @@ use App\Livewire\Carrera\Carreras;
 use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\Conferencista\Conferencistas;
+use App\Livewire\Evento\Eventos;
+use App\Http\Controllers\Login\RegistrarUsarioController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,6 +38,11 @@ Route::middleware([
     Route::get('/rol', Roles::class)->name('rol');
     Route::get('/conferencia', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
+    Route::get('/evento', Eventos::class)->name('evento');
 });
+
+
+Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
+Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('register');
 
 

@@ -21,19 +21,19 @@
                     </div>
                     <div class="">
                         <div class="mb-4">
-                            <label for="name" class="block text-gray-700 font-semibold">Nombre del rol</label>
-                            <input wire:model="name" type="text" name="name" class="form-input mt-1 block w-full rounded-md border-gray-300" id="name">
+                            <label for="name" class="block  text-gray-700 dark:text-white font-semibold">Nombre del rol</label>
+                            <input wire:model="name" type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="name">
                             @error('name')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold">Selecciona los permisos</label>
+                            <label class="block text-gray-700 dark:text-white font-semibold">Selecciona los permisos</label>
                             <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 @foreach($permissions as $permission)
                                     <label class="flex items-center">
-                                        <input wire:model="selectedPermissions" type="checkbox" name="selectedPermissions[]" value="{{ $permission->id }}" class="form-checkbox">
-                                        <span class="ml-2 text-gray-800">{{ $permission->name }}</span>
+                                        <input wire:model="selectedPermissions" type="checkbox" name="selectedPermissions[]" value="{{ $permission->id }}" class="form-checkbox text-yellow-500 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                        <span class="ml-2 dark:text-white text-gray-800">{{ $permission->name }}</span>
                                     </label>
                                 @endforeach
                             </div>
