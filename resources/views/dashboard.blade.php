@@ -257,6 +257,9 @@
     </head>
 
     <body>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-6 ml-5">
+        Dashboard
+    </h2>
         <div class="overview-boxes">
             <div
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
