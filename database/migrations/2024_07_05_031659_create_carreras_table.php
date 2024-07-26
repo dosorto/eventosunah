@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->id();
-            $table->string('carrera');
+            $table->string('carrera')->unique();
             $table->unsignedBigInteger('IdDepartamento');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
