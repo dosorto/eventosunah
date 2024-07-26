@@ -22,8 +22,8 @@ class Conferencias extends Component
     public function render()
     {
         $conferencias = Conferencia::with('conferencista', 'evento')
-            ->where('nombre', 'like', '%'.$this->search.'%')
-            ->orderBy('id', 'ASC')
+            ->where('Fecha', 'like', '%'.$this->search.'%')
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         $eventos = Evento::all();

@@ -19,7 +19,7 @@ class Eventos extends Component
     {
         $nombreeventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         return view('livewire.Evento.eventos', ['nombreeventos' => $nombreeventos]);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('modalidads', function (Blueprint $table) {
             $table->id();
-            $table->string('modalidad');
+            $table->string('modalidad')->unique();
             $table->integer("created_by")->nullable();
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();

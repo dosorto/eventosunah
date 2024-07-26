@@ -33,7 +33,7 @@ class Asistencias extends Component
     {
         $asistencias = Asistencia::with(['persona', 'evento'])
             ->where('Fecha', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         return view('livewire.Asistencia.asistencias', [
