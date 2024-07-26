@@ -18,12 +18,26 @@ class Conferencias extends Component
     public $searchConferencistas = [];
     public $inputSearchEvento = '';
     public $searchEventos = [];
+    public $showDetails = false;
+    public $selectedConferencia;
+
+    public function viewDetails($id)
+    {
+        $this->selectedConferencia = Conferencia::find($id);
+        $this->showDetails = true;
+    }
+
+    public function closeDetails()
+    {
+        $this->showDetails = false;
+    }
 
     public function render()
     {
         $conferencias = Conferencia::with('conferencista', 'evento')
-            ->where('Fecha', 'like', '%'.$this->search.'%')
-            ->orderBy('id', 'DESC')
+            ->where('IdEvento', $this->IdEvento)
+            ->where('nombre', 'like', '%'.$this->search.'%')
+            ->orderBy('id', 'ASC')
             ->paginate(8);
 
         $eventos = Evento::all();
@@ -132,6 +146,7 @@ class Conferencias extends Component
             'idConferencista' => 'required'
         ]);
 
+        // Crear o actualizar la conferencia
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
             'IdEvento' => $this->IdEvento,
             'nombre' => $this->nombre,
@@ -144,11 +159,15 @@ class Conferencias extends Component
             'idConferencista' => $this->idConferencista,
         ]);
 
+        // Mensaje de éxito
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
 
+        // Cierra el modal y reinicia los campos
         $this->closeModal();
         $this->resetInputFields();
+        $this->resetPage(); // Reinicia la página de paginación
     }
+
 
     public function edit($id)
     {
