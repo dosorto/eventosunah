@@ -629,7 +629,7 @@
                 const input2 = document.getElementById('cuenta_estudiante');
     
                 tipoPerfil.addEventListener('change', () => {
-                    if (tipoPerfil.value === '2') {
+                    if (tipoPerfil.value === '1') {
                         estudianteFields.forEach(field => field.style.display = 'flex');
                         label1.textContent = 'Correo Institucional';
                         input1.placeholder = 'Ingrese correo institucional';
