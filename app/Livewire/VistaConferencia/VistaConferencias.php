@@ -22,6 +22,7 @@ class VistaConferencias extends Component
     public function render()
     {
         $conferencias = Conferencia::with('conferencista', 'evento')
+            ->where('IdEvento', $this->IdEvento)
             ->where('nombre', 'like', '%'.$this->search.'%')
             ->orderBy('id', 'ASC')
             ->paginate(8);
