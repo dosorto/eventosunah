@@ -41,12 +41,6 @@ class Personas extends Component
     ]);
 }
 
-<<<<<<< HEAD
-        return view('livewire.persona.personas', ['personas' => $personas]);
-    }
-=======
->>>>>>> origin/main
-
     public function create()
     {
         $this->resetInputFields();
