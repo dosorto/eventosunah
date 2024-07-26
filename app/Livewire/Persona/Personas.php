@@ -113,15 +113,10 @@ class Personas extends Component
 
     $this->closeModal();
     $this->resetInputFields();
+    $this->render(); // Recargar datos
 }
 
-<<<<<<< HEAD
-        $this->closeModal();
-        $this->resetInputFields();
-        $this->render(); // Recargar datos
-    }
-=======
->>>>>>> origin/denisse
+    
 
     public function edit($id)
     {
