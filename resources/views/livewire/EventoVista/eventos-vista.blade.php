@@ -1,14 +1,9 @@
 <div>
   <x-layouts.app>
     <div class="content-wrapper">
-      <!-- Lista de botones de modalidades -->
-      <div class="lista-categoria  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-        <button wire:click="create()"
-          class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Nuevo</button>
-        <button class="category-button active">Todos</button>
-        <button class="category-button">Virtuales</button>
-        <button class="category-button">Presenciales</button>
-      </div>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-6 ml-2">
+        Eventos Disponibles
+    </h2>
       <!-- Lista de eventos -->
       <div
         class="evento-list dark:bg-gray-900  dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -32,9 +27,9 @@
       </a>
     @endforeach
       </div>
-      <br>
-      {{$targetasEventos->links()}}
-      </br>
     </div>
+    <br>
+    {{$targetasEventos->links()}}
+    </br>
   </x-layouts.app>
 </div>
