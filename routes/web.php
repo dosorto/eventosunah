@@ -24,7 +24,7 @@ use App\Livewire\Evento\Eventos;
 use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
-
+use App\Livewire\Usuario\Usuarios;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
@@ -50,9 +50,11 @@ Route::middleware([
     Route::get('/evento', Eventos::class)->name('evento');
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
+    Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/vistaconferencia', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
+    Route::get('/usuario', Usuarios::class)->name('usuario');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
