@@ -1,6 +1,5 @@
 <?php
-
-
+use App\Http\Controllers\EventoVistaController;
 use App\Livewire\Tipoperfil\Tipoperfiles;
 use App\Models\Evento;
 use App\Models\Persona;
@@ -55,6 +54,7 @@ Route::middleware([
     Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/usuario', Usuarios::class)->name('usuario');
+    Route::get('/evento/{evento}/conferencias', [EventoVistaController::class, 'showConferencias'])->name('vistaconferencia');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
