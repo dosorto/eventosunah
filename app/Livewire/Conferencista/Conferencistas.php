@@ -33,7 +33,7 @@ class Conferencistas extends Component
     {
         $conferencistas = Conferencista::with('persona')
             ->where('Titulo', 'like', '%'.$this->search.'%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(5);
 
         return view('livewire.Conferencista.conferencistas', ['conferencistas' => $conferencistas]);
@@ -83,11 +83,28 @@ class Conferencistas extends Component
 
     public function store()
     {
-        $this->validate();
+        $this->validate([
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'foto' => 'nullable|image|max:1024',
+            'IdPersona' => [
+                'required',
+                'exists:personas,id',
+                function ($attribute, $value, $fail) {
+                    $conferencista = Conferencista::where('IdPersona', $value)
+                        ->where('id', '<>', $this->conferencista_id)
+                        ->first();
+                    
+                    if ($conferencista) {
+                        $fail('El ID de la persona ya está asignado a otro conferencista.');
+                    }
+                },
+            ],
+        ]);
 
         // Subir la foto si se seleccionó una nueva
         if ($this->foto) {
-            $this->foto = $this->foto->store('public/conferencistas'); // Guarda la imagen en storage/public/conferencistas
+            $this->foto = $this->foto->store('public/conferencistas');
         } elseif ($this->conferencista_id) {
             // Si no se seleccionó una nueva foto pero se está editando, mantener la foto actual
             $conferencista = Conferencista::findOrFail($this->conferencista_id);
@@ -97,7 +114,7 @@ class Conferencistas extends Component
         Conferencista::updateOrCreate(['id' => $this->conferencista_id], [
             'Titulo' => $this->titulo,
             'Descripcion' => $this->descripcion,
-            'Foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null, // Ajusta la ruta de almacenamiento según tus necesidades
+            'Foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
             'IdPersona' => $this->IdPersona
         ]);
 
@@ -106,6 +123,7 @@ class Conferencistas extends Component
         $this->closeModal();
         $this->resetInputFields();
     }
+
 
     public function edit($id)
     {

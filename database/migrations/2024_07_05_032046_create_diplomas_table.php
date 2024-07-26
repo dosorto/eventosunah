@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('diplomas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo');
+            $table->string('codigo')->unique();
             $table->string('URL');
             $table->date('Fecha');
             $table->unsignedBigInteger('IdConferencia')->nullable();

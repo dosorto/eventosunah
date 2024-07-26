@@ -12,7 +12,7 @@ class Nacionalidades extends Component
     public $isOpen = 0;
     public function render()
     {
-        $nacionalidades = Nacionalidad::where('nombreNacionalidad', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(5);
+        $nacionalidades = Nacionalidad::where('nombreNacionalidad', 'like', '%'.$this->search.'%')->orderBy('nombreNacionalidad','ASC')->paginate(5);
         return view('livewire.Nacionalidad.nacionalidades', ['nacionalidades' => $nacionalidades]);
     }
     public function create()
@@ -33,21 +33,28 @@ class Nacionalidades extends Component
     }
 
     public function store()
-    {
-        $this->validate([
-            'nombreNacionalidad' => 'required',
-        ]);
-   
-        Nacionalidad::updateOrCreate(['id' => $this->nacionalidad_id], [
-            'nombreNacionalidad' => $this->nombreNacionalidad,
-        ]);
-  
-        session()->flash('message', 
-            $this->nacionalidad_id ? 'Nacionalidad Actualizada correctamente!' : 'Nacionalidad creada correctamente!');
-  
-        $this->closeModal();
-        $this->resetInputFields();
-    }
+{
+    $this->validate([
+        'nombreNacionalidad' => [
+            'required',
+            'string',
+            'max:255',
+            'unique:nacionalidads,nombreNacionalidad,' . $this->nacionalidad_id,
+        ],
+    ]);
+
+    Nacionalidad::updateOrCreate(['id' => $this->nacionalidad_id], [
+        'nombreNacionalidad' => $this->nombreNacionalidad,
+    ]);
+
+    session()->flash('message', 
+        $this->nacionalidad_id ? 'Nacionalidad actualizada correctamente!' : 'Nacionalidad creada correctamente!'
+    );
+
+    $this->closeModal();
+    $this->resetInputFields();
+}
+
     public function edit($id)
     {
         $nacionalidad = Nacionalidad::findOrFail($id);

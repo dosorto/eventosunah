@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipoperfils', function (Blueprint $table) {
+        Schema::create('suscripcions', function (Blueprint $table) {
             $table->id();
-            $table->string('tipoperfil')->unique();
+            $table->unsignedBigInteger('IdConferencia');
+            $table->unsignedBigInteger('IdPersona');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
+            $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipoperfils');
+        Schema::dropIfExists('suscripcions');
     }
 };

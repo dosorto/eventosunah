@@ -12,6 +12,44 @@ class CarreraSeeder extends Seeder
      */
     public function run(): void
     {
-        Carrera::factory()->count(4)->create();
+        $carreras = [
+            'Ingeniería en Sistemas',
+            'Ingeniería Civil',
+            'Arquitectura',
+            'Medicina',
+            'Psicología',
+            'Derecho',
+            'Administración de Empresas',
+            'Contaduría Pública',
+            'Biología',
+            'Química',
+            'Física',
+            'Matemáticas',
+            'Historia',
+            'Literatura',
+            'Filosofía',
+            'Sociología',
+            'Ciencias Políticas',
+            'Educación',
+            'Enfermería',
+            'Odontología',
+            'Trabajo Social',
+            'Diseño Gráfico',
+            'Mercadotecnia',
+            'Ingeniería Industrial',
+            'Tecnologías de la Información',
+            'Ingeniería Electrónica',
+            'Biotecnología',
+            'Ingeniería Mecánica',
+            'Ingeniería Ambiental',
+        ];
+
+        foreach ($carreras as $carrera) {
+            Carrera::updateOrCreate(
+                ['carrera' => $carrera],
+                ['IdDepartamento' => 1, 
+                'created_by' => 1] 
+            );
+        }
     }
 }

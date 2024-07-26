@@ -31,7 +31,7 @@ class Personas extends Component
 {
     $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
         ->where('nombre', 'like', '%' . $this->search . '%')
-        ->orderBy('id', 'ASC')
+        ->orderBy('id', 'DESC')
         ->paginate(5);
 
     return view('livewire.persona.personas', [
@@ -76,45 +76,52 @@ class Personas extends Component
     }
 
     public function store()
-    {
-        $this->validate([
-            'IdUsuario' => 'required',
-            'dni' => 'required',
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'correo' => 'required|email',
-            'correoInstitucional' => 'nullable|email',
-            'fechaNacimiento' => 'required|date',
-            'sexo' => 'required',
-            'direccion' => 'required',
-            'telefono' => 'required',
-            'numeroCuenta' => 'nullable',
-            'IdNacionalidad' => 'required',
-            'IdTipoPerfil' => 'required',
-        ]);
+{
+    $this->validate([
+        'IdUsuario' => 'required|integer|exists:users,id',
+        'dni' => 'required|unique:personas,dni,' . $this->persona_id,
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'correo' => 'required|email|unique:personas,correo,' . $this->persona_id,
+        'correoInstitucional' => 'nullable|email|unique:personas,correoInstitucional,' . $this->persona_id,
+        'fechaNacimiento' => 'required|date',
+        'sexo' => 'required',
+        'direccion' => 'required',
+        'telefono' => 'required',
+        'numeroCuenta' => 'nullable|unique:personas,numeroCuenta,' . $this->persona_id,
+        'IdNacionalidad' => 'required|exists:nacionalidads,id',
+        'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+    ]);
 
-        Persona::updateOrCreate(['id' => $this->persona_id], [
-            'IdUsuario' => $this->IdUsuario,
-            'dni' => $this->dni,
-            'nombre' => $this->nombre,
-            'apellido' => $this->apellido,
-            'correo' => $this->correo,
-            'correoInstitucional' => $this->correoInstitucional,
-            'fechaNacimiento' => $this->fechaNacimiento,
-            'sexo' => $this->sexo,
-            'direccion' => $this->direccion,
-            'telefono' => $this->telefono,
-            'numeroCuenta' => $this->numeroCuenta,
-            'IdNacionalidad' => $this->IdNacionalidad,
-            'IdTipoPerfil' => $this->IdTipoPerfil,
-        ]);
+    Persona::updateOrCreate(['id' => $this->persona_id], [
+        'IdUsuario' => $this->IdUsuario,
+        'dni' => $this->dni,
+        'nombre' => $this->nombre,
+        'apellido' => $this->apellido,
+        'correo' => $this->correo,
+        'correoInstitucional' => $this->correoInstitucional,
+        'fechaNacimiento' => $this->fechaNacimiento,
+        'sexo' => $this->sexo,
+        'direccion' => $this->direccion,
+        'telefono' => $this->telefono,
+        'numeroCuenta' => $this->numeroCuenta,
+        'IdNacionalidad' => $this->IdNacionalidad,
+        'IdTipoPerfil' => $this->IdTipoPerfil,
+    ]);
 
-        session()->flash('message', $this->persona_id ? 'Persona actualizada correctamente!' : 'Persona creada correctamente!');
+    session()->flash('message', $this->persona_id ? 'Persona actualizada correctamente!' : 'Persona creada correctamente!');
 
+    $this->closeModal();
+    $this->resetInputFields();
+}
+
+<<<<<<< HEAD
         $this->closeModal();
         $this->resetInputFields();
         $this->render(); // Recargar datos
     }
+=======
+>>>>>>> origin/denisse
 
     public function edit($id)
     {

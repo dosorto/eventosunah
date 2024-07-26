@@ -17,7 +17,7 @@ class Departamentos extends Component
     public function render()
     {
         $departamentos = Departamento::where('departamento', 'like', '%'.$this->search.'%')
-                        ->orderBy('id','ASC')
+                        ->orderBy('id','DESC')
                         ->paginate(8);
 
         return view('livewire.Departamento.departamentos', ['departamentos' => $departamentos]);
@@ -45,21 +45,30 @@ class Departamentos extends Component
     }
 
     public function store()
-    {
-        $this->validate([
-            'departamento' => 'required',
-        ]);
-   
-        Departamento::updateOrCreate(['id' => $this->departamento_id], [
+{
+    $this->validate([
+        'departamento' => [
+            'required',
+            'string',
+            'max:255',
+            'unique:departamentos,departamento,' . $this->departamento_id, 
+        ],
+    ]);
+
+    Departamento::updateOrCreate(
+        ['id' => $this->departamento_id],
+        [
             'departamento' => $this->departamento,
-        ]);
-  
-        session()->flash('message', 
-            $this->departamento_id ? 'Departamento Actualizado correctamente!' : 'Departamento creado correctamente!');
-  
-        $this->closeModal();
-        $this->resetInputFields();
-    }
+        ]
+    );
+
+    session()->flash('message', 
+        $this->departamento_id ? 'Departamento actualizado correctamente!' : 'Departamento creado correctamente!'
+    );
+
+    $this->closeModal();
+    $this->resetInputFields();
+}
 
     public function edit($id)
     {

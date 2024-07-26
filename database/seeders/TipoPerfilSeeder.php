@@ -12,6 +12,18 @@ class TipoPerfilSeeder extends Seeder
      */
     public function run(): void
     {
-        Tipoperfil::factory()->count(4)->create();
+        $tipoperfiles = [
+            'Estudiante',
+            'Empleado',
+            'Docente',
+            'Externo'
+        ];
+
+        foreach ($tipoperfiles as $tipoperfil) {
+            Tipoperfil::updateOrCreate(
+                ['tipoperfil' => $tipoperfil],
+                ['created_by' => 1]
+            );
+        }
     }
 }
