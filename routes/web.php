@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\EventoVistaController;
 use App\Livewire\Tipoperfil\Tipoperfiles;
 use App\Models\Evento;
 use App\Models\Persona;
@@ -10,10 +10,13 @@ use App\Livewire\Nacionalidad\Nacionalidades;
 use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
 use App\Livewire\Departamento\Departamentos;
+use App\Livewire\MarcarAsistencia\MarcarAsistencias;
 use App\Livewire\Carrera\Carreras;
 use App\Livewire\Persona\Personas;
+use App\Livewire\EventoVista\EventosVistas;
 use App\Livewire\Rol\Roles;
 use App\Livewire\Conferencia\Conferencias;
+use App\Livewire\VistaConferencia\VistaConferencias;
 use App\Livewire\Conferencia\CrearConferencia;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
@@ -47,6 +50,11 @@ Route::middleware([
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/usuario', Usuarios::class)->name('usuario');
+    Route::get('/vistaconferencia', VistaConferencias::class)->name('vistaconferencia');
+    Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
+    Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
+    Route::get('/usuario', Usuarios::class)->name('usuario');
+    Route::get('/evento/{evento}/conferencias', [EventoVistaController::class, 'showConferencias'])->name('vistaconferencia');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');

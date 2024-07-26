@@ -22,42 +22,42 @@
                         <div>
                             <!-- Name Field -->
                             <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-semibold">Nombre</label>
-                                <input wire:model.defer="name" type="text" name="name" class="form-input mt-1 block w-full rounded-md border-gray-300" id="name">
+                                <label for="name" class="block text-gray-700 dark:text-white font-semibold">Nombre</label>
+                                <input placeholder="Nombre de usuario" wire:model.defer="name" type="text" name="name" class="form-input mt-1 block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="name">
                                 @error('name')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                             <!-- Email Field -->
                             <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-semibold">Correo electrónico</label>
-                                <input wire:model.defer="email" type="email" name="email" class="form-input mt-1 block w-full rounded-md border-gray-300" id="email">
+                                <label for="email" class="block text-gray-700 dark:text-white font-semibold">Correo electrónico</label>
+                                <input placeholder="Ingresar correo electrónico" wire:model.defer="email" type="email" name="email" class="form-input mt-1 block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="email">
                                 @error('email')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                             <!-- Password Field -->
                             <div class="mb-4">
-                                <label for="password" class="block text-gray-700 font-semibold">Contraseña</label>
-                                <input wire:model.defer="password" type="password" name="password" class="form-input mt-1 block w-full rounded-md border-gray-300" id="password">
+                                <label for="password" class="block text-gray-700 dark:text-white font-semibold">Contraseña</label>
+                                <input placeholder="Contraseña" wire:model.defer="password" type="password" name="password" class="form-input mt-1 block w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="password">
                                 @error('password')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                             <!-- Password Confirmation Field -->
                             <div class="mb-4">
-                                <label for="password_confirmation" class="block text-gray-700 font-semibold">Confirmar Contraseña</label>
-                                <input wire:model.defer="password_confirmation" type="password" name="password_confirmation" class="form-input mt-1 block w-full rounded-md border-gray-300" id="password_confirmation">
+                                <label for="password_confirmation" class="block text-gray-700 dark:text-white font-semibold">Confirmar Contraseña</label>
+                                <input placeholder="Confirmar contraseña" wire:model.defer="password_confirmation" type="password" name="password_confirmation" class="form-input mt-1 block w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="password_confirmation">
                                 @error('password_confirmation')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                             <!-- Roles Field -->
                             <div class="mb-4">
-                                <label for="roles" class="block text-gray-700 font-semibold">Roles</label>
+                                <label for="roles" class="block text-gray-700 dark:text-white font-semibold">Roles</label>
                                 @foreach($roles as $role)
-                                    <div class="flex items-center">
-                                        <input wire:model.defer="selectedRoles" type="checkbox" value="{{ $role->id }}" id="role-{{ $role->id }}">
+                                    <div class=" text-gray-700 dark:text-white  flex items-center">
+                                        <input class=" text-yellow-500 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:focus:ring-yellow-500 dark:focus:border-yellow-500" wire:model.defer="selectedRoles" type="checkbox" value="{{ $role->id }}" id="role-{{ $role->id }}">
                                         <label for="role-{{ $role->id }}" class="ml-2">{{ $role->name }}</label>
                                     </div>
                                 @endforeach

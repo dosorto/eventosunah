@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Asistencia;
+namespace App\Livewire\MarcarAsistencia;
 
 use App\Models\Persona;
 use App\Models\Evento;
@@ -9,11 +9,13 @@ use Livewire\WithPagination;
 use App\Models\Asistencia;
 use Carbon\Carbon;
 
-class Asistencias extends Component
+use Illuminate\Support\Facades\Auth;
+
+class MarcarAsistencias extends Component
 {
     use WithPagination;
 
-    public $Fecha, $Asistencia, $IdPersona, $IdEvento, $asistencia_id, $search;
+    public $Fecha, $Asistencia, $IdEvento, $asistencia_id, $search;
     public $isOpen = false;
 
     public $personas;
@@ -27,7 +29,6 @@ class Asistencias extends Component
     public $fechaActual;
     public function mount()
     {
-        $this->personas = Persona::all();
         $this->eventos = Evento::all();
         $this->fechaActual = Carbon::now();
         
@@ -35,13 +36,9 @@ class Asistencias extends Component
 
     public function render()
     {
-        $asistencias = Asistencia::with(['persona', 'evento'])
-            ->where('Fecha', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'DESC')
-            ->paginate(8);
-
-        return view('livewire.Asistencia.asistencias', [
-            'asistencias' => $asistencias,
+        return view('livewire.MarcarAsistencia.marcar-asistencia', [ 
+            'eventos' => Evento::all(),
+            'asistencias' => Asistencia::with('persona', 'evento')->get(),
         ]);
     }
 
@@ -65,27 +62,20 @@ class Asistencias extends Component
     {
         $this->Fecha = Carbon::now();
         $this->Asistencia = '';
-        $this->IdPersona = '';
         $this->IdEvento = '';
-        $this->asistencia_id = null;
-        $this->inputSearchPersona = '';
-        $this->inputSearchEvento = '';
-        $this->searchPersonas = [];
-        $this->searchEventos = [];
     }
 
     public function store()
     {
         $this->validate([
             'Asistencia' => 'required|boolean',
-            'IdPersona' => 'required',
             'IdEvento' => 'required',
         ]);
 
         Asistencia::updateOrCreate(['id' => $this->asistencia_id], [
             'Fecha' => $this->fechaActual,
             'Asistencia' => $this->Asistencia,
-            'IdPersona' => $this->IdPersona,
+            'IdPersona' => Auth::id(), // Captura el ID del usuario autenticado,
             'IdEvento' => $this->IdEvento,
         ]);
 
@@ -125,7 +115,6 @@ class Asistencias extends Component
         $this->validateOnly($propertyName, [
             'Fecha' => 'required',
             'Asistencia' => 'required',
-            'IdPersona' => 'required',
             'IdEvento' => 'required',
         ]);
     }

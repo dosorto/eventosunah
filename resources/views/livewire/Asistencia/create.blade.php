@@ -28,13 +28,7 @@
                                 <span class="sr-only">Cerrar modal</span>
                             </button>
                         </div>
-                        <div class="mb-4">
-                            <label for="fecha" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha:</label>
-                            <input type="date" wire:model="Fecha"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="fecha" placeholder="Fecha">
-                            @error('Fecha') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                        
                         <div class="mb-4">
                             <label for="asistencia"
                                 class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Asistencia:</label>
