@@ -63,7 +63,7 @@
                                         {{ $asistencia->id }}
                                     </td>
                                     <td class="px-6 py-4">{{ $asistencia->Fecha }}</td>
-                                    <td class="px-6 py-4">{{ $asistencia->Asistencia }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->Asistencia ? 'Presente' : 'Ausente' }}</td>
                                     <td class="px-6 py-4">{{ $asistencia->persona->nombre }} {{ $asistencia->persona->apellido }}</td>
                                     <td class="px-6 py-4">{{ $asistencia->evento->nombreevento }}</td>
                                     <td class="px-6 py-4">

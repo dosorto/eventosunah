@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
-            $table->date('Fecha');
+            $table->timestamp('Fecha'); 
             $table->binary('Asistencia');
             $table->unsignedBigInteger('IdPersona');
             $table->unsignedBigInteger('IdEvento');
