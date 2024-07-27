@@ -15,10 +15,10 @@
           d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
         </svg>
         <span class="sr-only">Info</span>
-        <h3 class="text-lg font-bold">No hay conferencias.</h3>
+        <h3 class="text-lg font-bold">No hay eventos disponibles.</h3>
       </div>
       <div class="mt-2 mb-4 text-sm">
-        Este evento todavía no tiene conferencias disponibles para mostrar.
+        <p>Por el momento no hay eventos disponibles, por favor intente más tarde.</p>
       </div>
       <div class="flex">
         <a type="button" href="{{ route('eventoVista') }}"
@@ -45,12 +45,13 @@
       <p class="marca">{{ $targetasEvento->modalidad->modalidad }}</p>
       </div>
       <div class="evento-info">
-      <img src="{{ asset('Logo/Eventos UNAH con fondo Logo.png') }}" alt="foto-creador" 
-        class="icon">
+      <img src="{{ asset('Logo/Eventos UNAH con fondo Logo.png') }}" alt="foto-creador" class="icon">
       <div class="evento-details">
         <h2 class="name-evento">{{ $targetasEvento->nombreevento }}</h2>
         <p class="evento-creador">{{ $targetasEvento->organizador }}</p>
-        <p class="fecha-creacion">18 septiembre 2024</p>
+        <p class="fecha-creacion">{{ $targetasEvento->created_at->diffForHumans() }}</p>
+        {{-- <p class="fecha-creacion">{{ $targetasEvento->created_at->translatedFormat('F j, Y') }}</p> --}}
+
       </div>
       </div>
       </a>
