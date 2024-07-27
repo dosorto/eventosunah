@@ -3,7 +3,7 @@
 namespace Database\Factories;
 use App\Models\Asistencia;
 use App\Models\Persona;
-use App\Models\Evento;
+use App\Models\Conferencia;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,12 +19,12 @@ class AsistenciaFactory extends Factory
     public function definition(): array
     {
         $personaId = Persona::inRandomOrder()->first()->id;
-        $eventoId = Evento::inRandomOrder()->first()->id;
+        $conferenciaId = Conferencia::inRandomOrder()->first()->id;
         return [
             'Fecha' => $this->faker->date(),
             'Asistencia' => $this->faker->boolean(),
             'IdPersona' => $personaId,
-            'IdEvento' => $eventoId,
+            'IdConferencia' => $conferenciaId,
             'created_by' => 1
         ];
     }

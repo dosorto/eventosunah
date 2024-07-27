@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamp('Fecha'); 
             $table->binary('Asistencia');
             $table->unsignedBigInteger('IdPersona');
-            $table->unsignedBigInteger('IdEvento');
+            $table->unsignedBigInteger('IdConferencia');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
-            $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
+            $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
     });
     }
 
