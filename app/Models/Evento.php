@@ -11,7 +11,7 @@ class Evento extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['nombreevento','descripcion','organizador','idmodalidad','idlocalidad'];
+    protected $fillable = ['nombreevento','descripcion','organizador', 'fechainicio', 'fechafinal', 'horainicio', 'horafin','idmodalidad','idlocalidad'];
 
     public function modalidad()
     {
