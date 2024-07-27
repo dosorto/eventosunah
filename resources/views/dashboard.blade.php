@@ -257,9 +257,15 @@
     </head>
 
     <body>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-6 ml-5">
-        Dashboard
-    </h2>
+        <div class="flex align-center mb-2  mr-6" style="align-items: center; justify-content: space-between;">
+            <h2 class=" inline-block font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-6 ml-5">
+                Dashboard
+            </h2>
+            <h2 class=" inline-block font-medium text-xl text-gray-800 leading-tight dark:text-white text-right mb-6">
+                {{ $now->translatedFormat('l, d F Y') }}
+            </h2>
+        </div>
+
         <div class="overview-boxes">
             <div
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -368,7 +374,7 @@
                                     <tr class="bg-white dark:bg-gray-800 text-gray-600">
                                         <td class="px-6 py-4 ">
                                             <div class="flex items
-                                                -center">
+                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
                                                     </p>
@@ -377,7 +383,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                -center">
+                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}
                                                     </p>
@@ -386,7 +392,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                -center">
+                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}
                                                     </p>
@@ -395,7 +401,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                -center">
+                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">
                                                         {{ $conferencia->conferencista->persona->nombre }}
@@ -405,7 +411,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                -center">
+                                                        -center">
                                                 <div>
                                                     <button class="button"><a
                                                             href="{{ route('conferencia', $conferencia->id) }}">Ir
