@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('IdUsuario');
-            $table->string('dni');
+            $table->unsignedBigInteger('IdUsuario')->unique();
+            $table->string('dni')->unique();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('correo');
-            $table->string('correoInstitucional')->nullable();
+            $table->string('correo')->unique();
+            $table->string('correoInstitucional')->nullable()->unique();
             $table->date('fechaNacimiento');
             $table->string('sexo');
             $table->string('direccion');
             $table->string('telefono');
-            $table->string('numeroCuenta')->nullable();
+            $table->string('numeroCuenta')->nullable()->unique();
             $table->unsignedBigInteger('IdNacionalidad');
             $table->unsignedBigInteger('IdTipoPerfil');
             $table->integer("created_by")->nullable();

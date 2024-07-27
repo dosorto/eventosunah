@@ -12,6 +12,35 @@ class DepartamentoSeeder extends Seeder
      */
     public function run(): void
     {
-        Departamento::factory()->count(2)->create();
+        $departamentos = [
+            'Departamento de Ingeniería en Sistemas',
+            'Departamento de Ingeniería Civil',
+            'Departamento de Arquitectura',
+            'Departamento de Medicina',
+            'Departamento de Psicología',
+            'Departamento de Derecho',
+            'Departamento de Administración de Empresas',
+            'Departamento de Contaduría Pública',
+            'Departamento de Biología',
+            'Departamento de Química',
+            'Departamento de Física',
+            'Departamento de Matemáticas',
+            'Departamento de Historia',
+            'Departamento de Literatura',
+            'Departamento de Filosofía',
+            'Departamento de Sociología',
+            'Departamento de Ciencias Políticas',
+            'Departamento de Educación',
+            'Departamento de Enfermería',
+            'Departamento de Odontología',
+            'Departamento de Trabajo Social',
+        ];
+
+        foreach ($departamentos as $departamento) {
+            Departamento::updateOrCreate(
+                ['departamento' => $departamento],
+                ['created_by' => 1]
+            );
+        }
     }
 }

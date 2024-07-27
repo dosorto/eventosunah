@@ -11,4 +11,5 @@ class Localidad extends BaseModel
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['localidad'];
+    
 }

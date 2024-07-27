@@ -73,6 +73,10 @@
                                     <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
                                     <td class="px-6 py-4">
+                                        <button wire:click="viewDetails({{ $nombreevento->id }})"
+                                            class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                                            Ver más
+                                        </button>
                                         <a href="{{ route('conferencia', ['evento' => $nombreevento->id]) }}"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
@@ -128,5 +132,37 @@
         </div>
 
     </div>
+
+    @if ($showDetails)
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Detalles del Evento</h3>
+                    <div>
+                        <p><strong>Nombre Evento:</strong> {{ $selectedEvento->nombreevento }}</p>
+                        <p><strong>Descripción:</strong> {{ $selectedEvento->descripcion }}</p>
+                        <p><strong>Organizador:</strong> {{ $selectedEvento->organizador }}</p>
+                        <p><strong>Fecha Inicio:</strong> {{ $selectedEvento->fechainicio }}</p>
+                        <p><strong>Fecha Final:</strong> {{ $selectedEvento->fechafinal }}</p>
+                        <p><strong>Hora Inicio:</strong> {{ $selectedEvento->horainicio }}</p>
+                        <p><strong>Hora Final:</strong> {{ $selectedEvento->horafin }}</p>
+                        <p><strong>Modalidad:</strong> {{ $selectedEvento->modalidad->modalidad }}</p>
+                        <p><strong>Localidad:</strong> {{ $selectedEvento->localidad->localidad }}</p>
+                    </div>
+                    <div class="mt-4">
+                        <button wire:click="closeDetails()"
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 </div>

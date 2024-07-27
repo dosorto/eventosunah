@@ -12,14 +12,14 @@ class Eventos extends Component
 {
     use WithPagination;
 
-    public $nombreevento, $descripcion, $organizador, $idmodalidad, $idlocalidad, $evento_id, $search;
+    public $nombreevento, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $evento_id, $search;
     public $isOpen = 0;
 
     public function render()
     {
         $nombreeventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         return view('livewire.Evento.eventos', ['nombreeventos' => $nombreeventos]);
@@ -54,6 +54,10 @@ class Eventos extends Component
         $this->nombreevento = '';
         $this->descripcion = '';
         $this->organizador = '';
+        $this->fechainicio = '';
+        $this->fechafinal = '';
+        $this->horainicio = '';
+        $this->horafin = '';
         $this->idmodalidad = '';
         $this->idlocalidad = '';
     }
@@ -64,6 +68,10 @@ class Eventos extends Component
             'nombreevento' => 'required',
             'descripcion' => 'required',
             'organizador' => 'required',
+            'fechainicio' => 'required',
+            'fechafinal' => 'required',
+            'horainicio' => 'required',
+            'horafin' => 'required',
             'idmodalidad' => 'required',
             'idlocalidad' => 'required',
         ]);
@@ -72,6 +80,10 @@ class Eventos extends Component
             'nombreevento' => $this->nombreevento,
             'descripcion' => $this->descripcion,
             'organizador' => $this->organizador,
+            'fechainicio' => $this->fechainicio,
+            'fechafinal' => $this->fechafinal,
+            'horainicio' => $this->horainicio,
+            'horafin' => $this->horafin,
             'idmodalidad' => $this->idmodalidad,
             'idlocalidad' => $this->idlocalidad,
         ]);
@@ -90,6 +102,10 @@ class Eventos extends Component
         $this->nombreevento = $nombreevento->nombreevento;
         $this->descripcion = $nombreevento->descripcion;
         $this->organizador = $nombreevento->organizador;
+        $this->fechainicio = $nombreevento->fechainicio;
+        $this->fechafinal = $nombreevento->fechafinal;
+        $this->horainicio = $nombreevento->horainicio;
+        $this->horafin = $nombreevento->horafin;
         $this->idmodalidad = $nombreevento->idmodalidad;
         $this->idlocalidad = $nombreevento->idlocalidad;
 
@@ -101,4 +117,20 @@ class Eventos extends Component
         Evento::find($id)->delete();
         session()->flash('message', 'Registro Eliminado correctamente!');
     }
+
+    public $showDetails = false;
+    public $selectedEvento;
+    public function viewDetails($id)
+    {
+        $this->selectedEvento = Evento::find($id);
+        $this->showDetails = true;
+    }
+
+    
+
+    public function closeDetails()
+    {
+        $this->showDetails = false;
+    }
+
 }

@@ -15,7 +15,7 @@ class Carreras extends Component
 {
     $carreras = Carrera::with('departamento')
                     ->where('carrera', 'like', '%'.$this->search.'%')
-                    ->orderBy('id', 'ASC')
+                    ->orderBy('id', 'DESC')
                     ->paginate(8);
                     
     return view('livewire.Carrera.carreras', ['carreras' => $carreras]);
@@ -48,24 +48,33 @@ public function mount()
     }
 
     public function store()
-    {
-        $this->validate([
-            'carrera' => 'required',
-            'IdDepartamento' => 'required',
-        ]);
-   
-        Carrera::updateOrCreate(['id' => $this->carrera_id], [
+{
+    $this->validate([
+        'carrera' => [
+            'required',
+            'string',
+            'max:255',
+            'unique:carreras,carrera,' . $this->carrera_id, // Asegúrate de que la tabla y columna sean correctas
+        ],
+        'IdDepartamento' => 'required|exists:departamentos,id', // Valida que el departamento exista
+    ]);
+
+    Carrera::updateOrCreate(
+        ['id' => $this->carrera_id],
+        [
             'carrera' => $this->carrera,
             'IdDepartamento' => $this->IdDepartamento,
+        ]
+    );
 
-        ]);
-  
-        session()->flash('message', 
-            $this->carrera_id ? 'Carrera Actualizada correctamente!' : 'Carrera creada correctamente!');
-  
-        $this->closeModal();
-        $this->resetInputFields();
-    }
+    session()->flash('message', 
+        $this->carrera_id ? 'Carrera actualizada correctamente!' : 'Carrera creada correctamente!'
+    );
+
+    $this->closeModal();
+    $this->resetInputFields();
+}
+
     public function edit($id)
     {
         $carrera = Carrera::findOrFail($id);

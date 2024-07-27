@@ -125,12 +125,7 @@
                   </svg>
                </button>
                <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                  @can("admin-conferencia")
-                 <li>
-                   <x-nav-link href="{{ route('conferencia') }}" :active="request()->routeIs('conferencia')"
-                     class="  hover:bg-yellow-400 dark:hover:bg-gray-700  flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group dark:text-white">Conferencia</x-nav-link>
-                 </li>
-              @endcan
+                  
                   @can("admin-evento")
                  <li>
                    <x-nav-link href="{{ route('evento') }}" :active="request()->routeIs('evento')"
