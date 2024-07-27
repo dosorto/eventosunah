@@ -370,7 +370,7 @@
                                             <div class="flex items
                                                 -center">
                                                 <div>
-                                                    <p class="font-semibold dark:text-gray-400">{{ $conferencia->fecha }}
+                                                    <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -379,7 +379,7 @@
                                             <div class="flex items
                                                 -center">
                                                 <div>
-                                                    <p class="font-semibold dark:text-gray-400">{{ $conferencia->nombre }}
+                                                    <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -388,7 +388,7 @@
                                             <div class="flex items
                                                 -center">
                                                 <div>
-                                                    <p class="font-semibold dark:text-gray-400">{{ $conferencia->lugar }}
+                                                    <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -397,7 +397,7 @@
                                             <div class="flex items
                                                 -center">
                                                 <div>
-                                                    <p class="font-semibold dark:text-gray-400">
+                                                    <p class="font-medium dark:text-gray-400">
                                                         {{ $conferencia->conferencista->persona->nombre }}
                                                     </p>
                                                 </div>
