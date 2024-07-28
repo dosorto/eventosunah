@@ -13,6 +13,7 @@ use App\Livewire\Departamento\Departamentos;
 use App\Livewire\Carrera\Carreras;
 use App\Livewire\Persona\Personas;
 use App\Livewire\Rol\Roles;
+use App\Livewire\Diploma\Diplomas;
 use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\Conferencia\CrearConferencia;
 use App\Livewire\Conferencista\Conferencistas;
@@ -46,6 +47,7 @@ Route::middleware([
     Route::get('/evento', Eventos::class)->name('evento');
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
+    Route::get('/diploma',Diplomas::class)->name('diploma');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
@@ -55,11 +57,3 @@ Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPerso
 Route::get('/prueba', function () {
     return view('livewire.prueba');
 });
-
-
-
-
-
-
-
-

@@ -26,7 +26,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
-            $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
             $table->foreign('IdFirma')->references('id')->on('firmas')->onDelete('restrict');
 
         });
