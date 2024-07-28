@@ -10,7 +10,7 @@ class Suscripcion extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['IdConferencia', 'IdPersona', 'created_by'];
+    protected $fillable = ['IdConferencia', 'IdPersona', 'created_by', 'deleted_by'];
 
     public function conferencia()
     {

@@ -228,11 +228,5 @@
                     </div>
                 @endforeach
             </div>
-            @php/*
-                <div class="pagination">
-                {{ $conferencias->links() }}
-            </div> */
-            @endphp
-           
         @endif
 </div>
