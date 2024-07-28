@@ -1,5 +1,4 @@
 <div>
-    <x-layouts.app>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-3 ml-2">
             Conferencias para el Evento: {{ $evento->nombreevento }}
         </h2>
@@ -212,7 +211,7 @@
                                 </tr>
                             </table>
                             <div class="pt-5">
-                                <a href="#"
+                                <a href="#" wire:click="inscribirse({{ $conferencia->id }})"
                                     class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                                     Inscribirse
                                     <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
@@ -229,9 +228,11 @@
                     </div>
                 @endforeach
             </div>
-            <div class="pagination">
+            @php/*
+                <div class="pagination">
                 {{ $conferencias->links() }}
-            </div>
+            </div> */
+            @endphp
+           
         @endif
-    </x-layouts.app>
 </div>

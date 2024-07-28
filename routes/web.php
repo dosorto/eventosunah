@@ -27,6 +27,8 @@ use App\Livewire\Usuario\Usuarios;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -50,11 +52,13 @@ Route::middleware([
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/usuario', Usuarios::class)->name('usuario');
-    Route::get('/vistaconferencia', VistaConferencias::class)->name('vistaconferencia');
+
+   
     Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/usuario', Usuarios::class)->name('usuario');
-    Route::get('/evento/{evento}/conferencias', [EventoVistaController::class, 'showConferencias'])->name('vistaconferencia');
+
+    Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
