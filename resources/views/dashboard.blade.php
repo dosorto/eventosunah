@@ -438,119 +438,25 @@
             </div>
             <div
                 class="top-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="title">Diplomas por usuario</div>
+                <div class="title">Inscripciones</div>
                 <ul class="top-sales-details">
+                    @foreach ($conferenciass as $suscripcion )
                     <li>
                         <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
+                        <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+                        alt="Imagen Conferencia" class="rounded-t-lg" />
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Kite Siki
+                                <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 190px;" class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                {{ $suscripcion->conferencia->nombre }}
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@gmail.com
+                                    {{ $suscripcion->conferencia->fecha }}
                                 </p>
                             </div>
                         </a>
-                        <span class="price">10</span>
+                        <span class="price">{{$suscripcion->conferencia_count}}</span>
                     </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Oli Manu
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@gmail.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">8</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Cornert Sims
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@yahoo.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">8</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Joser Olet
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    Olet@gmail.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">7</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Mani Sims
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@gmail.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">5</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Osmeru Sone
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@gmail.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">5</span>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-4.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    nelik@gmail.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">4</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Masi Sims
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    email@gmail.com
-                                </p>
-                            </div>
-                        </a>
-                        <span class="price">2</span>
-                    </li>
+                    @endforeach    
                 </ul>
             </div>
         </div>
