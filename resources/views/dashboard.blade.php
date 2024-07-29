@@ -374,7 +374,7 @@
                                     <tr class="bg-white dark:bg-gray-800 text-gray-600">
                                         <td class="px-6 py-4 ">
                                             <div class="flex items
-                                                                -center">
+                                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
                                                     </p>
@@ -383,7 +383,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                                -center">
+                                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}
                                                     </p>
@@ -392,7 +392,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                                -center">
+                                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}
                                                     </p>
@@ -401,7 +401,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                                -center">
+                                                                        -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">
                                                         {{ $conferencia->conferencista->persona->nombre }}
@@ -410,10 +410,18 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items
-                                                                -center">
+                                            <div class="flex items-center">
                                                 <div>
-                                                    <button class="button" wire:click="viewDetails({{ $conferencia->id }})">
+                                                    <button class="button bg-slate-50 p-2 font-bold rounded-md"
+                                                        wire:click="viewDetails({{ $conferencia->id }})">
+                                                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            fill="none" viewBox="0 0 24 24">
+                                                            <path stroke="currentColor" stroke-width="2"
+                                                                d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+                                                            <path stroke="currentColor" stroke-width="2"
+                                                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                        </svg>
                                                         Ver
                                                     </button>
                                                 </div>
@@ -428,46 +436,6 @@
                 </div>
 
             </div>
-
-            <!-- Modal for Detailed View -->
-            @if ($showDetails)
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-4xl">
-                        <div class="p-6">
-                            <h3 class="text-lg font-semibold mb-4">Detalles de la Conferencia</h3>
-                            <div>
-                                <p><strong>Evento:</strong> {{ $selectedConferencia->evento->nombreevento }}</p>
-                                <p><strong>Nombre:</strong> {{ $selectedConferencia->nombre }}</p>
-                                <p><strong>Descripción:</strong> {{ $selectedConferencia->descripcion }}</p>
-                                <p><strong>Fecha:</strong> {{ $selectedConferencia->fecha }}</p>
-                                <p><strong>Hora Inicio:</strong> {{ $selectedConferencia->horaInicio }}</p>
-                                <p><strong>Hora Fin:</strong> {{ $selectedConferencia->horaFin }}</p>
-                                <p><strong>Lugar:</strong> {{ $selectedConferencia->lugar }}</p>
-                                <p><strong>Link Reunión:</strong> <a href="{{ $selectedConferencia->linkreunion }}"
-                                        target="_blank">{{ $selectedConferencia->linkreunion }}</a></p>
-                                <p><strong>Conferencista:</strong> @if ($selectedConferencia->conferencista)
-                                    @if ($selectedConferencia->conferencista->persona)
-                                        {{ $selectedConferencia->conferencista->persona->nombre }}
-                                        {{ $selectedConferencia->conferencista->persona->apellido ?? '' }}
-                                    @else
-                                        N/A
-                                    @endif
-                                @else
-                                    N/A
-                                @endif
-                                </p>
-                            </div>
-                            <div class="mt-4">
-                                <button wire:click="closeDetails()"
-                                    class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
             <div
                 class="top-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="title">Diplomas por usuario</div>
@@ -586,12 +554,5 @@
                 </ul>
             </div>
         </div>
-        <script>
-            document.addEventListener('livewire:load', function () {
-                Livewire.on('refreshComponent', function () {
-                    Livewire.emit('refresh');
-                });
-            });
-        </script>
 </x-layouts.app>
 </body>
