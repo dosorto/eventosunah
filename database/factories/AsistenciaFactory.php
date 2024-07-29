@@ -4,6 +4,7 @@ namespace Database\Factories;
 use App\Models\Asistencia;
 use App\Models\Persona;
 use App\Models\Conferencia;
+use App\Models\Suscripcion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,13 +19,11 @@ class AsistenciaFactory extends Factory
      */
     public function definition(): array
     {
-        $personaId = Persona::inRandomOrder()->first()->id;
-        $conferenciaId = Conferencia::inRandomOrder()->first()->id;
+        $suscripcionId = Suscripcion::inRandomOrder()->first()->id;
         return [
             'Fecha' => $this->faker->date(),
             'Asistencia' => $this->faker->boolean(),
-            'IdPersona' => $personaId,
-            'IdConferencia' => $conferenciaId,
+            'IdSuscripcion' => $suscripcionId,
             'created_by' => 1
         ];
     }
