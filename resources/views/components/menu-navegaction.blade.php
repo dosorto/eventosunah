@@ -88,7 +88,9 @@
       aria-label="Sidebar">
       <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
          <ul class="space-y-2 font-medium">
+         
             <li>
+            @can("admin-dashboard")
                <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
                   <svg
@@ -101,8 +103,26 @@
                   </svg>
                   <span class="ms-3">Dashboard</span>
                </x-nav-link>
+            @endcan
             </li>
             <li>
+            @can("admin-Participante")
+            <x-nav-link href="{{ route('eventoVista') }}" :active="request()->routeIs('eventoVista')"
+               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+               <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                 <path fill-rule="evenodd"
+                   d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415 1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z"
+                   clip-rule="evenodd" />
+               </svg>
+
+               <span class="flex-1 ms-3 whitespace-nowrap">Principal</span>
+
+            </x-nav-link>
+         @endcan
+         </li>
+            <li>
+            @can("admin-evento")
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-yellow-400 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -117,6 +137,7 @@
                         d="M7 3a1 1 0 0 1 1 1v1h3V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1V4a1 1 0 0 1 1-1Zm10.67 8H19v8H5v-8h3.855l.53-.537a1 1 0 0 1 .87-.285c.097.015.233.13.277.087.045-.043-.073-.18-.09-.276a1 1 0 0 1 .274-.873l1.09-1.104a3.46 3.46 0 0 1 4.892 0l.001.002A3.461 3.461 0 0 1 17.67 11Z"
                         clip-rule="evenodd" />
                   </svg>
+                 
                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Eventos</span>
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                      viewBox="0 0 10 6">
@@ -124,15 +145,15 @@
                         d="m1 1 4 4 4-4" />
                   </svg>
                </button>
+               @endcan
                <ul id="dropdown-example" class="hidden py-2 space-y-2">
                   
-                  @can("admin-evento")
                  <li>
                    <x-nav-link href="{{ route('evento') }}" :active="request()->routeIs('evento')"
                      class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Eventos</x-nav-link>
 
                  </li>
-              @endcan
+             
                   @can("admin-conferencista")
                  <li>
                    <x-nav-link href="{{ route('conferencista') }}" :active="request()->routeIs('conferencista')"

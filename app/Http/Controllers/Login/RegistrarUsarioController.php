@@ -75,7 +75,8 @@ class RegistrarUsarioController extends Controller
         $user->password = $request->UserC;
         $user->save();
 
-
+        $user->roles()->attach(2);
+        
         $persona = new Persona();
         $persona->IdUsuario = $user->id;
         $persona->dni = $request->dni;
@@ -99,7 +100,7 @@ class RegistrarUsarioController extends Controller
         // iniciar sesion al usuario actual
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('eventoVista');
     }
 
 

@@ -14,6 +14,7 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
+            'admin-dashboard',
             'admin-modalidad',
             'admin-nacionalidad',
             'admin-tipoPerfil',
@@ -27,6 +28,7 @@ class PermissionSeeder extends Seeder
             'admin-evento',
             'admin-asistencia',
             'admin-usuario',
+            'admin-Participante',
          ];
          
          foreach ($permissions as $permission) {

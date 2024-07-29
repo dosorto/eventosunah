@@ -4,8 +4,6 @@ use App\Livewire\Tipoperfil\Tipoperfiles;
 use App\Models\Evento;
 use App\Models\Persona;
 use Illuminate\Support\Facades\Route;
-// ruta de la vista de login
-// rutas de los componentes
 use App\Livewire\Nacionalidad\Nacionalidades;
 use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
@@ -15,6 +13,7 @@ use App\Livewire\Carrera\Carreras;
 use App\Livewire\Persona\Personas;
 use App\Livewire\EventoVista\EventosVistas;
 use App\Livewire\Rol\Roles;
+use App\Livewire\Diploma\Diplomas;
 use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\VistaConferencia\VistaConferencias;
 use App\Livewire\Conferencia\CrearConferencia;
@@ -24,7 +23,6 @@ use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Livewire\Usuario\Usuarios;
-// use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -53,6 +51,7 @@ Route::middleware([
     Route::get('/vistaconferencia', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
+    Route::get('/diploma',Diplomas::class)->name('diploma');
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/evento/{evento}/conferencias', [EventoVistaController::class, 'showConferencias'])->name('vistaconferencia');
 });

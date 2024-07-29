@@ -28,7 +28,6 @@ class DiplomaFactory extends Factory
             'URL' => $this->faker->url,
             'Fecha' => $this->faker->date(),
             'IdConferencia' => $conferenciaId,
-            'IdEvento' => $eventoId,
             'IdFirma' => $firmaId,
             'created_by' => 1,
         ];
