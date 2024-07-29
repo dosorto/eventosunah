@@ -34,13 +34,13 @@ class DashboardController extends Controller
             ->count();
 
 
-
         return view('dashboard', [
             'cantidadEventos' => $cantidadEventos,
             'eventosPresenciales' => $eventosPresenciales,
             'eventosVirtuales' => $eventosVirtuales,
             'conferencias' => $conferencias,
-            'now' => $now
+            'now' => $now,
+            
         ]);
     }
 }

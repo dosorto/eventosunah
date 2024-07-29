@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Conferencia;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -8,18 +8,21 @@ use App\Models\Conferencia;
 use App\Models\Conferencista;
 use App\Models\Evento;
 
-class Conferencias extends Component
-{
-    use WithPagination;
 
+class Dashboards extends Component
+{
+
+    use WithPagination;
+    
     public $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
     public $isOpen = 0;
+    public $showDetails = false;
     public $inputSearchConferencista = '';
     public $searchConferencistas = [];
     public $inputSearchEvento = '';
     public $searchEventos = [];
-    public $showDetails = false;
     public $selectedConferencia;
+   
     protected $listeners = ['refreshComponent' => '$refresh'];
     public function viewDetails($id)
     {
@@ -36,16 +39,18 @@ class Conferencias extends Component
     {
         $conferencias = Conferencia::with('conferencista', 'evento')
             ->where('IdEvento', $this->IdEvento)
-            ->where('nombre', 'like', '%'.$this->search.'%')
+            ->where('nombre', 'like', '%'.$this->inputSearchConferencista.'%')
             ->orderBy('id', 'DESC')
             ->paginate(8);
 
         $eventos = Evento::all();
 
-        return view('livewire.Conferencia.conferencias', [
+        return view('dashboard', [
             'conferencias' => $conferencias,
             'eventos' => $eventos,
-            'searchConferencistas' => $this->searchConferencistas
+            'searchConferencistas' => $this->searchConferencistas,
+            'showDetails' => $this->showDetails,
+            'selectedConferencia' => $this->selectedConferencia,
         ]);
     }
     
