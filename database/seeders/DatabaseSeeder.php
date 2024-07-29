@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
            EventoSeeder::class,
            ConferenciaSeeder::class,
            DiplomaSeeder::class,
-           AsistenciaSeeder::class
+          
        ]);
     }
 }

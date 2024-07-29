@@ -48,10 +48,8 @@ Route::middleware([
     Route::get('/conferencia/{evento?}', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
     Route::get('/evento', Eventos::class)->name('evento');
-    Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/usuario', Usuarios::class)->name('usuario');
-    Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/diploma',Diplomas::class)->name('diploma');
     Route::get('/usuario', Usuarios::class)->name('usuario');

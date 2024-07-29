@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 class RolSeeder extends Seeder
 {
     /**
@@ -16,12 +17,12 @@ class RolSeeder extends Seeder
         // Crea el rol 'Participante'
         $role = Role::create(['name' => 'Participante', 'guard_name' => 'web']);
 
-        // Encuentra el permiso 'Admin-Participante'
-        $permission = Permission::where('name', 'Admin-Participante')->first();
+        // Encuentra los permisos 'Admin-Participante' y 'Admin-asistencia'
+        $permissions = Permission::whereIn('name', ['Admin-Participante', 'Admin-asistencia'])->get();
 
-        // Asigna el permiso al rol
-        if ($permission) {
-            $role->givePermissionTo($permission);
+        // Asigna los permisos al rol
+        if ($permissions) {
+            $role->givePermissionTo($permissions);
         }
     }
 }
