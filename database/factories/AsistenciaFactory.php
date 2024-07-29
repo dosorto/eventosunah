@@ -1,9 +1,8 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Asistencia;
-use App\Models\Persona;
-use App\Models\Conferencia;
 use App\Models\Suscripcion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -12,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AsistenciaFactory extends Factory
 {
+    protected $model = Asistencia::class;
+
     /**
      * Define the model's default state.
      *
@@ -19,7 +20,10 @@ class AsistenciaFactory extends Factory
      */
     public function definition(): array
     {
-        $suscripcionId = Suscripcion::inRandomOrder()->first()->id;
+        // Obtén una suscripción aleatoria, o null si no hay ninguna
+        $suscripcion = Suscripcion::inRandomOrder()->first();
+        $suscripcionId = $suscripcion ? $suscripcion->id : null;
+
         return [
             'Fecha' => $this->faker->date(),
             'Asistencia' => $this->faker->boolean(),
