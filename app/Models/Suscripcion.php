@@ -20,9 +20,7 @@ class Suscripcion extends Model
     public function persona()
     {
         return $this->belongsTo(Persona::class, 'IdPersona');
-
     }
-
     protected $table = 'suscripcions';
 
 }

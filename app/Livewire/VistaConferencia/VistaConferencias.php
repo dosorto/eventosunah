@@ -36,5 +36,6 @@ class VistaConferencias extends Component
             'created_by' => Auth::id()
         ]);
 
+        session()->flash('success', 'Te has inscrito a la conferencia.');
     }
 }
