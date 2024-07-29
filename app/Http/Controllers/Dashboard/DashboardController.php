@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Conferencia;
+use App\Models\Persona;
+use App\Models\Asistencia;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        
-
         // contar la cantidad de eventos que hay en la base de datos
         $cantidadEventos = Evento::count();
 
@@ -45,7 +46,15 @@ class DashboardController extends Controller
             'eventosFinalizados' => $eventosFinalizados,
             'eventosPresenciales' => $eventosPresenciales,
             'eventosVirtuales' => $eventosVirtuales,
-            'conferencias' => $conferencias
+            'conferencias' => $conferencias,
+            'cantidadPersonas' => $cantidadPersonas, // Añadir la cantidad de personas
+            'cantidadAsistencias' => $cantidadAsistencias // Añadir la cantidad de asistencias
         ]);
+    }
+
+    public function show($id)
+    {
+        $evento = Evento::with('conferencias', 'modalidad', 'localidad')->findOrFail($id);
+        return view('event-details', ['evento' => $evento]);
     }
 }

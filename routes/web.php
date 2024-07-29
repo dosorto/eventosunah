@@ -26,10 +26,11 @@ use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Livewire\Usuario\Usuarios;
 
+
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
-
+Route::get('/dashboard/eventos/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
 
 Route::get('/', function () {
     return view('welcome');

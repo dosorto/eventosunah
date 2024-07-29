@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+    $now = Carbon::now();
+@endphp
 <x-layouts.app>
 
     <head>
@@ -326,7 +330,7 @@
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Usuarios</div>
-                    <div class="number">{{ $cantidadAsistencias }}</div>
+                    <div class="number">{{ $cantidadPersonas }}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Registrados</span>
@@ -340,6 +344,8 @@
                 </svg>
             </div>
         </div>
+
+        
         <div class="sales-boxes">
             <div
                 class="recent-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
