@@ -9,13 +9,9 @@ class Asistencia extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Fecha','Asistencia','IdPersona', 'IdEvento'];
-    public function persona()
+    protected $fillable = ['Fecha','Asistencia','IdSuscripcion'];
+    public function suscripcion()
     {
-        return $this->belongsTo(Persona::class, 'IdPersona');
-    }
-    public function evento()
-    {
-        return $this->belongsTo(Evento::class, 'IdEvento');
+        return $this->belongsTo(Suscripcion::class, 'IdSuscripcion');
     }
 }

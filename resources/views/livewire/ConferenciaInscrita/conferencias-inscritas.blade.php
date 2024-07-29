@@ -1,8 +1,7 @@
 <div>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-3 ml-2">
-        Conferencias para el Evento: {{ $evento->nombreevento }}
+        Mis conferencias inscritas
     </h2>
-
     @if (session()->has('success'))
         <div class="alert alert-success">
 
@@ -32,6 +31,34 @@
         </div>
     @endif
 
+    @if (session()->has('error'))
+        <div class="alert alert-success">
+
+            <div id="alert-4"
+                class="flex items-center p-4 mb-4 text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                role="alert">
+                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Info</span>
+                <div class="ms-3 text-sm font-medium">
+                    {{ session('error') }}
+                </div>
+                <button type="button"
+                    class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-yellow-300 dark:hover:bg-gray-700"
+                    data-dismiss-target="#alert-4" aria-label="Close">
+                    <span class="sr-only">Close</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    @endif
     @if($conferencias->isEmpty())
         <div id="alert-additional-content-4"
             class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-500 dark:border-yellow-800"
@@ -46,7 +73,7 @@
                 <h3 class="text-lg font-bold">No hay conferencias.</h3>
             </div>
             <div class="mt-2 mb-4 text-sm">
-                Este evento todavía no tiene conferencias disponibles para mostrar.
+                Aun no te has suscito a ninguna conferencia de ningun evento.
             </div>
             <div class="flex">
                 <a type="button" href="{{ route('eventoVista') }}"
@@ -56,14 +83,14 @@
                         <path
                             d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
                     </svg>
-                    Ver otros eventos
+                    Ver eventos
                 </a>
             </div>
         </div>
     @else
         <div class="grid gap-4 p-2" style=" grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
 
-            @foreach ($conferencias as $conferencia)
+            @foreach ($conferencias as $suscripcion)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
@@ -72,7 +99,7 @@
                     <div class="p-5">
                         <a href="#">
                             <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                                {{ $conferencia->nombre }}
+                                {{ $suscripcion->conferencia->nombre }}
                             </h5>
                         </a>
                         <table class="w-full text-sm  text-right rtl:text-left text-gray-500 dark:text-gray-400">
@@ -88,10 +115,10 @@
                                     Conferencista
                                 </td>
                                 <td class="px-6 py-2">
-                                    @if ($conferencia->conferencista)
-                                        @if ($conferencia->conferencista->persona)
-                                            {{ $conferencia->conferencista->persona->nombre }}
-                                            {{ $conferencia->conferencista->persona->apellido ?? '' }}
+                                    @if ($suscripcion->conferencia->conferencista)
+                                        @if ($suscripcion->conferencia->conferencista->persona)
+                                            {{ $suscripcion->conferencia->conferencista->persona->nombre }}
+                                            {{ $suscripcion->conferencia->conferencista->persona->apellido ?? '' }}
                                         @else
                                             N/A
                                         @endif
@@ -111,7 +138,7 @@
                                     Lugar
                                 </td>
                                 <td class="px-6 py-2">
-                                    {{ $conferencia->lugar }}
+                                    {{ $suscripcion->conferencia->lugar }}
                                 </td>
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -126,7 +153,7 @@
                                     Fecha
                                 </td>
                                 <td class="px-6 py-2">
-                                    {{ $conferencia->fecha }}
+                                    {{ $suscripcion->conferencia->fecha }}
                                 </td>
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -140,7 +167,7 @@
                                     Hora
                                 </td>
                                 <td class="px-6 py-2">
-                                    De {{ $conferencia->horaInicio }} a {{ $conferencia->horaFin }}
+                                    De {{ $suscripcion->conferencia->horaInicio }} a {{ $suscripcion->conferencia->horaFin }}
                                 </td>
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -197,7 +224,8 @@
                                                     <div class="relative mb-4">
                                                         <input id="course-url" type="text"
                                                             class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            value=" {{ $conferencia->linkreunion }}" disabled readonly>
+                                                            value=" {{ $suscripcion->conferencia->linkreunion }}" disabled
+                                                            readonly>
                                                         <button data-copy-to-clipboard-target="course-url"
                                                             data-tooltip-target="tooltip-course-url"
                                                             class="absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center">
@@ -239,17 +267,42 @@
                             </tr>
                         </table>
                         <div class="pt-5">
-                            <a href="#" wire:click="inscribirse({{ $conferencia->id }})"
-                                class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                                Inscribirse
+                            <a href="{{ route('vistaconferencia', $suscripcion->conferencia->IdEvento) }}"
+                                class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 dark:bg-yellow-600 dark:hover:bg-yellow-700">
+                                Evento
                                 <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                     viewBox="0 0 24 24">
                                     <path fill-rule="evenodd"
-                                        d="M5 8a4 4 0 1 1 7.796 1.263l-2.533 2.534A4 4 0 0 1 5 8Zm4.06 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h2.172a2.999 2.999 0 0 1-.114-1.588l.674-3.372a3 3 0 0 1 .82-1.533L9.06 13Zm9.032-5a2.907 2.907 0 0 0-2.056.852L9.967 14.92a1 1 0 0 0-.273.51l-.675 3.373a1 1 0 0 0 1.177 1.177l3.372-.675a1 1 0 0 0 .511-.273l6.07-6.07a2.91 2.91 0 0 0-.944-4.742A2.907 2.907 0 0 0 18.092 8Z"
+                                        d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
                                         clip-rule="evenodd" />
                                 </svg>
+
                             </a>
+                            <button wire:click="desuscribirse({{ $suscripcion->conferencia->id }})"
+                                class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-gray-800 bg-red-500 rounded-lg hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700">
+                                Quitar
+                                <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 9h13a5 5 0 0 1 0 10H7M3 9l4-4M3 9l4 4" />
+                                </svg>
+                            </button>
+                            <button wire:click="asistencia({{ $suscripcion->id }})"
+                                class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-gray-800 bg-green-500 rounded-lg hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700">
+                                Asistencia
+                                <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M15.026 21.534A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c2.51 0 4.802.924 6.558 2.45l-7.635 7.636L7.707 8.87a1 1 0 0 0-1.414 1.414l3.923 3.923a1 1 0 0 0 1.414 0l8.3-8.3A9.956 9.956 0 0 1 22 12a9.994 9.994 0 0 1-.466 3.026A2.49 2.49 0 0 0 20 14.5h-.5V14a2.5 2.5 0 0 0-5 0v.5H14a2.5 2.5 0 0 0 0 5h.5v.5c0 .578.196 1.11.526 1.534Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+
+                            </button>
                         </div>
 
                     </div>

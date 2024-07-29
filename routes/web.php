@@ -19,11 +19,14 @@ use App\Livewire\VistaConferencia\VistaConferencias;
 use App\Livewire\Conferencia\CrearConferencia;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
+use App\Livewire\ConferenciaInscrita\ConferenciasInscritas;
 use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Livewire\Usuario\Usuarios;
 use Illuminate\Http\Request;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,12 +51,12 @@ Route::middleware([
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/usuario', Usuarios::class)->name('usuario');
-    Route::get('/vistaconferencia', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/marcarAsistencia', MarcarAsistencias::class)->name('marcarAsistencia');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/diploma',Diplomas::class)->name('diploma');
     Route::get('/usuario', Usuarios::class)->name('usuario');
-    Route::get('/evento/{evento}/conferencias', [EventoVistaController::class, 'showConferencias'])->name('vistaconferencia');
+    Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
+    Route::get('/conferencias-inscritas', ConferenciasInscritas::class)->name('conferencias-inscritas');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');

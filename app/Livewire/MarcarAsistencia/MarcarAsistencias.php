@@ -3,10 +3,11 @@
 namespace App\Livewire\MarcarAsistencia;
 
 use App\Models\Persona;
-use App\Models\Evento;
+use App\Models\Conferencia;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Asistencia;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class MarcarAsistencias extends Component
 {
     use WithPagination;
 
-    public $Fecha, $Asistencia, $IdEvento, $asistencia_id, $search;
+    public $Fecha, $Asistencia, $IdConferencia, $asistencia_id, $search;
     public $isOpen = false;
 
     public $personas;
@@ -25,20 +26,20 @@ class MarcarAsistencias extends Component
     public $inputSearchEvento = '';
     public $searchPersonas = [];
     public $searchEventos = [];
-    
+
     public $fechaActual;
     public function mount()
     {
-        $this->eventos = Evento::all();
+        $this->conferencia = Conferencia::all();
         $this->fechaActual = Carbon::now();
-        
+
     }
 
     public function render()
     {
-        return view('livewire.MarcarAsistencia.marcar-asistencia', [ 
-            'eventos' => Evento::all(),
-            'asistencias' => Asistencia::with('persona', 'evento')->get(),
+        return view('livewire.MarcarAsistencia.marcar-asistencia', [
+            'conferencias' => Conferencia::all(),
+            'asistencias' => Asistencia::with('persona', 'conferencia')->get(),
         ]);
     }
 
@@ -69,21 +70,29 @@ class MarcarAsistencias extends Component
     {
         $this->validate([
             'Asistencia' => 'required|boolean',
-            'IdEvento' => 'required',
+            'IdConferencia' => 'required',
         ]);
+
+        $user = Auth::user();
+        $persona = $user->persona;
+
+        if (!$persona) {
+            // Manejar el caso donde no se encuentra la persona asociada al usuario
+            throw new \Exception("No se encontró una persona asociada al usuario autenticado.");
+        }
 
         Asistencia::updateOrCreate(['id' => $this->asistencia_id], [
             'Fecha' => $this->fechaActual,
             'Asistencia' => $this->Asistencia,
-            'IdPersona' => Auth::id(), // Captura el ID del usuario autenticado,
-            'IdEvento' => $this->IdEvento,
+            'IdPersona' => $persona->id, // Captura el ID del usuario autenticado,
+            'IdConferencia' => $this->IdConferencia,
         ]);
 
         session()->flash('message', $this->asistencia_id ? 'Asistencia actualizada correctamente!' : 'Asistencia creada correctamente!');
 
         $this->closeModal();
         $this->resetInputFields();
-        
+
     }
 
     public function edit($id)
@@ -93,13 +102,13 @@ class MarcarAsistencias extends Component
         $this->Fecha = $asistencia->fechaActual;
         $this->Asistencia = $asistencia->Asistencia;
         $this->IdPersona = $asistencia->IdPersona;
-        $this->IdEvento = $asistencia->IdEvento;
+        $this->IdConferencia = $asistencia->IdConferencia;
 
         $persona = Persona::find($this->IdPersona);
-        $evento = Evento::find($this->IdEvento);
+        $conferencia = Conferencia::find($this->IdConferencia);
 
         $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
-        $this->inputSearchEvento = $evento->nombreevento;
+        $this->inputSearchEvento = $conferencia->nombre;
 
         $this->openModal();
     }
@@ -115,7 +124,7 @@ class MarcarAsistencias extends Component
         $this->validateOnly($propertyName, [
             'Fecha' => 'required',
             'Asistencia' => 'required',
-            'IdEvento' => 'required',
+            'IdConferencia' => 'required',
         ]);
     }
 
@@ -136,15 +145,15 @@ class MarcarAsistencias extends Component
 
     public function updatedInputSearchEvento()
     {
-        $this->searchEventos = Evento::where('nombreevento', 'like', '%' . $this->inputSearchEvento . '%')
+        $this->searchEventos = Conferencia::where('nombre', 'like', '%' . $this->inputSearchEvento . '%')
             ->get();
     }
 
-    public function selectEvento($eventoId)
+    public function selectEvento($conferenciaId)
     {
-        $this->IdEvento = $eventoId;
-        $evento = Evento::find($eventoId);
-        $this->inputSearchEvento = $evento->nombreevento;
+        $this->IdConferencia = $conferenciaId;
+        $conferencia = Conferencia::find($conferenciaId);
+        $this->inputSearchEvento = $conferencia->nombre;
         $this->searchEventos = [];
     }
 }
