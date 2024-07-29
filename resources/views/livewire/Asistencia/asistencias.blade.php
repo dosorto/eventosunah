@@ -52,7 +52,7 @@
                                 <th scope="col" class="px-6 py-3">Fecha</th>
                                 <th scope="col" class="px-6 py-3">Asistencia</th>
                                 <th scope="col" class="px-6 py-3">Persona</th>
-                                <th scope="col" class="px-6 py-3">Evento</th>
+                                <th scope="col" class="px-6 py-3">Conferencia</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
@@ -63,9 +63,9 @@
                                         {{ $asistencia->id }}
                                     </td>
                                     <td class="px-6 py-4">{{ $asistencia->Fecha }}</td>
-                                    <td class="px-6 py-4">{{ $asistencia->Asistencia }}</td>
-                                    <td class="px-6 py-4">{{ $asistencia->persona->nombre }} {{ $asistencia->persona->apellido }}</td>
-                                    <td class="px-6 py-4">{{ $asistencia->evento->nombreevento }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->Asistencia ? 'Presente' : 'Ausente' }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->suscripcion->persona->nombre }}{{' '}}{{$asistencia->suscripcion->persona->apellido }}</td>
+                                    <td class="px-6 py-4">{{ $asistencia->suscripcion->conferencia->nombre }}</td>
                                     <td class="px-6 py-4">
                                         <button wire:click="edit({{ $asistencia->id }})"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">

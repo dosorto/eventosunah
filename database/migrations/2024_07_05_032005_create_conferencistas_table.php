@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('Titulo');
             $table->string('Descripcion',500);
             $table->string('Foto');
-            $table->unsignedBigInteger('IdPersona');
+            $table->unsignedBigInteger('IdPersona')->unique();
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();

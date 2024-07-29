@@ -28,13 +28,7 @@
                                 <span class="sr-only">Cerrar modal</span>
                             </button>
                         </div>
-                        <div class="mb-4">
-                            <label for="fecha" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha:</label>
-                            <input type="date" wire:model="Fecha"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="fecha" placeholder="Fecha">
-                            @error('Fecha') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+                        
                         <div class="mb-4">
                             <label for="asistencia"
                                 class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Asistencia:</label>
@@ -65,22 +59,22 @@
                             @error('IdPersona') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="evento" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Evento:</label>
+                            <label for="evento" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Conferencia:</label>
                             <input wire:model.live="inputSearchEvento"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                type="text" placeholder="Buscar evento...">
-                            @if(!empty($inputSearchEvento) && !empty($searchEventos))
+                                type="text" placeholder="Buscar conferencia...">
+                            @if(!empty($inputSearchConferencia) && !empty($searchConferencia))
                             <ul
                                 class="bg-white border border-gray-300 mt-2 rounded-md max-h-48 overflow-auto shadow-lg z-10">
-                                @foreach($searchEventos as $evento)
-                                <li wire:click="selectEvento({{ $evento->id }})"
+                                @foreach($searchConferencia as $conferencia)
+                                <li wire:click="selectConferencia({{ $conferencia->id }})"
                                     class="p-2 cursor-pointer hover:bg-gray-200">
-                                    {{ $evento->nombreevento }}
+                                    {{ $conferencia->nombre }}
                                 </li>
                                 @endforeach
                             </ul>
                             @endif
-                            @error('IdEvento') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('IdConferencia') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                     </div>
 

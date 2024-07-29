@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Nacionalidad;
 use App\Models\Tipoperfil;
 use App\Models\User;
-/*
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Persona>
  */
 class PersonaFactory extends Factory
 {
@@ -21,12 +22,13 @@ class PersonaFactory extends Factory
         $nacionalidadId = Nacionalidad::inRandomOrder()->first()->id;
         $usuarioId = User::inRandomOrder()->first()->id;
         $tipoPerfilId = Tipoperfil::inRandomOrder()->first()->id;
+
         return [
-           'IdUsuario' => $usuarioId,
-            'dni' => $this->faker->regexify('[0-9]{8}[A-Z]{1}'), 
+            'IdUsuario' => $usuarioId,
+            'dni' => $this->faker->unique()->regexify('[0-9]{8}[A-Z]{1}'), 
             'nombre' => $this->faker->firstName(),
             'apellido' => $this->faker->lastName(),
-            'correo' => $this->faker->safeEmail(),
+            'correo' => $this->faker->unique()->safeEmail(),
             'fechaNacimiento' => $this->faker->date(),
             'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'direccion' => $this->faker->address(),
@@ -36,8 +38,6 @@ class PersonaFactory extends Factory
             'numeroCuenta' => $this->faker->unique()->numerify('###########'), 
             'correoInstitucional' => $this->faker->unique()->safeEmail(),
             'created_by' => 1
-
         ];
     }
 }
-

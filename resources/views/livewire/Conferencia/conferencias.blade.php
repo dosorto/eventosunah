@@ -116,42 +116,4 @@
         </div>
         
     </div>
-
-    <!-- Modal for Detailed View -->
-    @if ($showDetails)
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-4xl">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold mb-4">Detalles de la Conferencia</h3>
-                    <div>
-                        <p><strong>Evento:</strong> {{ $selectedConferencia->evento->nombreevento }}</p>
-                        <p><strong>Nombre:</strong> {{ $selectedConferencia->nombre }}</p>
-                        <p><strong>Descripción:</strong> {{ $selectedConferencia->descripcion }}</p>
-                        <p><strong>Fecha:</strong> {{ $selectedConferencia->fecha }}</p>
-                        <p><strong>Hora Inicio:</strong> {{ $selectedConferencia->horaInicio }}</p>
-                        <p><strong>Hora Fin:</strong> {{ $selectedConferencia->horaFin }}</p>
-                        <p><strong>Lugar:</strong> {{ $selectedConferencia->lugar }}</p>
-                        <p><strong>Link Reunión:</strong> <a href="{{ $selectedConferencia->linkreunion }}" target="_blank">{{ $selectedConferencia->linkreunion }}</a></p>
-                        <p><strong>Conferencista:</strong> @if ($selectedConferencia->conferencista)
-                            @if ($selectedConferencia->conferencista->persona)
-                                {{ $selectedConferencia->conferencista->persona->nombre }}
-                                {{ $selectedConferencia->conferencista->persona->apellido ?? '' }}
-                            @else
-                                N/A
-                            @endif
-                        @else
-                            N/A
-                        @endif
-                        </p>
-                    </div>
-                    <div class="mt-4">
-                        <button wire:click="closeDetails()"
-                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 </div>

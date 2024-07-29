@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
            NacionalidadesTableSeeder::class,
            ModalidadSeeder::class,
            UserTableSeeder::class,
+           RolSeeder::class,
            FirmaSeeder::class,
            TipoPerfilSeeder::class,
            DepartamentoSeeder::class,
@@ -31,7 +32,7 @@ class DatabaseSeeder extends Seeder
            EventoSeeder::class,
            ConferenciaSeeder::class,
            DiplomaSeeder::class,
-           AsistenciaSeeder::class
+          
        ]);
     }
 }

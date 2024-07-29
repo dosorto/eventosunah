@@ -12,7 +12,7 @@ class Localidades extends Component
     public $isOpen = 0;
     public function render()
     {
-        $localidades = Localidad::where('localidad', 'like', '%'.$this->search.'%')->orderBy('id','ASC')->paginate(8);
+        $localidades = Localidad::where('localidad', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(8);
         return view('livewire.Localidad.localidades', ['localidades' => $localidades]);
     }
     public function create()
@@ -35,16 +35,23 @@ class Localidades extends Component
     public function store()
     {
         $this->validate([
-            'localidad' => 'required',
+            'localidad' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:localidads,localidad,' . $this->localidad_id,
+            ],
         ]);
-   
-        Localidad::updateOrCreate(['id' => $this->localidad_id], [
-            'localidad' => $this->localidad,
-        ]);
-  
+    
+        Localidad::updateOrCreate(
+            ['id' => $this->localidad_id],
+            ['localidad' => $this->localidad]
+        );
+    
         session()->flash('message', 
-            $this->localidad_id ? 'localidad Actualizada correctamente!' : 'localidad creada correctamente!');
-  
+            $this->localidad_id ? 'Localidad actualizada correctamente!' : 'Localidad creada correctamente!'
+        );
+    
         $this->closeModal();
         $this->resetInputFields();
     }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Evento;
 use App\Models\Conferencia;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        
+        $now = Carbon::now();
 
         // contar la cantidad de eventos que hay en la base de datos
         $cantidadEventos = Evento::count();
@@ -38,7 +39,8 @@ class DashboardController extends Controller
             'cantidadEventos' => $cantidadEventos,
             'eventosPresenciales' => $eventosPresenciales,
             'eventosVirtuales' => $eventosVirtuales,
-            'conferencias' => $conferencias
+            'conferencias' => $conferencias,
+            'now' => $now
         ]);
     }
 }
