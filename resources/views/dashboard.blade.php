@@ -260,17 +260,19 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-6 ml-5">
         Dashboard
     </h2>
+
+
         <div class="overview-boxes">
             <div
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="right-side">
-                    <div class="box-topic">Eventos</div>
-                    <div class="number">{{ $cantidadEventos }}</div>
-                    <div class="indicator">
-                        <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Registrados</span>
-                    </div>
-                </div>
+               <div class="right-side">
+    <div class="box-topic">Eventos</div>
+    <div class="number">{{ $eventosActivos }} / {{ $eventosFinalizados }}</div>
+    <div class="indicator">
+        <i class='bx bx-up-arrow-alt'></i>
+        <span class="text">Registrados</span>
+    </div>
+</div>
                 <svg class="cart w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
@@ -320,7 +322,7 @@
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Usuarios</div>
-                    <div class="number">{{ $cantidadEventos }}</div>
+                    <div class="number">{{ $cantidadAsistencias }}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Registrados</span>
@@ -407,9 +409,10 @@
                                             <div class="flex items
                                                 -center">
                                                 <div>
-                                                    <button class="button"><a
-                                                            href="{{ route('conferencia', $conferencia->id) }}">Ir
-                                                        </a></button>
+                                                    <button wire:click="viewDetails({{ $conferencia->id }})"
+                                        class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                                        Ver más
+                                    </button>
                                                 </div>
                                             </div>
                                         </td>

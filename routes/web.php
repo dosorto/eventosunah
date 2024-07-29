@@ -24,8 +24,12 @@ use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Livewire\Usuario\Usuarios;
+
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/evento/{evento}', [EventoVistaController::class, 'showConferencias'])->name('evento.showConferencias');
 
 Route::get('/', function () {
     return view('welcome');
