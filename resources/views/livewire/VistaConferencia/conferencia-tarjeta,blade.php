@@ -50,6 +50,8 @@
         <h2 class="name-evento">{{ $targetasEvento->nombreevento }}</h2>
         <p class="evento-creador">{{ $targetasEvento->organizador }}</p>
         <p class="fecha-creacion">{{ $targetasEvento->created_at->diffForHumans() }}</p>
+        {{-- <p class="fecha-creacion">{{ $targetasEvento->created_at->translatedFormat('F j, Y') }}</p> --}}
+
       </div>
       </div>
       </a>
