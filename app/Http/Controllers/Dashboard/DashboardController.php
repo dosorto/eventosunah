@@ -34,11 +34,6 @@ class DashboardController extends Controller
             ->where('modalidads.modalidad', 'Virtual')
             ->count();
 
-        // Contar la cantidad de personas registradas en la base de datos
-        $cantidadPersonas = Persona::count();
-
-        // Contar la cantidad de asistencias registradas en la base de datos
-        $cantidadAsistencias = Asistencia::count();
 
         return view('dashboard', [
             'cantidadEventos' => $cantidadEventos,
@@ -47,14 +42,8 @@ class DashboardController extends Controller
             'eventosPresenciales' => $eventosPresenciales,
             'eventosVirtuales' => $eventosVirtuales,
             'conferencias' => $conferencias,
-            'cantidadPersonas' => $cantidadPersonas, // Añadir la cantidad de personas
-            'cantidadAsistencias' => $cantidadAsistencias // Añadir la cantidad de asistencias
+            'now' => $now,
+            
         ]);
-    }
-
-    public function show($id)
-    {
-        $evento = Evento::with('conferencias', 'modalidad', 'localidad')->findOrFail($id);
-        return view('event-details', ['evento' => $evento]);
     }
 }
