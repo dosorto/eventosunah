@@ -15,20 +15,20 @@
           d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
         </svg>
         <span class="sr-only">Info</span>
-        <h3 class="text-lg font-bold">No hay conferencias.</h3>
+        <h3 class="text-lg font-bold">No hay eventos disponibles.</h3>
       </div>
       <div class="mt-2 mb-4 text-sm">
-        Este evento todavía no tiene conferencias disponibles para mostrar.
+        <p>Por el momento no hay eventos disponibles, por favor intente más tarde.</p>
       </div>
       <div class="flex">
-        <a type="button" href="{{ route('eventoVista') }}"
+        <a type="button" href="{{ route('dashboard') }}"
         class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
         <svg class="me-2 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
           viewBox="0 0 20 14">
           <path
           d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
         </svg>
-        Ver otros eventos
+        Ir al dashboard
         </a>
       </div>
       </div>
@@ -45,12 +45,13 @@
       <p class="marca">{{ $targetasEvento->modalidad->modalidad }}</p>
       </div>
       <div class="evento-info">
-      <img src="{{ asset('Logo/Eventos UNAH con fondo Logo.png') }}" alt="foto-creador" 
-        class="icon">
+      <img src="{{ asset('Logo/Eventos UNAH con fondo Logo.png') }}" alt="foto-creador" class="icon">
       <div class="evento-details">
         <h2 class="name-evento">{{ $targetasEvento->nombreevento }}</h2>
         <p class="evento-creador">{{ $targetasEvento->organizador }}</p>
-        <p class="fecha-creacion">18 septiembre 2024</p>
+        <p class="fecha-creacion">{{ $targetasEvento->created_at->diffForHumans() }}</p>
+        {{-- <p class="fecha-creacion">{{ $targetasEvento->created_at->translatedFormat('F j, Y') }}</p> --}}
+
       </div>
       </div>
       </a>

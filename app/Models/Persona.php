@@ -25,4 +25,9 @@ class Persona extends BaseModel
     {
         return $this->belongsTo(TipoPerfil::class, 'IdTipoPerfil');
     }
+
+    public function suscripciones()
+    {
+        return $this->hasMany(Suscripcion::class, 'IdPersona');
+    }
 }
