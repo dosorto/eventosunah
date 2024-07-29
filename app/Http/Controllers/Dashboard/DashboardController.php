@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Suscripcion;
 use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Conferencia;
@@ -17,12 +18,9 @@ class DashboardController extends Controller
         // contar la cantidad de eventos que hay en la base de datos
         $cantidadEventos = Evento::count();
 
-        // Contar la cantidad de eventos activos y finalizados
-        $fechaActual = Carbon::now();
-        $eventosActivos = Evento::where('fechafinal', '>=', $fechaActual)->count();
-        $eventosFinalizados = Evento::where('fechafinal', '<', $fechaActual)->count();
+        $conferenciass = Suscripcion::withCount('conferencia')->get();
 
-        // Ordenar las conferencias por fecha y seleccionar las primeras 5
+        // ordenar las conferencias por fecha fecha y seleccionar las primeras 10
         $conferencias = Conferencia::orderBy('fecha', 'desc')->take(5)->get();
 
         // Contar los eventos por modalidad 'Presencial' y 'Virtual'
@@ -43,6 +41,8 @@ class DashboardController extends Controller
             'eventosVirtuales' => $eventosVirtuales,
             'conferencias' => $conferencias,
             'now' => $now,
+            'conferenciass' => $conferenciass
+
             
         ]);
     }
