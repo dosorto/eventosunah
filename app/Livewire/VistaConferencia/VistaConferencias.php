@@ -36,12 +36,6 @@ class VistaConferencias extends Component
         ]);
     }
 
-    public function render()
-    {
-        Auth::user()->persona->suscripciones;
-        return view('livewire.VistaConferencia.vista-conferencia');
-    }
-
     public function inscribirse(Conferencia $conferencia)
     {
        Auth::user()->persona->suscripciones()->updateOrCreate([
