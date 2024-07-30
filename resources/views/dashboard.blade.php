@@ -412,7 +412,7 @@
                                         <td class="px-6 py-4">
                                             <div class="flex items-center">
                                                 <div>
-                                                    <button class="button bg-slate-50 p-2 font-bold rounded-md"
+                                                    <a class="button bg-slate-50 p-2 font-bold rounded-md" href="{{ route('conferencia', $conferencia->evento->id) }}"
                                                         wire:click="viewDetails({{ $conferencia->id }})">
                                                         <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -423,7 +423,7 @@
                                                                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                         </svg>
                                                         Ver
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
@@ -439,6 +439,9 @@
             <div
                 class="top-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="title">Inscripciones</div>
+                @if ($conferenciass->isEmpty())
+                <h1 class="text-gray-300  items-center ml-16 mr-16 text-center mt-10">No hay inscripciones a las conferencias</h1>
+                @else
                 <ul class="top-sales-details">
                     @foreach ($conferenciass as $suscripcion )
                     <li>
@@ -454,10 +457,11 @@
                                 </p>
                             </div>
                         </a>
-                        <span class="price">{{$suscripcion->conferencia_count}}</span>
+                      <span class="price">{{$suscripcion->conferencia_count}}</span>
                     </li>
                     @endforeach    
                 </ul>
+                @endif
             </div>
         </div>
 </x-layouts.app>
