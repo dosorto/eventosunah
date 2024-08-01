@@ -74,7 +74,7 @@
                                     <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
                                     <td class="px-6 py-4">
-                                        <button wire:click="viewDetails({{ $nombreevento->id }})"
+                                        <a href="{{ route('reporteEvento', ['evento' => $nombreevento->id]) }}"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -87,7 +87,7 @@
 
 
                                             Ver más
-                                        </button>
+                                        </a>
                                         <a href="{{ route('conferencia', ['evento' => $nombreevento->id]) }}"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"

@@ -374,7 +374,7 @@
                                     <tr class="bg-white dark:bg-gray-800 text-gray-600">
                                         <td class="px-6 py-4 ">
                                             <div class="flex items
-                                                                        -center">
+                                                                            -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
                                                     </p>
@@ -383,7 +383,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                                        -center">
+                                                                            -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}
                                                     </p>
@@ -392,7 +392,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                                        -center">
+                                                                            -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}
                                                     </p>
@@ -401,7 +401,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items
-                                                                        -center">
+                                                                            -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">
                                                         {{ $conferencia->conferencista->persona->nombre }}
@@ -412,11 +412,12 @@
                                         <td class="px-6 py-4">
                                             <div class="flex items-center">
                                                 <div>
-                                                    <a class="button bg-slate-50 p-2 font-bold rounded-md" href="{{ route('conferencia', $conferencia->evento->id) }}"
+                                                    <a class="button bg-slate-50 p-2 font-bold rounded-md"
+                                                        href="{{ route('conferencia', $conferencia->evento->id) }}"
                                                         wire:click="viewDetails({{ $conferencia->id }})">
-                                                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            fill="none" viewBox="0 0 24 24">
+                                                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-800"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" fill="none" viewBox="0 0 24 24">
                                                             <path stroke="currentColor" stroke-width="2"
                                                                 d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
                                                             <path stroke="currentColor" stroke-width="2"
@@ -440,27 +441,33 @@
                 class="top-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="title">Inscripciones</div>
                 @if ($conferenciass->isEmpty())
-                <h1 class="text-gray-300  items-center ml-16 mr-16 text-center mt-10">No hay inscripciones a las conferencias</h1>
+                    <h1 class="text-gray-300  items-center ml-16 mr-16 text-center mt-10">No hay inscripciones a las
+                        conferencias</h1>
                 @else
-                <ul class="top-sales-details">
-                    @foreach ($conferenciass as $suscripcion )
-                    <li>
-                        <a href="#">
-                        <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
-                        alt="Imagen Conferencia" class="rounded-t-lg" />
-                            <div class="flex-1 min-w-0">
-                                <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 190px;" class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                {{ $suscripcion->conferencia->nombre }}
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    {{ $suscripcion->conferencia->fecha }}
-                                </p>
-                            </div>
-                        </a>
-                      <span class="price">{{$suscripcion->conferencia_count}}</span>
-                    </li>
-                    @endforeach    
-                </ul>
+                    <ul class="top-sales-details">
+                        @foreach ($conferenciass as $suscripcion)
+                        @if (!$suscripcion->unique_subscriptions == 0)
+                        
+                        @endif
+                            <li>
+                                <a href="#">
+                                    <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+                                        alt="Imagen Conferencia" class="rounded-t-lg" />
+                                    <div class="flex-1 min-w-0">
+                                        <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;"
+                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ $suscripcion->nombre }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ $suscripcion->fecha }}
+                                        </p>
+                                    </div>
+                                </a>
+                                <span class="price">{{$suscripcion->unique_subscriptions}} inscritos
+                                </span>
+                            </li>
+                        @endforeach    
+                    </ul>
                 @endif
             </div>
         </div>

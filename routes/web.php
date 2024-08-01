@@ -1,7 +1,8 @@
 <?php
 use App\Http\Controllers\EventoVistaController;
-use App\Livewire\ReporteEventos;
+use App\Livewire\ReporteEvento\ReporteEventos;
 use App\Livewire\Tipoperfil\Tipoperfiles;
+use App\Livewire\VistaDiplomas;
 use App\Models\Evento;
 use App\Models\Persona;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +57,8 @@ Route::middleware([
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/conferencias-inscritas', ConferenciasInscritas::class)->name('conferencias-inscritas');
-    Route::get('/reporteEvento', ReporteEventos::class)->name('reporteEvento');
+    Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
+    Route::get('/vistaDiploma', VistaDiplomas::class)->name('vistaDiploma');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
