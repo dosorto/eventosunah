@@ -14,7 +14,7 @@
 
                 }
 
-                .certificate {
+                .certificado {
                     background-color: white;
                     width: 800px;
                     height: 500px;
@@ -43,9 +43,9 @@
                     border-radius: 10px;
                 }
 
-                .certificate-header,
-                .certificate-body,
-                .team-member,
+                .certificado-header,
+                .certificado-body,
+                .firmas,
                 .sello {
                     position: relative;
                     text-align: center;
@@ -53,14 +53,14 @@
                     color: black;
                 }
 
-                .certificate-title {
+                .certificado-title {
                     font-size: 3.6em;
                     color: black;
                     font-weight: 800;
                     padding: 0;
                 }
 
-                .certificate-title2 {
+                .certificado-title2 {
                     font-size: 2em;
                     color: black;
                     font-weight: 600;
@@ -68,7 +68,7 @@
                     padding: 0;
                 }
 
-                .certificate-title3 {
+                .certificado-title3 {
                     font-size: 1em;
                     margin: 5px 0;
                     padding: 0;
@@ -82,7 +82,7 @@
                     margin: 15px 0;
                 }
 
-                .certificate-body {
+                .certificado-body {
                     text-align: center;
                     font-size: 12px;
                     padding: 0 7%;
@@ -100,17 +100,18 @@
                     width: 64px;
                 }
 
-                .team-members {
+                .firmass {
                     display: flex;
                     justify-content: space-between;
                     margin-top: 1px;
-                    font-size: 12px;
+                    font-size: 11px;
                     margin-left: 70px;
                     margin-right: 70px;
+                    font-weight: bold;
 
                 }
 
-                .team-member {
+                .firmas {
                     text-align: center;
                     margin: 0 10px;
                 }
@@ -119,25 +120,24 @@
         </header>
 
         <body>
-            <div class="p-4 sm:mx-64 mt-20 certificate">
+            <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
                     <img class="fondo" src="{{ asset('Logo/Certificado.png')}}" />
                 </div>
-                <div class="certificate-header">
-                    <div class="certificate-title">CERTIFICADO</div>
-                    <div class="certificate-title2">DE RECONOCIMIENTO</div>
-                    <div class="certificate-title3">OTORGADO A:</div>
-                    <div class="recipient-name">Acxel Aplicano</div>
+                <div class="certificado-header">
+                    <div class="certificado-title">CERTIFICADO</div>
+                    <div class="certificado-title2">DE RECONOCIMIENTO</div>
+                    <div class="certificado-title3">OTORGADO A:</div>
+                    <div class="recipient-name">Acxel Fernando Aplicano</div>
                 </div>
-                <div class="certificate-body">
-                    POR HABER CONCLUIDO EXITOSAMENTE EL DIPLOMADO EN MARKETING Y COMUNICACIÓN DIGITAL DE MODALIDAD
-                    ONLINE.
+                <div class="certificado-body">
+                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt praesentium enim repellendus iure, libero sed corrupti voluptatum impedit cum! Earum sint molestias corporis voluptas explicabo eligendi nihil reiciendis voluptatibus delectus?
                 </div>
                 <div class="sello">
-                    <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
+                <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
                 </div>
-                <div class="team-members">
-                    <div class="team-member">
+                <div class="firmass">
+                    <div class="firmas">
                         <ul>
                             <li>
                                 <ul
@@ -147,7 +147,7 @@
                         <div>MIEMBRO DEL EQUIPO</div>
                         <div>AÑADIR ROL AQUÍ</div>
                     </div>
-                    <div class="team-member">
+                    <div class="firmas">
                         <ul>
                             <li>
                                 <ul
@@ -157,7 +157,7 @@
                         <div>MIEMBRO DEL EQUIPO</div>
                         <div>AÑADIR ROL AQUÍ</div>
                     </div>
-                    <div class="team-member">
+                    <div class="firmas">
                         <ul>
                             <li>
                                 <ul

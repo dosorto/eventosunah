@@ -374,7 +374,7 @@
                                     <tr class="bg-white dark:bg-gray-800 text-gray-600">
                                         <td class="px-6 py-4 ">
                                             <div class="flex items
-                                                                            -center">
+                                                                                -center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
                                                     </p>
@@ -382,8 +382,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items
-                                                                            -center">
+                                            <div class="flex items-center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}
                                                     </p>
@@ -391,8 +390,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items
-                                                                            -center">
+                                            <div class="flex items-center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}
                                                     </p>
@@ -400,8 +398,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <div class="flex items
-                                                                            -center">
+                                            <div class="flex items-center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">
                                                         {{ $conferencia->conferencista->persona->nombre }}
@@ -412,7 +409,7 @@
                                         <td class="px-6 py-4">
                                             <div class="flex items-center">
                                                 <div>
-                                                    <a class="button bg-slate-50 p-2 font-bold rounded-md"
+                                                    <a class="button dark:text-gray-800 bg-gray-50 dark:bg-gray-500 p-2 font-bold rounded-md"
                                                         href="{{ route('conferencia', $conferencia->evento->id) }}"
                                                         wire:click="viewDetails({{ $conferencia->id }})">
                                                         <svg class="w-6 h-6 text-gray-800 dark:text-gray-800"
@@ -446,9 +443,9 @@
                 @else
                     <ul class="top-sales-details">
                         @foreach ($conferenciass as $suscripcion)
-                        @if (!$suscripcion->unique_subscriptions == 0)
-                        
-                        @endif
+                            @if (!$suscripcion->unique_subscriptions == 0)
+
+                            @endif
                             <li>
                                 <a href="#">
                                     <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
