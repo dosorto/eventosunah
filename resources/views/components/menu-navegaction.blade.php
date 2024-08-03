@@ -197,23 +197,43 @@
          @endcan
          </li>
          <li>
+            @can("admin-miAsistencia")
+               <x-nav-link href="{{ route('conferencias-inscritas') }}" :active="request()->routeIs('conferencias-inscritas')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd"
+                     d="M18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z"
+                     clip-rule="evenodd" />
+                  <path fill-rule="evenodd"
+                     d="M15.026 21.534A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c2.51 0 4.802.924 6.558 2.45l-7.635 7.636L7.707 8.87a1 1 0 0 0-1.414 1.414l3.923 3.923a1 1 0 0 0 1.414 0l8.3-8.3A9.956 9.956 0 0 1 22 12a9.994 9.994 0 0 1-.466 3.026A2.49 2.49 0 0 0 20 14.5h-.5V14a2.5 2.5 0 0 0-5 0v.5H14a2.5 2.5 0 0 0 0 5h.5v.5c0 .578.196 1.11.526 1.534Z"
+                     clip-rule="evenodd" />
+                  </svg>
+
+                  <span class="flex-1 ms-3 whitespace-nowrap">Mis conferencias</span>
+
+               </x-nav-link>
+            @endcan
+         </li>
+         <li>
             @can("admin-asistencia")
-            <x-nav-link href="{{ route('conferencias-inscritas') }}" :active="request()->routeIs('conferencias-inscritas')"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
-               <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                 <path fill-rule="evenodd"
-                   d="M18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z"
-                   clip-rule="evenodd" />
-                 <path fill-rule="evenodd"
-                   d="M15.026 21.534A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c2.51 0 4.802.924 6.558 2.45l-7.635 7.636L7.707 8.87a1 1 0 0 0-1.414 1.414l3.923 3.923a1 1 0 0 0 1.414 0l8.3-8.3A9.956 9.956 0 0 1 22 12a9.994 9.994 0 0 1-.466 3.026A2.49 2.49 0 0 0 20 14.5h-.5V14a2.5 2.5 0 0 0-5 0v.5H14a2.5 2.5 0 0 0 0 5h.5v.5c0 .578.196 1.11.526 1.534Z"
-                   clip-rule="evenodd" />
-               </svg>
+               <x-nav-link href="{{ route('asistencia') }}" :active="request()->routeIs('asistencia')"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-gray-700 group">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd"
+                     d="M18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z"
+                     clip-rule="evenodd" />
+                  <path fill-rule="evenodd"
+                     d="M15.026 21.534A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c2.51 0 4.802.924 6.558 2.45l-7.635 7.636L7.707 8.87a1 1 0 0 0-1.414 1.414l3.923 3.923a1 1 0 0 0 1.414 0l8.3-8.3A9.956 9.956 0 0 1 22 12a9.994 9.994 0 0 1-.466 3.026A2.49 2.49 0 0 0 20 14.5h-.5V14a2.5 2.5 0 0 0-5 0v.5H14a2.5 2.5 0 0 0 0 5h.5v.5c0 .578.196 1.11.526 1.534Z"
+                     clip-rule="evenodd" />
+                  </svg>
 
-               <span class="flex-1 ms-3 whitespace-nowrap">Asistencia</span>
+                  <span class="flex-1 ms-3 whitespace-nowrap">Asistencia</span>
 
-            </x-nav-link>
-         @endcan
+               </x-nav-link>
+            @endcan
+         </li>
          <li>
             @can("admin-nacionalidad")
             <x-nav-link href="{{ route('nacionalidad') }}" :active="request()->routeIs('nacionalidad')"
@@ -281,7 +301,7 @@
                  <path
                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                </svg>
-               <span class="flex-1 ms-3 whitespace-nowrap">Departamento</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Diploma</span>
             </x-nav-link>
          @endcan
          </li>
