@@ -22,7 +22,8 @@ class EventoFactory extends Factory
         $LocalidadId = Localidad::inRandomOrder()->first()->id;
         
         return [
-           'nombreevento' => $this->faker->sentence,
+            'logo' => $this->faker->imageUrl(),
+            'nombreevento' => $this->faker->sentence,
             'descripcion' => $this->faker->paragraph,
             'organizador' => $this->faker->company,
             'fechainicio' => $this->faker->date,
