@@ -4,36 +4,41 @@ namespace App\Livewire\Asistencia;
 
 use App\Models\Persona;
 use App\Models\Evento;
+use App\Models\Suscripcion;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Asistencia;
+use App\Models\Conferencia;
+use Carbon\Carbon;
 
 class Asistencias extends Component
 {
     use WithPagination;
 
-    public $Fecha, $Asistencia, $IdPersona, $IdEvento, $asistencia_id, $search;
+    public $Fecha, $Asistencia, $IdSuscripcion, $asistencia_id, $search;
     public $isOpen = false;
 
-    public $personas;
-    public $eventos;
+    public $suscripciones;
+
 
     public $inputSearchPersona = '';
-    public $inputSearchEvento = '';
+    public $inputSearchConferencia = '';
     public $searchPersonas = [];
-    public $searchEventos = [];
+    public $searchConferencia = [];
 
+    public $fechaActual;
     public function mount()
     {
-        $this->personas = Persona::all();
-        $this->eventos = Evento::all();
+        $this->suscripciones = Suscripcion::all();
+        $this->fechaActual = Carbon::now();
+
     }
 
     public function render()
     {
-        $asistencias = Asistencia::with(['persona', 'evento'])
+        $asistencias = Asistencia::with('suscripcion')
             ->where('Fecha', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         return view('livewire.Asistencia.asistencias', [
@@ -59,57 +64,39 @@ class Asistencias extends Component
 
     private function resetInputFields()
     {
-        $this->Fecha = '';
+        $this->Fecha = Carbon::now();
         $this->Asistencia = '';
-        $this->IdPersona = '';
-        $this->IdEvento = '';
+        $this->IdSuscripcion = '';
         $this->asistencia_id = null;
         $this->inputSearchPersona = '';
-        $this->inputSearchEvento = '';
+        $this->inputSearchConferencia = '';
         $this->searchPersonas = [];
-        $this->searchEventos = [];
+        $this->searchConferencia = [];
     }
 
     public function store()
     {
         $this->validate([
-            'Fecha' => 'required',
-            'Asistencia' => 'required',
-            'IdPersona' => 'required',
-            'IdEvento' => 'required',
+            'Asistencia' => 'required|boolean',
+            'IdSuscripcion' => 'required',
         ]);
 
+
+        
         Asistencia::updateOrCreate(['id' => $this->asistencia_id], [
-            'Fecha' => $this->Fecha,
+            'Fecha' => $this->fechaActual,
             'Asistencia' => $this->Asistencia,
-            'IdPersona' => $this->IdPersona,
-            'IdEvento' => $this->IdEvento,
+            'IdSuscripcion' => $this->IdSuscripcion,
         ]);
 
         session()->flash('message', $this->asistencia_id ? 'Asistencia actualizada correctamente!' : 'Asistencia creada correctamente!');
 
         $this->closeModal();
         $this->resetInputFields();
-        
+
     }
 
-    public function edit($id)
-    {
-        $asistencia = Asistencia::findOrFail($id);
-        $this->asistencia_id = $id;
-        $this->Fecha = $asistencia->Fecha;
-        $this->Asistencia = $asistencia->Asistencia;
-        $this->IdPersona = $asistencia->IdPersona;
-        $this->IdEvento = $asistencia->IdEvento;
 
-        $persona = Persona::find($this->IdPersona);
-        $evento = Evento::find($this->IdEvento);
-
-        $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
-        $this->inputSearchEvento = $evento->nombreevento;
-
-        $this->openModal();
-    }
 
     public function delete($id)
     {
