@@ -30,6 +30,7 @@ class PermissionSeeder extends Seeder
             'admin-usuario',
             'admin-Participante',
             'admin-diploma',
+            'admin-miAsistencia',
          ];
          
          foreach ($permissions as $permission) {
