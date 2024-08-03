@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Suscripcion;
 use Illuminate\Http\Request;
 
 use App\Models\Evento;
@@ -20,6 +21,8 @@ class DashboardController extends Controller
         // contar la cantidad de eventos que hay en la base de datos
         $cantidadEventos = Evento::count();
 
+        $conferenciass = Suscripcion::withCount('conferencia')->get();
+
         // ordenar las conferencias por fecha fecha y seleccionar las primeras 10
         $conferencias = Conferencia::orderBy('fecha', 'desc')->take(5)->get();
 
@@ -34,13 +37,15 @@ class DashboardController extends Controller
             ->count();
 
 
-
         return view('dashboard', [
             'cantidadEventos' => $cantidadEventos,
             'eventosPresenciales' => $eventosPresenciales,
             'eventosVirtuales' => $eventosVirtuales,
             'conferencias' => $conferencias,
-            'now' => $now
+            'now' => $now,
+            'conferenciass' => $conferenciass
+
+            
         ]);
     }
 }

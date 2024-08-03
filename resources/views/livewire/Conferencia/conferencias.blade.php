@@ -128,20 +128,43 @@
 
     <!-- Modal for Detailed View -->
     @if ($showDetails)
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-4xl">
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold mb-4">Detalles de la Conferencia</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Detalles del Evento</h3>
                     <div>
-                        <p><strong>Evento:</strong> {{ $selectedConferencia->evento->nombreevento }}</p>
-                        <p><strong>Nombre:</strong> {{ $selectedConferencia->nombre }}</p>
-                        <p><strong>Descripción:</strong> {{ $selectedConferencia->descripcion }}</p>
-                        <p><strong>Fecha:</strong> {{ $selectedConferencia->fecha }}</p>
-                        <p><strong>Hora Inicio:</strong> {{ $selectedConferencia->horaInicio }}</p>
-                        <p><strong>Hora Fin:</strong> {{ $selectedConferencia->horaFin }}</p>
-                        <p><strong>Lugar:</strong> {{ $selectedConferencia->lugar }}</p>
-                        <p><strong>Link Reunión:</strong> <a href="{{ $selectedConferencia->linkreunion }}" target="_blank">{{ $selectedConferencia->linkreunion }}</a></p>
-                        <p><strong>Conferencista:</strong> @if ($selectedConferencia->conferencista)
+                        <table class=" text-sm  text-left rtl:text-left text-gray-500 dark:text-gray-400">
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Evento:</strong> </td><td class="px-6 py-2"> {{ $selectedConferencia->evento->nombreevento }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Nombre:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->nombre }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Descripción:</strong></td><td class="px-6 py-2">   {{ $selectedConferencia->descripcion }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Fecha:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->fecha }}</p></td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Hora Inicio:</strong> </td><td class="px-6 py-2"> {{ $selectedConferencia->horaInicio }}</p></td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Hora Fin:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->horaFin }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Lugar:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->lugar }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Link Reunión:</strong></td><td class="px-6 py-2">  <a href="{{ $selectedConferencia->linkreunion }}" target="_blank">{{ $selectedConferencia->linkreunion }}</a></td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Conferencista:</strong></td><td class="px-6 py-2">  @if ($selectedConferencia->conferencista)
                             @if ($selectedConferencia->conferencista->persona)
                                 {{ $selectedConferencia->conferencista->persona->nombre }}
                                 {{ $selectedConferencia->conferencista->persona->apellido ?? '' }}
@@ -150,8 +173,9 @@
                             @endif
                         @else
                             N/A
-                        @endif
-                        </p>
+                        @endif</td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="mt-4">
                         <button wire:click="closeDetails()"
