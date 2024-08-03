@@ -1,3 +1,4 @@
+<html>
 <div>
     <!-- Modal -->
     <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400" x-show="isOpen">
@@ -26,29 +27,6 @@
                                 </svg>
                                 <span class="sr-only">Cerrar modal</span>
                             </button>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Título:</label>
-                            <select wire:model="titulo"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="titulo">
-                                <option value="" disabled selected>Seleccione un título</option>
-                                <option value="Doctorado">Doctorado</option>
-                                <option value="Máster">Máster</option>
-                                <option value="Licenciatura">Licenciatura</option>
-                                <option value="Diplomado">Diplomado</option>
-                                <!-- Agrega más opciones aquí según sea necesario -->
-                            </select>
-                            @error('titulo') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
-                            <textarea wire:model="descripcion"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="descripcion" placeholder="Descripción"></textarea>
-                            @error('descripcion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="mb-4">
@@ -82,24 +60,26 @@
                         </div>
 
                         <div class="mb-4">
+                            <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Título:</label>
+                            <select wire:model="titulo"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="titulo">
+                                <option value="" disabled selected>Seleccione un título</option>
+                                <option value="Doctorado">Doctorado</option>
+                                <option value="Máster">Máster</option>
+                                <option value="Licenciatura">Licenciatura</option>
+                                <option value="Diplomado">Diplomado</option>
+                                <!-- Agrega más opciones aquí según sea necesario -->
+                            </select>
+                            @error('titulo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        
+                        <div class="mb-4">
                             <label for="correo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Electrónico:</label>
                             <input type="email" wire:model="correo" placeholder="Ingrese su correo"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="correo" required>
                             @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="mb-4 estudiante">
-                            <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
-                            <input type="email" wire:model="correoInstitucional" placeholder="Ingrese su correo institucional"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="correoInstitucional">
-                            @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="mb-4 estudiante">
-                            <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de cuenta:</label>
-                            <input type="text" wire:model="numeroCuenta" placeholder="Ingrese su cuenta de estudiante"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="numeroCuenta">
-                            @error('numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="mb-4">
@@ -122,13 +102,6 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="telefono" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Teléfono:</label>
-                            <input type="tel" wire:model="telefono" placeholder="Ingrese su teléfono"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="telefono" required>
-                            @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="mb-4">
                             <label for="IdNacionalidad" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nacionalidad:</label>
                             <select wire:model="IdNacionalidad"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
@@ -141,17 +114,12 @@
                             @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
+                        
                         <div class="mb-4">
-                            <label for="IdTipoPerfil" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Tipo de Perfil:</label>
-                            <select wire:model="IdTipoPerfil"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="IdTipoPerfil" required>
-                                <option value="" disabled selected>Seleccione un tipo de perfil</option>
-                                @foreach($tipoperfiles as $tipoPerfil)
-                                        <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
-                                    @endforeach
-                            </select>
-                            @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
+                            <label for="telefono" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Teléfono:</label>
+                            <input type="tel" wire:model="telefono" placeholder="Ingrese su teléfono"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="telefono" required>
+                            @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="mb-4">
@@ -160,6 +128,45 @@
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="direccion" required>
                             @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
+                                                    
+                        <div class="mb-4">
+                                    <label for="IdTipoPerfil" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Tipo de Perfil:</label>
+                                    <select wire:model="IdTipoPerfil"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                        id="IdTipoPerfil" required>
+                                        <option value="" disabled selected>Seleccione un tipo de perfil</option>
+                                        @foreach($tipoperfiles as $tipoPerfil)
+                                            <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                        <div class="mb-4 estudiante" style="display: none;">
+                                <label id="correoLabel" for="correo_institucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                                <input type="email" wire:model="correoInstitucional" id="correo_institucional" placeholder="Ingrese su correo institucional"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                    @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="mb-4 estudiante" style="display: none;">
+                                    <label id="numeroLabel" for="cuenta_estudiante" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
+                                    <input type="text" wire:model="numeroCuenta" id="cuenta_estudiante" placeholder="Ingrese su cuenta de estudiante"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                    @error('numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                                                        
+                        <div class="mb-4">
+                            <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
+                            <textarea wire:model="descripcion"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="descripcion" placeholder="Descripción"></textarea>
+                            @error('descripcion') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                      
+                       
                     </div>
 
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
@@ -180,4 +187,7 @@
             </div>
         </div>
     </div>
+  
 </div>
+
+</html>

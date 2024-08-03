@@ -17,21 +17,22 @@ class Conferencistas extends Component
     public $isOpen = 0;
 
     protected $rules = [
-        'titulo' => 'required|string|max:255',
-        'descripcion' => 'nullable|string',
         'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'dni' => 'required|string|max:20',
         'nombre' => 'required|string|max:255',
         'apellido' => 'required|string|max:255',
-        'correo' => 'required|email|max:255',
-        'correoInstitucional' => 'nullable|email|max:255',
+        'titulo' => 'required|string|max:255',      
+        'correo' => 'nullable|email|max:255',
         'fechaNacimiento' => 'nullable|date',
         'sexo' => 'nullable|string|max:10',
-        'direccion' => 'nullable|string|max:255',
         'telefono' => 'nullable|string|max:20',
-        'numeroCuenta' => 'nullable|string|max:20',
         'IdNacionalidad' => 'required|exists:nacionalidads,id',
+        'descripcion' => 'nullable|string',
+        'direccion' => 'nullable|string|max:255',
         'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+        'numeroCuenta' => 'nullable|string|max:20',
+        'correoInstitucional' => 'nullable|email|max:255',
+
     ];
 
     public $nacionalidades;
@@ -94,21 +95,21 @@ class Conferencistas extends Component
         try {
             // Validar datos
             $this->validate([
-                'titulo' => 'required|string|max:255',
-                'descripcion' => 'nullable|string',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'dni' => 'required|string|max:20',
                 'nombre' => 'required|string|max:255',
                 'apellido' => 'required|string|max:255',
-                'correo' => 'required|email|max:255',
-                'correoInstitucional' => 'nullable|email|max:255',
+                'titulo' => 'required|string|max:255',      
+                'correo' => 'nullable|email|max:255',
                 'fechaNacimiento' => 'nullable|date',
                 'sexo' => 'nullable|string|max:10',
-                'direccion' => 'nullable|string|max:255',
                 'telefono' => 'nullable|string|max:20',
-                'numeroCuenta' => 'nullable|string|max:20',
                 'IdNacionalidad' => 'required|exists:nacionalidads,id',
+                'descripcion' => 'nullable|string',
+                'direccion' => 'nullable|string|max:255',
                 'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+                'numeroCuenta' => 'nullable|string|max:20',
+                'correoInstitucional' => 'nullable|email|max:255',
             ]);
     
             // Manejo de la foto
@@ -126,21 +127,21 @@ class Conferencistas extends Component
     
             // Datos para guardar
             $data = [
-                'Titulo' => $this->titulo,
-                'Descripcion' => $this->descripcion,
                 'Foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
                 'dni' => $this->dni,
                 'nombre' => $this->nombre,
                 'apellido' => $this->apellido,
-                'correo' => $this->correo,
-                'correoInstitucional' => $this->correoInstitucional,
+                'Titulo' => $this->titulo,             
+                'correo' => $this->correo,      
                 'fechaNacimiento' => $this->fechaNacimiento,
                 'sexo' => $this->sexo,
-                'direccion' => $this->direccion,
                 'telefono' => $this->telefono,
-                'numeroCuenta' => $this->numeroCuenta,
                 'IdNacionalidad' => $this->IdNacionalidad,
+                'Descripcion' => $this->descripcion,
+                'direccion' => $this->direccion,
                 'IdTipoPerfil' => $this->IdTipoPerfil,
+                'correoInstitucional' => $this->correoInstitucional,
+                'numeroCuenta' => $this->numeroCuenta,
                 'created_by' => $createdBy,
             ];
     
@@ -158,6 +159,7 @@ class Conferencistas extends Component
             // Cerrar el modal y reiniciar los campos
             $this->closeModal();
             $this->resetInputFields();
+            $this->render(); 
         } catch (\Exception $e) {
             dd($e->getMessage()); // Muestra el mensaje de error si algo sale mal
         }
@@ -168,21 +170,20 @@ class Conferencistas extends Component
     {
         $conferencista = Conferencista::findOrFail($id);
         $this->conferencista_id = $id;
-        $this->titulo = $conferencista->Titulo;
-        $this->descripcion = $conferencista->Descripcion;
         $this->dni = $conferencista->dni;
         $this->nombre = $conferencista->nombre;
         $this->apellido = $conferencista->apellido;
+        $this->titulo = $conferencista->Titulo; 
         $this->correo = $conferencista->correo;
-        $this->correoInstitucional = $conferencista->correoInstitucional;
         $this->fechaNacimiento = $conferencista->fechaNacimiento;
         $this->sexo = $conferencista->sexo;
-        $this->direccion = $conferencista->direccion;
+        $this->IdNacionalidad = $conferencista->IdNacionalidad;   
         $this->telefono = $conferencista->telefono;
-        $this->numeroCuenta = $conferencista->numeroCuenta;
-        $this->IdNacionalidad = $conferencista->IdNacionalidad;
+        $this->descripcion = $conferencista->Descripcion;
+        $this->direccion = $conferencista->direccion;
         $this->IdTipoPerfil = $conferencista->IdTipoPerfil;
-
+        $this->correoInstitucional = $conferencista->correoInstitucional;
+        $this->numeroCuenta = $conferencista->numeroCuenta;
         $this->openModal();
     }
 
@@ -190,6 +191,7 @@ class Conferencistas extends Component
     {
         Conferencista::find($id)->delete();
         session()->flash('message', 'Conferencista eliminado correctamente!');
+        $this->render(); 
     }
 }
 ?>

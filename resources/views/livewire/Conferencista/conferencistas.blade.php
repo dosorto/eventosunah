@@ -43,21 +43,21 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                         <tr>
                             <th scope="col" class="px-6 py-3">No.</th>
-                            <th scope="col" class="px-6 py-3">Título</th>
-                            <th scope="col" class="px-6 py-3">Descripción</th>
                             <th scope="col" class="px-6 py-3">Foto</th>
                             <th scope="col" class="px-6 py-3">DNI</th>
                             <th scope="col" class="px-6 py-3">Nombre</th>
                             <th scope="col" class="px-6 py-3">Apellido</th>
-                            <th scope="col" class="px-6 py-3">Correo</th>
-                            <th scope="col" class="px-6 py-3">Correo Institucional</th>
-                            <th scope="col" class="px-6 py-3">Número de Cuenta</th>
+                            <th scope="col" class="px-6 py-3">Título</th>                        
+                            <th scope="col" class="px-6 py-3">Correo</th>                          
                             <th scope="col" class="px-6 py-3">Fecha Nacimiento</th>
                             <th scope="col" class="px-6 py-3">Sexo</th>
-                            <th scope="col" class="px-6 py-3">Dirección</th>
-                            <th scope="col" class="px-6 py-3">Teléfono</th>
                             <th scope="col" class="px-6 py-3">Nacionalidad</th>
+                            <th scope="col" class="px-6 py-3">Teléfono</th>
+                            <th scope="col" class="px-6 py-3">Dirección</th>                            
                             <th scope="col" class="px-6 py-3">Tipo Perfil</th>
+                            <th scope="col" class="px-6 py-3">Correo Institucional</th>
+                            <th scope="col" class="px-6 py-3">Número de Cuenta</th>
+                            <th scope="col" class="px-6 py-3">Descripción</th>
                             <th scope="col" class="px-6 py-3">Acciones</th>
                         </tr>
                     </thead>
@@ -65,8 +65,6 @@
                         @foreach($conferencistas as $conferencista)
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4 dark:text-white">{{ $conferencista->id }}</td>
-                                <td class="px-6 py-4">{{ $conferencista->Titulo }}</td>
-                                <td class="px-6 py-4">{{ $conferencista->Descripcion }}</td>
                                 <td class="px-6 py-4">
                                     @if($conferencista->Foto)
                                         <img src="{{ asset(str_replace('public', 'storage', $conferencista->Foto)) }}" alt="Foto" class="w-12 h-12 object-cover rounded-full">
@@ -77,15 +75,17 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->dni }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->nombre }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->apellido }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->Titulo }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->correo }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->correoInstitucional }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->numeroCuenta }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->fechaNacimiento }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->sexo }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->direccion }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->telefono }}</td>
                                 <td class="px-6 py-4">{{ $conferencista->nacionalidad ? $conferencista->nacionalidad->nombreNacionalidad : 'Sin Nacionalidad' }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->telefono }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->direccion }}</td>
                                 <td class="px-6 py-4">{{ $conferencista->tipoPerfil ? $conferencista->tipoPerfil->tipoperfil : 'Sin Perfil' }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->correoInstitucional }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->numeroCuenta }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $conferencista->Descripcion }}</td>
                                 <td class="px-6 py-4">
                                     <button wire:click="edit({{ $conferencista->id }})"
                                         class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">

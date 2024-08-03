@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('conferencistas', function (Blueprint $table) {
             $table->id();
-            $table->string('Titulo');
-            $table->string('Descripcion', 500);
-            $table->string('Foto');
+            $table->string('Foto')->nullable();
             $table->string('dni')->unique();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('correo')->unique();
-            $table->string('correoInstitucional')->nullable()->unique();
+            $table->string('Titulo');
+            $table->string('correo')->nullable()->unique();
             $table->date('fechaNacimiento');
             $table->string('sexo');
-            $table->string('direccion');
             $table->string('telefono');
-            $table->string('numeroCuenta')->nullable()->unique();
             $table->unsignedBigInteger('IdNacionalidad');
+            $table->string('Descripcion', 500);
+            $table->string('direccion');
             $table->unsignedBigInteger('IdTipoPerfil');
+            $table->string('correoInstitucional')->nullable()->unique();
+            $table->string('numeroCuenta')->nullable()->unique();
             $table->integer('created_by')->nullable(); // Permitir valores nulos
             $table->integer('deleted_by')->nullable();
             $table->integer('updated_by')->nullable();
