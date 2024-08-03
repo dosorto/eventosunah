@@ -13,10 +13,8 @@ class Localidades extends Component
 
     public $localidad, $localidad_id, $search;
     public $isOpen = 0;
-    public $confirmingDelete = false;
-    public $IdAEliminar;
-    public $nombreAEliminar;
-    public $eventosAsociados = false;
+    public $showDeleteModal = false;
+    public $deleteId = null;
 
     public function render()
     {
@@ -69,26 +67,28 @@ class Localidades extends Component
 
         $this->openModal();
     }
-
+     
     public function confirmDelete($id)
     {
-        $localidad = Localidad::find($id);
-        $this->eventosAsociados = Evento::where('IdLocalidad', $id)->exists();
-        $this->IdAEliminar = $id;
-        $this->nombreAEliminar = $localidad->localidad;
-        $this->confirmingDelete = true;
-    }
+        $eventosAsociados = Evento::where('IdLocalidad', $id)->exists();
 
-    public function delete()
-    {
-        if ($this->eventosAsociados) {
-            session()->flash('message', 'No se puede eliminar la localidad porque tiene eventos asociados.');
-            $this->confirmingDelete = false;
-            return;
+        if ($eventosAsociados) {
+            session()->flash('message', 'No se puede eliminar la localidad porque está asociada a uno o más eventos.');
+        } else {
+            $this->deleteId = $id;
+            $this->showDeleteModal = true;
         }
 
         Localidad::destroy($this->IdAEliminar);
         session()->flash('message', 'Localidad eliminada correctamente!');
         $this->confirmingDelete = false;
+    }
+
+    public function deleteConfirmed()
+    {
+        Localidad::find($this->deleteId)->delete();
+        $this->deleteId = null;
+        $this->showDeleteModal = false;
+        session()->flash('message', 'Localidad eliminada correctamente!');
     }
 }
