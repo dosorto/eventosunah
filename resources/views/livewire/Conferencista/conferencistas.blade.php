@@ -6,7 +6,7 @@
     <div class="dark:bg-gray-900">
         <div class="">
             <div
-                class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 @if (session()->has('message'))
                     <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
                         role="alert">
@@ -44,14 +44,25 @@
                                 placeholder="Buscar...">
                         </div>
                     </div>
-                    <table class="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                             <tr>
                                 <th scope="col" class="px-6 py-3">No.</th>
-                                <th scope="col" class="px-6 py-3">Título</th>
-                                <th scope="col" class="px-6 py-3">Descripción</th>
                                 <th scope="col" class="px-6 py-3">Foto</th>
-                                <th scope="col" class="px-6 py-3">Conferencista</th>
+                                <th scope="col" class="px-6 py-3">DNI</th>
+                                <th scope="col" class="px-6 py-3">Título</th>
+                                <th scope="col" class="px-6 py-3">Nombre</th>
+                                <th scope="col" class="px-6 py-3">Apellido</th>
+                                <th scope="col" class="px-6 py-3">Correo</th>
+                                <th scope="col" class="px-6 py-3">Fecha de Nacimiento</th>
+                                <th scope="col" class="px-6 py-3">Sexo</th>
+                                <th scope="col" class="px-6 py-3">Nacionalidad</th>
+                                <th scope="col" class="px-6 py-3">Número de Teléfono</th>
+                                <th scope="col" class="px-6 py-3">Dirección</th>
+                                <th scope="col" class="px-6 py-3">Tipo de Perfil</th>
+                                <th scope="col" class="px-6 py-3">Correo Institucional</th>
+                                <th scope="col" class="px-6 py-3">Número de Cuenta</th>
+                                <th scope="col" class="px-6 py-3">Descripción</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
@@ -59,18 +70,28 @@
                             @foreach($conferencistas as $conferencista)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4 dark:text-white">{{ $conferencista->id }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->Titulo }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->Descripcion }}</td>
                                     <td class="px-6 py-4">
-                                        @if($conferencista->Foto)
-                                            <img src="{{ asset(str_replace('public', 'storage', $conferencista->Foto)) }}"
+                                        @if($conferencista->foto)
+                                            <img src="{{ asset(str_replace('public', 'storage', $conferencista->foto)) }}"
                                                 alt="Foto" class="w-12 h-12 object-cover rounded-full">
                                         @else
                                             Sin foto
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->nombre }}
-                                        {{ $conferencista->persona->apellido }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->dni }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->titulo }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->nombre }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->apellido }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->correo }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->fechaNacimiento }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->sexo }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->nacionalidad->nombre }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->telefono }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->direccion }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->tipoPerfil->nombre }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->correoInstitucional }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->persona->numeroCuenta }}</td>
+                                    <td class="px-6 py-4">{{ $conferencista->descripcion }}</td>
                                     <td class="px-6 py-4">
                                     <button wire:click="edit({{ $conferencista->id }})"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
@@ -81,11 +102,9 @@
                                                     stroke-width="2"
                                                     d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
                                             </svg>
-
-
                                             Editar
                                         </button>
-                                        <button  wire:click="delete({{ $conferencista->id }})"
+                                        <button wire:click="delete({{ $conferencista->id }})"
                                             class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"

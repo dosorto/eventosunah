@@ -56,20 +56,104 @@
                             @endif
                         </div>
                         <div class="mb-4">
-                            <label for="persona" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Persona:</label>
-                            <input type="text" wire:model.live="inputSearchPersona"
+                            <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre:</label>
+                            <input type="text" wire:model="persona.nombre"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="persona" placeholder="Buscar persona...">
-                            @if (count($searchPersonas) > 0)
-                                <ul class="mt-2 bg-white border border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
-                                    @foreach($searchPersonas as $persona)
-                                        <li wire:click="selectPersona({{ $persona->id }})"
-                                            class="cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                            {{ $persona->nombre }} {{ $persona->apellido }}
-                                        </li>
+                                id="nombre" placeholder="Nombre">
+                            @error('persona.nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="apellido" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Apellido:</label>
+                            <input type="text" wire:model="persona.apellido"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="apellido" placeholder="Apellido">
+                            @error('persona.apellido') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="dni" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">DNI:</label>
+                            <input type="text" wire:model="persona.dni"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="dni" placeholder="DNI">
+                            @error('persona.dni') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="correo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo:</label>
+                            <input type="email" wire:model="persona.correo"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="correo" placeholder="Correo">
+                            @error('persona.correo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="fechaNacimiento" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha de Nacimiento:</label>
+                            <input type="date" wire:model="persona.fechaNacimiento"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="fechaNacimiento">
+                            @error('persona.fechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="sexo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sexo:</label>
+                            <select wire:model="persona.sexo"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="sexo">
+                                <option value="" disabled selected>Seleccione un sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                                <!-- Agrega más opciones si es necesario -->
+                            </select>
+                            @error('persona.sexo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="nacionalidad" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nacionalidad:</label>
+                            <select wire:model="persona.IdNacionalidad"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="nacionalidad">
+                                <option value="" disabled selected>Seleccione una nacionalidad</option>
+                                @foreach($nacionalidades as $nacionalidad)
+                                    <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombre }}</option>
+                                @endforeach
+                            </select>
+                            @error('persona.IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="telefono" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Teléfono:</label>
+                            <input type="text" wire:model="persona.telefono"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="telefono" placeholder="Número de Teléfono">
+                            @error('persona.telefono') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="direccion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Dirección:</label>
+                            <input type="text" wire:model="persona.direccion"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="direccion" placeholder="Dirección">
+                            @error('persona.direccion') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="tipoPerfil" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Tipo de Perfil:</label>
+                            <select wire:model="persona.IdTipoPerfil"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="tipoPerfil">
+                                <option value="" disabled selected>Seleccione un tipo de perfil</option>
+                                @foreach($tipoperfiles as $tipoPerfil)
+                                        <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
                                     @endforeach
-                                </ul>
-                            @endif
+                            </select>
+                            @error('persona.IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                            <input type="email" wire:model="persona.correoInstitucional"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="correoInstitucional" placeholder="Correo Institucional">
+                            @error('persona.correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
+                            <input type="text" wire:model="persona.numeroCuenta"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="numeroCuenta" placeholder="Número de Cuenta">
+                            @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-900">

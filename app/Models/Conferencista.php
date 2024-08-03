@@ -10,9 +10,17 @@ class Conferencista extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
+
+    protected $fillable = ['titulo', 'foto', 'descripcion', 'IdPersona'];
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
+
+   /* protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
     public function persona()
     {
         return $this->belongsTo(Persona::class, 'IdPersona');
-    }
+    }*/
 }

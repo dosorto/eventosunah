@@ -21,7 +21,7 @@ class ConferencistaFactory extends Factory
          'Titulo' => $this->faker->sentence,
          'Descripcion' => $this->faker->paragraph,
          'Foto' => $this->faker->imageUrl(),
-         'IdPersona' => $PersonaId,
+         'IdPersona' => Persona::factory(),
          'created_by' => 1
         ];
     }

@@ -30,4 +30,9 @@ class Persona extends BaseModel
     {
         return $this->hasMany(Suscripcion::class, 'IdPersona');
     }
+
+    public function conferencistas()
+    {
+        return $this->hasMany(Conferencista::class);
+    }
 }

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Conferencista;
+use App\Models\Persona;
+
 class ConferencistaSeeder extends Seeder
 {
     /**

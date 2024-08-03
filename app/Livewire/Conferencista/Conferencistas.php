@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire\Conferencista;
 
 use App\Models\Persona;
@@ -12,7 +11,7 @@ class Conferencistas extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $titulo, $descripcion, $foto, $IdPersona, $conferencista_id, $search;
+    public $titulo, $descripcion, $foto, $persona_id, $conferencista_id, $search;
     public $isOpen = 0;
     public $inputSearchPersona = '';
     public $searchPersonas = [];
@@ -20,23 +19,23 @@ class Conferencistas extends Component
     protected $rules = [
         'titulo' => 'required',
         'descripcion' => 'required',
-        'foto' => 'nullable|image|max:1024', 
-        'IdPersona' => 'required',
+        'foto' => 'nullable|image|max:1024',
+        'persona_id' => 'required|exists:personas,id',
     ];
-    public $personas;
+
     public function mount()
     {
-        $this->personas = Persona::all();
+        // Aquí se podría realizar alguna inicialización si es necesario
     }
 
     public function render()
     {
         $conferencistas = Conferencista::with('persona')
-            ->where('Titulo', 'like', '%'.$this->search.'%')
+            ->where('titulo', 'like', '%'.$this->search.'%')
             ->orderBy('id', 'ASC')
             ->paginate(5);
 
-        return view('livewire.Conferencista.conferencistas', ['conferencistas' => $conferencistas]);
+        return view('livewire.conferencista.conferencistas', ['conferencistas' => $conferencistas]);
     }
 
     public function updatedInputSearchPersona()
@@ -48,7 +47,7 @@ class Conferencistas extends Component
 
     public function selectPersona($personaId)
     {
-        $this->IdPersona = $personaId;
+        $this->persona_id = $personaId;
         $persona = Persona::find($personaId);
         $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
         $this->searchPersonas = [];
@@ -74,8 +73,8 @@ class Conferencistas extends Component
     {
         $this->titulo = '';
         $this->descripcion = '';
-        $this->foto = '';
-        $this->IdPersona = '';
+        $this->foto = null;
+        $this->persona_id = null;
         $this->conferencista_id = null;
         $this->inputSearchPersona = '';
         $this->searchPersonas = [];
@@ -91,14 +90,14 @@ class Conferencistas extends Component
         } elseif ($this->conferencista_id) {
             // Si no se seleccionó una nueva foto pero se está editando, mantener la foto actual
             $conferencista = Conferencista::findOrFail($this->conferencista_id);
-            $this->foto = $conferencista->Foto;
+            $this->foto = $conferencista->foto;
         }
 
         Conferencista::updateOrCreate(['id' => $this->conferencista_id], [
-            'Titulo' => $this->titulo,
-            'Descripcion' => $this->descripcion,
-            'Foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null, // Ajusta la ruta de almacenamiento según tus necesidades
-            'IdPersona' => $this->IdPersona
+            'titulo' => $this->titulo,
+            'descripcion' => $this->descripcion,
+            'foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
+            'persona_id' => $this->persona_id
         ]);
 
         session()->flash('message', $this->conferencista_id ? 'Conferencista actualizado correctamente!' : 'Conferencista creado correctamente!');
@@ -111,12 +110,12 @@ class Conferencistas extends Component
     {
         $conferencista = Conferencista::findOrFail($id);
         $this->conferencista_id = $id;
-        $this->titulo = $conferencista->Titulo;
-        $this->descripcion = $conferencista->Descripcion;
-        $this->IdPersona = $conferencista->IdPersona;
+        $this->titulo = $conferencista->titulo;
+        $this->descripcion = $conferencista->descripcion;
+        $this->persona_id = $conferencista->persona_id;
 
         // Solo se necesita el ID para buscar la persona, no asignar la foto aquí
-        $persona = Persona::find($this->IdPersona);
+        $persona = Persona::find($this->persona_id);
         if ($persona) {
             $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
         }
@@ -126,7 +125,11 @@ class Conferencistas extends Component
 
     public function delete($id)
     {
-        Conferencista::find($id)->delete();
+        $conferencista = Conferencista::findOrFail($id);
+        if ($conferencista->foto) {
+            \Storage::delete('public/conferencistas/' . basename($conferencista->foto));
+        }
+        $conferencista->delete();
         session()->flash('message', 'Conferencista eliminado correctamente!');
     }
 }
