@@ -401,7 +401,7 @@
                                             <div class="flex items-center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">
-                                                        {{ $conferencia->conferencista }}
+                                                        {{ $conferencia->conferencista->nombre }} {{ $conferencia->conferencista->apellido }}
                                                     </p>
                                                 </div>
                                             </div>
