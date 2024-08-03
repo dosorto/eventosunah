@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 @extends('layouts.base')
-=======
->>>>>>> origin/denisse
 @section('content')
     <x-banner />
 
@@ -16,8 +13,4 @@
         </main>
 
     </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> origin/denisse
