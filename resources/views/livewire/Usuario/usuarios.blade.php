@@ -70,14 +70,9 @@
                                         </svg>
                                         Editar
                                     </button>
-                                    <button  wire:click="delete({{ $user->id }})"
-                                            class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
-                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                    <button wire:click="confirmDelete({{ $user->id }})" class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                             </svg>
                                             Borrar
                                     </button>
@@ -93,4 +88,15 @@
             </div>
         </div>
     </div>
+        <!-- Modal de Confirmación de Eliminación -->
+        <div x-data="{ open: @entangle('showDeleteModal') }" x-show="open" @keydown.escape.window="open = false" class="fixed inset-0 flex items-center z-50 justify-center p-4 bg-black bg-opacity-50">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-lg font-medium text-gray-900">Confirmación de Eliminación</h3>
+                        <p class="mt-2 text-gray-600">¿Estás seguro de que deseas eliminar este usuario?</p>
+                        <div class="mt-4 flex gap-4">
+                            <button @click="$wire.deleteConfirmed()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Eliminar</button>
+                            <button @click="$wire.showDeleteModal = false" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded">Cancelar</button>
+                        </div>
+                    </div>
+        </div>
 </div>

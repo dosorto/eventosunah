@@ -39,9 +39,13 @@
       @foreach($targetasEventos as $targetasEvento)
       <a href="{{ route('vistaconferencia', ['evento' => $targetasEvento->id]) }}" class="evento-card">
       <div class="thumbnail-container">
+      @if($targetasEvento->logo = null)
+      <img src="{{ asset(str_replace('public', 'storage', $targetasEvento->logo)) }}" alt="Sin Foto De Evento"
+      class=" bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white thumbnail">
+    @else
       <img src="http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg"
-        alt="Sin Foto De Evento"
-        class=" bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white thumbnail">
+      alt="Sin Foto De Evento">
+    @endif
       <p class="marca">{{ $targetasEvento->modalidad->modalidad }}</p>
       </div>
       <div class="evento-info">

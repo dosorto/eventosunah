@@ -15,17 +15,30 @@ return new class extends Migration
         Schema::create('conferencistas', function (Blueprint $table) {
             $table->id();
             $table->string('Titulo');
-            $table->string('Descripcion',500);
+            $table->string('Descripcion', 500);
             $table->string('Foto');
-            $table->unsignedBigInteger('IdPersona')->unique();
-            $table->integer("created_by");
-            $table->integer("deleted_by")->nullable();
-            $table->integer("updated_by")->nullable();
+            $table->string('dni')->unique();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('correo')->unique();
+            $table->string('correoInstitucional')->nullable()->unique();
+            $table->date('fechaNacimiento');
+            $table->string('sexo');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('numeroCuenta')->nullable()->unique();
+            $table->unsignedBigInteger('IdNacionalidad');
+            $table->unsignedBigInteger('IdTipoPerfil');
+            $table->integer('created_by')->nullable(); // Permitir valores nulos
+            $table->integer('deleted_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
+        
+            $table->foreign('IdNacionalidad')->references('id')->on('nacionalidads')->onDelete('restrict');
+            $table->foreign('IdTipoPerfil')->references('id')->on('tipoperfils')->onDelete('restrict');
         });
+        
     }
 
     /**

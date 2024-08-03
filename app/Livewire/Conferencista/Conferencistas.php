@@ -1,11 +1,12 @@
 <?php
 namespace App\Livewire\Conferencista;
 
-use App\Models\Persona;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Conferencista;
+use App\Models\Nacionalidad;
+use App\Models\Tipoperfil;
 
 class Conferencistas extends Component
 {
@@ -13,8 +14,6 @@ class Conferencistas extends Component
 
     public $titulo, $descripcion, $foto, $persona_id, $conferencista_id, $search;
     public $isOpen = 0;
-    public $inputSearchPersona = '';
-    public $searchPersonas = [];
 
     protected $rules = [
         'titulo' => 'required',
@@ -71,6 +70,7 @@ class Conferencistas extends Component
 
     private function resetInputFields()
     {
+        $this->conferencista_id = '';
         $this->titulo = '';
         $this->descripcion = '';
         $this->foto = null;
@@ -105,6 +105,7 @@ class Conferencistas extends Component
         $this->closeModal();
         $this->resetInputFields();
     }
+    
 
     public function edit($id)
     {

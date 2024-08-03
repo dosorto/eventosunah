@@ -196,12 +196,24 @@ class Conferencias extends Component
         $this->openModal();
         $this->render();
     }
-
-    public function delete($id)
+    public $confirmingDeletion = false; 
+    public $deleteId;
+    public function confirmDelete($id)
     {
-        Conferencia::find($id)->delete();
+        $this->deleteId = $id;
+        $this->confirmingDeletion = true;
+    }
+    
+    public function cancelDelete()
+    {
+        $this->confirmingDeletion = false;
+    }
+    
+    public function delete()
+    {
+        Conferencia::find($this->deleteId)->delete();
         session()->flash('message', 'Registro eliminado correctamente!');
-        $this->render();
+        $this->confirmingDeletion = false;
     }
 
 

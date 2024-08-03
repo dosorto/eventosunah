@@ -25,76 +25,59 @@
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="sr-only">Cerrar modal</span>
+                                <span class="sr-only">Cerrar</span>
                             </button>
                         </div>
-                        
                         <div class="mb-4">
+                            <label for="suscripcion"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Suscripción:</label>
+                            <input wire:model.live="inputSearchSuscripcion"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                type="text" placeholder="Buscar suscripción...">
+                            @error('IdSuscripcion') <span class="text-red-500">{{ $message }}</span> @enderror
+                            <div class="mt-2">
+                                @if(!empty($searchSuscripciones))
+                                    <ul class="bg-white shadow rounded-lg">
+                                        @foreach($searchSuscripciones as $suscripcion)
+                                            <li wire:click="selectSuscripcion({{ $suscripcion->id }})"
+                                                class="p-2 hover:bg-gray-200 cursor-pointer">
+                                                {{ $suscripcion->persona->nombre }} {{ $suscripcion->persona->apellido }} - {{ $suscripcion->conferencia->nombre}}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="col-span-2 sm:col-span-2">
+                            <label for="fecha"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
+                            <input type="date" wire:model="Fecha"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @error('Fecha') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="col-span-2 sm:col-span-2">
                             <label for="asistencia"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Asistencia:</label>
-                            <select wire:model="Asistencia" id="asistencia"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                                <option value="">Selecciona una opción</option>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asistencia</label>
+                            <select id="asistencia" wire:model="Asistencia"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                <option value="">Seleccione</option>
                                 <option value="1">Presente</option>
                                 <option value="0">Ausente</option>
                             </select>
                             @error('Asistencia') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-4">
-                            <label for="persona" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Persona:</label>
-                            <input wire:model.live="inputSearchPersona"
-                            class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                            type="text" placeholder="Buscar persona...">
-                            @if(!empty($inputSearchPersona) && !empty($searchPersonas))
-                            <ul
-                                class="bg-white border border-gray-300 mt-2 rounded-md max-h-48 overflow-auto shadow-lg z-10">
-                                @foreach($searchPersonas as $persona)
-                                <li wire:click="selectPersona({{ $persona->id }})"
-                                    class="p-2 cursor-pointer hover:bg-gray-200">
-                                    {{ $persona->nombre }} {{ $persona->apellido }}
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
-                            @error('IdPersona') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="evento" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Conferencia:</label>
-                            <input wire:model.live="inputSearchEvento"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                type="text" placeholder="Buscar conferencia...">
-                            @if(!empty($inputSearchConferencia) && !empty($searchConferencia))
-                            <ul
-                                class="bg-white border border-gray-300 mt-2 rounded-md max-h-48 overflow-auto shadow-lg z-10">
-                                @foreach($searchConferencia as $conferencia)
-                                <li wire:click="selectConferencia({{ $conferencia->id }})"
-                                    class="p-2 cursor-pointer hover:bg-gray-200">
-                                    {{ $conferencia->nombre }}
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
-                            @error('IdConferencia') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
 
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
-                        <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                            <button type="submit"
-                                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                                Guardar
-                            </button>
-                        </span>
-                        <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                            <button wire:click="closeModal" type="button"
-                                class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                                Cancelar
-                            </button>
-                        </span>
+                    </div>
+                    <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button type="button" wire:click="closeModal"
+                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg border border-gray-300 font-medium text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cancelar</button>
+                        <button type="submit"
+                            class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm ring-1 ring-yellow-500 hover:ring-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 dark:focus:ring-yellow-600">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     @endif
-</div>

@@ -12,6 +12,9 @@ class Carreras extends Component
     use WithPagination;
     public $carrera, $IdDepartamento, $carrera_id, $search;
     public $isOpen = 0;
+    public $confirmingDeletion = false; 
+    public $deleteId;
+
     public function render()
     {
         $carreras = Carrera::with('departamento')
@@ -34,14 +37,17 @@ class Carreras extends Component
         $this->resetInputFields();
         $this->openModal();
     }
+
     public function openModal()
     {
         $this->isOpen = true;
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
+
     private function resetInputFields()
     {
         $this->carrera = '';
@@ -55,9 +61,9 @@ class Carreras extends Component
                 'required',
                 'string',
                 'max:255',
-                'unique:carreras,carrera,' . $this->carrera_id, // Asegúrate de que la tabla y columna sean correctas
+                'unique:carreras,carrera,' . $this->carrera_id, 
             ],
-            'IdDepartamento' => 'required|exists:departamentos,id', // Valida que el departamento exista
+            'IdDepartamento' => 'required|exists:departamentos,id', 
         ]);
 
         Carrera::updateOrCreate(
@@ -87,14 +93,21 @@ class Carreras extends Component
         $this->openModal();
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public function delete($id)
+    public function confirmDelete($id)
     {
-        Carrera::find($id)->delete();
-        session()->flash('message', 'Registro Eliminado correctamente!');
+        $this->deleteId = $id;
+        $this->confirmingDeletion = true;
+    }
+    
+    public function cancelDelete()
+    {
+        $this->confirmingDeletion = false;
+    }
+    
+    public function delete()
+    {
+        Carrera::find($this->deleteId)->delete();
+        session()->flash('message', 'Registro eliminado correctamente!');
+        $this->confirmingDeletion = false;
     }
 }

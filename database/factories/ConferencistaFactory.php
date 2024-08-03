@@ -3,7 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Persona;
+use App\Models\Nacionalidad;
+use App\Models\Tipoperfil;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Conferencista>
  */
@@ -16,7 +17,8 @@ class ConferencistaFactory extends Factory
      */
     public function definition(): array
     {
-        $PersonaId = Persona::inRandomOrder()->first()->id;
+        $nacionalidadId = Nacionalidad::inRandomOrder()->first()->id;
+        $tipoPerfilId = Tipoperfil::inRandomOrder()->first()->id;
         return [
          'Titulo' => $this->faker->sentence,
          'Descripcion' => $this->faker->paragraph,
