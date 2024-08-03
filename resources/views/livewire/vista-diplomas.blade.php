@@ -115,39 +115,26 @@
                     text-align: center;
                     margin: 0 10px;
                 }
-
-                .qr-code {
-                    margin-top: 20px;
-                    height: 120px;
-                }
             </style>
 
         </header>
 
         <body>
-
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset('Logo/Certificado.png') }}" />
+                    <img class="fondo" src="{{ asset('Logo/Certificado.png')}}" />
                 </div>
-                <div class="certificado-header" style="display: flex; justify-content: flex-end;">
-                    <div>
-                        <div class="certificado-title">CERTIFICADO</div>
-                        <div class="certificado-title2">DE RECONOCIMIENTO</div>
-                        <div class="certificado-title3">OTORGADO A:</div>
-                        <div class="recipient-name">Acxel Fernando Aplicano</div>
-                    </div>
-                    <div>
-                        <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
-                    </div>
+                <div class="certificado-header">
+                    <div class="certificado-title">CERTIFICADO</div>
+                    <div class="certificado-title2">DE RECONOCIMIENTO</div>
+                    <div class="certificado-title3">OTORGADO A:</div>
+                    <div class="recipient-name">Acxel Fernando Aplicano</div>
                 </div>
                 <div class="certificado-body">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt praesentium enim repellendus iure,
-                    libero sed corrupti voluptatum impedit cum! Earum sint molestias corporis voluptas explicabo
-                    eligendi nihil reiciendis voluptatibus delectus?
+                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt praesentium enim repellendus iure, libero sed corrupti voluptatum impedit cum! Earum sint molestias corporis voluptas explicabo eligendi nihil reiciendis voluptatibus delectus?
                 </div>
                 <div class="sello">
-                    <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
+                <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
                 </div>
                 <div class="firmass">
                     <div class="firmas">
