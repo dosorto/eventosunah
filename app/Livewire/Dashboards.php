@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Conferencia;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -8,18 +8,21 @@ use App\Models\Conferencia;
 use App\Models\Conferencista;
 use App\Models\Evento;
 
-class Conferencias extends Component
-{
-    use WithPagination;
 
+class Dashboards extends Component
+{
+
+    use WithPagination;
+    
     public $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
     public $isOpen = 0;
+    public $showDetails = false;
     public $inputSearchConferencista = '';
     public $searchConferencistas = [];
     public $inputSearchEvento = '';
     public $searchEventos = [];
-    public $showDetails = false;
     public $selectedConferencia;
+   
     protected $listeners = ['refreshComponent' => '$refresh'];
     public function viewDetails($id)
     {
@@ -36,16 +39,18 @@ class Conferencias extends Component
     {
         $conferencias = Conferencia::with('conferencista', 'evento')
             ->where('IdEvento', $this->IdEvento)
-            ->where('nombre', 'like', '%'.$this->search.'%')
+            ->where('nombre', 'like', '%'.$this->inputSearchConferencista.'%')
             ->orderBy('id', 'DESC')
             ->paginate(8);
 
         $eventos = Evento::all();
 
-        return view('livewire.Conferencia.conferencias', [
+        return view('dashboard', [
             'conferencias' => $conferencias,
             'eventos' => $eventos,
-            'searchConferencistas' => $this->searchConferencistas
+            'searchConferencistas' => $this->searchConferencistas,
+            'showDetails' => $this->showDetails,
+            'selectedConferencia' => $this->selectedConferencia,
         ]);
     }
     
@@ -99,14 +104,13 @@ class Conferencias extends Component
     {
         $this->resetInputFields();
         $this->openModal();
-        $this->render();
     }
 
     public function agregarConferencia($eventoId)
     {
         $this->IdEvento = $eventoId;
         $this->create();
-        $this->render();
+        $this->resetPage(); 
     }
     
 
@@ -164,11 +168,11 @@ class Conferencias extends Component
 
         // Mensaje de éxito
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
-        $this->render();
-        
+
+        // Cierra el modal y reinicia los campos
         $this->closeModal();
         $this->resetInputFields();
-        $this->render(); 
+        $this->resetPage(); 
        
         
     }
@@ -194,26 +198,12 @@ class Conferencias extends Component
         }
 
         $this->openModal();
-        $this->render();
     }
-    public $confirmingDeletion = false; 
-    public $deleteId;
-    public function confirmDelete($id)
+
+    public function delete($id)
     {
-        $this->deleteId = $id;
-        $this->confirmingDeletion = true;
-    }
-    
-    public function cancelDelete()
-    {
-        $this->confirmingDeletion = false;
-    }
-    
-    public function delete()
-    {
-        Conferencia::find($this->deleteId)->delete();
+        Conferencia::find($id)->delete();
         session()->flash('message', 'Registro eliminado correctamente!');
-        $this->confirmingDeletion = false;
     }
 
 
