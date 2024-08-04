@@ -14,6 +14,6 @@ class ConferencistaSeeder extends Seeder
      */
     public function run(): void
     {
-        Conferencista::factory()->count(1)->create();
+        // Conferencista::factory()->count(1)->create();
     }
 }

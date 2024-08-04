@@ -40,42 +40,42 @@
 
                         <div class="mb-4">
                             <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre:</label>
-                            <input type="text" wire:model="persona.nombre"
+                            <input type="text" wire:model="nombre"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="nombre" placeholder="Nombre">
                             @error('persona.nombre') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="apellido" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Apellido:</label>
-                            <input type="text" wire:model="persona.apellido"
+                            <input type="text" wire:model="apellido"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="apellido" placeholder="Apellido">
                             @error('persona.apellido') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="dni" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">DNI:</label>
-                            <input type="text" wire:model="persona.dni"
+                            <input type="text" wire:model="dni"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="dni" placeholder="DNI">
-                            @error('persona.dni') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('Conferencistas.dni') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="correo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo:</label>
-                            <input type="email" wire:model="persona.correo"
+                            <input type="email" wire:model="correo"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="correo" placeholder="Correo">
                             @error('persona.correo') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="fechaNacimiento" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha de Nacimiento:</label>
-                            <input type="date" wire:model="persona.fechaNacimiento"
+                            <input type="date" wire:model="fechaNacimiento"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="fechaNacimiento">
                             @error('persona.fechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="sexo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sexo:</label>
-                            <select wire:model="persona.sexo"
+                            <select wire:model="sexo"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="sexo">
                                 <option value="" disabled selected>Seleccione un sexo</option>
@@ -88,33 +88,47 @@
                         </div>
                         <div class="mb-4">
                             <label for="nacionalidad" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nacionalidad:</label>
-                            <select wire:model="persona.IdNacionalidad"
+                            <select wire:model="IdNacionalidad"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="nacionalidad">
                                 <option value="" disabled selected>Seleccione una nacionalidad</option>
                                 @foreach($nacionalidades as $nacionalidad)
-                                    <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombre }}</option>
+                                    <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombreNacionalidad }}</option>
                                 @endforeach
                             </select>
                             @error('persona.IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="telefono" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Teléfono:</label>
-                            <input type="text" wire:model="persona.telefono"
+                            <input type="text" wire:model="telefono"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="telefono" placeholder="Número de Teléfono">
                             @error('persona.telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
+                            <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Título:</label>
+                            <select wire:model="titulo"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="titulo">
+                                <option value="" disabled selected>Seleccione un título</option>
+                                <option value="Doctorado">Doctorado</option>
+                                <option value="Máster">Máster</option>
+                                <option value="Licenciatura">Licenciatura</option>
+                                <option value="Diplomado">Diplomado</option>
+                                <!-- Agrega más opciones aquí según sea necesario -->
+                            </select>
+                            @error('titulo') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
                             <label for="direccion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Dirección:</label>
-                            <input type="text" wire:model="persona.direccion"
+                            <input type="text" wire:model="direccion"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="direccion" placeholder="Dirección">
                             @error('persona.direccion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="tipoPerfil" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Tipo de Perfil:</label>
-                            <select wire:model="persona.IdTipoPerfil"
+                            <select wire:model="IdTipoPerfil"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="tipoPerfil">
                                 <option value="" disabled selected>Seleccione un tipo de perfil</option>
@@ -126,14 +140,14 @@
                         </div>
                         <div class="mb-4">
                             <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
-                            <input type="email" wire:model="persona.correoInstitucional"
+                            <input type="email" wire:model="correoInstitucional"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="correoInstitucional" placeholder="Correo Institucional">
                             @error('persona.correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
-                            <input type="text" wire:model="persona.numeroCuenta"
+                            <input type="text" wire:model="numeroCuenta"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="numeroCuenta" placeholder="Número de Cuenta">
                             @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror

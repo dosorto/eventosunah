@@ -13,7 +13,7 @@ class DiplomaSeeder extends Seeder
      */
     public function run(): void
     {
-        Diploma::factory()->count(50)->create();
+        // Diploma::factory()->count(50)->create();
     }
 }
 
