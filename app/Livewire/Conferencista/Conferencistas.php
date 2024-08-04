@@ -132,5 +132,6 @@ class Conferencistas extends Component
         }
         $conferencista->delete();
         session()->flash('message', 'Conferencista eliminado correctamente!');
+        $this->render(); 
     }
 }

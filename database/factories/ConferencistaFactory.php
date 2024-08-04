@@ -20,8 +20,6 @@ class ConferencistaFactory extends Factory
         $nacionalidadId = Nacionalidad::inRandomOrder()->first()->id;
         $tipoPerfilId = Tipoperfil::inRandomOrder()->first()->id;
         return [
-         'Titulo' => $this->faker->sentence,
-         'Descripcion' => $this->faker->paragraph,
          'Foto' => $this->faker->imageUrl(),
          'IdPersona' => Persona::factory(),
          'created_by' => 1

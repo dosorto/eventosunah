@@ -1,3 +1,4 @@
+<html>
 <div>
     <!-- Modal -->
     <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400" x-show="isOpen">
@@ -26,29 +27,6 @@
                                 </svg>
                                 <span class="sr-only">Cerrar modal</span>
                             </button>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Título:</label>
-                            <select wire:model="titulo"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="titulo">
-                                <option value="" disabled selected>Seleccione un título</option>
-                                <option value="Doctorado">Doctorado</option>
-                                <option value="Máster">Máster</option>
-                                <option value="Licenciatura">Licenciatura</option>
-                                <option value="Diplomado">Diplomado</option>
-                                <!-- Agrega más opciones aquí según sea necesario -->
-                            </select>
-                            @error('titulo') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
-                            <textarea wire:model="descripcion"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="descripcion" placeholder="Descripción"></textarea>
-                            @error('descripcion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="mb-4">
@@ -180,4 +158,7 @@
             </div>
         </div>
     </div>
+  
 </div>
+
+</html>
