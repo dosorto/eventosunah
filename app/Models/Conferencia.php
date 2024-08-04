@@ -20,6 +20,6 @@ class Conferencia extends BaseModel
     }
     public function suscripciones()
     {
-        return $this->hasMany(Suscripcion::class, 'IdPersona');
+        return $this->hasMany(Suscripcion::class, 'IdConferencia');
     }
 }
