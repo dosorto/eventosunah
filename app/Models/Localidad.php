@@ -11,5 +11,9 @@ class Localidad extends BaseModel
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['localidad'];
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class, 'idlocalidad');
+    }
     
 }

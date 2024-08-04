@@ -11,4 +11,8 @@ class Modalidad extends BaseModel
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['modalidad'];
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class, 'idmodalidad');
+    }
 }

@@ -12,7 +12,9 @@ class Tipoperfiles extends Component
 
     public $tipoperfil, $tipoperfil_id, $search;
     public $isOpen = 0;
-
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public function render()
     {
         $tipoperfiles = Tipoperfil::where('tipoperfil', 'like', '%'.$this->search.'%')
@@ -72,9 +74,40 @@ class Tipoperfiles extends Component
         $this->openModal();
     }
 
-    public function delete($id)
+    public function delete()
     {
-        Tipoperfil::find($id)->delete();
-        session()->flash('message', 'Registro eliminado correctamente!');
+        if ($this->confirmingDelete) {
+            $tipoperfil = Tipoperfil::find($this->IdAEliminar);
+
+            if (!$tipoperfil) {
+                session()->flash('error', 'localidad no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $tipoperfil->forceDelete();
+            session()->flash('message', 'tipo perfil eliminado correctamente!');
+            $this->confirmingDelete = false;
+        }
     }
+
+    public function confirmDelete($id)
+    {
+        $tipoperfil = Tipoperfil::find($id);
+
+        if (!$tipoperfil) {
+            session()->flash('error', 'tipo perfil no encontrado.');
+            return;
+        }
+
+        if ($tipoperfil && !$tipoperfil->personas()->exists()) {
+            session()->flash('error', 'No se puede eliminar el tipo de perfil: '. $tipoperfil->tipoperfil .', porque está enlazado a una o más personas');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $tipoperfil->tipoperfil;
+        $this->confirmingDelete = true;
+    }
+
 }
