@@ -152,7 +152,18 @@
                                 id="numeroCuenta" placeholder="Número de Cuenta">
                             @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
+
+                        <div class="mb-4">
+                            <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
+                            <textarea wire:model="descripcion"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="descripcion" placeholder="Descripción"></textarea>
+                            @error('descripcion') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
                     </div>
+
+                   
 
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
                         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
