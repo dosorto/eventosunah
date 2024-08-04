@@ -12,6 +12,6 @@ class ConferenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        Conferencia::factory()->count(100)->create();
+        // Conferencia::factory()->count(100)->create();
     }
 }

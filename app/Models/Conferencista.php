@@ -13,14 +13,16 @@ class Conferencista extends Model
 
     protected $fillable = ['titulo', 'foto', 'descripcion', 'IdPersona'];
 
-    public function persona()
-    {
-        return $this->belongsTo(Persona::class);
-    }
+    // protected $fillable = ['titulo', 'foto', 'descripcion', 'dni','nombre','apellido','correo','fechaNacimiento','sexo', 'direccion', 'telefono', 'IdNacionalidad'];
 
-   /* protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
+    // public function persona()
+    // {
+    //     return $this->belongsTo(Persona::class);
+    // }
+
+    // protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
     public function persona()
     {
         return $this->belongsTo(Persona::class, 'IdPersona');
-    }*/
+    }
 }
