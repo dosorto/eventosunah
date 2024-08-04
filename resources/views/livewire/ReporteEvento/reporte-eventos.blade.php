@@ -66,7 +66,7 @@
                                         {{ $conferencia->lugar }}
                                     </td>
                                     <td class="flex items-center px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
-                                        <img class="w-10 h-10 rounded-full mr-3" src="{{ asset(str_replace('public', 'storage', $conferencia->conferencista->Foto)) }}" alt="Foto conferencista">
+                                        <img class="w-10 h-10 rounded-full mr-3" src="{{ asset(str_replace('public', 'storage', $conferencia->conferencista->foto)) }}" alt="Foto conferencista">
                                         <div class="text-base font-semibold">
                                             @if ($conferencia->conferencista)
                                                 @if ($conferencia->conferencista->persona)
