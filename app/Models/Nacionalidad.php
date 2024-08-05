@@ -17,6 +17,4 @@ class Nacionalidad extends Model
     }
 
     protected $table = 'nacionalidads'; 
-
-    protected $fillable = ['nombreNacionalidad'];
 }
