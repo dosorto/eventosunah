@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire\Conferencista;
 
 use Livewire\Component;
@@ -8,54 +7,54 @@ use Livewire\WithPagination;
 use App\Models\Conferencista;
 use App\Models\Nacionalidad;
 use App\Models\Tipoperfil;
+use App\Models\Persona;
 
 class Conferencistas extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $titulo, $descripcion, $foto, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $conferencista_id, $search;
+    public $titulo, $descripcion, $foto, $persona_id, $conferencista_id, $search;
+    public $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil;
+    public $nacionalidades, $tipoperfiles;
+
     public $isOpen = 0;
 
     protected $rules = [
-        'titulo' => 'required|string|max:255',
-        'descripcion' => 'nullable|string',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'dni' => 'required|string|max:20',
-        'nombre' => 'required|string|max:255',
-        'apellido' => 'required|string|max:255',
-        'correo' => 'required|email|max:255',
-        'correoInstitucional' => 'nullable|email|max:255',
-        'fechaNacimiento' => 'nullable|date',
-        'sexo' => 'nullable|string|max:10',
-        'direccion' => 'nullable|string|max:255',
-        'telefono' => 'nullable|string|max:20',
-        'numeroCuenta' => 'nullable|string|max:20',
-        'IdNacionalidad' => 'required|exists:nacionalidads,id',
-        'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+        'titulo' => 'required',
+        'descripcion' => 'required',
+        'foto' => 'nullable|image|max:1024',
+        'persona_id' => 'required|exists:personas,id',
     ];
-
-    public $nacionalidades;
-    public $tipoperfiles;
 
     public function mount()
     {
+        // Aquí se podría realizar alguna inicialización si es necesario
         $this->nacionalidades = Nacionalidad::all();
         $this->tipoperfiles = Tipoperfil::all();
     }
 
     public function render()
     {
-        $conferencistas = Conferencista::with('nacionalidad', 'tipoPerfil')
-            ->where('Titulo', 'like', '%'.$this->search.'%')
+        $conferencistas = Conferencista::with('persona')
+            ->where('titulo', 'like', '%'.$this->search.'%')
             ->orderBy('id', 'ASC')
             ->paginate(5);
 
         return view('livewire.Conferencista.conferencistas', ['conferencistas' => $conferencistas]);
     }
 
+    
+
+    public function selectPersona($personaId)
+    {
+        $this->persona_id = $personaId;
+        $persona = Persona::find($personaId);
+        
+    }
+
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetInputFields(); 
         $this->openModal();
     }
 
@@ -74,7 +73,10 @@ class Conferencistas extends Component
         $this->conferencista_id = '';
         $this->titulo = '';
         $this->descripcion = '';
-        $this->foto = '';
+        $this->foto = null;
+        $this->persona_id = null;
+        $this->conferencista_id = null;
+        $this->persona_id = '';
         $this->dni = '';
         $this->nombre = '';
         $this->apellido = '';
@@ -89,26 +91,27 @@ class Conferencistas extends Component
         $this->IdTipoPerfil = '';
     }
 
+
     public function store()
     {
         try {
             // Validar datos
             $this->validate([
-                'titulo' => 'required|string|max:255',
-                'descripcion' => 'nullable|string',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'dni' => 'required|string|max:20',
                 'nombre' => 'required|string|max:255',
                 'apellido' => 'required|string|max:255',
-                'correo' => 'required|email|max:255',
-                'correoInstitucional' => 'nullable|email|max:255',
+                'titulo' => 'required|string|max:255',      
+                'correo' => 'nullable|email|max:255',
                 'fechaNacimiento' => 'nullable|date',
                 'sexo' => 'nullable|string|max:10',
-                'direccion' => 'nullable|string|max:255',
                 'telefono' => 'nullable|string|max:20',
-                'numeroCuenta' => 'nullable|string|max:20',
                 'IdNacionalidad' => 'required|exists:nacionalidads,id',
+                'descripcion' => 'nullable|string',
+                'direccion' => 'nullable|string|max:255',
                 'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+                'numeroCuenta' => 'nullable|string|max:20',
+                'correoInstitucional' => 'nullable|email|max:255',
             ]);
     
             // Manejo de la foto
@@ -125,31 +128,40 @@ class Conferencistas extends Component
             }
     
             // Datos para guardar
-            $data = [
-                'Titulo' => $this->titulo,
-                'Descripcion' => $this->descripcion,
-                'Foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
+            $dataPersona = [
+                // 'Foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
                 'dni' => $this->dni,
                 'nombre' => $this->nombre,
                 'apellido' => $this->apellido,
-                'correo' => $this->correo,
-                'correoInstitucional' => $this->correoInstitucional,
+                // 'Titulo' => $this->titulo,             
+                'correo' => $this->correo,      
                 'fechaNacimiento' => $this->fechaNacimiento,
                 'sexo' => $this->sexo,
-                'direccion' => $this->direccion,
                 'telefono' => $this->telefono,
-                'numeroCuenta' => $this->numeroCuenta,
                 'IdNacionalidad' => $this->IdNacionalidad,
+                // 'Descripcion' => $this->descripcion,
+                'direccion' => $this->direccion,
                 'IdTipoPerfil' => $this->IdTipoPerfil,
+                'correoInstitucional' => $this->correoInstitucional?: null,
+                'numeroCuenta' => $this->numeroCuenta?: null,
                 'created_by' => $createdBy,
+            ];
+
+            $persona = Persona::updateOrCreate($dataPersona);
+
+            $dataConferencista = [
+                'IdPersona' => $persona->id,
+                'foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
+                'titulo' => $this->titulo,
+                'descripcion' => $this->descripcion,
             ];
     
             // Guardar o actualizar el conferencista
             if ($this->conferencista_id) {
                 $conferencista = Conferencista::findOrFail($this->conferencista_id);
-                $conferencista->update($data);
+                $conferencista->update($dataConferencista);
             } else {
-                Conferencista::create($data);
+                Conferencista::updateOrCreate($dataConferencista);
             }
     
             // Mensaje de éxito
@@ -158,7 +170,10 @@ class Conferencistas extends Component
             // Cerrar el modal y reiniciar los campos
             $this->closeModal();
             $this->resetInputFields();
+            $this->render(); 
         } catch (\Exception $e) {
+            // dd($data);
+            // Cambiar mas adelante
             dd($e->getMessage()); // Muestra el mensaje de error si algo sale mal
         }
     }
@@ -167,29 +182,69 @@ class Conferencistas extends Component
     public function edit($id)
     {
         $conferencista = Conferencista::findOrFail($id);
+
         $this->conferencista_id = $id;
-        $this->titulo = $conferencista->Titulo;
-        $this->descripcion = $conferencista->Descripcion;
-        $this->dni = $conferencista->dni;
-        $this->nombre = $conferencista->nombre;
-        $this->apellido = $conferencista->apellido;
-        $this->correo = $conferencista->correo;
-        $this->correoInstitucional = $conferencista->correoInstitucional;
-        $this->fechaNacimiento = $conferencista->fechaNacimiento;
-        $this->sexo = $conferencista->sexo;
-        $this->direccion = $conferencista->direccion;
-        $this->telefono = $conferencista->telefono;
-        $this->numeroCuenta = $conferencista->numeroCuenta;
-        $this->IdNacionalidad = $conferencista->IdNacionalidad;
-        $this->IdTipoPerfil = $conferencista->IdTipoPerfil;
+        $this->titulo = $conferencista->titulo;
+        $this->descripcion = $conferencista->descripcion;
+        $this->foto = $conferencista->foto;
+        $this->dni = $conferencista->persona->dni;
+        $this->nombre = $conferencista->persona->nombre;
+        $this->apellido = $conferencista->persona->apellido;
+        $this->correo = $conferencista->persona->correo;
+        $this->correoInstitucional = $conferencista->persona->correoInstitucional;
+        $this->fechaNacimiento = $conferencista->persona->fechaNacimiento;
+        $this->sexo = $conferencista->persona->sexo;
+        $this->direccion = $conferencista->persona->direccion;
+        $this->telefono = $conferencista->persona->telefono;
+        $this->numeroCuenta = $conferencista->persona->numeroCuenta;
+        $this->IdNacionalidad = $conferencista->persona->IdNacionalidad;
+        $this->IdTipoPerfil = $conferencista->persona->IdTipoPerfil;
+
+
+        // Solo se necesita el ID para buscar la persona, no asignar la foto aquí
+        $persona = Persona::find($this->persona_id);
+        
 
         $this->openModal();
     }
-
-    public function delete($id)
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
+    public function delete()
     {
-        Conferencista::find($id)->delete();
-        session()->flash('message', 'Conferencista eliminado correctamente!');
+        if ($this->confirmingDelete) {
+            $conferencista = Conferencista::find($this->IdAEliminar);
+
+            if (!$conferencista) {
+                session()->flash('error', 'conferencista no encontrado.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $conferencista->forceDelete();
+            session()->flash('message', 'conferencista eliminado correctamente!');
+            $this->confirmingDelete = false;
+        }
     }
+
+    public function confirmDelete($id)
+    {
+        $conferencista = Conferencista::find($id);
+
+        if (!$conferencista) {
+            session()->flash('error', 'Conferencista no encontrado.');
+            return;
+        }
+        
+
+        if ($conferencista->conferencias()->exists()) {
+            session()->flash('error', 'No se puede eliminar el conferencista: '.$conferencista->persona->nombre .'    '.$conferencista->persona->apellido  .', porque está enlazado a una o más conferencias.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $conferencista->persona->nombre . '  '. $conferencista->persona->apellido;
+        $this->confirmingDelete = true;
+    }
+
 }
-?>

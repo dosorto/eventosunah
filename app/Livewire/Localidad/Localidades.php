@@ -6,6 +6,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Localidad;
 use App\Models\Evento;
+use App\Models\Modalidad;
 
 class Localidades extends Component
 {
@@ -13,10 +14,10 @@ class Localidades extends Component
 
     public $localidad, $localidad_id, $search;
     public $isOpen = 0;
+    public $showDeleteModal = false;
     public $confirmingDelete = false;
     public $IdAEliminar;
     public $nombreAEliminar;
-    public $eventosAsociados = false;
 
     public function render()
     {
@@ -69,26 +70,45 @@ class Localidades extends Component
 
         $this->openModal();
     }
-
-    public function confirmDelete($id)
-    {
-        $localidad = Localidad::find($id);
-        $this->eventosAsociados = Evento::where('IdLocalidad', $id)->exists();
-        $this->IdAEliminar = $id;
-        $this->nombreAEliminar = $localidad->localidad;
-        $this->confirmingDelete = true;
-    }
-
+     
     public function delete()
     {
-        if ($this->eventosAsociados) {
-            session()->flash('message', 'No se puede eliminar la localidad porque tiene eventos asociados.');
+        if ($this->confirmingDelete) {
+            $localidad = Localidad::find($this->IdAEliminar);
+
+            if (!$localidad) {
+                session()->flash('error', 'localidad no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $localidad->forceDelete();
+            session()->flash('message', 'localidad eliminada correctamente!');
             $this->confirmingDelete = false;
-            return;
         }
 
         Localidad::destroy($this->IdAEliminar);
         session()->flash('message', 'Localidad eliminada correctamente!');
         $this->confirmingDelete = false;
     }
+
+    public function confirmDelete($id)
+    {
+        $localidad = Localidad::find($id);
+
+        if (!$localidad) {
+            session()->flash('error', 'localidad no encontrada.');
+            return;
+        }
+
+        if ($localidad->eventos()->exists()) {
+            session()->flash('error', 'No se puede eliminar la localidad: '. $localidad->localidad .', porque está enlazado a uno o más eventos');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $localidad->localidad;
+        $this->confirmingDelete = true;
+    }
+
 }

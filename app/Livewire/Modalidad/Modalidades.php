@@ -13,7 +13,9 @@ class Modalidades extends Component
 
     public $modalidad, $modalidad_id, $search;
     public $isOpen = 0;
-
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public function render()
     {
         $modalidades = Modalidad::where('modalidad', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(8);
@@ -71,15 +73,39 @@ class Modalidades extends Component
         $this->openModal();
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $eventosAsociados = Evento::where('IdModalidad', $id)->exists();
+        if ($this->confirmingDelete) {
+            $modalidad = Modalidad::find($this->IdAEliminar);
 
-        if ($eventosAsociados) {
-            session()->flash('message', 'No se puede eliminar la modalidad porque está asociada a uno o más eventos.');
-        } else {
-            Modalidad::find($id)->delete();
-            session()->flash('message', 'Modalidad eliminada correctamente!');
+            if (!$modalidad) {
+                session()->flash('error', 'localidad no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $modalidad->forceDelete();
+            session()->flash('message', 'modalidad eliminada correctamente!');
+            $this->confirmingDelete = false;
         }
     }
+
+    public function confirmDelete($id)
+    {
+        $modalidad = Modalidad::find($id);
+
+        if (!$modalidad) {
+            session()->flash('error', 'modalidad no encontrada.');
+            return;
+        }
+        if ($modalidad->eventos()->exists()) {
+            session()->flash('error', 'No se puede eliminar la modalidad:  ' .$modalidad->modalidad .', porque está enlazado a uno o más eventos.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $modalidad->modalidad;
+        $this->confirmingDelete = true;
+    }
+
 }
