@@ -99,13 +99,14 @@ class Conferencias extends Component
     {
         $this->resetInputFields();
         $this->openModal();
+        $this->render();
     }
 
     public function agregarConferencia($eventoId)
     {
         $this->IdEvento = $eventoId;
         $this->create();
-        $this->resetPage(); 
+        $this->render();
     }
     
 
@@ -163,11 +164,11 @@ class Conferencias extends Component
 
         // Mensaje de éxito
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
-
-        // Cierra el modal y reinicia los campos
+        $this->render();
+        
         $this->closeModal();
         $this->resetInputFields();
-        $this->resetPage(); 
+        $this->render(); 
        
         
     }
@@ -193,12 +194,14 @@ class Conferencias extends Component
         }
 
         $this->openModal();
+        $this->render();
     }
 
     public function delete($id)
     {
         Conferencia::find($id)->delete();
         session()->flash('message', 'Registro eliminado correctamente!');
+        $this->render();
     }
 
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('IdUsuario')->unique();
+            $table->unsignedBigInteger('IdUsuario')->nullable()->unique();
             $table->string('dni')->unique();
             $table->string('nombre');
             $table->string('apellido');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('numeroCuenta')->nullable()->unique();
             $table->unsignedBigInteger('IdNacionalidad');
             $table->unsignedBigInteger('IdTipoPerfil');
-            $table->integer("created_by")->nullable();
+            $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();

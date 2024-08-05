@@ -33,14 +33,13 @@ class RegistrarUsarioController extends Controller
 
     public function store(Request $request)
     {
-        // validar los datos
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => $this->passwordRules(),
-        // ]);
 
-        $user = User::create([
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => $this->passwordRules(),
+        ]);
+        $user = new User([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
@@ -51,9 +50,10 @@ class RegistrarUsarioController extends Controller
 
     public function storePersona(User $user)
     {
+        // dd($user->password);
         $nacionalidades = Nacionalidad::all();
         $tipoperfiles = Tipoperfil::all();
-        return view('auth.nueva-persona', ['user' => $user, 'nacionalidades' => $nacionalidades, 'tipoperfiles' => $tipoperfiles]);
+        return view('auth.nueva-persona', ['user' => $user, 'password' => $user->password,  'nacionalidades' => $nacionalidades, 'tipoperfiles' => $tipoperfiles]);
     }
 
     public function passwordRules()
@@ -68,10 +68,17 @@ class RegistrarUsarioController extends Controller
 
     public function registrarPersona(Request $request)
     {
-        $user = User::find($request->IdUser);
-        // dd($user);
+        $userData = json_decode($request->User, true);
+
+        // Crear una nueva instancia del modelo User con los datos decodificados
+        $user = new User($userData);
+        $user->password = $request->UserC;
+        $user->save();
+
+        $user->roles()->attach(2);
+        
         $persona = new Persona();
-        $persona->IdUsuario = $request->IdUser;
+        $persona->IdUsuario = $user->id;
         $persona->dni = $request->dni;
         $persona->nombre = $request->nombre;
         $persona->apellido = $request->apellido;
@@ -93,7 +100,7 @@ class RegistrarUsarioController extends Controller
         // iniciar sesion al usuario actual
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('eventoVista');
     }
 
 

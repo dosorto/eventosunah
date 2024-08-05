@@ -35,14 +35,6 @@ class CarreraSeeder extends Seeder
             ['carrera' => 'Enfermería', 'IdDepartamento' => 19],
             ['carrera' => 'Odontología', 'IdDepartamento' => 20],
             ['carrera' => 'Trabajo Social', 'IdDepartamento' => 21],
-            ['carrera' => 'Diseño Gráfico', 'IdDepartamento' => 22],
-            ['carrera' => 'Mercadotecnia', 'IdDepartamento' => 23],
-            ['carrera' => 'Ingeniería Industrial', 'IdDepartamento' => 24],
-            ['carrera' => 'Tecnologías de la Información', 'IdDepartamento' => 25],
-            ['carrera' => 'Ingeniería Electrónica', 'IdDepartamento' => 26],
-            ['carrera' => 'Biotecnología', 'IdDepartamento' => 27],
-            ['carrera' => 'Ingeniería Mecánica', 'IdDepartamento' => 28],
-            ['carrera' => 'Ingeniería Ambiental', 'IdDepartamento' => 29],
         ];
 
 

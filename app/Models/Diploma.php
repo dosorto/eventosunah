@@ -10,5 +10,21 @@ class Diploma extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['Codigo','URL','Fecha','IdConferencia','IdEvento','IdFirma'];
+    protected $fillable = [
+        'Codigo',
+        'URL',
+        'Fecha',
+        'IdConferencia',
+        'IdFirma',
+        'IdEvento',
+    ];
+
+    public function conferencia()
+    {
+        return $this->belongsTo(Conferencia::class, 'IdConferencia', 'id');
+    }
+    public function firma()
+    {
+        return $this->belongsTo(Firma::class, 'IdFirma');
+    }
 }

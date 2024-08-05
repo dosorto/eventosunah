@@ -41,8 +41,6 @@ class Personas extends Component
     ]);
 }
 
-
-
     public function create()
     {
         $this->resetInputFields();
@@ -61,6 +59,7 @@ class Personas extends Component
 
     private function resetInputFields()
     {
+        $this->persona_id = '';
         $this->IdUsuario = '';
         $this->dni = '';
         $this->nombre = '';
@@ -79,7 +78,7 @@ class Personas extends Component
     public function store()
 {
     $this->validate([
-        'IdUsuario' => 'required|integer|exists:users,id',
+        'IdUsuario' => 'nullable|integer|exists:users,id',
         'dni' => 'required|unique:personas,dni,' . $this->persona_id,
         'nombre' => 'required',
         'apellido' => 'required',
@@ -114,8 +113,10 @@ class Personas extends Component
 
     $this->closeModal();
     $this->resetInputFields();
+    $this->render(); 
 }
 
+    
 
     public function edit($id)
     {
@@ -142,5 +143,6 @@ class Personas extends Component
     {
         Persona::find($id)->delete();
         session()->flash('message', 'Registro eliminado correctamente!');
+        $this->render(); 
     }
 }
