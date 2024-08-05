@@ -67,7 +67,7 @@
                                         {{ $asistencia->suscripcion->conferencia->nombre ?? 'No disponible' }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <button {{--wire:click="enviarDiploma({{ $asistencia->id }})"--}} 
+                                        <a href="{{ route('vistaDiploma', ['asistencia' => $asistencia->id]) }}"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -81,8 +81,8 @@
                                             </svg>
 
 
-                                            Enviar Diploma
-                                        </button>
+                                            Ver Diploma
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

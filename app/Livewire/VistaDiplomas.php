@@ -4,8 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Asistencia;
-use App\Models\Persona;
-use App\Models\Conferencia;
 use App\Services\QRCodeService;
 
 
@@ -13,10 +11,17 @@ class VistaDiplomas extends Component
 {
     public $qrcode;
     public $persona;
+    public $asistencia;
     public $conferencia;
+    
 
     public function mount(Asistencia $asistencia)
     {
+        $this->asistencia = $asistencia;
+        $this->persona = $asistencia->suscripcion->persona;
+
+        $this->conferencia = $asistencia->suscripcion->conferencia;
+       
         // obtener el diploma asociado a la persona y la conferencia
 
         if ($this->validacionesPersonaConferencia()) {
