@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EventoVistaController;
 use App\Livewire\Tipoperfil\Tipoperfiles;
+use App\Livewire\VistaDiplomas;
 use App\Models\Evento;
 use App\Models\Persona;
 use Illuminate\Support\Facades\Route;
@@ -25,8 +26,8 @@ use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Livewire\Usuario\Usuarios;
 use Illuminate\Http\Request;
-
-Route::get('/dashboard/eventos/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
+use App\Livewire\ReporteEvento\ReporteEventos;
+use App\Livewire\Asistencia\AsistenciasConferencias;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +45,7 @@ Route::middleware([
     Route::get('/localidad', Localidades::class)->name('localidad');
     Route::get('/departamento', Departamentos::class)->name('departamento');
     Route::get('/carrera', Carreras::class)->name('carrera');
+    Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/rol', Roles::class)->name('rol');
     Route::get('/conferencia/{evento?}', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
@@ -52,9 +54,11 @@ Route::middleware([
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/diploma',Diplomas::class)->name('diploma');
-    Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/conferencias-inscritas', ConferenciasInscritas::class)->name('conferencias-inscritas');
+    Route::get('/asistencia-conferencia/{conferencia}', AsistenciasConferencias::class)->name('asistencias-Conferencia');
+
+    Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');

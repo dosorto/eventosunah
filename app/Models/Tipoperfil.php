@@ -9,5 +9,8 @@ class Tipoperfil extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'tipoperfils';
+    
     protected $fillable = ['tipoperfil'];
 }

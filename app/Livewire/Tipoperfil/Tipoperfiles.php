@@ -5,6 +5,7 @@ namespace App\Livewire\TipoPerfil;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Tipoperfil;
+use App\Models\Persona;
 
 class Tipoperfiles extends Component
 {
@@ -12,6 +13,10 @@ class Tipoperfiles extends Component
 
     public $tipoperfil, $tipoperfil_id, $search;
     public $isOpen = 0;
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
+    public $errorMessage;
 
     public function render()
     {
@@ -47,8 +52,7 @@ class Tipoperfiles extends Component
     public function store()
     {
         $this->validate([
-            'tipoperfil' => ['required','unique:tipoperfils,tipoperfil,' . $this->tipoperfil_id,
-            ],
+            'tipoperfil' => ['required', 'unique:tipoperfils,tipoperfil,' . $this->tipoperfil_id],
         ]);
 
         Tipoperfil::updateOrCreate(['id' => $this->tipoperfil_id], [
@@ -72,9 +76,35 @@ class Tipoperfiles extends Component
         $this->openModal();
     }
 
-    public function delete($id)
+    public function delete()
     {
-        Tipoperfil::find($id)->delete();
-        session()->flash('message', 'Registro eliminado correctamente!');
+        if ($this->confirmingDelete) {
+            $tipoperfil = Tipoperfil::withTrashed()->find($this->IdAEliminar);
+
+            if (!$tipoperfil) {
+                session()->flash('message', 'Tipo de perfil no encontrado.');
+                return;
+            }
+
+            $tipoperfil->forceDelete();
+            session()->flash('message', 'Tipo de perfil eliminado permanentemente!');
+            $this->confirmingDelete = false; 
+        }
+    }
+
+    public function confirmDelete($id)
+    {
+        $tipoperfil = Tipoperfil::find($id);
+        $personasAsociadas = Persona::where('IdTipoperfil', $id)->exists();
+
+        if ($personasAsociadas) {
+            $this->errorMessage = 'No se puede eliminar este tipo de perfil porque está asociado a una o más personas.';
+            $this->confirmingDelete = true;
+        } else {
+            $this->IdAEliminar = $id;
+            $this->nombreAEliminar = $tipoperfil->tipoperfil; 
+            $this->errorMessage = '';
+            $this->confirmingDelete = true;
+        }
     }
 }

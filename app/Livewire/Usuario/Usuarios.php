@@ -21,6 +21,8 @@ class Usuarios extends Component
     public $selectedRoles = [];
     public $roles;
     public $isOpen = false;
+    public $showDeleteModal = false;
+    public $deleteId = null;
 
     protected $rules = [
         'name' => 'required',
@@ -140,11 +142,26 @@ class Usuarios extends Component
         }
     }
 
-   
-    public function delete($id)
+    public function confirmDelete($id)
     {
-        User::find($id)->delete();
-        session()->flash('message', 'Registro eliminado correctamente!');
+        $user = User::find($id);
+    
+        if ($user->persona) {
+            session()->flash('message', 'No se puede eliminar el usuario porque está asociado a una persona.');
+            Log::warning('Attempted to delete a user with an associated persona: User ID ' . $id);
+            return;
+        }
+
+        $this->deleteId = $id;
+        $this->showDeleteModal = true;
+    }
+
+    public function deleteConfirmed()
+    {
+        User::find($this->deleteId)->delete();
+        $this->deleteId = null;
+        $this->showDeleteModal = false;
+        session()->flash('message', 'Usuario eliminado correctamente!');
     }
 
     public function closeModal()
@@ -158,6 +175,5 @@ class Usuarios extends Component
         $this->email = '';
         $this->password = '';
         $this->selectedRoles = [];
-        
     }
 }

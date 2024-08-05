@@ -56,6 +56,7 @@
                             <tr>
                                 <th scope="col" class="px-6 py-3">No.</th>
                                 <th scope="col" class="px-6 py-3">Nombre Evento</th>
+                                <th scope="col" class="px-6 py-3">Logo</th>
                                 <th scope="col" class="px-6 py-3">Descripción</th>
                                 <th scope="col" class="px-6 py-3">Organizador</th>
                                 <th scope="col" class="px-6 py-3">Modalidad</th>
@@ -69,12 +70,20 @@
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $nombreevento->id }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->nombreevento }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($nombreevento->logo)
+                                            <img src="{{ asset(str_replace('public', 'storage', $nombreevento->logo)) }}"
+                                                alt="Logo del Evento" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin foto
+                                        @endif
+                                    </td>
                                     <td class="px-6 py-4">{{ $nombreevento->descripcion }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->organizador }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
                                     <td class="px-6 py-4">
-                                        <button wire:click="viewDetails({{ $nombreevento->id }})"
+                                        <a href="{{ route('reporteEvento', ['evento' => $nombreevento->id]) }}"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -87,7 +96,7 @@
 
 
                                             Ver más
-                                        </button>
+                                        </a>
                                         <a href="{{ route('conferencia', ['evento' => $nombreevento->id]) }}"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
@@ -117,8 +126,8 @@
 
                                             Editar
                                         </button>
-                                        <button wire:click="delete({{ $nombreevento->id }})"
-                                            class="px-3 w-full py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                                        <button wire:click="confirmDelete({{ $nombreevento->id }})"
+                                        class="px-3 w-full py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -144,51 +153,22 @@
 
     </div>
 
-    @if ($showDetails)
+    @if ($confirmingDelete)
         <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
             <div class="fixed inset-0 transition-opacity">
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Detalles del Evento</h3>
-                    <div>
-                        <table class=" text-sm  text-left rtl:text-left text-gray-500 dark:text-gray-400">
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Evento:</strong> </td><td class="px-6 py-2"> {{ $selectedEvento->nombreevento }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Descripción:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->descripcion }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Organizador:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->organizador }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Fecha Inicio:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->fechainicio }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Fecha Final:</strong> </td><td class="px-6 py-2"> {{ $selectedEvento->fechafinal }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Hora Inicio:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->horainicio }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Hora Final:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->horafin }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Modalidad:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->modalidad->modalidad }}</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Localidad:</strong></td><td class="px-6 py-2">  {{ $selectedEvento->localidad->localidad }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="mt-4">
-                        <button wire:click="closeDetails()"
-                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
-                            Cerrar
+                    <h3 class="text-lg font-semibold mb-4">Confirmación de Eliminación</h3>
+                    <p>¿Estás seguro de que deseas eliminar el evento "<strong>{{ $nombreEventoAEliminar }}</strong>"? Esta acción no se puede deshacer.</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Cancelar
+                        </button>
+                        <button wire:click="delete" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                            Eliminar
                         </button>
                     </div>
                 </div>

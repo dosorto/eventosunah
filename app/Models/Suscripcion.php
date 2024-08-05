@@ -10,6 +10,8 @@ class Suscripcion extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    
     protected $fillable = ['IdConferencia', 'IdPersona', 'created_by', 'deleted_by'];
 
     public function conferencia()
@@ -21,6 +23,7 @@ class Suscripcion extends Model
     {
         return $this->belongsTo(Persona::class, 'IdPersona');
     }
+
     protected $table = 'suscripcions';
 
 }
