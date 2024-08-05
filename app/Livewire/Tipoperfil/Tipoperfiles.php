@@ -16,8 +16,6 @@ class Tipoperfiles extends Component
     public $confirmingDelete = false;
     public $IdAEliminar;
     public $nombreAEliminar;
-    public $errorMessage;
-
     public function render()
     {
         $tipoperfiles = Tipoperfil::where('tipoperfil', 'like', '%'.$this->search.'%')
@@ -79,32 +77,37 @@ class Tipoperfiles extends Component
     public function delete()
     {
         if ($this->confirmingDelete) {
-            $tipoperfil = Tipoperfil::withTrashed()->find($this->IdAEliminar);
+            $tipoperfil = Tipoperfil::find($this->IdAEliminar);
 
             if (!$tipoperfil) {
-                session()->flash('message', 'Tipo de perfil no encontrado.');
+                session()->flash('error', 'localidad no encontrada.');
+                $this->confirmingDelete = false;
                 return;
             }
 
             $tipoperfil->forceDelete();
-            session()->flash('message', 'Tipo de perfil eliminado permanentemente!');
-            $this->confirmingDelete = false; 
+            session()->flash('message', 'tipo perfil eliminado correctamente!');
+            $this->confirmingDelete = false;
         }
     }
 
     public function confirmDelete($id)
     {
         $tipoperfil = Tipoperfil::find($id);
-        $personasAsociadas = Persona::where('IdTipoperfil', $id)->exists();
 
-        if ($personasAsociadas) {
-            $this->errorMessage = 'No se puede eliminar este tipo de perfil porque está asociado a una o más personas.';
-            $this->confirmingDelete = true;
-        } else {
-            $this->IdAEliminar = $id;
-            $this->nombreAEliminar = $tipoperfil->tipoperfil; 
-            $this->errorMessage = '';
-            $this->confirmingDelete = true;
+        if (!$tipoperfil) {
+            session()->flash('error', 'tipo perfil no encontrado.');
+            return;
         }
+
+        if ($tipoperfil && !$tipoperfil->personas()->exists()) {
+            session()->flash('error', 'No se puede eliminar el tipo de perfil: '. $tipoperfil->tipoperfil .', porque está enlazado a una o más personas');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $tipoperfil->tipoperfil;
+        $this->confirmingDelete = true;
     }
+
 }

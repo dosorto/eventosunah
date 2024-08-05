@@ -22,7 +22,9 @@ class Usuarios extends Component
     public $roles;
     public $isOpen = false;
     public $showDeleteModal = false;
-    public $deleteId = null;
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
 
     protected $rules = [
         'name' => 'required',
@@ -142,26 +144,40 @@ class Usuarios extends Component
         }
     }
 
+    public function delete()
+    {
+        if ($this->confirmingDelete) {
+            $user  = User::find($this->IdAEliminar);
+
+            if (!$user ) {
+                session()->flash('error', 'Usuario no encontrado.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $user ->forceDelete();
+            session()->flash('message', 'usuario eliminado correctamente!');
+            $this->confirmingDelete = false;
+        }
+    }
+
     public function confirmDelete($id)
     {
-        $user = User::find($id);
-    
-        if ($user->persona) {
-            session()->flash('message', 'No se puede eliminar el usuario porque está asociado a una persona.');
-            Log::warning('Attempted to delete a user with an associated persona: User ID ' . $id);
+        $user  = User::find($id);
+
+        if (!$user ) {
+            session()->flash('error', 'usuario no encontrado.');
             return;
         }
 
-        $this->deleteId = $id;
-        $this->showDeleteModal = true;
-    }
+        if ($user ->persona) {
+            session()->flash('error', 'No se puede eliminar el usuario : '. $user ->name . ', con correo: '. $user ->email . ', porque está enlazado a una persona');
+            return;
+        }
 
-    public function deleteConfirmed()
-    {
-        User::find($this->deleteId)->delete();
-        $this->deleteId = null;
-        $this->showDeleteModal = false;
-        session()->flash('message', 'Usuario eliminado correctamente!');
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $user->name . ' ' . $user ->email;
+        $this->confirmingDelete = true;
     }
 
     public function closeModal()

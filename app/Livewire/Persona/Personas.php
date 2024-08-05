@@ -15,7 +15,9 @@ class Personas extends Component
 
     public $persona_id, $IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
     public $isOpen = 0;
-
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public $user;
     public $nacionalidades;
     public $tipoperfiles;
@@ -28,18 +30,18 @@ class Personas extends Component
     }
 
     public function render()
-{
-    $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
-        ->where('nombre', 'like', '%' . $this->search . '%')
-        ->orderBy('id', 'DESC')
-        ->paginate(5);
+    {
+        $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
+            ->where('nombre', 'like', '%' . $this->search . '%')
+            ->orderBy('id', 'DESC')
+            ->paginate(5);
 
-    return view('livewire.persona.personas', [
-        'personas' => $personas,
-        'nacionalidades' => $this->nacionalidades,
-        'tipoperfiles' => $this->tipoperfiles
-    ]);
-}
+        return view('livewire.persona.personas', [
+            'personas' => $personas,
+            'nacionalidades' => $this->nacionalidades,
+            'tipoperfiles' => $this->tipoperfiles
+        ]);
+    }
 
     public function create()
     {
@@ -76,45 +78,45 @@ class Personas extends Component
     }
 
     public function store()
-{
-    $this->validate([
-        'IdUsuario' => 'nullable|integer|exists:users,id',
-        'dni' => 'required|unique:personas,dni,' . $this->persona_id,
-        'nombre' => 'required',
-        'apellido' => 'required',
-        'correo' => 'required|email|unique:personas,correo,' . $this->persona_id,
-        'correoInstitucional' => 'nullable|email|unique:personas,correoInstitucional,' . $this->persona_id,
-        'fechaNacimiento' => 'required|date',
-        'sexo' => 'required',
-        'direccion' => 'required',
-        'telefono' => 'required',
-        'numeroCuenta' => 'nullable|unique:personas,numeroCuenta,' . $this->persona_id,
-        'IdNacionalidad' => 'required|exists:nacionalidads,id',
-        'IdTipoPerfil' => 'required|exists:tipoperfils,id',
-    ]);
+    {
+        $this->validate([
+            'IdUsuario' => 'nullable|integer|exists:users,id',
+            'dni' => 'required|unique:personas,dni,' . $this->persona_id,
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'correo' => 'required|email|unique:personas,correo,' . $this->persona_id,
+            'correoInstitucional' => 'nullable|email|unique:personas,correoInstitucional,' . $this->persona_id,
+            'fechaNacimiento' => 'required|date',
+            'sexo' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'numeroCuenta' => 'nullable|unique:personas,numeroCuenta,' . $this->persona_id,
+            'IdNacionalidad' => 'required|exists:nacionalidads,id',
+            'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+        ]);
 
-    Persona::updateOrCreate(['id' => $this->persona_id], [
-        'IdUsuario' => $this->IdUsuario,
-        'dni' => $this->dni,
-        'nombre' => $this->nombre,
-        'apellido' => $this->apellido,
-        'correo' => $this->correo,
-        'correoInstitucional' => $this->correoInstitucional,
-        'fechaNacimiento' => $this->fechaNacimiento,
-        'sexo' => $this->sexo,
-        'direccion' => $this->direccion,
-        'telefono' => $this->telefono,
-        'numeroCuenta' => $this->numeroCuenta,
-        'IdNacionalidad' => $this->IdNacionalidad,
-        'IdTipoPerfil' => $this->IdTipoPerfil,
-    ]);
+        Persona::updateOrCreate(['id' => $this->persona_id], [
+            'IdUsuario' => $this->IdUsuario,
+            'dni' => $this->dni,
+            'nombre' => $this->nombre,
+            'apellido' => $this->apellido,
+            'correo' => $this->correo,
+            'correoInstitucional' => $this->correoInstitucional,
+            'fechaNacimiento' => $this->fechaNacimiento,
+            'sexo' => $this->sexo,
+            'direccion' => $this->direccion,
+            'telefono' => $this->telefono,
+            'numeroCuenta' => $this->numeroCuenta,
+            'IdNacionalidad' => $this->IdNacionalidad,
+            'IdTipoPerfil' => $this->IdTipoPerfil,
+        ]);
 
-    session()->flash('message', $this->persona_id ? 'Persona actualizada correctamente!' : 'Persona creada correctamente!');
+        session()->flash('message', $this->persona_id ? 'Persona actualizada correctamente!' : 'Persona creada correctamente!');
 
-    $this->closeModal();
-    $this->resetInputFields();
-    $this->render(); 
-}
+        $this->closeModal();
+        $this->resetInputFields();
+        $this->render(); 
+    }
 
     
 
@@ -139,10 +141,38 @@ class Personas extends Component
         $this->openModal();
     }
 
-    public function delete($id)
+    public function delete()
     {
-        Persona::find($id)->delete();
-        session()->flash('message', 'Registro eliminado correctamente!');
-        $this->render(); 
+        if ($this->confirmingDelete) {
+            $persona = Persona::find($this->IdAEliminar);
+
+            if (!$persona) {
+                session()->flash('error', 'persona no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $persona->forceDelete();
+            session()->flash('message', 'persona eliminada correctamente!');
+            $this->confirmingDelete = false;
+        }
     }
-}
+
+    public function confirmDelete($id)
+    {
+        $persona = Persona::find($id);
+
+        if (!$persona) {
+            session()->flash('error', 'persona no encontrada.');
+            return;
+        }
+        if ($persona && !$persona->conferencistas()->exists())  {
+            session()->flash('error', 'No se puede eliminar la persona:  ' .$persona->nombre .'  ' . $persona->apellido .', porque está enlazada a un conferencista.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $persona->nombre .' ' .  $persona->apellido;
+        $this->confirmingDelete = true;
+    }
+ }

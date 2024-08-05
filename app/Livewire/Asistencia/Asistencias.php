@@ -36,12 +36,7 @@ class Asistencias extends Component
         })->get();
     }
 
-    public function redirectToAsistenciaView($conferenciaId)
-    {
-        // Redirige a la vista deseada con el ID de la conferencia
-        return redirect()->route('asistencias-Conferencia', ['conferencia' => $conferenciaId]);
-    }
-    
+        
     public function selectSuscripcion($suscripcionId)
     {
         $suscripcion = Suscripcion::find($suscripcionId);

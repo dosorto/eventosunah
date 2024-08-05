@@ -163,16 +163,12 @@ class Conferencias extends Component
             'linkreunion' => $this->linkreunion,
             'idConferencista' => $this->idConferencista,
         ]);
-
-        // Mensaje de éxito
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
         $this->render();
         
         $this->closeModal();
         $this->resetInputFields();
         $this->render(); 
-       
-        
     }
 
 
@@ -209,11 +205,9 @@ class Conferencias extends Component
                 return;
             }
 
-            
-            // Elimina la conferencia de forma forzada
             $conferencia->forceDelete();
             session()->flash('message', 'Conferencia eliminada correctamente!');
-            $this->confirmingDelete = false; // Cierra el modal de confirmación
+            $this->confirmingDelete = false;
         }
     }
 
@@ -227,7 +221,7 @@ class Conferencias extends Component
         }
 
         if ($conferencia->suscripciones()->exists()) {
-            session()->flash('error', 'No se puede eliminar la conferencia porque está enlazada a una o más suscripciones.');
+            session()->flash('error', 'No se puede eliminar la conferencia:'.$conferencia->nombre .'porque está enlazada a una o más suscripciones.');
             return;
         }
 

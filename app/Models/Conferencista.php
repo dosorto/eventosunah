@@ -8,16 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Conferencista extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = [
-        'Titulo', 'Descripcion', 'Foto', 'dni', 'nombre', 'apellido', 'correo',
-        'correoInstitucional', 'fechaNacimiento', 'sexo', 'direccion', 'telefono',
-        'numeroCuenta', 'IdNacionalidad', 'IdTipoPerfil', 'created_by',
-    ];
-    
+    protected $fillable = ['titulo', 'foto', 'descripcion', 'IdPersona'];
 
-    public function nacionalidad()
+    // protected $fillable = ['titulo', 'foto', 'descripcion', 'dni','nombre','apellido','correo','fechaNacimiento','sexo', 'direccion', 'telefono', 'IdNacionalidad'];
+
+    // public function persona()
+    // {
+    //     return $this->belongsTo(Persona::class);
+    // }
+
+    // protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
+    public function persona()
     {
         return $this->belongsTo(Nacionalidad::class, 'IdNacionalidad', 'id');
     }
@@ -25,5 +29,9 @@ class Conferencista extends Model
     public function tipoPerfil()
     {
         return $this->belongsTo(TipoPerfil::class, 'IdTipoPerfil', 'id');
+    }
+    public function conferencias()
+    {
+        return $this->hasMany(Conferencia::class, 'idConferencista');
     }
 }

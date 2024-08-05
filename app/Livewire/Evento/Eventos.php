@@ -157,13 +157,19 @@ class Eventos extends Component
     public function confirmDelete($id)
     {
         $evento = Evento::find($id);
-        if ($evento) {
+        if ($evento->conferencias()->exists()) {
+            session()->flash('error', 'No se puede eliminar el evento: ' .$evento->nombreevento .', porque está enlazado a una o más conferencias.');
+            return;
+        }
+     
             $this->eventoIdAEliminar = $id;
             $this->nombreEventoAEliminar = $evento->nombreevento; // Obtén el nombre del evento
             $this->confirmingDelete = true;
-        }
+        
     }
+/*
 
+*/
     public $showDetails = false;
     public $selectedEvento;
     public function viewDetails($id)
