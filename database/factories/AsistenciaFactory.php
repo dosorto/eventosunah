@@ -6,9 +6,6 @@ use App\Models\Asistencia;
 use App\Models\Suscripcion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Asistencia>
- */
 class AsistenciaFactory extends Factory
 {
     protected $model = Asistencia::class;
@@ -20,15 +17,16 @@ class AsistenciaFactory extends Factory
      */
     public function definition(): array
     {
-        // Obtén una suscripción aleatoria, o null si no hay ninguna
-        $suscripcion = Suscripcion::inRandomOrder()->first();
-        $suscripcionId = $suscripcion ? $suscripcion->id : null;
+        // Asegúrate de que hay al menos una Suscripcion en la base de datos
+        $suscripcionId = Suscripcion::inRandomOrder()->first()->id ?? 1; // Default to 1 if no Suscripcion exists
 
         return [
             'Fecha' => $this->faker->date(),
             'Asistencia' => $this->faker->boolean(),
             'IdSuscripcion' => $suscripcionId,
-            'created_by' => 1
+            'created_by' => $this->faker->numberBetween(1, 10),
+            'deleted_by' => $this->faker->optional()->numberBetween(1, 10),
+            'updated_by' => $this->faker->optional()->numberBetween(1, 10),
         ];
     }
 }
