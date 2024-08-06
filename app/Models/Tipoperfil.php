@@ -13,4 +13,9 @@ class Tipoperfil extends BaseModel
     protected $table = 'tipoperfils';
     
     protected $fillable = ['tipoperfil'];
+
+    public function personas()
+    {
+        return $this->belongsTo(Persona::class, 'IdTipoPerfil');
+    }
 }

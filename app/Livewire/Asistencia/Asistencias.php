@@ -17,11 +17,13 @@ class Asistencias extends Component
     public $Fecha, $Asistencia, $IdSuscripcion, $asistencia_id, $search;
     public $isOpen = false;
     public $suscripciones;
-
+    public $conferencia_id; 
     public $inputSearchSuscripcion = '';
     public $searchSuscripciones = [];
     public $fechaActual;
-
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public function updatedInputSearchSuscripcion()
     {
         $searchTerm = '%' . $this->inputSearchSuscripcion . '%';
@@ -34,7 +36,7 @@ class Asistencias extends Component
         })->get();
     }
 
-
+        
     public function selectSuscripcion($suscripcionId)
     {
         $suscripcion = Suscripcion::find($suscripcionId);
@@ -109,21 +111,30 @@ class Asistencias extends Component
         $this->closeModal();
         $this->resetInputFields();
     }
-    public $showDeleteModal = false;
-    public $deleteId = null;
-    
+    public function delete()
+    {
+        if ($this->confirmingDelete) {
+            $asistencia = Asistencia::find($this->IdAEliminar);
+
+            if (!$asistencia) {
+                session()->flash('error', 'Asistencia no encontrado.');
+                return;
+            }
+
+            $asistencia->Forcedelete();
+            session()->flash('message', 'Asistencia eliminado correctamente!');
+            $this->confirmingDelete = false; // Cierra el modal de confirmación
+        }
+    }
+
     public function confirmDelete($id)
     {
-        $this->deleteId = $id;
-        $this->showDeleteModal = true;
-    }
-    
-    public function deleteConfirmed()
-    {
-        Asistencia::find($this->deleteId)->delete();
-        $this->deleteId = null;
-        $this->showDeleteModal = false;
-        session()->flash('message', 'Registro de asistencia eliminado correctamente!');
+        $asistencia = Asistencia::find($id);
+        if ($asistencia) {
+            $this->IdAEliminar = $id;
+            $this->nombreAEliminar = $asistencia->suscripcion->persona->nombre . ' ' . $asistencia->suscripcion->persona->apellido . ' - ' . $asistencia->suscripcion->conferencia->nombre;; // Obtén el nombre del evento
+            $this->confirmingDelete = true;
+        }
     }
     public function edit($id)
     {

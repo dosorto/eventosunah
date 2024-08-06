@@ -4,12 +4,15 @@ namespace App\Livewire\Nacionalidad;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Nacionalidad;
-
+use App\Models\Persona;
 class Nacionalidades extends Component
 {
     use WithPagination;
     public $nombreNacionalidad, $nacionalidad_id, $search;
     public $isOpen = 0;
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public function render()
     {
         $nacionalidades = Nacionalidad::where('nombreNacionalidad', 'like', '%'.$this->search.'%')->orderBy('nombreNacionalidad','ASC')->paginate(5);
@@ -64,14 +67,40 @@ class Nacionalidades extends Component
         $this->openModal();
     }
      
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public function delete($id)
+    public function delete()
     {
-        Nacionalidad::find($id)->delete();
-        session()->flash('message', 'Registro Eliminado correctamente!');
+        if ($this->confirmingDelete) {
+            $nacionalidad = Nacionalidad::find($this->IdAEliminar);
+
+            if (!$nacionalidad) {
+                session()->flash('error', 'nacionalidad no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $nacionalidad->forceDelete();
+            session()->flash('message', 'nacionalidad eliminada correctamente!');
+            $this->confirmingDelete = false;
+        }
     }
+
+    public function confirmDelete($id)
+    {
+        $nacionalidad = Nacionalidad::find($id);
+
+        if (!$nacionalidad) {
+            session()->flash('error', 'Nacionalidad no encontrada.');
+            return;
+        }
+
+        if ($nacionalidad->personas()->exists()) {
+            session()->flash('error', 'No se puede eliminar la nacionalidad: '. $nacionalidad->nombreNacionalidad . ', porque está enlazado a una  o más personas:');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $nacionalidad->nombreNacionalidad;
+        $this->confirmingDelete = true;
+    }
+
 }

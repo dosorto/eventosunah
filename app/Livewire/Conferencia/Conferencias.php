@@ -20,7 +20,9 @@ class Conferencias extends Component
     public $searchEventos = [];
     public $showDetails = false;
     public $selectedConferencia;
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public function viewDetails($id)
     {
         $this->selectedConferencia = Conferencia::find($id);
@@ -161,16 +163,12 @@ class Conferencias extends Component
             'linkreunion' => $this->linkreunion,
             'idConferencista' => $this->idConferencista,
         ]);
-
-        // Mensaje de éxito
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
         $this->render();
         
         $this->closeModal();
         $this->resetInputFields();
         $this->render(); 
-       
-        
     }
 
 
@@ -196,26 +194,41 @@ class Conferencias extends Component
         $this->openModal();
         $this->render();
     }
-    public $confirmingDeletion = false; 
-    public $deleteId;
-    public function confirmDelete($id)
-    {
-        $this->deleteId = $id;
-        $this->confirmingDeletion = true;
-    }
-    
-    public function cancelDelete()
-    {
-        $this->confirmingDeletion = false;
-    }
-    
     public function delete()
     {
-        Conferencia::find($this->deleteId)->delete();
-        session()->flash('message', 'Registro eliminado correctamente!');
-        $this->confirmingDeletion = false;
+        if ($this->confirmingDelete) {
+            $conferencia = Conferencia::find($this->IdAEliminar);
+
+            if (!$conferencia) {
+                session()->flash('error', 'Conferencia no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $conferencia->forceDelete();
+            session()->flash('message', 'Conferencia eliminada correctamente!');
+            $this->confirmingDelete = false;
+        }
     }
 
+    public function confirmDelete($id)
+    {
+        $conferencia = Conferencia::find($id);
+
+        if (!$conferencia) {
+            session()->flash('error', 'Conferencia no encontrada.');
+            return;
+        }
+
+        if ($conferencia->suscripciones()->exists()) {
+            session()->flash('error', 'No se puede eliminar la conferencia:'.$conferencia->nombre .'porque está enlazada a una o más suscripciones.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $conferencia->nombre;
+        $this->confirmingDelete = true;
+    }
 
     public function mount(Evento $evento)
     {

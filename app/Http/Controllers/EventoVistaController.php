@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
-
 use App\Models\Asistencia;
 
 class EventoVistaController extends Controller
@@ -21,5 +20,4 @@ class EventoVistaController extends Controller
     {
         // retornar la vista diplomas.validacion
     }
-
 }

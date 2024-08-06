@@ -43,19 +43,13 @@ class Conferencistas extends Component
         return view('livewire.Conferencista.conferencistas', ['conferencistas' => $conferencistas]);
     }
 
-    public function updatedInputSearchPersona()
-    {
-        $this->searchPersonas = Persona::where('nombre', 'like', '%' . $this->inputSearchPersona . '%')
-            ->orWhere('apellido', 'like', '%' . $this->inputSearchPersona . '%')
-            ->get();
-    }
+    
 
     public function selectPersona($personaId)
     {
         $this->persona_id = $personaId;
         $persona = Persona::find($personaId);
-        $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
-        $this->searchPersonas = [];
+        
     }
 
     public function create()
@@ -82,9 +76,7 @@ class Conferencistas extends Component
         $this->foto = null;
         $this->persona_id = null;
         $this->conferencista_id = null;
-        $this->inputSearchPersona = '';
         $this->persona_id = '';
-        $this->IdUsuario = '';
         $this->dni = '';
         $this->nombre = '';
         $this->apellido = '';
@@ -151,8 +143,8 @@ class Conferencistas extends Component
                 // 'Descripcion' => $this->descripcion,
                 'direccion' => $this->direccion,
                 'IdTipoPerfil' => $this->IdTipoPerfil,
-                'correoInstitucional' => $this->correoInstitucional,
-                'numeroCuenta' => $this->numeroCuenta,
+                'correoInstitucional' => $this->correoInstitucional?: null,
+                'numeroCuenta' => $this->numeroCuenta?: null,
                 'created_by' => $createdBy,
             ];
 
@@ -193,9 +185,9 @@ class Conferencistas extends Component
         $conferencista = Conferencista::findOrFail($id);
 
         $this->conferencista_id = $id;
-        $this->titulo = $conferencista->Titulo;
-        $this->descripcion = $conferencista->Descripcion;
-        $this->foto = $conferencista->Foto;
+        $this->titulo = $conferencista->titulo;
+        $this->descripcion = $conferencista->descripcion;
+        $this->foto = $conferencista->foto;
         $this->dni = $conferencista->persona->dni;
         $this->nombre = $conferencista->persona->nombre;
         $this->apellido = $conferencista->persona->apellido;
@@ -212,21 +204,48 @@ class Conferencistas extends Component
 
         // Solo se necesita el ID para buscar la persona, no asignar la foto aquí
         $persona = Persona::find($this->persona_id);
-        if ($persona) {
-            $this->inputSearchPersona = $persona->nombre . ' ' . $persona->apellido;
-        }
+        
 
         $this->openModal();
     }
-
-    public function delete($id)
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
+    public function delete()
     {
-        $conferencista = Conferencista::findOrFail($id);
-        if ($conferencista->foto) {
-            \Storage::delete('public/conferencistas/' . basename($conferencista->foto));
+        if ($this->confirmingDelete) {
+            $conferencista = Conferencista::find($this->IdAEliminar);
+
+            if (!$conferencista) {
+                session()->flash('error', 'conferencista no encontrado.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $conferencista->forceDelete();
+            session()->flash('message', 'conferencista eliminado correctamente!');
+            $this->confirmingDelete = false;
         }
-        $conferencista->delete();
-        session()->flash('message', 'Conferencista eliminado correctamente!');
-        $this->render(); 
     }
+
+    public function confirmDelete($id)
+    {
+        $conferencista = Conferencista::find($id);
+
+        if (!$conferencista) {
+            session()->flash('error', 'Conferencista no encontrado.');
+            return;
+        }
+        
+
+        if ($conferencista->conferencias()->exists()) {
+            session()->flash('error', 'No se puede eliminar el conferencista: '.$conferencista->persona->nombre .'    '.$conferencista->persona->apellido  .', porque está enlazado a una o más conferencias.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $conferencista->persona->nombre . '  '. $conferencista->persona->apellido;
+        $this->confirmingDelete = true;
+    }
+
 }

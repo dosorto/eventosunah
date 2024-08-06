@@ -16,28 +16,13 @@ return new class extends Migration
             $table->id();
             $table->string('foto')->nullable();
             $table->unsignedBigInteger('IdPersona')->nullable();
-            // $table->string('dni')->unique();
-            // $table->string('nombre');
-            // $table->string('apellido');
             $table->string('titulo')->nullable();
-            // $table->string('correo')->nullable()->unique();
-            // $table->date('fechaNacimiento');
-            // $table->string('sexo');
-            // $table->string('telefono');
-            // $table->unsignedBigInteger('IdNacionalidad');
             $table->string('descripcion', 500)->nullable();
-            // $table->string('direccion');
-            // $table->unsignedBigInteger('IdTipoPerfil');
-            // $table->string('correoInstitucional')->nullable()->unique();
-            // $table->string('numeroCuenta')->nullable()->unique();
-            $table->integer('created_by')->nullable(); // Permitir valores nulos
+            $table->integer('created_by'); 
             $table->integer('deleted_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
-        
-            // $table->foreign('IdNacionalidad')->references('id')->on('nacionalidads')->onDelete('restrict');
-            // $table->foreign('IdTipoPerfil')->references('id')->on('tipoperfils')->onDelete('restrict');
         });
         
     }

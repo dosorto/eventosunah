@@ -18,6 +18,9 @@ class Roles extends Component
     public $search = '';
     public $selectedPermissions = [];
     public $isOpen = false;
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     protected $rules = [
         'name' => 'required|unique:roles,name',
         'selectedPermissions' => 'required|array',
@@ -113,19 +116,43 @@ class Roles extends Component
             Log::error('Error updating role: ' . $e->getMessage());
         }
     }
-
-    public function delete($roleId)
+    public function delete()
     {
-        $role = Role::findOrFail($roleId);
+        if ($this->confirmingDelete) {
+            $role  = Role::find($this->IdAEliminar);
 
-        if ($role->users()->exists()) {
-            session()->flash('message', 'No se puede eliminar el rol porque tiene usuarios asignados.');
+            if (!$role ) {
+                session()->flash('error', 'Rol no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $role ->forceDelete();
+            session()->flash('message', 'Rol eliminado correctamente!');
+            $this->confirmingDelete = false;
+        }
+    }
+
+    public function confirmDelete($id)
+    {
+        $role  = Role::find($id);
+
+        if (! $role ) {
+            session()->flash('error', 'localidad no encontrada.');
             return;
         }
-        $role->delete();
-        session()->flash('message', 'Rol eliminado');
+
+        if ($role->users()->exists()) {
+            session()->flash('error', 'No se puede eliminar el  rol: '. $role->name .', porque está enlazado a uno o más usuarios');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $role->name;
+        $this->confirmingDelete = true;
     }
-    
+
+       
     public function closeModal()
     {
         $this->isOpen = false;
