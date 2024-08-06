@@ -290,7 +290,7 @@
                             </button>
                             <button wire:click="asistencia({{ $suscripcion->id }})"
                                 class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-gray-800 bg-green-500 rounded-lg hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700">
-                                Asistencia
+                                {{ isset($asistenciaMarcada[$suscripcion->id]) && $asistenciaMarcada[$suscripcion->id] ? 'Marcada' : 'Asistencia' }}
                                 <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                     viewBox="0 0 24 24">

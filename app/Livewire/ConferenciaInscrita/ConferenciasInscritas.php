@@ -11,7 +11,7 @@ use App\Models\Persona;
 class ConferenciasInscritas extends Component
 {
     public $conferencias;
-
+    public $asistenciaMarcada = [];
     public function mount()
     {
         // Obtener el IdPersona del usuario actual
@@ -56,6 +56,7 @@ class ConferenciasInscritas extends Component
             'IdSuscripcion' => $IdSuscripcion,
             'created_by' => Auth::id()
         ]);
+        $this->asistenciaMarcada[$IdSuscripcion] = true;
 
         session()->flash('success', 'Asistencia marcada correctamente.');
     }

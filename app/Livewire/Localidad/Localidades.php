@@ -49,23 +49,15 @@ class Localidades extends Component
     public function store()
     {
         $this->validate([
-            'localidad' => [
-                'required',
-                'string',
-                'max:255',
-                'unique:localidads,localidad,' . $this->localidad_id,
-            ],
+            'localidad' => 'required|string|max:255|unique:localidads,localidad,' . $this->localidad_id,
         ]);
-    
-        Localidad::updateOrCreate(
-            ['id' => $this->localidad_id],
-            ['localidad' => $this->localidad]
-        );
-    
+
+        Localidad::updateOrCreate(['id' => $this->localidad_id], ['localidad' => $this->localidad]);
+
         session()->flash('message', 
             $this->localidad_id ? 'Localidad actualizada correctamente!' : 'Localidad creada correctamente!'
         );
-    
+
         $this->closeModal();
         $this->resetInputFields();
     }
@@ -75,7 +67,7 @@ class Localidades extends Component
         $localidad = Localidad::findOrFail($id);
         $this->localidad_id = $id;
         $this->localidad = $localidad->localidad;
-    
+
         $this->openModal();
     }
      
@@ -94,6 +86,10 @@ class Localidades extends Component
             session()->flash('message', 'localidad eliminada correctamente!');
             $this->confirmingDelete = false;
         }
+
+        Localidad::destroy($this->IdAEliminar);
+        session()->flash('message', 'Localidad eliminada correctamente!');
+        $this->confirmingDelete = false;
     }
 
     public function confirmDelete($id)

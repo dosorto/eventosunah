@@ -9,6 +9,8 @@ class Conferencia extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'conferencias';
     protected $fillable = ['IdEvento','nombre','descripcion','fecha','horaInicio','horaFin','lugar','linkreunion', 'idConferencista'];
     public function conferencista()
     {

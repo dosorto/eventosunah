@@ -23,7 +23,12 @@ class Conferencista extends Model
     // protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
     public function persona()
     {
-        return $this->belongsTo(Persona::class, 'IdPersona');
+        return $this->belongsTo(Nacionalidad::class, 'IdNacionalidad', 'id');
+    }
+
+    public function tipoPerfil()
+    {
+        return $this->belongsTo(TipoPerfil::class, 'IdTipoPerfil', 'id');
     }
     public function conferencias()
     {

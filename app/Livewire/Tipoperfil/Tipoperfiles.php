@@ -49,8 +49,7 @@ class Tipoperfiles extends Component
     public function store()
     {
         $this->validate([
-            'tipoperfil' => ['required','unique:tipoperfils,tipoperfil,' . $this->tipoperfil_id,
-            ],
+            'tipoperfil' => ['required', 'unique:tipoperfils,tipoperfil,' . $this->tipoperfil_id],
         ]);
 
         Tipoperfil::updateOrCreate(['id' => $this->tipoperfil_id], [

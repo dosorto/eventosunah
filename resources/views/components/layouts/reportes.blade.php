@@ -1,3 +1,4 @@
+@extends('layouts.base')
 @section('content')
     <x-banner />
 

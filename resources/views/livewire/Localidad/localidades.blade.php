@@ -1,5 +1,4 @@
 <div>
-
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
         Localidades
     </h2>
@@ -18,7 +17,7 @@
                 @endif
 
                 @if($isOpen)
-                    @include('livewire.Localidad.create')
+                    @include('livewire.localidad.create')
                 @endif
 
                 <div class="relative overflow-x-auto sm:rounded-lg dark:bg-gray-800">

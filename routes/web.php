@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EventoVistaController;
 use App\Livewire\Tipoperfil\Tipoperfiles;
+use App\Livewire\VistaDiplomas;
 use App\Models\Evento;
 use App\Models\Persona;
 use Illuminate\Support\Facades\Route;

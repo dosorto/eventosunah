@@ -10,6 +10,8 @@ use App\Models\Evento;
 use App\Models\Conferencia;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller
 {
     //
@@ -21,7 +23,11 @@ class DashboardController extends Controller
         // contar la cantidad de eventos que hay en la base de datos
         $cantidadEventos = Evento::count();
 
-        $conferenciass = Suscripcion::withCount('conferencia')->get();
+        $conferenciass =  Conferencia::withCount(['suscripciones as unique_subscriptions' => function ($query) {
+            $query->select(DB::raw('count(distinct IdPersona)'));
+        }])
+        ->having('unique_subscriptions', '>', 0)
+        ->get();
 
         // ordenar las conferencias por fecha fecha y seleccionar las primeras 10
         $conferencias = Conferencia::orderBy('fecha', 'desc')->take(5)->get();
@@ -36,6 +42,7 @@ class DashboardController extends Controller
             ->where('modalidads.modalidad', 'Virtual')
             ->count();
 
+        
 
         return view('dashboard', [
             'cantidadEventos' => $cantidadEventos,
