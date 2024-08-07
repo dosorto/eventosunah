@@ -130,7 +130,6 @@
             </style>
 
         </header>
-
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
