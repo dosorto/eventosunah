@@ -82,7 +82,7 @@
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                                 <option value="Otro">Otro</option>
-                                <!-- Agrega más opciones si es necesario -->
+                                
                             </select>
                             @error('persona.sexo') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
