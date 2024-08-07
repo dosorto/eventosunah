@@ -58,6 +58,7 @@
                     color: black;
                     font-weight: 800;
                     padding: 0;
+                    margin-left: 50px;
                 }
 
                 .certificado-title2 {
@@ -66,12 +67,14 @@
                     font-weight: 600;
                     margin: 1px;
                     padding: 0;
+                    margin-left: 50px;
                 }
 
                 .certificado-title3 {
                     font-size: 1em;
                     margin: 5px 0;
                     padding: 0;
+                    margin-left: 50px;
                 }
 
                 .recipient-name {
@@ -88,12 +91,13 @@
                     font-size: 12px;
                     padding: 0 7%;
                     color: black;
+                    margin-bottom: 60px;
                 }
 
                 .sello {
                     text-align: center;
-                    margin-top: -5px;
-                    margin-left: 20px;
+                    margin-top: -25px;
+                    margin-right: 20px;
                 }
 
                 .sello .fondo {
@@ -105,9 +109,9 @@
                     display: flex;
                     justify-content: space-between;
                     margin-top: 1px;
-                    font-size: 11px;
-                    margin-left: 70px;
-                    margin-right: 70px;
+                    font-size: 10px;
+                    margin-left: 40px;
+                    margin-right: 40px;
                     font-weight: bold;
 
                 }
@@ -115,6 +119,7 @@
                 .firmas {
                     text-align: center;
                     margin: 0 10px;
+
                 }
 
                 .qr-code {
@@ -129,7 +134,7 @@
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset('Logo/Certificado.png')}}" />
+                    <img class="fondo" src="{{ asset('Logo/certificado.png')}}" />
                 </div>
                 <div class="certificado-header" style="display: flex; justify-content: flex-end;">
                     <div class="certificado-header">
@@ -143,11 +148,10 @@
                     </div>
                 </div>
                 <div class="certificado-body">
-                    Por haber asistido cumplidamente a la conferencia de {{$conferencia->nombre}} Realizada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
+                    Por haber asistido cumplidamente a la conferencia de {{$conferencia->nombre}} Realizada el
+                    {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
                 </div>
-                <div class="sello">
-                    <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
-                </div>
+               
                 <div class="firmass">
                     <div class="firmas">
                         <ul>
@@ -156,8 +160,11 @@
                                     class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-900 dark:border-gray-900">
                             </li>
                         </ul>
-                        <div>MIEMBRO DEL EQUIPO</div>
-                        <div>AÑADIR ROL AQUÍ</div>
+                        <div>Acxel Fernando Aplicano</div>
+                        <div>Coordinador General</div>
+                    </div>
+                    <div class="sello">
+                        <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
                     </div>
                     <div class="firmas">
                         <ul>
@@ -166,8 +173,11 @@
                                     class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-900 dark:border-gray-900">
                             </li>
                         </ul>
-                        <div>MIEMBRO DEL EQUIPO</div>
-                        <div>AÑADIR ROL AQUÍ</div>
+                        <div>Acxel Fernando Aplicano</div>
+                        <div>Coordinador General</div>
+                    </div>
+                    <div class="sello">
+                        <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
                     </div>
                     <div class="firmas">
                         <ul>
@@ -176,8 +186,11 @@
                                     class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-900 dark:border-gray-900">
                             </li>
                         </ul>
-                        <div>MIEMBRO DEL EQUIPO</div>
-                        <div>AÑADIR ROL AQUÍ</div>
+                        <div>Acxel Fernando Aplicano</div>
+                        <div>Coordinador General</div>
+                    </div>
+                    <div class="sello">
+                        <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
                     </div>
                 </div>
             </div>
