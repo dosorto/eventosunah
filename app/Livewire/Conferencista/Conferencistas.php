@@ -175,7 +175,7 @@ class Conferencistas extends Component
         } catch (\Exception $e) {
             // dd($data);
             // Cambiar mas adelante
-            dd($e->getMessage()); // Muestra el mensaje de error si algo sale mal
+            // Muestra el mensaje de error si algo sale mal
         }
     }
     
