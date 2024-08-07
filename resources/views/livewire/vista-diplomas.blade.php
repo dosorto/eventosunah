@@ -75,7 +75,8 @@
                 }
 
                 .recipient-name {
-                    font-size: 3.4em;
+                    text-align: center;
+                    font-size: 3.2em;
                     font-weight: 400;
                     letter-spacing: 3px;
                     font-family: 'Great Vibes', cursive;
@@ -115,6 +116,12 @@
                     text-align: center;
                     margin: 0 10px;
                 }
+
+                .qr-code {
+                    margin-top: 40px;
+                    height: 80px;
+                    width: 80px;
+                }
             </style>
 
         </header>
@@ -124,17 +131,22 @@
                 <div class="gold-swirls">
                     <img class="fondo" src="{{ asset('Logo/Certificado.png')}}" />
                 </div>
-                <div class="certificado-header">
-                    <div class="certificado-title">CERTIFICADO</div>
-                    <div class="certificado-title2">DE RECONOCIMIENTO</div>
-                    <div class="certificado-title3">OTORGADO A:</div>
-                    <div class="recipient-name">Acxel Fernando Aplicano</div>
+                <div class="certificado-header" style="display: flex; justify-content: flex-end;">
+                    <div class="certificado-header">
+                        <div class="certificado-title">CERTIFICADO</div>
+                        <div class="certificado-title2">DE RECONOCIMIENTO</div>
+                        <div class="certificado-title3">OTORGADO A:</div>
+                        <div class="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
+                    </div>
+                    <div>
+                        <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
+                    </div>
                 </div>
                 <div class="certificado-body">
-                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt praesentium enim repellendus iure, libero sed corrupti voluptatum impedit cum! Earum sint molestias corporis voluptas explicabo eligendi nihil reiciendis voluptatibus delectus?
+                    Por haber asistido cumplidamente a la conferencia de {{$conferencia->nombre}} Realizada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
                 </div>
                 <div class="sello">
-                <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
+                    <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
                 </div>
                 <div class="firmass">
                     <div class="firmas">

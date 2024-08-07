@@ -29,17 +29,45 @@ class ConferenciasInscritas extends Component
             $this->conferencias = collect(); // Colección vacía si no se encuentra la persona
         }
     }
-
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
     public function desuscribirse($id)
     {
         $suscripcion = Suscripcion::where('IdConferencia', $id)->first();
-        if ($suscripcion) {
+    
+        if (!$suscripcion) {
+            session()->flash('error', 'No se pudo encontrar la inscripción.');
+            return;
+        }
+    
+        if ($suscripcion->asistencias()->exists()) {
+            session()->flash('error', 'No se puede eliminar la inscripción porque está enlazada a una o más asistencias.');
+            return;
+        }
+    
+        $this->IdAEliminar = $suscripcion->id;
+        $this->nombreAEliminar = $suscripcion->id; // o cualquier campo relevante
+        $this->confirmingDelete = true;
+    }
+    
+    public function deleteSuscripcion()
+    {
+        if ($this->confirmingDelete) {
+            $suscripcion = Suscripcion::find($this->IdAEliminar);
+    
+            if (!$suscripcion) {
+                session()->flash('error', 'Suscripción no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+    
             $suscripcion->delete();
             session()->flash('success', 'Eliminaste la inscripción a la conferencia.');
-        } else {
-            session()->flash('error', 'No se pudo eliminar la inscripcion.');
+            $this->confirmingDelete = false;
+    
+            return redirect()->route('conferencias-inscritas'); 
         }
-        return redirect()->route('conferencias-inscritas'); // Reemplaza 'nombre_de_tu_ruta' con la ruta correcta
     }
 
 

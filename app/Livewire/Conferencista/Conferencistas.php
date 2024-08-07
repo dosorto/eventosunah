@@ -118,7 +118,7 @@ class Conferencistas extends Component
             if ($this->foto) {
                 $this->foto = $this->foto->store('public/conferencistas');
             } else {
-                $this->foto = null;
+                $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
             }
     
             // Verifica el valor de auth()->id()
@@ -186,7 +186,6 @@ class Conferencistas extends Component
         $this->conferencista_id = $id;
         $this->titulo = $conferencista->titulo;
         $this->descripcion = $conferencista->descripcion;
-        $this->foto = $conferencista->foto;
         $this->dni = $conferencista->persona->dni;
         $this->nombre = $conferencista->persona->nombre;
         $this->apellido = $conferencista->persona->apellido;
