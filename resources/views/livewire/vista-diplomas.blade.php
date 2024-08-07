@@ -122,6 +122,19 @@
 
                 }
 
+                .firma {
+                    margin-top: -30px;
+                    margin-left: 25px;
+                    align-items: center;
+                }
+
+                .firma .fondo {
+                    height: 64px;
+                    width: 64px;
+                    margin-bottom: -17px;
+
+                }
+
                 .qr-code {
                     margin-top: 40px;
                     height: 80px;
@@ -130,10 +143,11 @@
             </style>
 
         </header>
+
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset('Logo/certificado.png')}}" />
+                    <img class="fondo" src="{{ asset('Logo/certificado3.png')}}" />
                 </div>
                 <div class="certificado-header" style="display: flex; justify-content: flex-end;">
                     <div class="certificado-header">
@@ -150,9 +164,12 @@
                     Por haber asistido cumplidamente a la conferencia de {{$conferencia->nombre}} Realizada el
                     {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
                 </div>
-               
+
                 <div class="firmass">
                     <div class="firmas">
+                        <div class="firma">
+                            <img class="fondo" src="{{ asset('Logo/firma1.png') }}" />
+                        </div>
                         <ul>
                             <li>
                                 <ul
@@ -166,6 +183,9 @@
                         <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
                     </div>
                     <div class="firmas">
+                    <div class="firma">
+                        <img class="fondo" src="{{ asset('Logo/firma2.png') }}" />
+                    </div>
                         <ul>
                             <li>
                                 <ul
@@ -179,6 +199,9 @@
                         <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
                     </div>
                     <div class="firmas">
+                    <div class="firma">
+                        <img class="fondo" src="{{ asset('Logo/firma3.png') }}" />
+                    </div>
                         <ul>
                             <li>
                                 <ul

@@ -28,57 +28,26 @@
                             </button>
                         </div>
                         <div class="mb-4">
-                            <label for="codigo"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">codigo:</label>
-                            <input type="text" wire:model="codigo"
+                            <label for="Codigo"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Codigo:</label>
+                            <input type="text" wire:model="Codigo"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="codigo" placeholder="codigo">
-                            @error('codigo')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="URL"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">URL:</label>
-                            <input type="url" wire:model="URL"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="URL" placeholder="URL">
-                            @error('URL')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="Fecha"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha:</label>
-                            <input type="date" wire:model="Fecha"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="Fecha" placeholder="Fecha">
-                            @error('Fecha')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="evento"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Evento:</label>
-                            <input wire:model.live="inputSearchEvento"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                type="text" placeholder="Buscar evento...">
-                            @if (!empty($inputSearchEvento) && !empty($searchEventos))
-                                <ul
-                                    class="bg-white border border-gray-300 mt-2 rounded-md max-h-48 overflow-auto shadow-lg z-10">
-                                    @foreach ($searchEventos as $evento)
-                                        <li wire:click="selectEvento({{ $evento->id }})"
-                                            class="p-2 cursor-pointer hover:bg-gray-200">
-                                            {{ $evento->nombreevento }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                            @error('IdEvento')
+                                id="Codigo" placeholder="Codigo">
+                            @error('Codigo')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <label for="Plantilla"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Plantilla:</label>
+                            <input type="file" wire:model="Plantilla"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Plantilla)
+                                <img src="{{ $Plantilla->temporaryUrl() }}"
+                                    class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
 
                         <div class="mb-4">
                             <label for="conferencia"
@@ -103,32 +72,130 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="Firma"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma:</label>
-                            <input wire:model.live="inputSearchFirma"
+                            <label for="Titulo1"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Cargo 1:</label>
+                            <input type="text" wire:model="Titulo1"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                type="text" placeholder="Buscar evento...">
-                            @if (!empty($inputSearchFirma) && !empty($searchFirmas))
-                                <ul
-                                    class="bg-white border border-gray-300 mt-2 rounded-md max-h-48 overflow-auto shadow-lg z-10">
-                                    @foreach ($searchFirmas as $Firma)
-                                        <li wire:click="selectFirma({{ $Firma->id }})"
-                                            class="p-2 cursor-pointer hover:bg-gray-200">
-                                            {{ $Firma->Nombre }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                            @error('IdFirma')
+                                id="Titulo1" placeholder="Titulo de la primer persona">
+                            @error('Titulo1')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <label for="NombreFirma1"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre Persona:</label>
+                            <input type="text" wire:model="NombreFirma1"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="NombreFirma1" placeholder="Nombre de la primer persona">
+                            @error('NombreFirma1')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
 
+                        <div class="mb-4">
+                            <label for="Firma1"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma1:</label>
+                            <input type="file" wire:model="Firma1"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Firma1)
+                                <img src="{{ $Firma1->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
 
+                        <div class="mb-4">
+                            <label for="Sello1"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sello1:</label>
+                            <input type="file" wire:model="Sello1"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Sello1)
+                                <img src="{{ $Sello1->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
 
+                        <div class="mb-4">
+                            <label for="Titulo2"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Cargo 2:</label>
+                            <input type="text" wire:model="Titulo2"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="Titulo2" placeholder="Titulo de la segunda persona">
+                            @error('Titulo2')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
 
+                        <div class="mb-4">
+                            <label for="NombreFirma2"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre Persona:</label>
+                            <input type="text" wire:model="NombreFirma2"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="NombreFirma2" placeholder="Nombre de la segunda persona">
+                            @error('NombreFirma2')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
 
+                        <div class="mb-4">
+                            <label for="Firma2"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma2:</label>
+                            <input type="file" wire:model="Firma2"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Firma2)
+                                <img src="{{ $Firma2->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Sello2"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sello2:</label>
+                            <input type="file" wire:model="Sello2"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Sello2)
+                                <img src="{{ $Sello2->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Titulo3"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Cargo 3:</label>
+                            <input type="text" wire:model="Titulo3"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="Titulo3" placeholder="Titulo de la tercera persona">
+                            @error('Titulo3')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="NombreFirma3"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre Persona:</label>
+                            <input type="text" wire:model="NombreFirma3"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="NombreFirma3" placeholder="Nombre de la tercera persona">
+                            @error('NombreFirma3')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Firma3"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma3:</label>
+                            <input type="file" wire:model="Firma3"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Firma3)
+                                <img src="{{ $Firma3->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Sello3"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sello3:</label>
+                            <input type="file" wire:model="Sello3"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($Sello3)
+                                <img src="{{ $Sello3->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
 
 
                     </div>
