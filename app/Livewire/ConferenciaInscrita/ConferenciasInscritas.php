@@ -14,8 +14,8 @@ class ConferenciasInscritas extends Component
     public $asistenciaMarcada = [];
     public $confirmAsistencia = false;
     public $confirmCancelacion = false;
-    public $errorCancelacion = false; // Nueva propiedad para el modal de error de cancelación
-    public $asistenciaYaMarcada = false; // Nueva propiedad para el modal de asistencia ya marcada
+    public $errorCancelacion = false; 
+    public $asistenciaYaMarcada = false; 
     public $IdAConfirmarAsistencia;
     public $IdAConfirmarCancelacion;
     public $nombreAConfirmarAsistencia;
@@ -36,7 +36,7 @@ class ConferenciasInscritas extends Component
                 ->with('conferencia')
                 ->get();
         } else {
-            $this->conferencias = collect(); // Colección vacía si no se encuentra la persona
+            $this->conferencias = collect(); 
         }
     }
 
@@ -55,9 +55,8 @@ class ConferenciasInscritas extends Component
         
         // Verificar si la suscripción tiene asistencias registradas
         if ($suscripcion->asistencias()->exists()) {
-            // Si tiene asistencias, muestra el modal de error
             $this->errorCancelacion = true;
-            $this->confirmCancelacion = false; // Cierra el modal de confirmación de cancelación
+            $this->confirmCancelacion = false; 
             return;
         }
         

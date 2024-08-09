@@ -50,7 +50,7 @@ public function inscribirse()
             ->exists();
 
         if ($suscripcionExistente) {
-            $this->SuscripciónYaRealizada = true; // Mostrar modal de ya inscrito
+            $this->SuscripciónYaRealizada = true; 
         } else {
             // Crear la suscripción si no existe
             Auth::user()->persona->suscripciones()->updateOrCreate([
