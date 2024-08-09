@@ -15,6 +15,8 @@ class VistaConferencias extends Component
 
     public $evento;
     public $conferencias;
+    public $showConfirmModal = false;
+    public $selectedConferencia;
 
 
     public function mount(Evento $evento)
@@ -29,13 +31,46 @@ class VistaConferencias extends Component
         return view('livewire.VistaConferencia.vista-conferencia');
     }
 
-    public function inscribirse(Conferencia $conferencia)
+    public function confirmInscription($conferenciaId)
     {
-       Auth::user()->persona->suscripciones()->updateOrCreate([
-            'IdConferencia' => $conferencia->id,
-            'created_by' => Auth::id()
-        ]);
+        $this->selectedConferencia = $conferenciaId;
+        $this->showConfirmModal = true;
+    }
 
-        session()->flash('success', 'Te has inscrito a la conferencia.');
+    public $SuscripciónYaRealizada = false;
+
+public function inscribirse()
+{
+    $conferencia = Conferencia::find($this->selectedConferencia);
+    
+    if ($conferencia) {
+        // Verificar si ya está suscrito a la conferencia
+        $suscripcionExistente = Auth::user()->persona->suscripciones()
+            ->where('IdConferencia', $conferencia->id)
+            ->exists();
+
+        if ($suscripcionExistente) {
+            $this->SuscripciónYaRealizada = true; // Mostrar modal de ya inscrito
+        } else {
+            // Crear la suscripción si no existe
+            Auth::user()->persona->suscripciones()->updateOrCreate([
+                'IdConferencia' => $conferencia->id,
+                'created_by' => Auth::id()
+            ]);
+
+            session()->flash('success', 'Te has inscrito a la conferencia.');
+        }
+    }
+
+    $this->showConfirmModal = false;
+    $this->selectedConferencia = null;
+}
+
+
+
+    public function cancel()
+    {
+        $this->showConfirmModal = false;
+        $this->selectedConferencia = null;
     }
 }

@@ -12,6 +12,16 @@ class ConferenciasInscritas extends Component
 {
     public $conferencias;
     public $asistenciaMarcada = [];
+    public $confirmAsistencia = false;
+    public $confirmCancelacion = false;
+    public $errorCancelacion = false; // Nueva propiedad para el modal de error de cancelación
+    public $asistenciaYaMarcada = false; // Nueva propiedad para el modal de asistencia ya marcada
+    public $IdAConfirmarAsistencia;
+    public $IdAConfirmarCancelacion;
+    public $nombreAConfirmarAsistencia;
+    public $nombreAConfirmarCancelacion;
+    public $nombreAEliminar;
+
     public function mount()
     {
         // Obtener el IdPersona del usuario actual
@@ -29,64 +39,101 @@ class ConferenciasInscritas extends Component
             $this->conferencias = collect(); // Colección vacía si no se encuentra la persona
         }
     }
-    public $confirmingDelete = false;
-    public $IdAEliminar;
-    public $nombreAEliminar;
+
     public function desuscribirse($id)
     {
+        $this->IdAConfirmarCancelacion = $id;
+        $this->confirmCancelacion = true;
+
+        // Buscar la suscripción con el ID proporcionado
         $suscripcion = Suscripcion::where('IdConferencia', $id)->first();
-    
+        
         if (!$suscripcion) {
             session()->flash('error', 'No se pudo encontrar la inscripción.');
             return;
         }
-    
+        
+        // Verificar si la suscripción tiene asistencias registradas
         if ($suscripcion->asistencias()->exists()) {
-            session()->flash('error', 'No se puede eliminar la inscripción porque está enlazada a una o más asistencias.');
+            // Si tiene asistencias, muestra el modal de error
+            $this->errorCancelacion = true;
+            $this->confirmCancelacion = false; // Cierra el modal de confirmación de cancelación
             return;
         }
-    
+        
+        // Preparar datos para la confirmación de la cancelación
+        $this->nombreAConfirmarCancelacion = $suscripcion->conferencia->nombre;
         $this->IdAEliminar = $suscripcion->id;
-        $this->nombreAEliminar = $suscripcion->id; // o cualquier campo relevante
+        $this->nombreAEliminar = $suscripcion->conferencia->nombre; // Usa el nombre de la conferencia
         $this->confirmingDelete = true;
     }
-    
-    public function deleteSuscripcion()
-    {
-        if ($this->confirmingDelete) {
-            $suscripcion = Suscripcion::find($this->IdAEliminar);
-    
-            if (!$suscripcion) {
-                session()->flash('error', 'Suscripción no encontrada.');
-                $this->confirmingDelete = false;
-                return;
-            }
-    
-            $suscripcion->delete();
-            session()->flash('success', 'Eliminaste la inscripción a la conferencia.');
-            $this->confirmingDelete = false;
-    
-            return redirect()->route('conferencias-inscritas'); 
-        }
-    }
 
-
-    public function asistencia($IdSuscripcion)
+    public function confirmarCancelacion()
     {
-        if (Asistencia::where('IdSuscripcion', $IdSuscripcion)->exists()) {
-            session()->flash('error', 'Ya has marcado asistencia a esta conferencia.');
+        $suscripcion = Suscripcion::where('IdConferencia', $this->IdAConfirmarCancelacion)->first();
+
+        if (!$suscripcion) {
+            session()->flash('error', 'No se pudo encontrar la inscripción.');
+            $this->confirmCancelacion = false;
             return;
         }
 
-        Asistencia::updateOrCreate([
+        // Verificar si la suscripción tiene asistencias registradas
+        if ($suscripcion->asistencias()->exists()) {
+            session()->flash('error', 'No se puede eliminar la inscripción porque está enlazada a una o más asistencias.');
+            $this->confirmCancelacion = false;
+            return;
+        }
+
+        // Proceder con la eliminación
+        $suscripcion->delete();
+        session()->flash('success', 'Eliminaste la inscripción a la conferencia.');
+        $this->confirmCancelacion = false;
+
+        // Actualizar la lista de conferencias inscritas
+        $this->mount();
+    }
+
+    public function asistencia($id)
+    {
+        $this->IdAConfirmarAsistencia = $id;
+
+        // Verificar si ya se ha marcado la asistencia
+        if (Asistencia::where('IdSuscripcion', $id)->exists()) {
+            $this->asistenciaYaMarcada = true;
+            $this->confirmAsistencia = false;
+        } else {
+            $this->confirmAsistencia = true;
+            $this->asistenciaYaMarcada = false;
+        }
+
+        $suscripcion = Suscripcion::find($id);
+        if ($suscripcion) {
+            $this->nombreAConfirmarAsistencia = $suscripcion->conferencia->nombre;
+        } else {
+            $this->nombreAConfirmarAsistencia = '';
+        }
+    }
+
+    public function confirmarAsistencia()
+    {
+        if (Asistencia::where('IdSuscripcion', $this->IdAConfirmarAsistencia)->exists()) {
+            // Mostrar el modal de asistencia ya marcada
+            $this->asistenciaYaMarcada = true;
+            $this->confirmAsistencia = false;
+            return;
+        }
+
+        Asistencia::create([
             'Fecha' => now(),
             'Asistencia' => true,
-            'IdSuscripcion' => $IdSuscripcion,
+            'IdSuscripcion' => $this->IdAConfirmarAsistencia,
             'created_by' => Auth::id()
         ]);
-        $this->asistenciaMarcada[$IdSuscripcion] = true;
+        $this->asistenciaMarcada[$this->IdAConfirmarAsistencia] = true;
 
         session()->flash('success', 'Asistencia marcada correctamente.');
+        $this->confirmAsistencia = false;
     }
 
     public function render()
