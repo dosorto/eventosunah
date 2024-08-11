@@ -140,6 +140,12 @@
                     height: 80px;
                     width: 80px;
                 }
+
+                .qr-code {
+                    margin-top: 40px;
+                    height: 80px;
+                    width: 80px;
+                }
             </style>
 
         </header>
@@ -161,8 +167,15 @@
                     </div>
                 </div>
                 <div class="certificado-body">
+<<<<<<< HEAD
                     Por haber asistido cumplidamente a la conferencia de {{$conferencia->nombre}} Realizada el
                     {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
+=======
+                    Por haber asistido cumplidamente a la conferencia de {{$conferencia->nombre}} Realizada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
+                </div>
+                <div class="sello">
+                    <img class="fondo" src="{{ asset('Logo/Eventos_UNAH_Logo.png') }}" />
+>>>>>>> origin/mafer
                 </div>
 
                 <div class="firmass">

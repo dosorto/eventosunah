@@ -24,6 +24,9 @@ class Suscripcion extends Model
         return $this->belongsTo(Persona::class, 'IdPersona');
     }
 
-    protected $table = 'suscripcions';
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class, 'IdSuscripcion');
+    }
 
 }

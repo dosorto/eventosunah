@@ -205,7 +205,7 @@ class Conferencias extends Component
                 return;
             }
 
-            $conferencia->forceDelete();
+            $conferencia->delete();
             session()->flash('message', 'Conferencia eliminada correctamente!');
             $this->confirmingDelete = false;
         }

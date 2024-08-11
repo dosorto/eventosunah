@@ -15,12 +15,7 @@ class Conferencista extends Model
 
     public function persona()
     {
-        return $this->belongsTo(Nacionalidad::class, 'IdNacionalidad', 'id');
-    }
-
-    public function tipoPerfil()
-    {
-        return $this->belongsTo(TipoPerfil::class, 'IdTipoPerfil', 'id');
+        return $this->belongsTo(Persona::class, 'IdPersona');
     }
     public function conferencias()
     {
