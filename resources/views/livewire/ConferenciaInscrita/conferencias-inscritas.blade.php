@@ -279,7 +279,7 @@
                                 </svg>
 
                             </a>
-                            <button wire:click="desuscribirse({{ $suscripcion->conferencia->id }})"
+                            <button wire:click="desuscribirse({{ $suscripcion->id }})"
                                 class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-gray-800 bg-red-500 rounded-lg hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700">
                                 Quitar
                                 <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
@@ -358,12 +358,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M4 12a8 8 0 1116 0A8 8 0 014 12z" />
                             </svg>
                         </div>
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">No se puede eliminar la inscripción de la conferencia</h3>
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-500">No se puede eliminar la inscripción porque está enlazada a una o más asistencias.</p>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
