@@ -16,9 +16,8 @@
 
                 .certificado {
                     background-color: white;
-                    width: 800px;
-                    height: 500px;
-                    /* Aumenta el alto */
+                    width: 1200px;
+                    height: 700px;
                     border-radius: 10px;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, .1);
                     padding: 20px;
@@ -47,6 +46,7 @@
                 .certificado-body,
                 .firmas,
                 .sello {
+                    margin-top: 20px;
                     position: relative;
                     text-align: center;
                     z-index: 2;
@@ -58,7 +58,6 @@
                     color: black;
                     font-weight: 800;
                     padding: 0;
-                    margin-left: 50px;
                 }
 
                 .certificado-title2 {
@@ -67,14 +66,13 @@
                     font-weight: 600;
                     margin: 1px;
                     padding: 0;
-                    margin-left: 50px;
                 }
 
                 .certificado-title3 {
                     font-size: 1em;
                     margin: 5px 0;
                     padding: 0;
-                    margin-left: 50px;
+
                 }
 
                 .recipient-name {
@@ -83,7 +81,7 @@
                     font-weight: 400;
                     letter-spacing: 3px;
                     font-family: 'Great Vibes', cursive;
-                    margin: 15px 0;
+                    margin: 20px 0;
                 }
 
                 .certificado-body {
@@ -103,6 +101,8 @@
                 .sello .fondo {
                     height: 64px;
                     width: 64px;
+                    margin-top: -68px;
+                    margin-left: 88px;
                 }
 
                 .firmass {
@@ -110,15 +110,15 @@
                     justify-content: space-between;
                     margin-top: 1px;
                     font-size: 10px;
-                    margin-left: 40px;
-                    margin-right: 40px;
+                    margin-left: 190px;
+                    margin-right: 190px;
                     font-weight: bold;
 
                 }
 
                 .firmas {
                     text-align: center;
-                    margin: 0 10px;
+                    margin: 0 30px;
 
                 }
 
@@ -129,22 +129,18 @@
                 }
 
                 .firma .fondo {
-                    height: 64px;
-                    width: 64px;
+                    height: 84px;
+                    width: 84px;
                     margin-bottom: -17px;
 
                 }
 
                 .qr-code {
-                    margin-top: 40px;
                     height: 80px;
                     width: 80px;
-                }
-
-                .qr-code {
-                    margin-top: 40px;
-                    height: 80px;
-                    width: 80px;
+                    margin-top: 20px;
+                    margin-left: 455px;
+                    z-index: 2;
                 }
             </style>
 
@@ -155,20 +151,27 @@
                 <div class="gold-swirls">
                     <img class="fondo" src="{{ asset('Logo/certificado3.png')}}" />
                 </div>
-                <div class="certificado-header" style="display: flex; justify-content: flex-end;">
+                <div class="certificado-header" style="">
                     <div class="certificado-header">
                         <div class="certificado-title">CERTIFICADO</div>
                         <div class="certificado-title2">DE RECONOCIMIENTO</div>
                         <div class="certificado-title3">OTORGADO A:</div>
                         <div class="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
                     </div>
-                    <div>
-                        <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
-                    </div>
+
                 </div>
                 <div class="certificado-body">
                     Por haber asistido cumplidamente a la conferencia {{$conferencia->nombre}} Realizada el
-                    {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}.
+                    {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}. Lorem ipsum dolor sit
+                    amet consectetur adipisicing elit. Officiis, praesentium cupiditate voluptatibus nam cum soluta
+                    rerum, aliquid fuga aperiam, ut sit eaque possimus commodi explicabo pariatur quo debitis ipsam
+                    recusandae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, praesentium cupiditate
+                    voluptatibus nam cum soluta rerum, aliquid fuga aperiam, ut sit eaque possimus commodi explicabo
+                    pariatur quo debitis ipsam recusandae!
+                    <div>
+                        <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
+                    </div>
+                    <p>Código: dc59dff5587</p>
                 </div>
 
                 <div class="firmass">
@@ -179,46 +182,47 @@
                         <ul>
                             <li>
                                 <ul
-                                    class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-900 dark:border-gray-900">
+                                    class="pt-2 mt-2 space-y-2 font-medium w-40 border-t border-gray-900 dark:border-gray-900">
                             </li>
                         </ul>
+                        <div class="sello">
+                            <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
+                        </div>
                         <div>Acxel Fernando Aplicano</div>
                         <div>Coordinador General</div>
                     </div>
-                    <div class="sello">
-                        <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
-                    </div>
                     <div class="firmas">
-                    <div class="firma">
-                        <img class="fondo" src="{{ asset('Logo/firma2.png') }}" />
-                    </div>
+                        <div class="firma">
+                            <img class="fondo" src="{{ asset('Logo/firma2.png') }}" />
+                        </div>
                         <ul>
                             <li>
                                 <ul
-                                    class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-900 dark:border-gray-900">
+                                    class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
                             </li>
                         </ul>
+                        <div class="sello">
+                            <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
+                        </div>
                         <div>Acxel Fernando Aplicano</div>
                         <div>Coordinador General</div>
                     </div>
-                    <div class="sello">
-                        <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
-                    </div>
+
                     <div class="firmas">
-                    <div class="firma">
-                        <img class="fondo" src="{{ asset('Logo/firma3.png') }}" />
-                    </div>
+                        <div class="firma">
+                            <img class="fondo" src="{{ asset('Logo/firma3.png') }}" />
+                        </div>
                         <ul>
                             <li>
                                 <ul
-                                    class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-900 dark:border-gray-900">
+                                    class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
                             </li>
                         </ul>
+                        <div class="sello">
+                            <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
+                        </div>
                         <div>Acxel Fernando Aplicano</div>
                         <div>Coordinador General</div>
-                    </div>
-                    <div class="sello">
-                        <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
                     </div>
                 </div>
             </div>
