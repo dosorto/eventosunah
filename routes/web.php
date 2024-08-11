@@ -28,6 +28,8 @@ use App\Livewire\Usuario\Usuarios;
 use Illuminate\Http\Request;
 use App\Livewire\ReporteEvento\ReporteEventos;
 use App\Livewire\Asistencia\AsistenciasConferencias;
+use App\Livewire\HistorialConferencia\HistorialConferencias;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,6 +58,7 @@ Route::middleware([
     Route::get('/diploma',Diplomas::class)->name('diploma');
     Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/conferencias-inscritas', ConferenciasInscritas::class)->name('conferencias-inscritas');
+    Route::get('/historial-conferencias', HistorialConferencias::class)->name('historial-conferencias');
     Route::get('/asistencia-conferencia/{conferencia}', AsistenciasConferencias::class)->name('asistencias-Conferencia');
     Route::get('/vistaDiploma/asistencia/{asistencia?}', VistaDiplomas::class)->name('vistaDiploma');
     

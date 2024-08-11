@@ -14,38 +14,51 @@ class ConferenciasInscritas extends Component
     public $asistenciaMarcada = [];
     public $confirmAsistencia = false;
     public $confirmCancelacion = false;
-    public $errorCancelacion = false; 
-    public $asistenciaYaMarcada = false; 
+    public $errorCancelacion = false;
+    public $asistenciaYaMarcada = false;
     public $IdAConfirmarAsistencia;
     public $IdAConfirmarCancelacion;
     public $nombreAConfirmarAsistencia;
     public $nombreAConfirmarCancelacion;
     public $nombreAEliminar;
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $modoHistorial = false; 
 
-    public function mount()
+    public function mount($modoHistorial = false)
     {
-        // Obtener el IdPersona del usuario actual
+        $this->modoHistorial = $modoHistorial;
         $IdUsuario = Auth::id();
         $persona = Persona::where('IdUsuario', $IdUsuario)->first();
 
         if ($persona) {
             $IdPersona = $persona->id;
 
-            // Obtener las conferencias inscritas
-            $this->conferencias = Suscripcion::where('IdPersona', $IdPersona)
-                ->with('conferencia')
-                ->get();
+            if ($this->modoHistorial) {
+                
+                $this->conferencias = Suscripcion::where('IdPersona', $IdPersona)
+                    ->whereHas('asistencias', function ($query) {
+                        $query->where('asistencia', true); 
+                    })
+                    ->with('conferencia')
+                    ->get();
+            } else {
+                $this->conferencias = Suscripcion::where('IdPersona', $IdPersona)
+                    ->whereDoesntHave('asistencias')
+                    ->with('conferencia')
+                    ->get();
+            }
         } else {
-            $this->conferencias = collect(); 
+            $this->conferencias = collect();
         }
     }
+
 
     public function desuscribirse($id)
     {
         $this->IdAConfirmarCancelacion = $id;
         $this->confirmCancelacion = true;
 
-        // Buscar la suscripción con el ID proporcionado
         $suscripcion = Suscripcion::where('IdConferencia', $id)->first();
         
         if (!$suscripcion) {
@@ -53,14 +66,12 @@ class ConferenciasInscritas extends Component
             return;
         }
         
-        // Verificar si la suscripción tiene asistencias registradas
         if ($suscripcion->asistencias()->exists()) {
             $this->errorCancelacion = true;
             $this->confirmCancelacion = false; 
             return;
         }
         
-        // Preparar datos para la confirmación de la cancelación
         $this->nombreAConfirmarCancelacion = $suscripcion->conferencia->nombre;
         $this->IdAEliminar = $suscripcion->id;
         $this->nombreAEliminar = $suscripcion->conferencia->nombre; // Usa el nombre de la conferencia
@@ -77,27 +88,23 @@ class ConferenciasInscritas extends Component
             return;
         }
 
-        // Verificar si la suscripción tiene asistencias registradas
         if ($suscripcion->asistencias()->exists()) {
             session()->flash('error', 'No se puede eliminar la inscripción porque está enlazada a una o más asistencias.');
             $this->confirmCancelacion = false;
             return;
         }
 
-        // Proceder con la eliminación
         $suscripcion->delete();
         session()->flash('success', 'Eliminaste la inscripción a la conferencia.');
         $this->confirmCancelacion = false;
 
-        // Actualizar la lista de conferencias inscritas
-        $this->mount();
+        $this->mount($this->modoHistorial);
     }
 
     public function asistencia($id)
     {
         $this->IdAConfirmarAsistencia = $id;
 
-        // Verificar si ya se ha marcado la asistencia
         if (Asistencia::where('IdSuscripcion', $id)->exists()) {
             $this->asistenciaYaMarcada = true;
             $this->confirmAsistencia = false;
@@ -117,7 +124,6 @@ class ConferenciasInscritas extends Component
     public function confirmarAsistencia()
     {
         if (Asistencia::where('IdSuscripcion', $this->IdAConfirmarAsistencia)->exists()) {
-            // Mostrar el modal de asistencia ya marcada
             $this->asistenciaYaMarcada = true;
             $this->confirmAsistencia = false;
             return;
@@ -129,7 +135,9 @@ class ConferenciasInscritas extends Component
             'IdSuscripcion' => $this->IdAConfirmarAsistencia,
             'created_by' => Auth::id()
         ]);
-        $this->asistenciaMarcada[$this->IdAConfirmarAsistencia] = true;
+        
+   
+        $this->mount($this->modoHistorial);
 
         session()->flash('success', 'Asistencia marcada correctamente.');
         $this->confirmAsistencia = false;
@@ -139,6 +147,7 @@ class ConferenciasInscritas extends Component
     {
         return view('livewire.ConferenciaInscrita.conferencias-inscritas', [
             'conferencias' => $this->conferencias,
+            'modoHistorial' => $this->modoHistorial,
         ]);
     }
 }
