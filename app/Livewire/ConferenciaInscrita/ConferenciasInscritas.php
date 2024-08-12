@@ -59,19 +59,16 @@ class ConferenciasInscritas extends Component
         $this->IdAConfirmarCancelacion = $id;
         $this->confirmCancelacion = true;
 
-        $suscripcion = Suscripcion::where('IdConferencia', $id)->first();
+        // Busca la suscripción usando 'Id' en lugar de 'IdConferencia'
+        $suscripcion = Suscripcion::where('id', $id) // Cambié 'IdConferencia' a 'id'
+            ->where('IdPersona', Auth::id()) // Asegúrate de que la suscripción pertenezca al usuario actual
+            ->first();
         
         if (!$suscripcion) {
             session()->flash('error', 'No se pudo encontrar la inscripción.');
             return;
         }
-        
-        if ($suscripcion->asistencias()->exists()) {
-            $this->errorCancelacion = true;
-            $this->confirmCancelacion = false; 
-            return;
-        }
-        
+
         $this->nombreAConfirmarCancelacion = $suscripcion->conferencia->nombre;
         $this->IdAEliminar = $suscripcion->id;
         $this->nombreAEliminar = $suscripcion->conferencia->nombre; // Usa el nombre de la conferencia
@@ -80,7 +77,9 @@ class ConferenciasInscritas extends Component
 
     public function confirmarCancelacion()
     {
-        $suscripcion = Suscripcion::where('IdConferencia', $this->IdAConfirmarCancelacion)->first();
+        $suscripcion = Suscripcion::where('id', $this->IdAConfirmarCancelacion) // Cambié 'IdConferencia' a 'id'
+            ->where('IdPersona', Auth::id()) // Asegúrate de que la suscripción pertenezca al usuario actual
+            ->first();
 
         if (!$suscripcion) {
             session()->flash('error', 'No se pudo encontrar la inscripción.');
@@ -88,16 +87,12 @@ class ConferenciasInscritas extends Component
             return;
         }
 
-        if ($suscripcion->asistencias()->exists()) {
-            session()->flash('error', 'No se puede eliminar la inscripción porque está enlazada a una o más asistencias.');
-            $this->confirmCancelacion = false;
-            return;
-        }
-
+        // Elimina la suscripción sin verificar asistencias
         $suscripcion->delete();
         session()->flash('success', 'Eliminaste la inscripción a la conferencia.');
         $this->confirmCancelacion = false;
 
+        // Recarga las conferencias después de la eliminación
         $this->mount($this->modoHistorial);
     }
 
