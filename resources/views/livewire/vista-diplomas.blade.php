@@ -45,7 +45,8 @@
                 .certificado-header,
                 .certificado-body,
                 .firmas,
-                .sello {
+                .sello,
+                .codigo {
                     margin-top: 20px;
                     position: relative;
                     text-align: center;
@@ -142,6 +143,15 @@
                     margin-left: 455px;
                     z-index: 2;
                 }
+
+                .codigo {
+                    font-size: 12px;
+                    margin-top: 45px;
+                    text-align: center;
+                    left: 120px;
+                    position: absolute;
+                    margin-right: 410px;
+                }
             </style>
 
         </header>
@@ -163,15 +173,12 @@
                 <div class="certificado-body">
                     Por haber asistido cumplidamente a la conferencia {{$conferencia->nombre}} Realizada el
                     {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}. Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Officiis, praesentium cupiditate voluptatibus nam cum soluta
-                    rerum, aliquid fuga aperiam, ut sit eaque possimus commodi explicabo pariatur quo debitis ipsam
-                    recusandae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, praesentium cupiditate
-                    voluptatibus nam cum soluta rerum, aliquid fuga aperiam, ut sit eaque possimus commodi explicabo
-                    pariatur quo debitis ipsam recusandae!
+                    amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum 
+                    dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
-                    <p>Código: dc59dff5587</p>
                 </div>
 
                 <div class="firmass">
@@ -225,6 +232,7 @@
                         <div>Coordinador General</div>
                     </div>
                 </div>
+                <p class="codigo">Código: dc59dff5587</p>
             </div>
         </body>
     </x-layouts.reportes>

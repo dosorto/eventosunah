@@ -26,7 +26,7 @@ class VistaDiplomas extends Component
 
         if ($this->validacionesPersonaConferencia()) {
             $this->qrcode = QRCodeService::generateTextQRCode(
-                config('app.url') . '/validarDiploma/' . $asistencia->id
+                config('app.url') . '/validar-diploma/' . $asistencia->id
             );
         } else {
             // redireccionar a la vista de error de que el usuario no esta inscrito en la conferencia
