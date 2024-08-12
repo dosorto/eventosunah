@@ -13,18 +13,16 @@ return new class extends Migration
     {
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
-            $table->date('Fecha');
+            $table->timestamp('Fecha'); 
             $table->binary('Asistencia');
-            $table->unsignedBigInteger('IdPersona');
-            $table->unsignedBigInteger('IdEvento');
+            $table->unsignedBigInteger('IdSuscripcion')->unique();;
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
-            $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
+            $table->foreign('IdSuscripcion')->references('id')->on('suscripcions')->onDelete('restrict');
     });
     }
 

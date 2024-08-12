@@ -9,22 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    
     public function up(): void
     {
         Schema::create('conferencistas', function (Blueprint $table) {
             $table->id();
-            $table->string('Titulo');
-            $table->string('Descripcion',500);
-            $table->string('Foto');
-            $table->unsignedBigInteger('IdPersona');
-            $table->integer("created_by");
-            $table->integer("deleted_by")->nullable();
-            $table->integer("updated_by")->nullable();
+            $table->string('foto')->nullable();
+            $table->unsignedBigInteger('IdPersona')->nullable();
+            $table->string('titulo')->nullable();
+            $table->string('descripcion', 500)->nullable();
+            $table->integer('created_by'); 
+            $table->integer('deleted_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
         });
+        
     }
 
     /**

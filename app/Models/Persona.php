@@ -20,9 +20,17 @@ class Persona extends BaseModel
     {
         return $this->belongsTo(User::class, 'IdUsuario');
     }
-
+    public function conferencistas()
+    {
+        return $this->belongsTo(Conferencista::class, 'IdPersona');
+    }
     public function tipoPerfil()
     {
         return $this->belongsTo(TipoPerfil::class, 'IdTipoPerfil');
+    }
+
+    public function suscripciones()
+    {
+        return $this->hasMany(Suscripcion::class, 'IdPersona');
     }
 }

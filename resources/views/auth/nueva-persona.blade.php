@@ -503,7 +503,8 @@
                 @csrf
 
                 <!-- Campo oculto para el ID del user -->
-                <input type="hidden" name="IdUser" id="IdUser" value= "{{ $user->id }}">
+                <input type="hidden" name="User" id="User" value= "{{ $user }}">
+                <input type="hidden" name="UserC" id="UserC" value= "{{ $password }}">
 
                 <div class="formRegister first">
                     <div class="details personal">
@@ -628,7 +629,7 @@
                 const input2 = document.getElementById('cuenta_estudiante');
     
                 tipoPerfil.addEventListener('change', () => {
-                    if (tipoPerfil.value === '2') {
+                    if (tipoPerfil.value === '1') {
                         estudianteFields.forEach(field => field.style.display = 'flex');
                         label1.textContent = 'Correo Institucional';
                         input1.placeholder = 'Ingrese correo institucional';

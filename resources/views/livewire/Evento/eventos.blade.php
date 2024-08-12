@@ -5,7 +5,8 @@
 
     <div class=" dark:bg-gray-900">
         <div class="">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+            <div
+                class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4 dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 @if (session()->has('message'))
                     <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
                         role="alert">
@@ -55,6 +56,7 @@
                             <tr>
                                 <th scope="col" class="px-6 py-3">No.</th>
                                 <th scope="col" class="px-6 py-3">Nombre Evento</th>
+                                <th scope="col" class="px-6 py-3">Logo</th>
                                 <th scope="col" class="px-6 py-3">Descripción</th>
                                 <th scope="col" class="px-6 py-3">Organizador</th>
                                 <th scope="col" class="px-6 py-3">Modalidad</th>
@@ -68,13 +70,35 @@
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $nombreevento->id }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->nombreevento }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($nombreevento->logo)
+                                            <img src="{{ asset(str_replace('public', 'storage', $nombreevento->logo)) }}"
+                                                alt="Logo del Evento" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin foto
+                                        @endif
+                                    </td>
                                     <td class="px-6 py-4">{{ $nombreevento->descripcion }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->organizador }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
                                     <td class="px-6 py-4">
+                                        <a href="{{ route('reporteEvento', ['evento' => $nombreevento->id]) }}"
+                                            class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-width="2"
+                                                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+                                                <path stroke="currentColor" stroke-width="2"
+                                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+
+
+                                            Ver más
+                                        </a>
                                         <a href="{{ route('conferencia', ['evento' => $nombreevento->id]) }}"
-                                            class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                                            class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -83,14 +107,14 @@
                                                     d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                             </svg>
 
-                                           
-                                                Conferencia
-                                           
+
+                                            Conferencia
+
 
                                         </a>
 
                                         <button wire:click="edit({{ $nombreevento->id }})"
-                                            class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
+                                            class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -102,8 +126,8 @@
 
                                             Editar
                                         </button>
-                                        <button wire:click="delete({{ $nombreevento->id }})"
-                                            class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                                        <button wire:click="confirmDelete({{ $nombreevento->id }})"
+                                        class="px-3 w-full py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -128,5 +152,46 @@
         </div>
 
     </div>
+
+    @if (session()->has('error'))
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Error</h3>
+                    <p>{{ session('error') }}</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif ($confirmingDelete)
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Confirmación de Eliminación</h3>
+                    <p>¿Estás seguro de que deseas eliminar el evento "<strong>{{ $nombreEventoAEliminar }}</strong>"? Esta acción no se puede deshacer.</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Cancelar
+                        </button>
+                        <button wire:click="delete" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 </div>

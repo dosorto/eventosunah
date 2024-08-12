@@ -18,12 +18,28 @@ class Conferencias extends Component
     public $searchConferencistas = [];
     public $inputSearchEvento = '';
     public $searchEventos = [];
+    public $showDetails = false;
+    public $selectedConferencia;
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
+    public function viewDetails($id)
+    {
+        $this->selectedConferencia = Conferencia::find($id);
+        $this->showDetails = true;
+    }
+
+    public function closeDetails()
+    {
+        $this->showDetails = false;
+    }
 
     public function render()
     {
         $conferencias = Conferencia::with('conferencista', 'evento')
+            ->where('IdEvento', $this->IdEvento)
             ->where('nombre', 'like', '%'.$this->search.'%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         $eventos = Evento::all();
@@ -34,6 +50,7 @@ class Conferencias extends Component
             'searchConferencistas' => $this->searchConferencistas
         ]);
     }
+    
 
     public function updatedInputSearchEvento()
     {
@@ -84,12 +101,14 @@ class Conferencias extends Component
     {
         $this->resetInputFields();
         $this->openModal();
+        $this->render();
     }
 
     public function agregarConferencia($eventoId)
     {
         $this->IdEvento = $eventoId;
         $this->create();
+        $this->render();
     }
     
 
@@ -117,7 +136,7 @@ class Conferencias extends Component
         $this->searchConferencistas = [];
         $this->IdEvento = '';
     }
-
+    
     public function store()
     {
         $this->validate([
@@ -132,6 +151,7 @@ class Conferencias extends Component
             'idConferencista' => 'required'
         ]);
 
+        // Crear o actualizar la conferencia
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
             'IdEvento' => $this->IdEvento,
             'nombre' => $this->nombre,
@@ -143,12 +163,14 @@ class Conferencias extends Component
             'linkreunion' => $this->linkreunion,
             'idConferencista' => $this->idConferencista,
         ]);
-
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
-
+        $this->render();
+        
         $this->closeModal();
         $this->resetInputFields();
+        $this->render(); 
     }
+
 
     public function edit($id)
     {
@@ -170,14 +192,43 @@ class Conferencias extends Component
         }
 
         $this->openModal();
+        $this->render();
     }
-
-    public function delete($id)
+    public function delete()
     {
-        Conferencia::find($id)->delete();
-        session()->flash('message', 'Registro eliminado correctamente!');
+        if ($this->confirmingDelete) {
+            $conferencia = Conferencia::find($this->IdAEliminar);
+
+            if (!$conferencia) {
+                session()->flash('error', 'Conferencia no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $conferencia->forceDelete();
+            session()->flash('message', 'Conferencia eliminada correctamente!');
+            $this->confirmingDelete = false;
+        }
     }
 
+    public function confirmDelete($id)
+    {
+        $conferencia = Conferencia::find($id);
+
+        if (!$conferencia) {
+            session()->flash('error', 'Conferencia no encontrada.');
+            return;
+        }
+
+        if ($conferencia->suscripciones()->exists()) {
+            session()->flash('error', 'No se puede eliminar la conferencia:'.$conferencia->nombre .'porque está enlazada a una o más suscripciones.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $conferencia->nombre;
+        $this->confirmingDelete = true;
+    }
 
     public function mount(Evento $evento)
     {
@@ -189,6 +240,5 @@ class Conferencias extends Component
         }
 
     }
-    
 
 }

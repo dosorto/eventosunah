@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipoperfils', function (Blueprint $table) {
             $table->id();
-            $table->string('tipoperfil');
+            $table->string('tipoperfil')->unique();
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('diplomas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo');
+            $table->string('codigo')->unique();
             $table->string('URL');
             $table->date('Fecha');
             $table->unsignedBigInteger('IdConferencia')->nullable();
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
-            $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
             $table->foreign('IdFirma')->references('id')->on('firmas')->onDelete('restrict');
 
         });

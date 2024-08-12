@@ -7,41 +7,101 @@
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
 
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full dark:bg-gray-900"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form>
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-gray-900">
+                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Evento
+                        </h3>
+                        <button wire:click="closeModal()" type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="defaultModal">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
                     <div class="">
                         <div class="mb-4">
-                            <label for="exampleFormControlInput1"
-                                class="block text-gray-700 text-sm font-bold mb-2">Nombre del Evento:</label>
+                            <label for="nombreevento"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre del Evento:</label>
                             <input type="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="exampleFormControlInput1" placeholder="Nombre Evento" wire:model="nombreevento">
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="nombreevento" placeholder="Nombre Evento" wire:model="nombreevento">
                             @error('nombreevento') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
-                            <label for="exampleFormControlTextarea1"
-                                class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
+                            <label for="logo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Foto:</label>
+                            <input type="file" wire:model="logo"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($logo)
+                                <img src="{{ $logo->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
+                        <div class="mb-4">
+                            <label for="descripcion"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
                             <textarea
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="exampleFormControlTextarea1" placeholder="Descripción" wire:model="descripcion"></textarea>
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="descripcion" placeholder="Descripción" wire:model="descripcion"></textarea>
                             @error('descripcion') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
-                            <label for="exampleFormControlInput2"
-                                class="block text-gray-700 text-sm font-bold mb-2">Organizador:</label>
+                            <label for="organizador"
+                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Organizador:</label>
                             <input type="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="exampleFormControlInput2" placeholder="Organizador" wire:model="organizador">
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="organizador" placeholder="Organizador" wire:model="organizador">
                             @error('organizador') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <div class="mb-4">
+                                <label for="fechainicio"
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha Inicio:</label>
+                                <input type="date"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="fechainicio" wire:model="fechainicio">
+                                @error('fechainicio') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="fechafinal"
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha Fin:</label>
+                                <input type="date"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="fechafinal" wire:model="fechafinal">
+                                @error('fechafinal') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <div class="mb-4">
+                                <label for="horainicio"
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Inicio:</label>
+                                <input type="time"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="horainicio" wire:model="horainicio">
+                                @error('horainicio') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="horafin"
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Fin:</label>
+                                <input type="time"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="horafin" wire:model="horafin">
+                                @error('horafin') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-4">
                             <div class="mb-4">
                                 <label for="modalidadSelect"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Modalidad:</label>
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Modalidad:</label>
                                 <select id="modalidadSelect"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                     wire:model="idmodalidad">
                                     <option value="">Seleccione una Modalidad</option>
                                     @foreach($modalidades as $modalidad)
@@ -52,9 +112,9 @@
                             </div>
                             <div class="mb-4">
                                 <label for="localidadSelect"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Localidad:</label>
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Localidad:</label>
                                 <select id="localidadSelect"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                     wire:model="idlocalidad">
                                     <option value="">Seleccione una Localidad</option>
                                     @foreach($localidades as $localidad)
@@ -67,7 +127,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-700">
                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                         <button wire:click.prevent="store()" type="button"
                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
@@ -83,5 +143,5 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>
 </div>
