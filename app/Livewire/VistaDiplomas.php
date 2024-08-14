@@ -26,7 +26,7 @@ class VistaDiplomas extends Component
         $this->conferencia = $asistencia->suscripcion->conferencia;
         $this->diploma = $asistencia->suscripcion->conferencia->evento->diploma;
 
-        dd($this->diploma);
+       
         // obtener el diploma asociado a la persona y la conferencia
 
         if ($this->validacionesPersonaConferencia()) {
