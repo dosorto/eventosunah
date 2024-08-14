@@ -80,7 +80,7 @@ class Diplomas extends Component
         $diplomas = Diploma::where('Codigo', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'ASC')
             ->paginate(5);
-
+       // dd($diplomas);
         return view('livewire.Diploma.diplomas', [
             'diplomas' => $diplomas,
           //  'conferencias' => $this->conferencias,
@@ -182,25 +182,7 @@ class Diplomas extends Component
     public function store()
     {
         $this->validate();
-
-        Diploma::updateOrCreate(['id' => $this->diploma_id], [
-            'Codigo' => $this->generateUniqueCode(),
-            'Plantilla' =>$this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
-         //   'IdConferencia' => $this->IdConferencia,
-            'Titulo1' => $this->Titulo1,
-            'NombreFirma1' => $this->NombreFirma1,
-            'Firma1' => $this->Firma1 ? str_replace('public/', 'storage/', $this->Firma1) : null,
-            'Sello1'  =>$this->Sello1 ? str_replace('public/', 'storage/', $this->Sello1) : null,
-            'Titulo2' => $this->Titulo2,
-            'NombreFirma2' => $this->NombreFirma2,
-            'Firma2' =>$this->Firma2 ? str_replace('public/', 'storage/', $this->Firma2) : null,
-            'Sello2'  =>$this->Sello2 ? str_replace('public/', 'storage/', $this->Sello2) : null,
-            'Titulo3' => $this->Titulo3,
-            'NombreFirma3' => $this->NombreFirma3,
-            'Firma3'  =>$this->Firma3 ? str_replace('public/', 'storage/', $this->Firma3) : null,
-            'Sello3'  =>$this->Sello3 ? str_replace('public/', 'storage/', $this->Sello3) : null,
-        ]);
-
+        // guardar las imagenes en el storage
         if ($this->Plantilla) {
             $this->Plantilla = $this->Plantilla->store('public/plantillas');
         } else {
@@ -242,6 +224,64 @@ class Diplomas extends Component
         } else {
             $this->Sello3 = null;
         }
+
+        /*
+            insert into `diplomas` 
+            (`Codigo`, 
+            `Plantilla`, 
+            `Titulo1`, 
+            `NombreFirma1`, 
+            `Firma1`,
+             `Sello1`,
+              `Titulo2`,
+               `NombreFirma2`, 
+               `Firma2`,
+                `Sello2`, 
+               `Titulo3`,
+                `NombreFirma3`, 
+                `Firma3`,
+                 `Sello3`, 
+                 `created_by`,
+                  `updated_at`,
+                   `created_at`) 
+            values
+             (2nyNY9TgQb, 
+             storage/plantillas/gB7TCrk2MYbBz70LdiQSH7ZGfZg0LbAXFwclR1Lh.jpg, 
+             BABYS, 
+             BABYS, 
+             storage/firmas/HqKV7lH2YBm8EK0hO1PPeqUMeMZlud6TL4NmyUQJ.jpg, 
+             storage/sellos/seQ4psWPqlBY8ZulY8E3VKaZCxwVNEAzmJL4wscf.jpg,
+              BABYS, 
+              BABYS,
+               storage/firmas/9TUIhU6IJIjex6lltnk7cdFfZ7wfoKWw7Mwo1BRD.jpg,
+               ?, 
+               BABYS, 
+               BABYS, 
+               storage/firmas/43sgAkboeeRlffy6wAWNODsdwc9x5loJRJ1FuhO0.jpg, 
+               storage/sellos/hPtnVpFbTg5Oe1oOMDIN1AUxa1pkZMHLuoZhIBIr.jpg, 
+               1, 
+               2024-08-14 03:37:32, 2024-08-14 03:37:32))
+
+        */
+        Diploma::updateOrCreate(['id' => $this->diploma_id], [
+            'Codigo' => $this->generateUniqueCode(),
+            'Plantilla' =>$this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
+         //   'IdConferencia' => $this->IdConferencia,
+            'Titulo1' => $this->Titulo1,
+            'NombreFirma1' => $this->NombreFirma1,
+            'Firma1' => $this->Firma1 ? str_replace('public/', 'storage/', $this->Firma1) : null,
+            'Sello1'  =>$this->Sello1 ? str_replace('public/', 'storage/', $this->Sello1) : null,
+            'Titulo2' => $this->Titulo2,
+            'NombreFirma2' => $this->NombreFirma2,
+            'Firma2' =>$this->Firma2 ? str_replace('public/', 'storage/', $this->Firma2) : null,
+            'Sello2'  =>$this->Sello2 ? str_replace('public/', 'storage/', $this->Sello2) : null,
+            'Titulo3' => $this->Titulo3,
+            'NombreFirma3' => $this->NombreFirma3,
+            'Firma3'  =>$this->Firma3 ? str_replace('public/', 'storage/', $this->Firma3) : null,
+            'Sello3'  =>$this->Sello3 ? str_replace('public/', 'storage/', $this->Sello3) : null,
+        ]);
+
+        
         session()->flash('message', $this->diploma_id ? 'Diploma actualizado correctamente!' : 'Diploma creado correctamente!');
 
         $this->closeModal();
