@@ -269,14 +269,14 @@
         <div class="overview-boxes">
             <div
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="right-side">
-                    <div class="box-topic">Eventos</div>
-                    <div class="number">{{ $cantidadEventos }}</div>
-                    <div class="indicator">
-                        <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Registrados</span>
-                    </div>
+              <div class="right-side">
+                <div class="box-topic">Eventos</div>
+                <div class="number">{{ $eventosFinalizados }}/{{ $cantidadEventos }}</div>
+                <div class="indicator">
+                    <i class='bx bx-up-arrow-alt'></i>
+                    <span class="text">Finalizados/Registrados</span>
                 </div>
+            </div>
                 <svg class="cart w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
