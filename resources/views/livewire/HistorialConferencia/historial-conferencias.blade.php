@@ -40,10 +40,13 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
-                                    Nombre
+                                    Evento
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Descripción
+                                    Conferencia
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Conferencista
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Fecha
@@ -57,8 +60,9 @@
                             @forelse($conferencias as $conferencia)
                                 <tr
                                     class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-6 py-4">{{ $conferencia->evento->nombreevento }}</td>
                                     <td class="px-6 py-4">{{ $conferencia->nombre }}</td>
-                                    <td class="px-6 py-4">{{ $conferencia->descripcion }}</td>
+                                    <td class="px-6 py-4">{{ $conferencia->conferencista->persona->nombre }} {{ $conferencia->conferencista->persona->apellido }}</td>
                                     <td class="px-6 py-4">{{ $conferencia->fecha }}</td>
                                     <td class="px-6 py-4">{{ $conferencia->lugar }}</td>
                                     
