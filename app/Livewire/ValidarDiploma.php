@@ -10,6 +10,8 @@ class ValidarDiploma extends Component
     public $conferencia;
     public $codigoDiploma;
     public $id;
+
+    public $asistencia;
     public function mount($id)
     {
         $this->id = $id;
@@ -19,9 +21,7 @@ class ValidarDiploma extends Component
             $this->persona = $asistencia->suscripcion->persona;
             $this->conferencia = $asistencia->suscripcion->conferencia;
             $this->codigoDiploma = $asistencia->suscripcion->conferencia->evento->diploma;
-        } else {
-            // Redirigir a una página de error si no se encuentra el registro de asistencia
-            return redirect()->route('conferencias-inscritas');
+            $this->asistencia = $asistencia;
         }
     }
 

@@ -78,7 +78,7 @@ class Diplomas extends Component
     public function render()
     {
         $diplomas = Diploma::where('Codigo', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(5);
 
         return view('livewire.Diploma.diplomas', [
@@ -251,7 +251,7 @@ class Diplomas extends Component
     protected function generateUniqueCode()
     {
         do {
-            $code = Str::random(10);
+            $code = Str::uuid();
         } while (Diploma::where('codigo', $code)->exists());
 
         return $code;

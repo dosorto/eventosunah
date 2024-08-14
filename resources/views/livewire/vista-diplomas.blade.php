@@ -171,8 +171,8 @@
 
                 </div>
                 <div class="certificado-body">
-                    Por haber asistido cumplidamente a la conferencia {{$conferencia->nombre}} Impartida por el conferencista {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}} Realizada el
-                    {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el evento {{$evento->nombreevento}}. 
+                Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada por el distinguido {{$conferencia->conferencista->titulo}} {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}}, 
+                celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco del evento "{{$evento->nombreevento}}". 
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
