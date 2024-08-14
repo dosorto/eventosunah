@@ -123,6 +123,19 @@
                                 </select>
                                 @error('idlocalidad') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
+                            <div class="mb-4">
+                                <label for="diplomasSelect"
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Plantilla del diploma:</label>
+                                <select id="diplomasSelect"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    wire:model="IdDiploma">
+                                    <option value="">Plantilla del diploma</option>
+                                    @foreach($diplomas as $diploma)
+                                        <option value="{{ $diploma->id }}">Plantilla Número: {{ $diploma->id }}</option>
+                                    @endforeach
+                                </select>
+                                @error('IdDiploma') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
                         </div>
                     </div>
                 </div>

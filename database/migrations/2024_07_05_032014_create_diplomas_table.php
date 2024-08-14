@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Codigo')->unique();
             $table->string('Plantilla');
-            $table->unsignedBigInteger('IdConferencia')->nullable();
+         //   $table->unsignedBigInteger('IdConferencia')->nullable();
             $table->string('Titulo1');
             $table->string('NombreFirma1');
             $table->string('Firma1');
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
+        //    $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
         });
     }
 

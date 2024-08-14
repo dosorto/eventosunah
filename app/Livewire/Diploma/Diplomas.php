@@ -10,14 +10,15 @@ use App\Models\Diploma;
 use App\Models\Conferencia;
 use App\Models\Firma;
 use App\Models\Evento;
+use Illuminate\Support\Str;
 
 class Diplomas extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $Codigo,
+    public// $Codigo,
        $Plantilla,
-        $IdConferencia,
+       // $IdConferencia,
         $Titulo1,
         $NombreFirma1,
         $Firma1,
@@ -49,9 +50,9 @@ class Diplomas extends Component
     public $searchEventos = [];
 
     protected $rules = [
-        'Codigo' => 'required',
+       // 'Codigo' => 'required',
         'Plantilla' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'IdConferencia' => 'required',
+      //  'IdConferencia' => 'required',
         'Titulo1' => 'required',
         'NombreFirma1' => 'required',
         'Firma1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -71,19 +72,18 @@ class Diplomas extends Component
 
     public function mount()
     {
-        $this->conferencias = Conferencia::all();
+     //   $this->conferencias = Conferencia::all();
     }
 
     public function render()
     {
-        $diplomas = Diploma::with(['conferencia'])
-            ->where('Codigo', 'like', '%' . $this->search . '%')
+        $diplomas = Diploma::where('Codigo', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'ASC')
             ->paginate(5);
 
         return view('livewire.Diploma.diplomas', [
             'diplomas' => $diplomas,
-            'conferencias' => $this->conferencias,
+          //  'conferencias' => $this->conferencias,
         ]);
     }
 
@@ -113,25 +113,25 @@ class Diplomas extends Component
     }
 
 
-    public function updatedInputSearchConferencia()
+   /* public function updatedInputSearchConferencia()
     {
         $this->searchConferencias = Conferencia::where('nombre', 'like', '%' . $this->inputSearchConferencia . '%')
             ->get();
     }
-
+*/
     public function updatedInputSearchFirma()
     {
         $this->searchFirmas = Firma::where('nombre', 'like', '%' . $this->inputSearchFirma . '%')
             ->get();
     }
 
-    public function selectConferencia($conferenciaId)
+  /*  public function selectConferencia($conferenciaId)
     {
         $this->IdConferencia = $conferenciaId;
         $conferencia = Conferencia::find($conferenciaId);
         $this->inputSearchConferencia = $conferencia->nombre;
         $this->searchConferencias = [];
-    }
+    }*/
 
     public function selectFirma($firmaId)
     {
@@ -159,9 +159,8 @@ class Diplomas extends Component
 
     private function resetInputFields()
     {
-        $this->Codigo = '';
         $this->Plantilla = '';
-        $this->IdConferencia = '';
+      //  $this->IdConferencia = '';
         $this->Titulo1 = '';
         $this->NombreFirma1 = '';
         $this->Firma1 = '';
@@ -175,8 +174,8 @@ class Diplomas extends Component
         $this->Firma3 = '';
         $this->Sello3 = '';
         $this->diploma_id = null;
-        $this->inputSearchConferencia = '';
-        $this->searchConferencias = [];
+      //  $this->inputSearchConferencia = '';
+     //   $this->searchConferencias = [];
      
     }
 
@@ -185,9 +184,9 @@ class Diplomas extends Component
         $this->validate();
 
         Diploma::updateOrCreate(['id' => $this->diploma_id], [
-            'Codigo' => $this->Codigo,
+            'Codigo' => $this->generateUniqueCode(),
             'Plantilla' =>$this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
-            'IdConferencia' => $this->IdConferencia,
+         //   'IdConferencia' => $this->IdConferencia,
             'Titulo1' => $this->Titulo1,
             'NombreFirma1' => $this->NombreFirma1,
             'Firma1' => $this->Firma1 ? str_replace('public/', 'storage/', $this->Firma1) : null,
@@ -249,13 +248,22 @@ class Diplomas extends Component
         $this->resetInputFields();
     }
 
+    protected function generateUniqueCode()
+    {
+        do {
+            $code = Str::random(10);
+        } while (Diploma::where('codigo', $code)->exists());
+
+        return $code;
+    }
+
     public function edit($id)
     {
         $diploma = Diploma::findOrFail($id);
         $this->diploma_id = $id;
-        $this->Codigo = $diploma->Codigo;
+      // $this->Codigo = $diploma->Codigo;
         $this->Plantilla = $diploma->Plantilla;
-        $this->IdConferencia = $diploma->IdConferencia;
+   //     $this->IdConferencia = $diploma->IdConferencia;
         $this->Titulo1 = $diploma->Titulo1;
         $this->NombreFirma1 = $diploma->NombreFirma1;
         $this->Firma1 = $diploma->Firma1;
@@ -270,11 +278,11 @@ class Diplomas extends Component
         $this->Sello3 = $diploma->Sello3;
 
 
-        $conferencia = Conferencia::find($this->IdConferencia);
+      /*  $conferencia = Conferencia::find($this->IdConferencia);
         if ($conferencia) {
             $this->inputSearchConferencia = $conferencia->nombre;
         }
-
+*/
 
         $this->openModal();
     }

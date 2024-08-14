@@ -12,6 +12,7 @@ use App\Livewire\Departamento\Departamentos;
 use App\Livewire\MarcarAsistencia\MarcarAsistencias;
 use App\Livewire\Carrera\Carreras;
 use App\Livewire\Persona\Personas;
+use App\Livewire\ValidarDiploma;
 use App\Livewire\EventoVista\EventosVistas;
 use App\Livewire\Rol\Roles;
 use App\Livewire\Diploma\Diplomas;
@@ -55,15 +56,15 @@ Route::middleware([
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
-    Route::get('/diploma',Diplomas::class)->name('diploma');
+    Route::get('/diploma', Diplomas::class)->name('diploma');
     Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/conferencias-inscritas', ConferenciasInscritas::class)->name('conferencias-inscritas');
     Route::get('/historial-conferencias', HistorialConferencias::class)->name('historial-conferencias');
     Route::get('/asistencia-conferencia/{conferencia}', AsistenciasConferencias::class)->name('asistencias-Conferencia');
     Route::get('/vistaDiploma/asistencia/{asistencia?}', VistaDiplomas::class)->name('vistaDiploma');
-    
+
     // VALIDAR EL DIPLOMA
-    Route::get('/validarDiploma/{asistencia}', [EventoVistaController::class, 'validarDiploma'])->name('validarDiploma');
+    Route::get('/validarDiploma/{id}', ValidarDiploma::class)->name('validarDiploma');
     Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
 });
 

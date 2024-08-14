@@ -159,7 +159,7 @@
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset('Logo/certificado3.png')}}" />
+                    <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}"/>
                 </div>
                 <div class="certificado-header" style="">
                     <div class="certificado-header">
@@ -171,11 +171,8 @@
 
                 </div>
                 <div class="certificado-body">
-                    Por haber asistido cumplidamente a la conferencia {{$conferencia->nombre}} Realizada el
-                    {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }}. Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum 
-                    dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Por haber asistido cumplidamente a la conferencia {{$conferencia->nombre}} Impartida por el conferencista {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}} Realizada el
+                    {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el evento {{$evento->nombreevento}}. 
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
@@ -184,7 +181,7 @@
                 <div class="firmass">
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset('Logo/firma1.png') }}" />
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}"/>
                         </div>
                         <ul>
                             <li>
@@ -193,14 +190,14 @@
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello1)) }}" />
                         </div>
-                        <div>Acxel Fernando Aplicano</div>
-                        <div>Coordinador General</div>
+                        <div>{{$diploma->NombreFirma1}}</div>
+                        <div>{{$diploma->Titulo1}}</div>
                     </div>
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset('Logo/firma2.png') }}" />
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma2)) }}" />
                         </div>
                         <ul>
                             <li>
@@ -209,15 +206,15 @@
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}"/>
                         </div>
-                        <div>Acxel Fernando Aplicano</div>
-                        <div>Coordinador General</div>
+                        <div>{{$diploma->NombreFirma2}}</div>
+                        <div>{{$diploma->Titulo2}}</div>
                     </div>
 
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset('Logo/firma3.png') }}" />
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma3)) }}" />
                         </div>
                         <ul>
                             <li>
@@ -226,13 +223,13 @@
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset('Logo/sello.png') }}" />
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello3)) }}" />
                         </div>
-                        <div>Acxel Fernando Aplicano</div>
-                        <div>Coordinador General</div>
+                        <div>{{$diploma->NombreFirma3}}</div>
+                        <div>{{$diploma->Titulo3}}</div>
                     </div>
                 </div>
-                <p class="codigo">Código: dc59dff5587</p>
+                <p class="codigo">Código: {{$diploma->Codigo}}</p>
             </div>
         </body>
     </x-layouts.reportes>
