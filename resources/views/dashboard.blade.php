@@ -344,7 +344,7 @@
         <div class="sales-boxes">
             <div
                 class="recent-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="title">Próximas Conferencias</div>
+                <div class="title" align="center">Próximas Conferencias</div>
                 <div class="sales-details">
 
 
@@ -372,8 +372,7 @@
                                 @foreach ($conferencias as $conferencia)
                                     <tr class="bg-white dark:bg-gray-800 text-gray-600">
                                         <td class="px-6 py-4 ">
-                                            <div class="flex items
-                                                                                -center">
+                                            <div class="flex items-center" >
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
                                                     </p>
@@ -400,7 +399,7 @@
                                             <div class="flex items-center">
                                                 <div>
                                                     <p class="font-medium dark:text-gray-400">
-                                                        {{ $conferencia->conferencista->nombre }} {{ $conferencia->conferencista->apellido }}
+                                                        {{ $conferencia->conferencista->persona->nombre }} {{ $conferencia->conferencista->persona->apellido }}
                                                     </p>
                                                 </div>
                                             </div>
