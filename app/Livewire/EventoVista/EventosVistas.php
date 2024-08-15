@@ -17,12 +17,12 @@ class EventosVistas extends Component
 
     public function render()
     {
-        $targetasEventos = Evento::with('modalidad', 'localidad')
+        $Eventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
-            ->paginate(9);
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
-        return view('livewire.EventoVista.eventos-vista', ['targetasEventos' => $targetasEventos]);
+        return view('livewire.EventoVista.eventos-vista', ['Eventos' => $Eventos]);
     }
 
     public $modalidades, $localidades;
