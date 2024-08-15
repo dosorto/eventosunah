@@ -342,111 +342,109 @@
             </div>
         </div>
         <div class="sales-boxes">
-            <div
-                class="recent-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="title" align="center">Próximas Conferencias</div>
-                <div class="sales-details">
+    <div class="recent-sales box bg-white dark:bg-gray-800 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+        <div class="title" align="center">Próximas Conferencias</div>
+        <div class="sales-details">
 
-
-                    <div class="relative overflow-x-auto sm:rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
-                                        Fecha
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
-                                        Nombre
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
-                                        Lugar
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
-                                        Conferencista
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                @foreach ($conferencias as $conferencia)
-                                    <tr class="bg-white dark:bg-gray-800 text-gray-600">
-                                        <td class="px-6 py-4 ">
-                                            <div class="flex items-center" >
-                                                <div>
-                                                    <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div>
-                                                    <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div>
-                                                    <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div>
-                                                    <p class="font-medium dark:text-gray-400">
-                                                        {{ $conferencia->conferencista->persona->nombre }} {{ $conferencia->conferencista->persona->apellido }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                              
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </div>
-            <div
-                class="top-sales box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                <div class="title">Inscripciones</div>
-                @if ($conferenciass->isEmpty())
-                    <h1 class="text-gray-300  items-center ml-16 mr-16 text-center mt-10">No hay inscripciones a las
-                        conferencias</h1>
-                @else
-                    <ul class="top-sales-details">
-                        @foreach ($conferenciass as $suscripcion)
-                            @if (!$suscripcion->unique_subscriptions == 0)
-
-                            @endif
-                            <li>
-                                <a href="#">
-                                    <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
-                                        alt="Imagen Conferencia" class="rounded-t-lg" />
-                                    <div class="flex-1 min-w-0">
-                                        <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;"
-                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                            {{ $suscripcion->nombre }}
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                            {{ $suscripcion->fecha }}
-                                        </p>
+            <div class="relative overflow-x-auto sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
+                                Num.
+                            </th>
+                            <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
+                                Fecha
+                            </th>
+                            <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
+                                Nombre
+                            </th>
+                            <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
+                                Lugar
+                            </th>
+                            <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
+                                Conferencista
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($conferencias as $index => $conferencia)
+                            <tr class="bg-white dark:bg-gray-800 text-gray-600">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p class="font-medium dark:text-gray-400">{{ $index + 1 }}</p>
+                                        </div>
                                     </div>
-                                </a>
-                                <span class="price">{{$suscripcion->unique_subscriptions}} inscritos
-                                </span>
-                            </li>
-                        @endforeach    
-                    </ul>
-                @endif
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p class="font-medium dark:text-gray-400">{{ $conferencia->fecha }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p class="font-medium dark:text-gray-400">{{ $conferencia->nombre }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p class="font-medium dark:text-gray-400">{{ $conferencia->lugar }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p class="font-medium dark:text-gray-400">
+                                                {{ $conferencia->conferencista->persona->nombre }} {{ $conferencia->conferencista->persona->apellido }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+
         </div>
+    </div>
+
+    <!-- Resto del código -->
+    <div class="top-sales box bg-white dark:bg-gray-800 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+        <div class="title">Inscripciones</div>
+        @if ($conferenciass->isEmpty())
+            <h1 class="text-gray-300 items-center ml-16 mr-16 text-center mt-10">No hay inscripciones a las conferencias</h1>
+        @else
+            <ul class="top-sales-details">
+                @foreach ($conferenciass as $suscripcion)
+                    @if (!$suscripcion->unique_subscriptions == 0)
+                        <li>
+                            <a href="#">
+                                <img src="https://via.placeholder.com/50" alt="Imagen Conferencia" class="rounded-t-lg" />
+                                <div class="flex-1 min-w-0">
+                                    <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;" class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        {{ $suscripcion->nombre }}
+                                    </p>
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        {{ $suscripcion->fecha }}
+                                    </p>
+                                </div>
+                            </a>
+                            <span class="price">{{ $suscripcion->unique_subscriptions }} inscritos</span>
+                        </li>
+                    @endif
+                @endforeach    
+            </ul>
+        @endif
+    </div>
+</div>
+
 </x-layouts.app>
 </body>
