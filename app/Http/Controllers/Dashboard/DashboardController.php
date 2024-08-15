@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Suscripcion;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 use App\Models\Evento;
 use App\Models\Conferencia;
 use Carbon\Carbon;
@@ -42,11 +42,16 @@ class DashboardController extends Controller
             ->where('modalidads.modalidad', 'Virtual')
             ->count();
 
+        // Contar el total de usuarios registrados
+        $totalUsuarios = User::count();
+
+
         return view('dashboard', [
             'cantidadEventos' => $cantidadEventos,
             'eventosFinalizados' => $eventosFinalizados,
             'eventosPresenciales' => $eventosPresenciales,
             'eventosVirtuales' => $eventosVirtuales,
+            'totalUsuarios' => $totalUsuarios, 
             'conferencias' => $conferencias,
             'now' => $now,
             'conferenciass' => $conferenciass

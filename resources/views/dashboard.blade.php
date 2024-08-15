@@ -294,12 +294,13 @@
                         <span class="text">En localidades</span>
                     </div>
                 </div>
-                <svg class="cart two w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
-                        d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Zm4.996 2a1 1 0 0 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM11 8a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-6Zm-4.004 3a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM11 11a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-6Zm-4.004 3a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM11 14a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-6Z"
-                        clip-rule="evenodd" />
-                </svg>
+               <svg class="cart two w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" 
+        d="M3 21V5a2 2 0 0 1 2-2h6V3h2v.5h6a2 2 0 0 1 2 2v16h-7v-5h-4v5H3Zm14-16h-4v5h4V5Zm-2 7v6h2v-6h-2Zm-6-7H5v16h2v-6h2v6h2V5Zm2 2h4v3h-4V7Zm-4 6H7v2h2v-2Zm0-4H7v2h2V9Z"
+        clip-rule="evenodd" />
+</svg>
+
 
             </div>
 
@@ -326,7 +327,7 @@
                 class="box  bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <div class="right-side">
                     <div class="box-topic">Usuarios</div>
-                    <div class="number">{{ $cantidadEventos }}</div>
+                    <div class="number">{{ $totalUsuarios  }}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Registrados</span>
@@ -363,9 +364,7 @@
                                     <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
                                         Conferencista
                                     </th>
-                                    <th scope="col" class="px-6 py-3 dark:text-gray-100 bg-gray-50 dark:bg-gray-500">
-                                        Opciones
-                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -406,25 +405,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div>
-                                                    <a class="button dark:text-gray-800 bg-gray-50 dark:bg-gray-500 p-2 font-bold rounded-md"
-                                                        href="{{ route('conferencia', $conferencia->evento->id) }}"
-                                                        wire:click="viewDetails({{ $conferencia->id }})">
-                                                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-800"
-                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" fill="none" viewBox="0 0 24 24">
-                                                            <path stroke="currentColor" stroke-width="2"
-                                                                d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
-                                                            <path stroke="currentColor" stroke-width="2"
-                                                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                        </svg>
-                                                        Ver
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
+                              
                                     </tr>
                                 @endforeach
                             </tbody>
