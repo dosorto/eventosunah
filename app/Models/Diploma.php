@@ -12,11 +12,20 @@ class Diploma extends BaseModel
     use SoftDeletes;
     protected $fillable = [
         'Codigo',
-        'URL',
-        'Fecha',
+        'Plantilla',
         'IdConferencia',
-        'IdFirma',
-        'IdEvento',
+        'Titulo1',
+        'NombreFirma1',
+        'Firma1',
+        'Sello1',
+        'Titulo2',
+        'NombreFirma2',
+        'Firma2',
+        'Sello2',
+        'Titulo3',
+        'NombreFirma3',
+        'Firma3',
+        'Sello3',
     ];
 
     public function conferencia()

@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Diploma;
 use App\Models\Conferencia;
 use App\Models\Evento;
@@ -21,14 +22,26 @@ class DiplomaFactory extends Factory
     public function definition(): array
     {
         $conferenciaId = Conferencia::inRandomOrder()->first()->id;
-        $eventoId = Evento::inRandomOrder()->first()->id;
-        $firmaId = Firma::inRandomOrder()->first()->id;
         return [
             'codigo' => $this->faker->uuid,
-            'URL' => $this->faker->url,
-            'Fecha' => $this->faker->date(),
+            'plantilla' => $this->faker->imageUrl(),
             'IdConferencia' => $conferenciaId,
-            'IdFirma' => $firmaId,
+            
+            'titulo1' => $this->faker->title(),
+            'nombrefirma1' => $this->faker->name(),
+            'firma1' => $this->faker->imageUrl(),
+            'sello1' => $this->faker->imageUrl(),
+
+            'titulo2' => $this->faker->title(),
+            'nombrefirma2' => $this->faker->name(),
+            'firma2' => $this->faker->imageUrl(),
+            'sello2' => $this->faker->imageUrl(),
+
+            'titulo3' => $this->faker->title(),
+            'nombrefirma3' => $this->faker->name(),
+            'firma3' => $this->faker->imageUrl(),
+            'sello3' => $this->faker->imageUrl(),
+
             'created_by' => 1,
         ];
     }

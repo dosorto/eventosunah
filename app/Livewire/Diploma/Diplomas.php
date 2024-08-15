@@ -15,12 +15,21 @@ class Diplomas extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $codigo,
-        $URL,
-        $Fecha,
+    public $Codigo,
+       $Plantilla,
         $IdConferencia,
-        $IdFirma,
-        $IdEvento,
+        $Titulo1,
+        $NombreFirma1,
+        $Firma1,
+        $Sello1,
+        $Titulo2,
+        $NombreFirma2,
+        $Firma2,
+        $Sello2,
+        $Titulo3,
+        $NombreFirma3,
+        $Firma3,
+        $Sello3,
         $diploma_id,
         $search;
 
@@ -40,11 +49,21 @@ class Diplomas extends Component
     public $searchEventos = [];
 
     protected $rules = [
-        'codigo' => 'required',
-        'URL' => 'required|url',
-        'Fecha' => 'required|date',
+        'Codigo' => 'required',
+        'Plantilla' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'IdConferencia' => 'required',
-        'IdFirma' => 'required',
+        'Titulo1' => 'required',
+        'NombreFirma1' => 'required',
+        'Firma1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Sello1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Titulo2' => 'required',
+        'NombreFirma2' => 'required',
+        'Firma2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Sello2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Titulo3' => 'required',
+        'NombreFirma3' => 'required',
+        'Firma3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Sello3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',      
     ];
 
     public $conferencias;
@@ -53,21 +72,18 @@ class Diplomas extends Component
     public function mount()
     {
         $this->conferencias = Conferencia::all();
-        $this->firmas = Firma::all();
     }
 
     public function render()
     {
-        $diplomas = Diploma::with(['conferencia', 'firma'])
-            ->where('codigo', 'like', '%' . $this->search . '%')
+        $diplomas = Diploma::with(['conferencia'])
+            ->where('Codigo', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'ASC')
             ->paginate(5);
 
         return view('livewire.Diploma.diplomas', [
             'diplomas' => $diplomas,
             'conferencias' => $this->conferencias,
-            'firmas' => $this->firmas,
-            'eventos' => $this->searchEventos,
         ]);
     }
 
@@ -143,16 +159,25 @@ class Diplomas extends Component
 
     private function resetInputFields()
     {
-        $this->codigo = '';
-        $this->URL = '';
-        $this->Fecha = '';
+        $this->Codigo = '';
+        $this->Plantilla = '';
         $this->IdConferencia = '';
-        $this->IdFirma = '';
+        $this->Titulo1 = '';
+        $this->NombreFirma1 = '';
+        $this->Firma1 = '';
+        $this->Sello1 = '';
+        $this->Titulo2 = '';
+        $this->NombreFirma2 = '';
+        $this->Firma2 = '';
+        $this->Sello2 = '';
+        $this->Titulo3 = '';
+        $this->NombreFirma3 = '';
+        $this->Firma3 = '';
+        $this->Sello3 = '';
         $this->diploma_id = null;
         $this->inputSearchConferencia = '';
-        $this->inputSearchFirma = '';
         $this->searchConferencias = [];
-        $this->searchFirmas = [];
+     
     }
 
     public function store()
@@ -160,16 +185,64 @@ class Diplomas extends Component
         $this->validate();
 
         Diploma::updateOrCreate(['id' => $this->diploma_id], [
-            'Codigo' => $this->codigo,
-            'URL' => $this->URL,
-            'Fecha' => $this->Fecha,
+            'Codigo' => $this->Codigo,
+            'Plantilla' =>$this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
             'IdConferencia' => $this->IdConferencia,
-            'IdFirma' => $this->IdFirma,
-            'IdEvento' => $this->IdEvento,
+            'Titulo1' => $this->Titulo1,
+            'NombreFirma1' => $this->NombreFirma1,
+            'Firma1' => $this->Firma1 ? str_replace('public/', 'storage/', $this->Firma1) : null,
+            'Sello1'  =>$this->Sello1 ? str_replace('public/', 'storage/', $this->Sello1) : null,
+            'Titulo2' => $this->Titulo2,
+            'NombreFirma2' => $this->NombreFirma2,
+            'Firma2' =>$this->Firma2 ? str_replace('public/', 'storage/', $this->Firma2) : null,
+            'Sello2'  =>$this->Sello2 ? str_replace('public/', 'storage/', $this->Sello2) : null,
+            'Titulo3' => $this->Titulo3,
+            'NombreFirma3' => $this->NombreFirma3,
+            'Firma3'  =>$this->Firma3 ? str_replace('public/', 'storage/', $this->Firma3) : null,
+            'Sello3'  =>$this->Sello3 ? str_replace('public/', 'storage/', $this->Sello3) : null,
         ]);
 
+        if ($this->Plantilla) {
+            $this->Plantilla = $this->Plantilla->store('public/plantillas');
+        } else {
+            $this->Plantilla = null;
+        }
 
+        if ($this->Firma1) {
+            $this->Firma1 = $this->Firma1->store('public/firmas');
+        } else {
+            $this->Firma1 = null;
+        }
 
+        if ($this->Firma2) {
+            $this->Firma2 = $this->Firma2->store('public/firmas');
+        } else {
+            $this->Firma2 = null;
+        }
+
+        if ($this->Firma3) {
+            $this->Firma3 = $this->Firma3->store('public/firmas');
+        } else {
+            $this->Firma3 = null;
+        }
+
+        if ($this->Sello1) {
+            $this->Sello1 = $this->Sello1->store('public/sellos');
+        } else {
+            $this->Sello1 = null;
+        }
+
+        if ($this->Sello2) {
+            $this->Sello2 = $this->Sello2->store('public/sellos');
+        } else {
+            $this->Sello2 = null;
+        }
+        
+        if ($this->Sello3) {
+            $this->Sello3 = $this->Sello3->store('public/sellos');
+        } else {
+            $this->Sello3 = null;
+        }
         session()->flash('message', $this->diploma_id ? 'Diploma actualizado correctamente!' : 'Diploma creado correctamente!');
 
         $this->closeModal();
@@ -180,28 +253,28 @@ class Diplomas extends Component
     {
         $diploma = Diploma::findOrFail($id);
         $this->diploma_id = $id;
-        $this->codigo = $diploma->codigo;
-        $this->URL = $diploma->URL;
-        $this->Fecha = $diploma->Fecha;
+        $this->Codigo = $diploma->Codigo;
+        $this->Plantilla = $diploma->Plantilla;
         $this->IdConferencia = $diploma->IdConferencia;
-        $this->IdFirma = $diploma->IdFirma;
-        $this->IdEvento = $diploma->IdEvento;
+        $this->Titulo1 = $diploma->Titulo1;
+        $this->NombreFirma1 = $diploma->NombreFirma1;
+        $this->Firma1 = $diploma->Firma1;
+        $this->Sello1 = $diploma->Sello1;
+        $this->Titulo2 = $diploma->Titulo2;
+        $this->NombreFirma2 = $diploma->NombreFirma2;
+        $this->Firma2 = $diploma->Firma2;
+        $this->Sello2 = $diploma->Sello2;
+        $this->Titulo3 = $diploma->Titulo3;
+        $this->NombreFirma3 = $diploma->NombreFirma3;
+        $this->Firma3 = $diploma->Firma3;
+        $this->Sello3 = $diploma->Sello3;
 
-        $evento = Evento::find($this->IdEvento);
-
-        if ($evento) {
-            $this->inputSearchEvento = $evento->nombreevento;
-        }
 
         $conferencia = Conferencia::find($this->IdConferencia);
         if ($conferencia) {
             $this->inputSearchConferencia = $conferencia->nombre;
         }
 
-        $firma = Firma::find($this->IdFirma);
-        if ($firma) {
-            $this->inputSearchFirma = $firma->Nombre;
-        }
 
         $this->openModal();
     }
