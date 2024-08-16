@@ -13,7 +13,7 @@ class Diploma extends BaseModel
     protected $fillable = [
         'Codigo',
         'Plantilla',
-        'IdConferencia',
+       // 'IdConferencia',
         'Titulo1',
         'NombreFirma1',
         'Firma1',
@@ -28,10 +28,10 @@ class Diploma extends BaseModel
         'Sello3',
     ];
 
-    public function conferencia()
+  /*  public function conferencia()
     {
         return $this->belongsTo(Conferencia::class, 'IdConferencia', 'id');
-    }
+    }*/
     public function firma()
     {
         return $this->belongsTo(Firma::class, 'IdFirma');

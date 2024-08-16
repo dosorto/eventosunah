@@ -21,11 +21,11 @@ class DiplomaFactory extends Factory
      */
     public function definition(): array
     {
-        $conferenciaId = Conferencia::inRandomOrder()->first()->id;
+      //  $conferenciaId = Conferencia::inRandomOrder()->first()->id;
         return [
             'codigo' => $this->faker->uuid,
             'plantilla' => $this->faker->imageUrl(),
-            'IdConferencia' => $conferenciaId,
+          //  'IdConferencia' => $conferenciaId,
             
             'titulo1' => $this->faker->title(),
             'nombrefirma1' => $this->faker->name(),

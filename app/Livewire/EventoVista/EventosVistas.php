@@ -20,7 +20,7 @@ class EventosVistas extends Component
         $Eventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'DESC')
-            ->paginate(10);
+            ->paginate(9);
 
         return view('livewire.EventoVista.eventos-vista', ['Eventos' => $Eventos]);
     }

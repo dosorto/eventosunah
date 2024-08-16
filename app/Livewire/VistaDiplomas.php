@@ -13,14 +13,19 @@ class VistaDiplomas extends Component
     public $persona;
     public $asistencia;
     public $conferencia;
+
+    public $evento;
     
+    public $diploma;
 
     public function mount(Asistencia $asistencia)
     {
         $this->asistencia = $asistencia;
         $this->persona = $asistencia->suscripcion->persona;
-
+        $this->evento = $asistencia->suscripcion->conferencia->evento;
         $this->conferencia = $asistencia->suscripcion->conferencia;
+        $this->diploma = $asistencia->suscripcion->conferencia->evento->diploma;
+
        
         // obtener el diploma asociado a la persona y la conferencia
 

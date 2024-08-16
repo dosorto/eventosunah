@@ -50,7 +50,7 @@
                                 <th scope="col" class="px-6 py-3">No.</th>
                                 <th scope="col" class="px-6 py-3">Código</th>
                                 <th scope="col" class="px-6 py-3">Plantilla</th>
-                                <th scope="col" class="px-6 py-3">Conferencia</th>
+                               {{-- <th scope="col" class="px-6 py-3">Conferencia</th>--}}
                                 <th scope="col" class="px-6 py-3">Titulo 1</th>
                                 <th scope="col" class="px-6 py-3">Persona 1</th>
                                 <th scope="col" class="px-6 py-3">Firma 1</th>
@@ -80,7 +80,7 @@
                                             Sin Plantilla
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4">{{ $diploma->conferencia->nombre }}</td>
+                              {{--      <td class="px-6 py-4">{{ $diploma->conferencia->nombre }}</td>--}}
                                     <td class="px-6 py-4">{{ $diploma->Titulo1 }}</td>
                                     <td class="px-6 py-4">{{ $diploma->NombreFirma1 }}</td>
                                     <td class="px-6 py-4">
