@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
 use App\Livewire\ReporteEvento\ReporteEventos;
 use App\Livewire\Asistencia\AsistenciasConferencias;
 use App\Livewire\HistorialConferencia\HistorialConferencias;
-
+use App\Livewire\vista_Diploma;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,8 +72,7 @@ Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('reg
 Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('registerpost');
 
 Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPersona'])->name('nueva-persona');
-// b
-
+// 
 
 
 
