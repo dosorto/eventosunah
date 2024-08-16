@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamp('Fecha'); 
             $table->binary('Asistencia');
-            $table->unsignedBigInteger('IdSuscripcion')->unique();;
+            $table->unsignedBigInteger('IdSuscripcion')->unique();
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
