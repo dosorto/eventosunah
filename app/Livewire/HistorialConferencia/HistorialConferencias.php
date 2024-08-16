@@ -4,7 +4,6 @@ namespace App\Livewire\HistorialConferencia;
 
 use Livewire\Component;
 use App\Models\Asistencia;
-use App\Models\Conferencia;
 use Illuminate\Support\Facades\Auth;
 
 class HistorialConferencias extends Component
@@ -20,14 +19,17 @@ class HistorialConferencias extends Component
     {
         $personaId = Auth::user()->persona->id;
 
-        
-        $suscripciones = Asistencia::whereHas('suscripcion', function($query) use ($personaId) {
-            $query->where('IdPersona', $personaId);
-        })->with('suscripcion.conferencia') 
-          ->get()
-          ->map(function ($asistencia) {
-              return $asistencia->suscripcion->conferencia;
-          })->unique('id');
+        // Filtrar asistencias donde la asistencia es 1
+        $suscripciones = Asistencia::where('asistencia', 1) // Solo asistencias marcadas como 1
+            ->whereHas('suscripcion', function($query) use ($personaId) {
+                $query->where('IdPersona', $personaId);
+            })
+            ->with('suscripcion.conferencia')
+            ->get()
+            ->map(function ($asistencia) {
+                return $asistencia->suscripcion->conferencia;
+            })
+            ->unique('id');
         
         $this->conferencias = $suscripciones;
     }
@@ -38,5 +40,5 @@ class HistorialConferencias extends Component
             'conferencias' => $this->conferencias,
         ]);
     }
-    
 }
+
