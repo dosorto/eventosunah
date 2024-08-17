@@ -166,7 +166,7 @@ class Personas extends Component
             session()->flash('error', 'persona no encontrada.');
             return;
         }
-        if ($persona && !$persona->conferencistas()->exists())  {
+        if ($persona->conferencistas()->exists())  {
             session()->flash('error', 'No se puede eliminar la persona:  ' .$persona->nombre .'  ' . $persona->apellido .', porque está enlazada a un conferencista.');
             return;
         }

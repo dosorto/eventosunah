@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Nacionalidad\Nacionalidades;
 use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
-use App\Livewire\Departamento\Departamentos;
 use App\Livewire\MarcarAsistencia\MarcarAsistencias;
 use App\Livewire\Carrera\Carreras;
 use App\Livewire\Persona\Personas;
@@ -46,8 +45,6 @@ Route::middleware([
     Route::get('/modalidad', Modalidades::class)->name('modalidad');
     Route::get('/tipoperfil', Tipoperfiles::class)->name('tipoperfil');
     Route::get('/localidad', Localidades::class)->name('localidad');
-    Route::get('/departamento', Departamentos::class)->name('departamento');
-    Route::get('/carrera', Carreras::class)->name('carrera');
     Route::get('/asistencia', Asistencias::class)->name('asistencia');
     Route::get('/rol', Roles::class)->name('rol');
     Route::get('/conferencia/{evento?}', Conferencias::class)->name('conferencia');

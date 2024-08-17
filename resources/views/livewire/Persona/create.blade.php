@@ -1,4 +1,3 @@
-</head>
 <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <!-- Modal backdrop -->
@@ -30,12 +29,12 @@
 
                     <!-- Formulario de Crear Persona -->
                     <div class="details personal">
-                        <span class="title">Detalles Personales</span>
-                        <div class="fields">
+                        <span class="title text-lg font-medium text-gray-700 dark:text-gray-300">Detalles Personales</span>
+                        <div class="fields space-y-4">
                             <div class="input-field">
-                                <label>Tipo Perfil</label>
-                                <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdTipoPerfil"
-                                    name="IdTipoPerfil" wire:model="IdTipoPerfil" required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo Perfil</label>
+                                <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    id="IdTipoPerfil" name="IdTipoPerfil" wire:model.live="IdTipoPerfil" required>
                                     <option value="" disabled selected>Seleccione tipo perfil</option>
                                     @foreach($tipoperfiles as $tipoPerfil)
                                         <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
@@ -45,9 +44,9 @@
                             </div>
 
                             <div class="input-field">
-                                <label>Usuario</label>
-                                <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdUsuario"
-                                    name="IdUsuario" wire:model="IdUsuario" required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Usuario</label>
+                                <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    id="IdUsuario" name="IdUsuario" wire:model="IdUsuario" required>
                                     <option value="" disabled selected>Seleccione su usuario</option>
                                     @foreach($user as $users)
                                         <option value="{{ $users->id }}">{{ $users->email }}</option>
@@ -57,123 +56,123 @@
                             </div>
 
                             <div class="input-field">
-                                <label>DNI</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                    placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">DNI</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
                                 @error('dni') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label>Nombre</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                    placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="nombre"
-                                    required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="nombre" required>
                                 @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label>Apellido</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" type="text"
-                                    placeholder="Ingrese su apellido" id="apellido" name="apellido"
-                                    wire:model="apellido" required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Apellido</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="apellido" required>
                                 @error('apellido') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label>Correo Electrónico</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" type="email"
-                                    placeholder="Ingrese su correo" id="correo" name="correo" wire:model="correo"
-                                    required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo Electrónico</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="email" placeholder="Ingrese su correo" id="correo" name="correo" wire:model="correo" required>
                                 @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
-                            <div class="input-field estudiante">
-                                <label>Correo Institucional</label>
-                                <input type="email" placeholder="Ingrese su correo institucional"
-                                    id="correoInstitucional" name="correoInstitucional"
-                                    wire:model="correoInstitucional">
-                                @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span>
-                                @enderror
+                            @if($IdTipoPerfil == 1 ) 
+                            <div class="mb-4">
+                                <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                                <input type="email" wire:model="correoInstitucional"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="correoInstitucional" placeholder="Correo Institucional">
+                                @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
-                            <div class="input-field estudiante">
-                                <label>Número de cuenta</label>
-                                <input type="text" placeholder="Ingrese su cuenta de estudiante" id="numeroCuenta"
-                                    name="numeroCuenta" wire:model="numeroCuenta">
+                            <div class="mb-4">
+                                <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
+                                <input type="text" wire:model="numeroCuenta"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="numeroCuenta" placeholder="Número de Cuenta">
                                 @error('numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
+                        @endif
+                        @if($IdTipoPerfil == 3) 
+                            <div class="mb-4">
+                                <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                                <input type="email" wire:model="correoInstitucional"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="correoInstitucional" placeholder="Correo Institucional">
+                                @error('correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Código de docente:</label>
+                                <input type="text" wire:model="numeroCuenta"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="numeroCuenta" placeholder="Número de Cuenta">
+                                @error('numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+                        @endif
 
                             <div class="input-field">
-                                <label>Fecha de Nacimiento</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" type="date"
-                                    id="fechaNacimiento" name="fechaNacimiento" wire:model="fechaNacimiento"
-                                    required>
-                                @error('fechaNacimiento') <span class="text-red-500">{{ $message }}</span>
-                                @enderror
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de Nacimiento</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="date" id="fechaNacimiento" name="fechaNacimiento" wire:model="fechaNacimiento" required>
+                                @error('fechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label>Sexo</label>
-                                <select class="focus:ring-yellow-500 focus:border-yellow-500" id="sexo" name="sexo"
-                                    wire:model="sexo" required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sexo</label>
+                                <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    id="sexo" name="sexo" wire:model="sexo" required>
                                     <option value="" disabled selected>Seleccione su sexo</option>
                                     <option value="M">Masculino</option>
                                     <option value="F">Femenino</option>
+                                    <option value="O">Otro</option>
                                 </select>
                                 @error('sexo') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label>Teléfono</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" type="tel"
-                                    placeholder="Ingrese su teléfono" id="telefono" name="telefono"
-                                    wire:model="telefono" required>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dirección</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese su dirección" id="direccion" name="direccion" wire:model="direccion" required>
+                                @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="input-field">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Teléfono</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese su número de teléfono" id="telefono" name="telefono" wire:model="telefono" required>
                                 @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label>Nacionalidad</label>
-                                <select class="focus:ring-yellow-500 focus:border-yellow-500" id="IdNacionalidad"
-                                    name="IdNacionalidad" wire:model="IdNacionalidad" required>
-                                    <option value="" disabled selected>Seleccione su nacionalidad</option>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nacionalidad</label>
+                                <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    id="IdNacionalidad" name="IdNacionalidad" wire:model="IdNacionalidad" required>
+                                    <option value="" disabled selected>Seleccione nacionalidad</option>
                                     @foreach($nacionalidades as $nacionalidad)
                                         <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombreNacionalidad }}</option>
                                     @endforeach
                                 </select>
-                                @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span>
-                                @enderror
+                                @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
-                            <div class="input-field full-width">
-                                <label>Dirección</label>
-                                <input class="focus:ring-yellow-500 focus:border-yellow-500" id="direccion"
-                                    name="direccion" placeholder="Escribe tu dirección..." wire:model="direccion"
-                                    required>
-                                @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Botones -->
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
-                        <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                            <button type="submit"
-                                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                                Guardar
-                            </button>
-                        </span>
-                        <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                            <button type="button" wire:click="closeModal()"
-                                class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                                Cancelar
-                            </button>
-                        </span>
+                    <!-- Botones de acción -->
+                    <div class="flex justify-end gap-4 px-4 py-3 sm:px-6">
+                        <button type="button" wire:click="closeModal()" class="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 shadow-sm ring-1 ring-gray-300 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:ring-gray-600 dark:hover:bg-gray-600">Cancelar</button>
+                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm ring-1 ring-yellow-600 hover:bg-yellow-600 dark:bg-yellow-600 dark:ring-yellow-600 dark:hover:bg-yellow-700">Guardar</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
-
-
