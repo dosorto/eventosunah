@@ -9,12 +9,13 @@ use App\Models\DiplomaGenerado;
 use Illuminate\Support\Str;
 use App\Services\QRCodeService;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
-
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
 
 class HistorialConferencias extends Component
 {
+   use WithFileUploads;
 
     public $asistencia;
     public $uuidDiploma;
@@ -79,7 +80,7 @@ class HistorialConferencias extends Component
             $pdf = PDF::loadView('livewire.descargarDiploma', [
                 'asistencia' => $asistencia,
                 'uuid' => $uuidDiploma,
-                'qrcode' => $qrcode
+                'qrcode' => $qrcode,
             ])->setPaper('a4', 'landscape');
 
             // Configurar opciones adicionales para evitar distorsiones y asegurar color
@@ -90,9 +91,8 @@ class HistorialConferencias extends Component
             $pdf->getDomPDF()->set_option('isCssFloatEnabled', true);
 
             // Guardar el PDF temporalmente
-            $pdfPath = 'diplomas/diploma_' . $uuidDiploma . '.pdf';
+            $pdfPath = 'diplomas/Diploma_' . $asistencia->suscripcion->persona->nombre . $asistencia->suscripcion->persona->apellido .'_' . $uuidDiploma . '.pdf';
             Storage::put($pdfPath, $pdf->output());
-
             // Descargar el PDF
             return response()->download(storage_path('app/' . $pdfPath))->deleteFileAfterSend(true);
         } else {

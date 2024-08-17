@@ -162,8 +162,8 @@
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo"
-                        src="{{ public_path('storage/' . str_replace('public/', '', $asistencia->suscripcion->conferencia->evento->diploma->Plantilla)) }}" />
+                    <img class="fondo" 
+                    src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Plantilla)) }}" alt="Diploma">
                 </div>
                 <div class="certificado-header">
                     <div class="certificado-title">CERTIFICADO</div>
