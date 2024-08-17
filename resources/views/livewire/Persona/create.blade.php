@@ -12,7 +12,7 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-gray-900">
                     <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Crear Persona
+                            {{ $persona_id ? 'Editar Persona' : 'Crear Persona' }}
                         </h3>
                         <button wire:click="closeModal()" type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -31,6 +31,29 @@
                     <div class="details personal">
                         <span class="title text-lg font-medium text-gray-700 dark:text-gray-300">Detalles Personales</span>
                         <div class="fields space-y-4">
+                            <!-- Campos de Usuario -->
+                            <div class="input-field">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre de Usuario</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese el nombre de usuario" id="name" name="name" wire:model="name" required>
+                                @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="input-field">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo Electrónico</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="email" placeholder="Ingrese el correo electrónico" id="email" name="email" wire:model="email" required>
+                                @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="input-field">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="password" placeholder="Ingrese la contraseña" id="password" name="password" wire:model="password" required>
+                                @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <!-- Campos de Persona -->
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo Perfil</label>
                                 <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
@@ -41,18 +64,6 @@
                                     @endforeach
                                 </select>
                                 @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="input-field">
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Usuario</label>
-                                <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    id="IdUsuario" name="IdUsuario" wire:model="IdUsuario" required>
-                                    <option value="" disabled selected>Seleccione su usuario</option>
-                                    @foreach($user as $users)
-                                        <option value="{{ $users->id }}">{{ $users->email }}</option>
-                                    @endforeach
-                                </select>
-                                @error('IdUsuario') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
@@ -129,10 +140,10 @@
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sexo</label>
                                 <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
                                     id="sexo" name="sexo" wire:model="sexo" required>
-                                    <option value="" disabled selected>Seleccione su sexo</option>
-                                    <option value="M">Masculino</option>
-                                    <option value="F">Femenino</option>
-                                    <option value="O">Otro</option>
+                                    <option value="" disabled selected>Seleccione sexo</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
                                 </select>
                                 @error('sexo') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
@@ -140,14 +151,14 @@
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dirección</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="text" placeholder="Ingrese su dirección" id="direccion" name="direccion" wire:model="direccion" required>
+                                    type="text" placeholder="Ingrese la dirección" id="direccion" name="direccion" wire:model="direccion" required>
                                 @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Teléfono</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="text" placeholder="Ingrese su número de teléfono" id="telefono" name="telefono" wire:model="telefono" required>
+                                    type="text" placeholder="Ingrese el teléfono" id="telefono" name="telefono" wire:model="telefono" required>
                                 @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
@@ -162,17 +173,20 @@
                                 </select>
                                 @error('IdNacionalidad') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
-
                         </div>
                     </div>
 
-                    <!-- Botones de acción -->
-                    <div class="flex justify-end gap-4 px-4 py-3 sm:px-6">
-                        <button type="button" wire:click="closeModal()" class="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 shadow-sm ring-1 ring-gray-300 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:ring-gray-600 dark:hover:bg-gray-600">Cancelar</button>
-                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm ring-1 ring-yellow-600 hover:bg-yellow-600 dark:bg-yellow-600 dark:ring-yellow-600 dark:hover:bg-yellow-700">Guardar</button>
+                    <div class="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
+                        <button type="button" wire:click="closeModal()" class="inline-flex justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-sm font-medium text-white shadow-sm ring-1 ring-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:ring-gray-600 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 dark:focus:ring-offset-gray-800">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-sm font-medium text-white shadow-sm ring-1 ring-gray-300 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:ring-gray-600 dark:hover:bg-yellow-600 dark:focus:ring-yellow-500 dark:focus:ring-offset-gray-800 ml-3">
+                            Guardar
+                        </button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+

@@ -30,7 +30,8 @@ use App\Livewire\ReporteEvento\ReporteEventos;
 use App\Livewire\Asistencia\AsistenciasConferencias;
 use App\Livewire\HistorialConferencia\HistorialConferencias;
 use App\Livewire\vista_Diploma;
-
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\EventoController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -67,6 +68,8 @@ Route::middleware([
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
 Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('registerpost');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/evento/{evento}', [EventoController::class, 'show'])->name('evento');
 
 Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPersona'])->name('nueva-persona');
 // 
