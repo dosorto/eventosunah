@@ -149,7 +149,7 @@
                <ul id="dropdown-example" class="hidden py-2 space-y-2">
 
                   <li>
-                     <x-nav-link href="{{ route('evento') }}" :active="request()->routeIs('evento')"
+                     <x-nav-link href="{{ route('eventos') }}" :active="request()->routeIs('eventos')"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-yellow-400 dark:hover:bg-gray-700  dark:text-white">Eventos</x-nav-link>
 
                   </li>

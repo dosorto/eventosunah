@@ -50,7 +50,7 @@ Route::middleware([
     Route::get('/rol', Roles::class)->name('rol');
     Route::get('/conferencia/{evento?}', Conferencias::class)->name('conferencia');
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
-    Route::get('/evento', Eventos::class)->name('evento');
+    Route::get('/eventos', Eventos::class)->name('eventos');
     Route::get('/persona', Personas::class)->name('persona');
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
