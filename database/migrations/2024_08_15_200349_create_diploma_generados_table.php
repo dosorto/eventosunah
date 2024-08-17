@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('IdAsistencia')->unique();
             $table->string('uuid')->unique();
             $table->timestamps();
-
+            $table->softDeletes();
             $table->foreign('IdAsistencia')->references('id')->on('asistencias')->onDelete('restrict');
         });
     }
@@ -26,6 +26,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('diplomas_generados');
+        Schema::table('diploma_generados', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+        Schema::dropIfExists('diploma_generados');
     }
 };

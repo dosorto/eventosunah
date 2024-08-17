@@ -11,16 +11,18 @@
                     align-items: center;
                     height: 100vh;
                     margin: 0;
+                    padding: 0;
 
                 }
 
                 .certificado {
-                    background-color: white;
-                    width: 1200px;
-                    height: 700px;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #fff;
                     border-radius: 10px;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, .1);
-                    padding: 20px;
+                    padding: 0;
+                    margin: 0;
                     position: relative;
                     justify-content: center;
                     align-items: center;
@@ -142,6 +144,7 @@
                     margin-top: 20px;
                     margin-left: 455px;
                     z-index: 2;
+                    background: none;
                 }
 
                 .codigo {
@@ -159,77 +162,90 @@
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}" />
+                    <img class="fondo"
+                        src="{{ public_path('storage/' . str_replace('public/', '', $asistencia->suscripcion->conferencia->evento->diploma->Plantilla)) }}" />
                 </div>
-                <div class="certificado-header" style="">
+                <div class="certificado-header">
                     <div class="certificado-title">CERTIFICADO</div>
                     <div class="certificado-title2">DE RECONOCIMIENTO</div>
                     <div class="certificado-title3">OTORGADO A:</div>
-                    <div class="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
+                    <div class="recipient-name">{{ $asistencia->suscripcion->persona->nombre }}
+                        {{ $asistencia->suscripcion->persona->apellido }}
+                    </div>
                 </div>
                 <div class="certificado-body">
-                    Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada
-                    por el distinguido {{$conferencia->conferencista->titulo}}
-                    {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}},
-                    celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco
-                    del evento "{{$evento->nombreevento}}".
+                    Por su destacada asistencia y participación en la conferencia
+                    "{{ $asistencia->suscripcion->conferencia->nombre }}", presentada por el distinguido
+                    {{ $asistencia->suscripcion->conferencia->conferencista->titulo }}
+                    {{ $asistencia->suscripcion->conferencia->conferencista->persona->nombre }}
+                    {{ $asistencia->suscripcion->conferencia->conferencista->persona->apellido }},
+                    celebrada el
+                    {{ \Carbon\Carbon::parse($asistencia->suscripcion->conferencia->fecha)->format('d \d\e F \d\e Y') }}
+                    en el marco del evento "{{ $asistencia->suscripcion->conferencia->evento->nombreevento }}".
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
                 </div>
-
                 <div class="firmass">
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}" />
+                            <img class="fondo"
+                                src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Firma1)) }}" />
                         </div>
                         <ul>
                             <li>
                                 <ul
                                     class="pt-2 mt-2 space-y-2 font-medium w-40 border-t border-gray-900 dark:border-gray-900">
+                                </ul>
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello1)) }}" />
+                            <img class="fondo"
+                                src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Sello1)) }}" />
                         </div>
-                        <div>{{$diploma->NombreFirma1}}</div>
-                        <div>{{$diploma->Titulo1}}</div>
+                        <div>{{ $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma1 }}</div>
+                        <div>{{ $asistencia->suscripcion->conferencia->evento->diploma->Titulo1 }}</div>
                     </div>
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma2)) }}" />
+                            <img class="fondo"
+                                src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Firma2)) }}" />
                         </div>
                         <ul>
                             <li>
                                 <ul
                                     class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
+                                </ul>
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}" />
+                            <img class="fondo"
+                                src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Sello2)) }}" />
                         </div>
-                        <div>{{$diploma->NombreFirma2}}</div>
-                        <div>{{$diploma->Titulo2}}</div>
+                        <div>{{ $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma2 }}</div>
+                        <div>{{ $asistencia->suscripcion->conferencia->evento->diploma->Titulo2 }}</div>
                     </div>
-
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma3)) }}" />
+                            <img class="fondo"
+                                src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Firma3)) }}" />
                         </div>
                         <ul>
                             <li>
                                 <ul
                                     class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
+                                </ul>
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello3)) }}" />
+                            <img class="fondo"
+                                src="{{ asset(str_replace('public', 'storage', $asistencia->suscripcion->conferencia->evento->diploma->Sello3)) }}" />
                         </div>
-                        <div>{{$diploma->NombreFirma3}}</div>
-                        <div>{{$diploma->Titulo3}}</div>
+                        <div>{{ $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma3 }}</div>
+                        <div>{{ $asistencia->suscripcion->conferencia->evento->diploma->Titulo3 }}</div>
                     </div>
                 </div>
-                <p class="codigo">Código: {{$diploma->Codigo}}</p>
+                <p class="codigo">Código: {{ $uuid }}</p>
             </div>
         </body>
     </x-layouts.reportes>

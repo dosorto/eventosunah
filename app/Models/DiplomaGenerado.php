@@ -12,7 +12,7 @@ class DiplomaGenerado extends Model
     use SoftDeletes;
 
     
-    protected $fillable = ['IdAsistencia', 'IdDiplomaGenerado', 'created_by', 'deleted_by'];
+    protected $fillable = ['IdAsistencia', 'uuid', 'created_by', 'deleted_by'];
 
     public function asistencias()
     {

@@ -36,9 +36,13 @@
                                 placeholder="Buscar...">
                         </div>
                     </div>
+
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    ID Asistencia
+                                </th>
                                 <th scope="col" class="px-6 py-3">
                                     Evento
                                 </th>
@@ -60,15 +64,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($conferencias as $conferencia)
+                            @forelse($conferencias as $item)
                                 <tr
                                     class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="px-6 py-4">{{ $conferencia->evento->nombreevento }}</td>
-                                    <td class="px-6 py-4">{{ $conferencia->nombre }}</td>
-                                    <td class="px-6 py-4">{{ $conferencia->conferencista->persona->nombre }} {{ $conferencia->conferencista->persona->apellido }}</td>
-                                    <td class="px-6 py-4">{{ $conferencia->fecha }}</td>
-                                    <td class="px-6 py-4">{{ $conferencia->lugar }}</td>
-                        
+                                    <td class="px-6 py-4">{{ $item['asistencia_id'] }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->evento->nombreevento }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->nombre }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->conferencista->persona->nombre }} {{ $item['conferencia']->conferencista->persona->apellido }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->fecha }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->lugar }}</td>
+                                    <td class="px-6 py-4">
+                                    <button wire:click="descargarDiploma({{ $item['asistencia_id'] }})"
+                                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+</svg>
+
+                                            Descargar Diploma
+                                        </button>
+                                    </td>
+
                                 </tr>
                             @empty
                                 <tr>
