@@ -12,7 +12,7 @@ class Conferencias extends Component
 {
     use WithPagination;
 
-    public $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
+    public $foto, $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
     public $isOpen = 0;
     public $inputSearchConferencista = '';
     public $searchConferencistas = [];
@@ -124,6 +124,7 @@ class Conferencias extends Component
 
     private function resetInputFields()
     {
+        $this->foto = null;
         $this->nombre = '';
         $this->descripcion = '';
         $this->fecha = '';
@@ -137,23 +138,36 @@ class Conferencias extends Component
         $this->IdEvento = '';
     }
     
+
+    
     public function store()
     {
+        // Validar datos
         $this->validate([
-            'IdEvento' => 'required',
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'fecha' => 'required',
-            'horaInicio' => 'required',
-            'horaFin' => 'required',
-            'lugar' => 'required',
-            'linkreunion' => 'required',
-            'idConferencista' => 'required'
+            'IdEvento' => 'required|exists:eventos,id',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:500',
+            'fecha' => 'required|date',
+            'horaInicio' => 'required|date_format:H:i',
+            'horaFin' => 'required|date_format:H:i|after:horaInicio',
+            'lugar' => 'required|string|max:255',
+            'linkreunion' => 'required|url',
+            'idConferencista' => 'required|exists:conferencistas,id'
         ]);
-
+    
+        // Manejo de la foto
+        if ($this->foto) {
+            $this->foto = $this->foto->store('public/eventos');
+        } else {
+            // Asigna una foto predeterminada si no se proporciona una
+            $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
+        }
+    
         // Crear o actualizar la conferencia
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
             'IdEvento' => $this->IdEvento,
+            'foto' => $this->foto,
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'fecha' => $this->fecha,
@@ -163,20 +177,19 @@ class Conferencias extends Component
             'linkreunion' => $this->linkreunion,
             'idConferencista' => $this->idConferencista,
         ]);
+    
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
-        $this->render();
-        
         $this->closeModal();
         $this->resetInputFields();
-        $this->render(); 
     }
-
+    
 
     public function edit($id)
     {
         $conferencia = Conferencia::findOrFail($id);
         $this->conferencia_id = $id;
         $this->IdEvento = $conferencia->IdEvento;
+        $this->foto = $conferencia->foto;
         $this->nombre = $conferencia->nombre;
         $this->descripcion = $conferencia->descripcion;
         $this->fecha = $conferencia->fecha;

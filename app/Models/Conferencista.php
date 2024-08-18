@@ -24,10 +24,7 @@ class Conferencista extends Model
     // }
 
     // protected $fillable = ['Titulo','Descripcion','Foto','IdPersona'];
-    public function persona()
-    {
-        return $this->belongsTo(Persona::class, 'IdPersona');
-    }
+
     public function conferencias()
     {
         return $this->hasMany(Conferencia::class, 'idConferencista');
