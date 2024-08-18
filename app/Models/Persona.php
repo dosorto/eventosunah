@@ -22,7 +22,7 @@ class Persona extends BaseModel
     }
     public function conferencistas()
     {
-        return $this->belongsTo(Conferencista::class, 'IdPersona');
+        return $this->hasMany(Conferencista::class, 'IdPersona');
     }
     public function tipoPerfil()
     {
