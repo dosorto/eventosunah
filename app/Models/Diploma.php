@@ -12,17 +12,26 @@ class Diploma extends BaseModel
     use SoftDeletes;
     protected $fillable = [
         'Codigo',
-        'URL',
-        'Fecha',
-        'IdConferencia',
-        'IdFirma',
-        'IdEvento',
+        'Plantilla',
+       // 'IdConferencia',
+        'Titulo1',
+        'NombreFirma1',
+        'Firma1',
+        'Sello1',
+        'Titulo2',
+        'NombreFirma2',
+        'Firma2',
+        'Sello2',
+        'Titulo3',
+        'NombreFirma3',
+        'Firma3',
+        'Sello3',
     ];
 
-    public function conferencia()
+  /*  public function conferencia()
     {
         return $this->belongsTo(Conferencia::class, 'IdConferencia', 'id');
-    }
+    }*/
     public function firma()
     {
         return $this->belongsTo(Firma::class, 'IdFirma');

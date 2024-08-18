@@ -11,16 +11,18 @@
                     align-items: center;
                     height: 100vh;
                     margin: 0;
+                    padding: 0;
 
                 }
 
                 .certificado {
-                    background-color: white;
-                    width: 1200px;
-                    height: 700px;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #fff;
                     border-radius: 10px;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, .1);
-                    padding: 20px;
+                    padding: 0;
+                    margin: 0;
                     position: relative;
                     justify-content: center;
                     align-items: center;
@@ -97,29 +99,35 @@
                     text-align: center;
                     margin-top: -25px;
                     margin-right: 20px;
+                    z-index: 2;
                 }
 
                 .sello .fondo {
                     height: 64px;
                     width: 64px;
-                    margin-top: -68px;
+                    margin-top: -50px;
                     margin-left: 88px;
+                    z-index: 2;
                 }
 
                 .firmass {
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-around;
                     margin-top: 1px;
                     font-size: 10px;
                     margin-left: 190px;
                     margin-right: 190px;
                     font-weight: bold;
+                    z-index: 2;
 
                 }
 
                 .firmas {
+                    display: flex;
+                    flex-direction: column;
                     text-align: center;
                     margin: 0 30px;
+
 
                 }
 
@@ -127,21 +135,23 @@
                     margin-top: -30px;
                     margin-left: 25px;
                     align-items: center;
+
                 }
 
                 .firma .fondo {
                     height: 84px;
                     width: 84px;
-                    margin-bottom: -17px;
-
+                    margin-bottom: -40px;
+                    margin-right: 30px;
                 }
 
                 .qr-code {
                     height: 80px;
                     width: 80px;
                     margin-top: 20px;
-                    margin-left: 455px;
+                    margin-left: 30px;
                     z-index: 2;
+                    background: none;
                 }
 
                 .codigo {
@@ -151,6 +161,7 @@
                     left: 120px;
                     position: absolute;
                     margin-right: 410px;
+                    z-index: 2;
                 }
             </style>
 
@@ -159,129 +170,66 @@
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}"/>
+                    <img class="fondo" src="{{$Plantilla}}" alt="Diploma">
                 </div>
-                <div class="certificado-header" style="">
-                    <div class="certificado-header">
-                        <div class="certificado-title">CERTIFICADO</div>
-                        <div class="certificado-title2">DE RECONOCIMIENTO</div>
-                        <div class="certificado-title3">OTORGADO A:</div>
-                        <div class="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
+                <div class="certificado-header">
+                    <div class="certificado-title">CERTIFICADO</div>
+                    <div class="certificado-title2">DE RECONOCIMIENTO</div>
+                    <div class="certificado-title3">OTORGADO A:</div>
+                    <div class="recipient-name">{{ $Nombre }}
+                        {{ $Apellido }}
                     </div>
-
                 </div>
                 <div class="certificado-body">
-                Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada por el distinguido {{$conferencia->conferencista->titulo}} {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}}, 
-                celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco del evento "{{$evento->nombreevento}}". 
+                    Por su destacada asistencia y participación en la conferencia
+                    "{{ $Conferencia }}", presentada por el distinguido
+                    {{ $TituloConferencista }}
+                    {{ $Conferencista }}
+                    celebrada el
+                    {{ \Carbon\Carbon::parse($FechaConferencia)->format('d \d\e F \d\e Y') }}
+                    en el marco del evento "{{ $Evento }}".
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
                 </div>
-
                 <div class="firmass">
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}"/>
+                            <img class="fondo" src="{{ $Firma1}}" />
                         </div>
-                        <ul>
-                            <li>
-                                <ul
-                                    class="pt-2 mt-2 space-y-2 font-medium w-40 border-t border-gray-900 dark:border-gray-900">
-                            </li>
-                        </ul>
+                        <p>________________________</p>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello1)) }}" />
+                            <img class="fondo" src="{{ $Sello1}}" />
                         </div>
-                        <div>{{$diploma->NombreFirma1}}</div>
-                        <div>{{$diploma->Titulo1}}</div>
+                        <div>{{ $NombreFirma1 }}</div>
+                        <div>{{ $Titulo1 }}</div>
                     </div>
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma2)) }}" />
+                            <img class="fondo" src="{{ $Firma2 }}" />
                         </div>
-                        <ul>
-                            <li>
-                                <ul
-                                    class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
-                            </li>
-                        </ul>
+                        <p>________________________</p>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}"/>
+                            <img class="fondo" src="{{$Sello2 }}" />
                         </div>
-                        <div>{{$diploma->NombreFirma2}}</div>
-                        <div>{{$diploma->Titulo2}}</div>
+                        <div>{{ $NombreFirma2 }}</div>
+                        <div>{{ $Titulo2 }}</div>
                     </div>
-
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma3)) }}" />
+                            <img class="fondo" src="{{$Firma3 }}" />
                         </div>
-                        <ul>
-                            <li>
-                                <ul
-                                    class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
-                            </li>
-                        </ul>
+                        <p>________________________</p>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello3)) }}" />
+                            <img class="fondo" src="{{ $Sello3 }}" />
                         </div>
-                        <div>{{$diploma->NombreFirma3}}</div>
-                        <div>{{$diploma->Titulo3}}</div>
+                        <div>{{ $NombreFirma3 }}</div>
+                        <div>{{ $Titulo3 }}</div>
                     </div>
                 </div>
-                <p class="codigo">Código: {{$diploma->Codigo}}</p>
+                <p class="codigo">Código: {{$uuid}}</p>
             </div>
         </body>
-        <button onclick="imprimir()" id="imprimir"
-                class="absolute top-4 right-4 inline-flex items-center px-4 py-2 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 rounded-lg">
-                Imprimir
-            </button>
-
-            <script>
-               function imprimir() {
-    // Configurar el tamaño del papel en carta y ponerlo en modo horizontal
-    var css = '@page { size: letter landscape; margin: 0; } body { margin: 0; padding: 0; }',
-        head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style');
-
-    style.type = 'text/css';
-    style.media = 'print';
-
-    if (style.styleSheet) {
-        style.styleSheet.cssText = css;
-    } else {
-        style.appendChild(document.createTextNode(css));
-    }
-
-    head.appendChild(style);
-
-    // Ocultar botones
-    document.getElementById('imprimir').style.display = 'none';
-
-    // Esperar un momento para aplicar el estilo antes de imprimir
-    setTimeout(function() {
-        window.print();
-
-        // Volver a ponerlo en modo vertical
-        css = '@page { size: letter portrait; margin: 0; }';
-        style = document.createElement('style');
-        style.type = 'text/css';
-        style.media = 'print';
-
-        if (style.styleSheet) {
-            style.styleSheet.cssText = css;
-        } else {
-            style.appendChild(document.createTextNode(css));
-        }
-
-        head.appendChild(style);
-
-        // Mostrar botones
-        document.getElementById('imprimir').style.display = 'block';
-    }, 500);
-}
-
-            </script>
     </x-layouts.reportes>
 
 </div>

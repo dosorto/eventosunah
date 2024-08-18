@@ -49,22 +49,93 @@
                             <tr>
                                 <th scope="col" class="px-6 py-3">No.</th>
                                 <th scope="col" class="px-6 py-3">Código</th>
-                                <th scope="col" class="px-6 py-3">URL</th>
-                                <th scope="col" class="px-6 py-3">Fecha</th>
-                                <th scope="col" class="px-6 py-3">Conferencia</th>
-                                <th scope="col" class="px-6 py-3">Firma</th>
+                                <th scope="col" class="px-6 py-3">Plantilla</th>
+                               {{-- <th scope="col" class="px-6 py-3">Conferencia</th>--}}
+                                <th scope="col" class="px-6 py-3">Titulo 1</th>
+                                <th scope="col" class="px-6 py-3">Persona 1</th>
+                                <th scope="col" class="px-6 py-3">Firma 1</th>
+                                <th scope="col" class="px-6 py-3">Sello 1</th>
+                                <th scope="col" class="px-6 py-3">Titulo 2</th>
+                                <th scope="col" class="px-6 py-3">Persona 2</th>
+                                <th scope="col" class="px-6 py-3">Firma 2</th>
+                                <th scope="col" class="px-6 py-3">Sello 2</th>
+                                <th scope="col" class="px-6 py-3">Titulo 3</th>
+                                <th scope="col" class="px-6 py-3">Persona 3</th>
+                                <th scope="col" class="px-6 py-3">Firma 3</th>
+                                <th scope="col" class="px-6 py-3">Sello 3</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($diplomas as $diploma)
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <tr
+                                    class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4 dark:text-white">{{ $diploma->id }}</td>
-                                    <td class="px-6 py-4">{{ $diploma->codigo }}</td>
-                                    <td class="px-6 py-4"><a href="{{ $diploma->URL }}" target="_blank" class="text-blue-500 hover:underline">{{ $diploma->URL }}</a></td>
-                                    <td class="px-6 py-4">{{ $diploma->Fecha }}</td>
-                                    <td class="px-6 py-4">{{ $diploma->conferencia->nombre }}</td>
-                                    <td class="px-6 py-4">{{ $diploma->firma->Nombre }}</td>
+                                    <td class="px-6 py-4">{{ $diploma->Codigo }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Plantilla)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Plantilla
+                                        @endif
+                                    </td>
+                              {{--      <td class="px-6 py-4">{{ $diploma->conferencia->nombre }}</td>--}}
+                                    <td class="px-6 py-4">{{ $diploma->Titulo1 }}</td>
+                                    <td class="px-6 py-4">{{ $diploma->NombreFirma1 }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Firma1)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Firmar
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Sello1)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Sello1)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Sellar
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">{{ $diploma->Titulo2 }}</td>
+                                    <td class="px-6 py-4">{{ $diploma->NombreFirma2 }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Firma2)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Firma2)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Firmar
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Sello2)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Sellar
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">{{ $diploma->Titulo3 }}</td>
+                                    <td class="px-6 py-4">{{ $diploma->NombreFirma3 }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Firma3)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Firma3)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Firmar
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if($diploma->Sello3)
+                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Sello3)) }}"
+                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            Sin Sellar
+                                        @endif
+                                    </td>
+
                                     <td class="px-6 py-4">
                                         <button wire:click="edit({{ $diploma->id }})"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
