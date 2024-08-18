@@ -23,7 +23,6 @@ return new class extends Migration
             $table->time('horafin');
             $table->unsignedBigInteger('idmodalidad');
             $table->unsignedBigInteger('idlocalidad');
-            $table->unsignedBigInteger('IdDiploma');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
@@ -31,7 +30,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreign('idmodalidad')->references('id')->on('modalidads')->onDelete('restrict');
             $table->foreign('idlocalidad')->references('id')->on('localidads')->onDelete('restrict');
-            $table->foreign('IdDiploma')->references('id')->on('diplomas')->onDelete('restrict');
         });
 
     }

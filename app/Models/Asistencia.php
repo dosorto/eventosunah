@@ -14,9 +14,4 @@ class Asistencia extends BaseModel
     {
         return $this->belongsTo(Suscripcion::class, 'IdSuscripcion');
     }
-
-    public function diplomaGenerado()
-    {
-        return $this->hasOne(DiplomaGenerado::class, 'IdAsistencia');
-    }
 }

@@ -3,7 +3,6 @@
 namespace App\Livewire\Asistencia;
 
 use App\Models\Asistencia;
-use App\Models\Suscripcion;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,78 +11,35 @@ class AsistenciasConferencias extends Component
     use WithPagination;
 
     public $search = '';
-    public $conferencia_id;
-    public $modalOpen = false;
-    public $modalMessage = '';
-
-    protected $paginationTheme = 'tailwind';
+    public $conferencia_id; // Para filtrar por conferencia
 
     public function mount($conferencia = null)
     {
-        if ($conferencia) {
-            $this->conferencia_id = $conferencia;
-        } else {
-            session()->flash('error', 'Conferencia no encontrada.');
-            return redirect()->route('conferencias.index');
-        }
-    }
-
-    public function marcarAsistencia($suscripcionId)
-    {
-        Asistencia::updateOrCreate(
-            ['IdSuscripcion' => $suscripcionId],
-            ['Fecha' => now(), 'Asistencia' => 1]
-        );
-
-        $this->modalMessage = 'Asistencia marcada correctamente.';
-        $this->modalOpen = true;
-    }
-
-    public function marcarAusencia($suscripcionId)
-    {
-        Asistencia::updateOrCreate(
-            ['IdSuscripcion' => $suscripcionId],
-            ['Fecha' => now(), 'Asistencia' => 0]
-        );
-
-        $this->modalMessage = 'Ausencia marcada correctamente.';
-        $this->modalOpen = true;
-    }
-
-    public function marcarTodos()
-    {
-        $suscripciones = Suscripcion::where('IdConferencia', $this->conferencia_id)->get();
-
-        if ($suscripciones->isEmpty()) {
-            $this->modalMessage = 'No hay suscripciones para marcar asistencia.';
-            $this->modalOpen = true;
-            return;
-        }
-
-        foreach ($suscripciones as $suscripcion) {
-            Asistencia::updateOrCreate(
-                ['IdSuscripcion' => $suscripcion->id],
-                ['Fecha' => now(), 'Asistencia' => 1]
-            );
-        }
-
-        $this->modalMessage = 'Todas las asistencias fueron marcadas.';
-        $this->modalOpen = true;
+        $this->conferencia_id = $conferencia;
     }
 
     public function render()
     {
-        $suscripciones = Suscripcion::with(['persona', 'conferencia', 'asistencias'])
-            ->where('IdConferencia', $this->conferencia_id)
-            ->whereHas('persona', function ($query) {
-                $query->where('nombre', 'like', '%' . $this->search . '%')
-                      ->orWhere('apellido', 'like', '%' . $this->search . '%');
+        $asistencias = Asistencia::with('suscripcion')
+            ->when($this->conferencia_id, function ($query) {
+                $query->whereHas('suscripcion', function ($query) {
+                    $query->where('IdConferencia', $this->conferencia_id);
+                });
             })
+            ->where(function ($query) {
+                if ($this->search) {
+                    $query->whereHas('suscripcion', function ($query) {
+                        $query->where('persona.nombre', 'like', '%' . $this->search . '%')
+                              ->orWhere('persona.apellido', 'like', '%' . $this->search . '%')
+                              ->orWhere('conferencia.nombre', 'like', '%' . $this->search . '%');
+                    });
+                }
+            })
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
-        return view('livewire.asistencia.asistencias-conferencia', [
-            'suscripciones' => $suscripciones,
+        return view('livewire.asistencia.asistencias-Conferencia', [
+            'asistencias' => $asistencias,
         ]);
     }
 }
-
