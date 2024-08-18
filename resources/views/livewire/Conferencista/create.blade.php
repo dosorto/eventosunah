@@ -260,7 +260,7 @@
                         </div>
 
 
-                        @if($IdTipoPerfil == 1 || $IdTipoPerfil == 3) 
+                        @if($IdTipoPerfil == 1 ) 
                             <div class="mb-4">
                                 <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
                                 <input type="email" wire:model="correoInstitucional"
@@ -277,7 +277,23 @@
                                 @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
                         @endif
+                        @if($IdTipoPerfil == 3) 
+                            <div class="mb-4">
+                                <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                                <input type="email" wire:model="correoInstitucional"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="correoInstitucional" placeholder="Correo Institucional">
+                                @error('persona.correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
 
+                            <div class="mb-4">
+                                <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Código de docente:</label>
+                                <input type="text" wire:model="numeroCuenta"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="numeroCuenta" placeholder="Número de Cuenta">
+                                @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+                        @endif
 
 
                         <div class="mb-4">
