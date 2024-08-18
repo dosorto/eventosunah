@@ -41,9 +41,6 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
-                                    ID Asistencia
-                                </th>
-                                <th scope="col" class="px-6 py-3">
                                     Evento
                                 </th>
                                 <th scope="col" class="px-6 py-3">
@@ -67,7 +64,6 @@
                             @forelse($conferencias as $item)
                                 <tr
                                     class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="px-6 py-4">{{ $item['asistencia_id'] }}</td>
                                     <td class="px-6 py-4">{{ $item['conferencia']->evento->nombreevento }}</td>
                                     <td class="px-6 py-4">{{ $item['conferencia']->nombre }}</td>
                                     <td class="px-6 py-4">{{ $item['conferencia']->conferencista->persona->nombre }} {{ $item['conferencia']->conferencista->persona->apellido }}</td>
