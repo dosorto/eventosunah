@@ -88,7 +88,7 @@
 
                 .certificado-body {
                     text-align: center;
-                    font-size: 12px;
+                    font-size: 15px;
                     padding: 0 7%;
                     color: black;
                     margin-bottom: 60px;

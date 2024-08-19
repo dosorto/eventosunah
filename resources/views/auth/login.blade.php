@@ -2,17 +2,7 @@
 
 @section('app-content')
 
-    <header>
-        <nav class="navbar">
-            <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
-            <ul class="menu-links">
-                <span id="close-menu-btn" class="material-symbols-outlined">close</span>
-                <li><a href="/">Home</a></li>
-                <li><a href="/register">Registrarse</a></li>
-            </ul>
-            <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
-        </nav>
-    </header>
+<x-nav/>
     <div class="container max ">
         <div class="forms">
             <div class="form login active dark:bg-gray-900">

@@ -50,7 +50,8 @@ header .navbar {
 
 .hero-section {
     height: 100vh;
-    background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
+    background-color: #f3f4f6;
+   /* background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
     background-position: center;
     background-size: cover;
     display: flex;
@@ -58,11 +59,15 @@ header .navbar {
     padding: 0 20px;
 }
 
+.event-section{
+    background-color: #f3f4f6;
+}
+
 .hero-section .content {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    color: #fff;
+    color: #000;
 }
 
 .hero-section .content h2 {

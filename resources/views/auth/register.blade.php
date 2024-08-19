@@ -24,7 +24,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
+            background-color:#f3f4f6;
+           /* background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
 
         }
 
@@ -36,7 +37,7 @@
             width: 90%;
             border-radius: 6px;
             padding: 40px;
-            background-color: #fff;
+            background-color: #ffffff;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -51,13 +52,13 @@
             position: relative;
             margin-top: 16px;
             min-height: 440px;
-            background-color: #fff;
+            background-color: #ffffff;
             overflow: hidden;
         }
 
         .containerRegister form .formRegister {
             position: absolute;
-            background-color: #fff;
+            background-color: #ffffff;
             transition: 0.2s ease;
         }
 
@@ -499,7 +500,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
+            <a class="logo" href="#">EVENTIS</a>
             <ul class="menu-links">
                 <span id="close-menu-btn" class="material-symbols-outlined">close</span>
                 <li><a href="/">Home</a></li>

@@ -23,7 +23,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
+                background-color: #f3f4f6;
+              /*  background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
 
             }
 
