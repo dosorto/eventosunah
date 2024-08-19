@@ -24,8 +24,6 @@ class DatabaseSeeder extends Seeder
            RolSeeder::class,
            FirmaSeeder::class,
            TipoPerfilSeeder::class,
-           DepartamentoSeeder::class,
-           CarreraSeeder::class,
            LocalidadSeeder::class,
            PersonaSeeder::class,
            ConferencistaSeeder::class,
