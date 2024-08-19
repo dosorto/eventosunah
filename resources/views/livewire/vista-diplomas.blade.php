@@ -232,7 +232,11 @@
                         <div>{{$diploma->Titulo3}}</div>
                     </div>
                 </div>
-                <p class="codigo">Código: {{$uuid}}</p>
+                @if (is_null($uuid))
+                    <p class="codigo">Certificado sin validación, un no extendido</p>
+                @else
+                    <p class="codigo">Código: {{ $uuid }}</p>
+                @endif
             </div>
         </body>
         <button onclick="imprimir()" id="imprimir"

@@ -37,7 +37,7 @@
             </div>
         @else
             <div id="alert-additional-content-2"
-                class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                class="p-4 mt-12 mx-10 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
                 role="alert">
                 <div class="flex items-center">
                     <svg class="w-12 h-12 text-red-800 dark:text-white" aria-hidden="true"

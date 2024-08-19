@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
-            <a  id="botonRegresar" href="{{ route('evento') }}"
+            <a  id="botonRegresar" href="{{ route('eventos') }}"
                 class="absolute top-4 left-4 inline-flex items-center px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 rounded-lg">
                 Regresar
             </a>
