@@ -16,7 +16,7 @@ class DiplomaGenerado extends Model
 
     public function asistencias()
     {
-        return $this->hasMany(Asistencia::class, 'IdAsistencia');
+        return $this->hasMany(Asistencia::class, 'id');
     }
 
 }

@@ -10,25 +10,24 @@ class ValidarDiploma extends Component
     public $persona;
     public $conferencia;
     public $codigoDiploma;
-    public $id;
     public $asistencia;
-
     public $uuid;
-    public function mount($id)
-    {
-        $this->id = $id;
-        $diploma =DiplomaGenerado::where('IdAsistencia', $id)->first();
-      
+    public function mount($uuid)
+{
+    $this->uuid = $uuid;
+    $diploma = DiplomaGenerado::where('uuid', $this->uuid)->first();
 
+    if ($diploma) {
+        $asistencia = $diploma->asistencias->first(); // Acceder al primer elemento de la colección
 
-        if ($diploma) {
-            $this->persona = $diploma->asistencias->suscripcion->persona;
-            $this->conferencia = $diploma->asistencias->suscripcion->conferencia;
-            $this->codigoDiploma = $diploma->asistencias->suscripcion->conferencia->evento->diploma;
-            $this->asistencia = $diploma->asistencias;
-            $this->uuid = $diploma->uuid;
+        if ($asistencia) {
+            $this->persona = $asistencia->suscripcion->persona;
+            $this->conferencia = $asistencia->suscripcion->conferencia;
+            $this->codigoDiploma = $asistencia->suscripcion->conferencia->evento->diploma;
+            $this->asistencia = $diploma;
         }
     }
+}
 
     public function render()
     {
@@ -36,6 +35,7 @@ class ValidarDiploma extends Component
             'persona' => $this->persona,
             'conferencia' => $this->conferencia,
             'uuid' => $this->uuid,
+            'asistencia' => $this->asistencia,
         ]);
     }
 }
