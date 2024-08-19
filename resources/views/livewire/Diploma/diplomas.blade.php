@@ -148,7 +148,7 @@
                                             </svg>
                                             Editar
                                         </button>
-                                        <button wire:click="delete({{ $diploma->id }})"
+                                        <button wire:click="confirmDelete({{ $diploma->id }})"
                                             class="px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -171,4 +171,50 @@
             </div>
         </div>
     </div>
+    @if (session()->has('error'))
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Error</h3>
+                    <p>{{ session('error') }}</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)"
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif ($confirmingDelete)
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Confirmación de Eliminación</h3>
+                    <p>¿Estás seguro de que deseas eliminar esta plantilla de diploma</strong>"? Esta
+                        acción no se puede deshacer.</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)"
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Cancelar
+                        </button>
+                        <button wire:click="delete"
+                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
