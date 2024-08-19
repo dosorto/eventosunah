@@ -51,18 +51,18 @@
                                 <th scope="col" class="px-6 py-3">Código</th>
                                 <th scope="col" class="px-6 py-3">Plantilla</th>
                                {{-- <th scope="col" class="px-6 py-3">Conferencia</th>--}}
-                                <th scope="col" class="px-6 py-3">Titulo 1</th>
-                                <th scope="col" class="px-6 py-3">Persona 1</th>
-                                <th scope="col" class="px-6 py-3">Firma 1</th>
-                                <th scope="col" class="px-6 py-3">Sello 1</th>
-                                <th scope="col" class="px-6 py-3">Titulo 2</th>
-                                <th scope="col" class="px-6 py-3">Persona 2</th>
-                                <th scope="col" class="px-6 py-3">Firma 2</th>
-                                <th scope="col" class="px-6 py-3">Sello 2</th>
-                                <th scope="col" class="px-6 py-3">Titulo 3</th>
-                                <th scope="col" class="px-6 py-3">Persona 3</th>
-                                <th scope="col" class="px-6 py-3">Firma 3</th>
-                                <th scope="col" class="px-6 py-3">Sello 3</th>
+                                <th scope="col" class="px-6 py-3">Cargo1</th>
+                                <th scope="col" class="px-6 py-3">Persona1</th>
+                                <th scope="col" class="px-6 py-3">Firma1</th>
+                                <th scope="col" class="px-6 py-3">Sello1</th>
+                                <th scope="col" class="px-6 py-3">Cargo2</th>
+                                <th scope="col" class="px-6 py-3">Persona2</th>
+                                <th scope="col" class="px-6 py-3">Firma2</th>
+                                <th scope="col" class="px-6 py-3">Sello2</th>
+                                <th scope="col" class="px-6 py-3">Cargo3</th>
+                                <th scope="col" class="px-6 py-3">Persona3</th>
+                                <th scope="col" class="px-6 py-3">Firma3</th>
+                                <th scope="col" class="px-6 py-3">Sello3</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>

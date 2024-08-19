@@ -159,7 +159,7 @@
         <body>
             <div class="p-4 sm:mx-64 mt-20 certificado">
                 <div class="gold-swirls">
-                    <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}"/>
+                    <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}" />
                 </div>
                 <div class="certificado-header" style="">
                     <div class="certificado-header">
@@ -171,8 +171,11 @@
 
                 </div>
                 <div class="certificado-body">
-                Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada por el distinguido {{$conferencia->conferencista->titulo}} {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}}, 
-                celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco del evento "{{$evento->nombreevento}}". 
+                    Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada
+                    por el distinguido {{$conferencia->conferencista->titulo}}
+                    {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}},
+                    celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco
+                    del evento "{{$evento->nombreevento}}".
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
@@ -181,7 +184,7 @@
                 <div class="firmass">
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}"/>
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}" />
                         </div>
                         <ul>
                             <li>
@@ -206,7 +209,7 @@
                             </li>
                         </ul>
                         <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}"/>
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}" />
                         </div>
                         <div>{{$diploma->NombreFirma2}}</div>
                         <div>{{$diploma->Titulo2}}</div>
@@ -229,59 +232,59 @@
                         <div>{{$diploma->Titulo3}}</div>
                     </div>
                 </div>
-                <p class="codigo">Código: {{$diploma->Codigo}}</p>
+                <p class="codigo">Código: {{$uuid}}</p>
             </div>
         </body>
         <button onclick="imprimir()" id="imprimir"
-                class="absolute top-4 right-4 inline-flex items-center px-4 py-2 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 rounded-lg">
-                Imprimir
-            </button>
+            class="absolute top-4 right-4 inline-flex items-center px-4 py-2 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 rounded-lg">
+            Imprimir
+        </button>
 
-            <script>
-               function imprimir() {
-    // Configurar el tamaño del papel en carta y ponerlo en modo horizontal
-    var css = '@page { size: letter landscape; margin: 0; } body { margin: 0; padding: 0; }',
-        head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style');
+        <script>
+            function imprimir() {
+                // Configurar el tamaño del papel en carta y ponerlo en modo horizontal
+                var css = '@page { size: letter landscape; margin: 0; } body { margin: 0; padding: 0; }',
+                    head = document.head || document.getElementsByTagName('head')[0],
+                    style = document.createElement('style');
 
-    style.type = 'text/css';
-    style.media = 'print';
+                style.type = 'text/css';
+                style.media = 'print';
 
-    if (style.styleSheet) {
-        style.styleSheet.cssText = css;
-    } else {
-        style.appendChild(document.createTextNode(css));
-    }
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = css;
+                } else {
+                    style.appendChild(document.createTextNode(css));
+                }
 
-    head.appendChild(style);
+                head.appendChild(style);
 
-    // Ocultar botones
-    document.getElementById('imprimir').style.display = 'none';
+                // Ocultar botones
+                document.getElementById('imprimir').style.display = 'none';
 
-    // Esperar un momento para aplicar el estilo antes de imprimir
-    setTimeout(function() {
-        window.print();
+                // Esperar un momento para aplicar el estilo antes de imprimir
+                setTimeout(function () {
+                    window.print();
 
-        // Volver a ponerlo en modo vertical
-        css = '@page { size: letter portrait; margin: 0; }';
-        style = document.createElement('style');
-        style.type = 'text/css';
-        style.media = 'print';
+                    // Volver a ponerlo en modo vertical
+                    css = '@page { size: letter portrait; margin: 0; }';
+                    style = document.createElement('style');
+                    style.type = 'text/css';
+                    style.media = 'print';
 
-        if (style.styleSheet) {
-            style.styleSheet.cssText = css;
-        } else {
-            style.appendChild(document.createTextNode(css));
-        }
+                    if (style.styleSheet) {
+                        style.styleSheet.cssText = css;
+                    } else {
+                        style.appendChild(document.createTextNode(css));
+                    }
 
-        head.appendChild(style);
+                    head.appendChild(style);
 
-        // Mostrar botones
-        document.getElementById('imprimir').style.display = 'block';
-    }, 500);
-}
+                    // Mostrar botones
+                    document.getElementById('imprimir').style.display = 'block';
+                }, 500);
+            }
 
-            </script>
+        </script>
     </x-layouts.reportes>
 
 </div>

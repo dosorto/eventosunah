@@ -17,7 +17,7 @@
             <div class="mt-2 mb-4 text-sm">
                 <p><strong>Otorgado a:</strong> {{ $persona->nombre }} {{$persona->apellido}}</p>
                 <p><strong>Conferencia:</strong> {{ $conferencia->nombre }}</p>
-                <p><strong>Código Diploma:</strong> {{ $codigoDiploma->Codigo }}</p>
+                <p><strong>Código Diploma:</strong> {{ $uuid->uuid }}</p>
                 <strong>Este diploma es válido y está asociado a la conferencia.</strong>
             </div>
 

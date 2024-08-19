@@ -301,21 +301,15 @@ class Diplomas extends Component
     {
         $diploma = Diploma::findOrFail($id);
         $this->diploma_id = $id;
-      // $this->Codigo = $diploma->Codigo;
-        $this->Plantilla = $diploma->Plantilla;
-   //     $this->IdConferencia = $diploma->IdConferencia;
         $this->Titulo1 = $diploma->Titulo1;
         $this->NombreFirma1 = $diploma->NombreFirma1;
-        $this->Firma1 = $diploma->Firma1;
-        $this->Sello1 = $diploma->Sello1;
+     
         $this->Titulo2 = $diploma->Titulo2;
         $this->NombreFirma2 = $diploma->NombreFirma2;
-        $this->Firma2 = $diploma->Firma2;
-        $this->Sello2 = $diploma->Sello2;
+       
         $this->Titulo3 = $diploma->Titulo3;
         $this->NombreFirma3 = $diploma->NombreFirma3;
-        $this->Firma3 = $diploma->Firma3;
-        $this->Sello3 = $diploma->Sello3;
+     
 
 
       /*  $conferencia = Conferencia::find($this->IdConferencia);

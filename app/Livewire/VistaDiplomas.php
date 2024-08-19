@@ -18,6 +18,8 @@ class VistaDiplomas extends Component
     
     public $diploma;
 
+    public $uuid;
+
     public function mount(Asistencia $asistencia)
     {
         $this->asistencia = $asistencia;
@@ -25,13 +27,13 @@ class VistaDiplomas extends Component
         $this->evento = $asistencia->suscripcion->conferencia->evento;
         $this->conferencia = $asistencia->suscripcion->conferencia;
         $this->diploma = $asistencia->suscripcion->conferencia->evento->diploma;
-
+        $this->uuid = $asistencia->diplomaGenerado->uuid;
        
         // obtener el diploma asociado a la persona y la conferencia
 
         if ($this->validacionesPersonaConferencia()) {
             $this->qrcode = QRCodeService::generateTextQRCode(
-                config('app.url') . '/validarDiploma/' . $asistencia->diplomaGenerado->uuid
+                config('app.url') . '/validarDiploma/' . $this->uuid
             );
         } else {
             // redireccionar a la vista de error de que el usuario no esta inscrito en la conferencia

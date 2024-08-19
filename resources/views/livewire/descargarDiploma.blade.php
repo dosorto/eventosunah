@@ -112,23 +112,27 @@
 
                 .firmass {
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: space-between;
+                    flex-direction: row;
+                    align-items: center;
                     margin-top: 1px;
                     font-size: 10px;
                     margin-left: 190px;
                     margin-right: 190px;
                     font-weight: bold;
                     z-index: 2;
-
                 }
 
                 .firmas {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
+                    /* Cambiado de column a row */
+                    justify-content: space-around;
+                    /* Esto distribuye las firmas en fila */
                     text-align: center;
                     margin: 0 30px;
-
-
+                    align-items: center;
+                    /* Alinea verticalmente el contenido */
                 }
 
                 .firma {
@@ -195,11 +199,11 @@
                 <div class="firmass">
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{ $Firma1}}" />
+                            <img class="fondo" src="{{ $Firma1 }}" />
                         </div>
                         <p>________________________</p>
                         <div class="sello">
-                            <img class="fondo" src="{{ $Sello1}}" />
+                            <img class="fondo" src="{{ $Sello1 }}" />
                         </div>
                         <div>{{ $NombreFirma1 }}</div>
                         <div>{{ $Titulo1 }}</div>
@@ -210,14 +214,14 @@
                         </div>
                         <p>________________________</p>
                         <div class="sello">
-                            <img class="fondo" src="{{$Sello2 }}" />
+                            <img class="fondo" src="{{ $Sello2 }}" />
                         </div>
                         <div>{{ $NombreFirma2 }}</div>
                         <div>{{ $Titulo2 }}</div>
                     </div>
                     <div class="firmas">
                         <div class="firma">
-                            <img class="fondo" src="{{$Firma3 }}" />
+                            <img class="fondo" src="{{ $Firma3 }}" />
                         </div>
                         <p>________________________</p>
                         <div class="sello">

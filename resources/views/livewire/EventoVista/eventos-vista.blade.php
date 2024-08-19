@@ -49,7 +49,7 @@
       <p class="marca">{{ $tarjetasEvento->modalidad->modalidad }}</p>
       </div>
       <div class="evento-info">
-      <img src="{{ asset('Logo/Eventos UNAH con fondo Logo.png') }}" alt="foto-creador" class="icon">
+      <img src="{{ asset('Logo/EVENTIS LOGO.png') }}" alt="foto-creador" class="icon">
       <div class="evento-details">
         <h2 class="name-evento">{{ $tarjetasEvento->nombreevento }}</h2>
         <p class="evento-creador">{{ $tarjetasEvento->organizador }}</p>

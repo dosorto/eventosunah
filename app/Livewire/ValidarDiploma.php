@@ -2,6 +2,7 @@
 namespace App\Livewire;
 
 use App\Models\Asistencia;
+use App\Models\DiplomaGenerado;
 use Livewire\Component;
 
 class ValidarDiploma extends Component
@@ -10,18 +11,22 @@ class ValidarDiploma extends Component
     public $conferencia;
     public $codigoDiploma;
     public $id;
-
     public $asistencia;
+
+    public $uuid;
     public function mount($id)
     {
         $this->id = $id;
-        $asistencia = Asistencia::find($this->id);
+        $diploma =DiplomaGenerado::where('IdAsistencia', $id)->first();
+      
 
-        if ($asistencia) {
-            $this->persona = $asistencia->suscripcion->persona;
-            $this->conferencia = $asistencia->suscripcion->conferencia;
-            $this->codigoDiploma = $asistencia->suscripcion->conferencia->evento->diploma;
-            $this->asistencia = $asistencia;
+
+        if ($diploma) {
+            $this->persona = $diploma->asistencias->suscripcion->persona;
+            $this->conferencia = $diploma->asistencias->suscripcion->conferencia;
+            $this->codigoDiploma = $diploma->asistencias->suscripcion->conferencia->evento->diploma;
+            $this->asistencia = $diploma->asistencias;
+            $this->uuid = $diploma->uuid;
         }
     }
 
@@ -30,7 +35,7 @@ class ValidarDiploma extends Component
         return view('livewire.validar-diploma', [
             'persona' => $this->persona,
             'conferencia' => $this->conferencia,
-            'codigoDiploma' => $this->codigoDiploma,
+            'uuid' => $this->uuid,
         ]);
     }
 }
