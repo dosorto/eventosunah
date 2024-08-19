@@ -34,7 +34,6 @@ class VistaDiplomas extends Component
                 config('app.url') . '/validarDiploma/' . $asistencia->diplomaGenerado->uuid
             );
         } else {
-            // redireccionar a la vista de error de que el usuario no esta inscrito en la conferencia
             return redirect()->route('conferencias-inscritas');
         }
     }

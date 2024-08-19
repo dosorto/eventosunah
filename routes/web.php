@@ -63,7 +63,7 @@ Route::middleware([
     Route::get('/vistaDiploma/asistencia/{asistencia?}', VistaDiplomas::class)->name('vistaDiploma');
     // VALIDAR EL DIPLOMA
     Route::get('/validarDiploma/{id}', ValidarDiploma::class)->name('validarDiploma');
-    Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
+    Route::get('/eventos/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
