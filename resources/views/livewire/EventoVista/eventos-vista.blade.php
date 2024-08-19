@@ -1,10 +1,10 @@
 <div>
-  <x-layouts.app>
+ 
     <div class="content-wrapper">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-2 ml-2">
         Eventos Disponibles
       </h2>
-      @if($targetasEventos->isEmpty())
+      @if($Eventos->isEmpty())
       <div id="alert-additional-content-4"
       class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-500 dark:border-yellow-800"
       role="alert">
@@ -36,35 +36,35 @@
       <!-- Lista de eventos -->
       <div
       class="evento-list dark:bg-gray-900  dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
-      @foreach($targetasEventos as $targetasEvento)
-      <a href="{{ route('vistaconferencia', ['evento' => $targetasEvento->id]) }}" class="evento-card">
+      @foreach($Eventos as $tarjetasEvento)
+      <a href="{{ route('vistaconferencia', ['evento' => $tarjetasEvento->id]) }}" class="evento-card">
       <div class="thumbnail-container">
-      @if($targetasEvento->logo == "")
+      @if($tarjetasEvento->logo == "")
       <img src="http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg"
       alt="Sin Foto De Evento">
     @else
-      <img src="{{ asset(str_replace('public', 'storage', $targetasEvento->logo)) }}" alt="Sin Foto De Evento"
+      <img src="{{ asset(str_replace('public', 'storage', $tarjetasEvento->logo)) }}" alt="Sin Foto De Evento"
       class=" bg-white dark:bg-gray-800  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white thumbnail">
     @endif
-      <p class="marca">{{ $targetasEvento->modalidad->modalidad }}</p>
+      <p class="marca">{{ $tarjetasEvento->modalidad->modalidad }}</p>
       </div>
       <div class="evento-info">
       <img src="{{ asset('Logo/Eventos UNAH con fondo Logo.png') }}" alt="foto-creador" class="icon">
       <div class="evento-details">
-        <h2 class="name-evento">{{ $targetasEvento->nombreevento }}</h2>
-        <p class="evento-creador">{{ $targetasEvento->organizador }}</p>
-        <p class="fecha-creacion">{{ $targetasEvento->created_at->diffForHumans() }}</p>
-        {{-- <p class="fecha-creacion">{{ $targetasEvento->created_at->translatedFormat('F j, Y') }}</p> --}}
+        <h2 class="name-evento">{{ $tarjetasEvento->nombreevento }}</h2>
+        <p class="evento-creador">{{ $tarjetasEvento->organizador }}</p>
+        <p class="fecha-creacion">{{ $tarjetasEvento->created_at->diffForHumans() }}</p>
+        {{-- <p class="fecha-creacion">{{ $tarjetasEvento->created_at->translatedFormat('F j, Y') }}</p> --}}
 
       </div>
       </div>
       </a>
     @endforeach
       </div>
-      <div class="pagination">
-      {{ $targetasEventos->links() }}
-      </div>
+      
+      <br>
+        {{ $Eventos->links() }}
+      <br>
     </div>
   @endif
-  </x-layouts.app>
 </div>
