@@ -52,18 +52,15 @@ class Conferencias extends Component
             'searchConferencistas' => $this->searchConferencistas
         ]);
     }
-    
 
     public function updatedInputSearchEvento()
     {
         $query = Evento::query();
 
-        // Busca por nombre del evento si se proporciona
         if (!empty($this->inputSearchEvento)) {
             $query->where('nombreevento', 'like', '%' . $this->inputSearchEvento . '%');
         }
 
-        // Busca por IdEvento si se proporciona
         if (!empty($this->IdEvento)) {
             $query->where('id', $this->IdEvento);
         }
@@ -96,23 +93,18 @@ class Conferencias extends Component
         }
         $this->searchConferencistas = [];
     }
-   
-    
 
     public function create()
     {
         $this->resetInputFields();
         $this->openModal();
-        $this->render();
     }
 
     public function agregarConferencia($eventoId)
     {
         $this->IdEvento = $eventoId;
         $this->create();
-        $this->render();
     }
-    
 
     public function openModal()
     {
@@ -139,12 +131,9 @@ class Conferencias extends Component
         $this->searchConferencistas = [];
         $this->IdEvento = '';
     }
-    
 
-    
     public function store()
     {
-        // Validar datos
         $this->validate([
             'IdEvento' => 'required|exists:eventos,id',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -157,16 +146,13 @@ class Conferencias extends Component
             'linkreunion' => 'required|url',
             'idConferencista' => 'required|exists:conferencistas,id'
         ]);
-    
-        // Manejo de la foto
+
         if ($this->foto) {
             $this->foto = $this->foto->store('public/eventos');
         } else {
-            // Asigna una foto predeterminada si no se proporciona una
             $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
         }
-    
-        // Crear o actualizar la conferencia
+
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
             'IdEvento' => $this->IdEvento,
             'foto' => $this->foto,
@@ -179,20 +165,18 @@ class Conferencias extends Component
             'linkreunion' => $this->linkreunion,
             'idConferencista' => $this->idConferencista,
         ]);
-    
+
         session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
         $this->closeModal();
         $this->resetInputFields();
-        $this->resetPage();
+        return redirect(request()->header('Referer'));  // Recarga la página
     }
-    
 
     public function edit($id)
     {
         $conferencia = Conferencia::findOrFail($id);
         $this->conferencia_id = $id;
         $this->IdEvento = $conferencia->IdEvento;
-       
         $this->nombre = $conferencia->nombre;
         $this->descripcion = $conferencia->descripcion;
         $this->fecha = $conferencia->fecha;
@@ -210,6 +194,7 @@ class Conferencias extends Component
         $this->openModal();
         $this->render();
     }
+
     public function delete()
     {
         if ($this->confirmingDelete) {
@@ -224,6 +209,7 @@ class Conferencias extends Component
             $conferencia->delete();
             session()->flash('message', 'Conferencia eliminada correctamente!');
             $this->confirmingDelete = false;
+            return redirect(request()->header('Referer'));  // Recarga la página
         }
     }
 
@@ -252,9 +238,6 @@ class Conferencias extends Component
             $this->openModal();
             $this->IdEvento = $evento->id;
             $this->inputSearchEvento = $evento->nombreevento; 
-              
         }
-
     }
-
 }
