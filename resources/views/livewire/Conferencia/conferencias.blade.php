@@ -47,6 +47,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                         <tr>
                             <th scope="col" class="px-6 py-3">No.</th>
+                            <th scope="col" class="px-6 py-3">Foto</th>
                             <th scope="col" class="px-6 py-3">Evento</th>
                             <th scope="col" class="px-6 py-3">Nombre</th>
                             <th scope="col" class="px-6 py-3">Lugar</th>
@@ -59,6 +60,14 @@
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white">
                                     {{ $conferencia->id }}</td>
+                                    <td class="px-6 py-4">
+                                        @if($conferencia->foto)
+                                            <img src="{{ Storage::url($conferencia->foto) }}" alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            <img src="{{ asset('images/default-profile.png') }}" alt="Sin foto" class="w-12 h-12 object-cover rounded-full">
+                                        @endif
+                                    </td>
+
                                 <td class="px-6 py-4">{{ $conferencia->evento->nombreevento }}</td>
                                 <td class="px-6 py-4 font-medium whitespace-nowrap">
                                     {{ $conferencia->nombre }}</td>
