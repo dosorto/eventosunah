@@ -1,67 +1,30 @@
 @extends('layouts.base')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/evento.css') }}">
+<link rel="stylesheet" href="{{ asset('css/evento.css') }}">
 @endsection
 <style>
-        /* Estilos para la barra de navegación */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #00468B; /* Cambia el color de fondo */
-            padding: 10px 20px;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            color: #fff; /* Color del texto */
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .logo span {
-            color: #FFD700; /* Diferente color para la parte 'UNAH' */
-        }
-
-        .menu-links {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-        }</style>
+    .menu-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+    }
+</style>
 @section('content')
+<section>
     <section>
-    <section>
-        <header>
-            <nav class="navbar">
-                <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
-               
-                <span id="hamburger-btn" class="hamburger-icon material-symbols-outlined"><div class="pt-5">
-                        <a href="/login "
-                            class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                                Registrarse
-                                <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd" d="M5 8a4 4 0 1 1 7.796 1.263l-2.533 2.534A4 4 0 0 1 5 8Zm4.06 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h2.172a2.999 2.999 0 0 1-.114-1.588l.674-3.372a3 3 0 0 1 .82-1.533L9.06 13Zm9.032-5a2.907 2.907 0 0 0-2.056.852L9.967 14.92a1 1 0 0 0-.273.51l-.675 3.373a1 1 0 0 0 1.177 1.177l3.372-.675a1 1 0 0 0 .511-.273l6.07-6.07a2.91 2.91 0 0 0-.944-4.742A2.907 2.907 0 0 0 18.092 8Z" clip-rule="evenodd"/>
-                                </svg>
-                            </a>
-                    </div></span>
-
-            </nav>
-        </header>
-
-
+        <x-nav />
         <section class="hero-section">
             <div class="content">
                 <h2>Conferencias para el Evento: {{ $evento->nombreevento }}</h2>
             </div>
         </section>
 
-        <section class="conference-section">
+        <section class="conference-section mt-16">
             <div class="content-wrapper">
                 @if ($conferencias->isEmpty())
                     <div id="alert-additional-content-4"
-                        class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-500 dark:border-yellow-800"
+                        class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-white dark:bg-gray-800 dark:text-yellow-500 dark:border-yellow-800"
                         role="alert">
                         <div class="flex items-center">
                             <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +48,8 @@
                 @else
                     <div class="grid gap-4 p-2" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
                         @foreach ($conferencias as $conferencia)
-                            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <a href="#">
                                     <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
                                         alt="Imagen Conferencia" class="rounded-t-lg" />
@@ -98,7 +62,8 @@
                                     </a>
                                     <table class="w-full text-sm text-right rtl:text-left text-gray-500 dark:text-gray-400">
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                            <td scope="row"
+                                                class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
                                                 <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                     viewBox="0 0 24 24">
@@ -122,12 +87,13 @@
                                             </td>
                                         </tr>
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                            <td scope="row"
+                                                class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
                                                 <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                     viewBox="0 0 24 24">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                                        d="M4.37 7.657c2.063.528 2.396 2.806 3.202 3.87 1.07 1.413 2.075 1.228 3.192 2.644 1.805 2.289 1.312 5.705 1.312 6.705M20 15h-1a4 4 0 0 0-4 4v1M8.587 3.992c0 .822.112 1.886 1.515 2.58 1.402.693 2.918.351 2.918 2.334 0 .276 0 2.008 1.972 2.515 1.737.463 1.693 1.297 3.055 2.385 1.141.969 1.676 1.992 1.676 2.783" />
+                                                        d="M4.37 7.657c2.063.528 2.396 2.806 3.202 3.87 1.07 1.413 2.075 1.228 3.192 2.644 1.805 2.289 1.312 5.705 1.312 6.705M20 15h-1a4 4 0 0 0-4 4v1M8.587 3.992c0 .822.112 1.886 1.515 2.58 1.402.693 2.918.351 2.918 2.334 0 .276 0 2.008 1.972 2.008 2.026.031 2.026-1.678 2.026-2.008 0-.65.527-.9 1.177-.9H20M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                 </svg>
                                                 Lugar
                                             </td>
@@ -136,7 +102,8 @@
                                             </td>
                                         </tr>
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                            <td scope="row"
+                                                class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
                                                 <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                     viewBox="0 0 24 24">
@@ -151,14 +118,15 @@
                                             </td>
                                         </tr>
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                            <td scope="row"
+                                                class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
                                                 <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                     viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                                        d="M4.37 7.657c2.063.528 2.396 2.806 3.202 3.87 1.07 1.413 2.075 1.228 3.192 2.644 1.805 2.289 1.312 5.705 1.312 6.705M20 15h-1a4 4 0 0 0-4 4v1M8.587 3.992c0 .822.112 1.886 1.515 2.58 1.402.693 2.918.351 2.918 2.334 0 .276 0 2.008 1.972 2.515 1.737.463 1.693 1.297 3.055 2.385 1.141.969 1.676 1.992 1.676 2.783" />
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                 </svg>
-                                                Hora 
+                                                Hora
                                             </td>
                                             <td class="px-6 py-2">
                                                 {{ $conferencia->horaInicio }} a {{ $conferencia->horaFin }}
@@ -169,8 +137,12 @@
                                         <a href="/login "
                                             class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                                             Inscribirse
-                                            <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd" d="M5 8a4 4 0 1 1 7.796 1.263l-2.533 2.534A4 4 0 0 1 5 8Zm4.06 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h2.172a2.999 2.999 0 0 1-.114-1.588l.674-3.372a3 3 0 0 1 .82-1.533L9.06 13Zm9.032-5a2.907 2.907 0 0 0-2.056.852L9.967 14.92a1 1 0 0 0-.273.51l-.675 3.373a1 1 0 0 0 1.177 1.177l3.372-.675a1 1 0 0 0 .511-.273l6.07-6.07a2.91 2.91 0 0 0-.944-4.742A2.907 2.907 0 0 0 18.092 8Z" clip-rule="evenodd"/>
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd"
+                                                    d="M5 8a4 4 0 1 1 7.796 1.263l-2.533 2.534A4 4 0 0 1 5 8Zm4.06 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h2.172a2.999 2.999 0 0 1-.114-1.588l.674-3.372a3 3 0 0 1 .82-1.533L9.06 13Zm9.032-5a2.907 2.907 0 0 0-2.056.852L9.967 14.92a1 1 0 0 0-.273.51l-.675 3.373a1 1 0 0 0 1.177 1.177l3.372-.675a1 1 0 0 0 .511-.273l6.07-6.07a2.91 2.91 0 0 0-.944-4.742A2.907 2.907 0 0 0 18.092 8Z"
+                                                    clip-rule="evenodd" />
                                             </svg>
                                         </a>
                                     </div>
@@ -182,4 +154,4 @@
             </div>
         </section>
     </section>
-@endsection
+    @endsection

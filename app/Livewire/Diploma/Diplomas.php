@@ -17,29 +17,28 @@ class Diplomas extends Component
     use WithPagination, WithFileUploads;
 
     public// $Codigo,
-       $Plantilla,
-       // $IdConferencia,
-        $Titulo1,
-        $NombreFirma1,
-        $Firma1,
-        $Sello1,
-        $Titulo2,
-        $NombreFirma2,
-        $Firma2,
-        $Sello2,
-        $Titulo3,
-        $NombreFirma3,
-        $Firma3,
-        $Sello3,
-        $diploma_id,
-        $search;
+    $Plantilla,
+    // $IdConferencia,
+    $Titulo1,
+    $NombreFirma1,
+    $Firma1,
+    $Sello1,
+    $Titulo2,
+    $NombreFirma2,
+    $Firma2,
+    $Sello2,
+    $Titulo3,
+    $NombreFirma3,
+    $Firma3,
+    $Sello3,
+    $diploma_id,
+    $search;
 
     public $isOpen = false;
-
+    public $confirmingDelete = false;
     public $inputSearchConferencia = '';
     public $searchConferencias = [];
-
-
+    public $IdAEliminar;
     public $inputSearchFirma = '';
     public $searchFirmas = [];
 
@@ -50,9 +49,9 @@ class Diplomas extends Component
     public $searchEventos = [];
 
     protected $rules = [
-       // 'Codigo' => 'required',
+        // 'Codigo' => 'required',
         'Plantilla' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-      //  'IdConferencia' => 'required',
+        //  'IdConferencia' => 'required',
         'Titulo1' => 'required',
         'NombreFirma1' => 'required',
         'Firma1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -64,7 +63,7 @@ class Diplomas extends Component
         'Titulo3' => 'required',
         'NombreFirma3' => 'required',
         'Firma3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'Sello3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',      
+        'Sello3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
     public $conferencias;
@@ -72,7 +71,7 @@ class Diplomas extends Component
 
     public function mount()
     {
-     //   $this->conferencias = Conferencia::all();
+        //   $this->conferencias = Conferencia::all();
     }
 
     public function render()
@@ -80,10 +79,10 @@ class Diplomas extends Component
         $diplomas = Diploma::where('Codigo', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'DESC')
             ->paginate(5);
-       // dd($diplomas);
+        // dd($diplomas);
         return view('livewire.Diploma.diplomas', [
             'diplomas' => $diplomas,
-          //  'conferencias' => $this->conferencias,
+            //  'conferencias' => $this->conferencias,
         ]);
     }
 
@@ -113,25 +112,25 @@ class Diplomas extends Component
     }
 
 
-   /* public function updatedInputSearchConferencia()
-    {
-        $this->searchConferencias = Conferencia::where('nombre', 'like', '%' . $this->inputSearchConferencia . '%')
-            ->get();
-    }
-*/
+    /* public function updatedInputSearchConferencia()
+     {
+         $this->searchConferencias = Conferencia::where('nombre', 'like', '%' . $this->inputSearchConferencia . '%')
+             ->get();
+     }
+ */
     public function updatedInputSearchFirma()
     {
         $this->searchFirmas = Firma::where('nombre', 'like', '%' . $this->inputSearchFirma . '%')
             ->get();
     }
 
-  /*  public function selectConferencia($conferenciaId)
-    {
-        $this->IdConferencia = $conferenciaId;
-        $conferencia = Conferencia::find($conferenciaId);
-        $this->inputSearchConferencia = $conferencia->nombre;
-        $this->searchConferencias = [];
-    }*/
+    /*  public function selectConferencia($conferenciaId)
+      {
+          $this->IdConferencia = $conferenciaId;
+          $conferencia = Conferencia::find($conferenciaId);
+          $this->inputSearchConferencia = $conferencia->nombre;
+          $this->searchConferencias = [];
+      }*/
 
     public function selectFirma($firmaId)
     {
@@ -160,7 +159,7 @@ class Diplomas extends Component
     private function resetInputFields()
     {
         $this->Plantilla = '';
-      //  $this->IdConferencia = '';
+        //  $this->IdConferencia = '';
         $this->Titulo1 = '';
         $this->NombreFirma1 = '';
         $this->Firma1 = '';
@@ -174,9 +173,9 @@ class Diplomas extends Component
         $this->Firma3 = '';
         $this->Sello3 = '';
         $this->diploma_id = null;
-      //  $this->inputSearchConferencia = '';
-     //   $this->searchConferencias = [];
-     
+        //  $this->inputSearchConferencia = '';
+        //   $this->searchConferencias = [];
+
     }
 
     public function store()
@@ -185,103 +184,93 @@ class Diplomas extends Component
         // guardar las imagenes en el storage
         if ($this->Plantilla) {
             $this->Plantilla = $this->Plantilla->store('public/plantillas');
+        } elseif ($this->diploma_id) {
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id); // Usa el modelo correcto
+            $this->Plantilla = $diploma->Plantilla;
         } else {
             $this->Plantilla = null;
         }
 
         if ($this->Firma1) {
             $this->Firma1 = $this->Firma1->store('public/firmas');
+        }elseif($this->diploma_id){
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id);
+            $this->Firma1 = $diploma->Firma1;
         } else {
             $this->Firma1 = null;
         }
 
         if ($this->Firma2) {
             $this->Firma2 = $this->Firma2->store('public/firmas');
+        }elseif($this->diploma_id){
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id);
+            $this->Firma2 = $diploma->Firma2;
         } else {
             $this->Firma2 = null;
         }
 
         if ($this->Firma3) {
             $this->Firma3 = $this->Firma3->store('public/firmas');
+        }elseif($this->diploma_id){
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id);
+            $this->Firma3 = $diploma->Firma3;
         } else {
             $this->Firma3 = null;
         }
 
         if ($this->Sello1) {
             $this->Sello1 = $this->Sello1->store('public/sellos');
+        }elseif($this->diploma_id){
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id);
+            $this->Sello1 = $diploma->Sello1;
         } else {
             $this->Sello1 = null;
         }
 
         if ($this->Sello2) {
             $this->Sello2 = $this->Sello2->store('public/sellos');
-        } else {
+        }elseif($this->diploma_id){
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id);
+            $this->Sello2 = $diploma->Sello2;
+        }
+        else {
             $this->Sello2 = null;
         }
-        
+
         if ($this->Sello3) {
             $this->Sello3 = $this->Sello3->store('public/sellos');
+        }elseif($this->diploma_id){
+            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
+            $diploma = Diploma::findOrFail($this->diploma_id);
+            $this->Sello3 = $diploma->Sello3;
         } else {
             $this->Sello3 = null;
         }
 
-        /*
-            insert into `diplomas` 
-            (`Codigo`, 
-            `Plantilla`, 
-            `Titulo1`, 
-            `NombreFirma1`, 
-            `Firma1`,
-             `Sello1`,
-              `Titulo2`,
-               `NombreFirma2`, 
-               `Firma2`,
-                `Sello2`, 
-               `Titulo3`,
-                `NombreFirma3`, 
-                `Firma3`,
-                 `Sello3`, 
-                 `created_by`,
-                  `updated_at`,
-                   `created_at`) 
-            values
-             (2nyNY9TgQb, 
-             storage/plantillas/gB7TCrk2MYbBz70LdiQSH7ZGfZg0LbAXFwclR1Lh.jpg, 
-             BABYS, 
-             BABYS, 
-             storage/firmas/HqKV7lH2YBm8EK0hO1PPeqUMeMZlud6TL4NmyUQJ.jpg, 
-             storage/sellos/seQ4psWPqlBY8ZulY8E3VKaZCxwVNEAzmJL4wscf.jpg,
-              BABYS, 
-              BABYS,
-               storage/firmas/9TUIhU6IJIjex6lltnk7cdFfZ7wfoKWw7Mwo1BRD.jpg,
-               ?, 
-               BABYS, 
-               BABYS, 
-               storage/firmas/43sgAkboeeRlffy6wAWNODsdwc9x5loJRJ1FuhO0.jpg, 
-               storage/sellos/hPtnVpFbTg5Oe1oOMDIN1AUxa1pkZMHLuoZhIBIr.jpg, 
-               1, 
-               2024-08-14 03:37:32, 2024-08-14 03:37:32))
-
-        */
         Diploma::updateOrCreate(['id' => $this->diploma_id], [
             'Codigo' => $this->generateUniqueCode(),
-            'Plantilla' =>$this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
-         //   'IdConferencia' => $this->IdConferencia,
+            'Plantilla' => $this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
+            //   'IdConferencia' => $this->IdConferencia,
             'Titulo1' => $this->Titulo1,
             'NombreFirma1' => $this->NombreFirma1,
             'Firma1' => $this->Firma1 ? str_replace('public/', 'storage/', $this->Firma1) : null,
-            'Sello1'  =>$this->Sello1 ? str_replace('public/', 'storage/', $this->Sello1) : null,
+            'Sello1' => $this->Sello1 ? str_replace('public/', 'storage/', $this->Sello1) : null,
             'Titulo2' => $this->Titulo2,
             'NombreFirma2' => $this->NombreFirma2,
-            'Firma2' =>$this->Firma2 ? str_replace('public/', 'storage/', $this->Firma2) : null,
-            'Sello2'  =>$this->Sello2 ? str_replace('public/', 'storage/', $this->Sello2) : null,
+            'Firma2' => $this->Firma2 ? str_replace('public/', 'storage/', $this->Firma2) : null,
+            'Sello2' => $this->Sello2 ? str_replace('public/', 'storage/', $this->Sello2) : null,
             'Titulo3' => $this->Titulo3,
             'NombreFirma3' => $this->NombreFirma3,
-            'Firma3'  =>$this->Firma3 ? str_replace('public/', 'storage/', $this->Firma3) : null,
-            'Sello3'  =>$this->Sello3 ? str_replace('public/', 'storage/', $this->Sello3) : null,
+            'Firma3' => $this->Firma3 ? str_replace('public/', 'storage/', $this->Firma3) : null,
+            'Sello3' => $this->Sello3 ? str_replace('public/', 'storage/', $this->Sello3) : null,
         ]);
 
-        
         session()->flash('message', $this->diploma_id ? 'Diploma actualizado correctamente!' : 'Diploma creado correctamente!');
 
         $this->closeModal();
@@ -301,35 +290,57 @@ class Diplomas extends Component
     {
         $diploma = Diploma::findOrFail($id);
         $this->diploma_id = $id;
-      // $this->Codigo = $diploma->Codigo;
-        $this->Plantilla = $diploma->Plantilla;
-   //     $this->IdConferencia = $diploma->IdConferencia;
         $this->Titulo1 = $diploma->Titulo1;
         $this->NombreFirma1 = $diploma->NombreFirma1;
-        $this->Firma1 = $diploma->Firma1;
-        $this->Sello1 = $diploma->Sello1;
+
         $this->Titulo2 = $diploma->Titulo2;
         $this->NombreFirma2 = $diploma->NombreFirma2;
-        $this->Firma2 = $diploma->Firma2;
-        $this->Sello2 = $diploma->Sello2;
+
         $this->Titulo3 = $diploma->Titulo3;
         $this->NombreFirma3 = $diploma->NombreFirma3;
-        $this->Firma3 = $diploma->Firma3;
-        $this->Sello3 = $diploma->Sello3;
 
 
-      /*  $conferencia = Conferencia::find($this->IdConferencia);
-        if ($conferencia) {
-            $this->inputSearchConferencia = $conferencia->nombre;
-        }
-*/
+
+        /*  $conferencia = Conferencia::find($this->IdConferencia);
+          if ($conferencia) {
+              $this->inputSearchConferencia = $conferencia->nombre;
+          }
+  */
 
         $this->openModal();
     }
 
-    public function delete($id)
+    public function delete()
     {
-        Diploma::find($id)->delete();
-        session()->flash('message', 'Diploma eliminado correctamente!');
+        if ($this->confirmingDelete) {
+            $diploma = Diploma::find($this->IdAEliminar);
+
+            if (!$diploma) {
+                session()->flash('error', 'localidad no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $diploma->forceDelete();
+            session()->flash('message', 'modalidad eliminada correctamente!');
+            $this->confirmingDelete = false;
+        }
+    }
+
+    public function confirmDelete($id)
+    {
+        $diploma = Diploma::find($id);
+
+        if (!$diploma) {
+            session()->flash('error', 'Plantilla no encontrado.');
+            return;
+        }
+        if ($diploma->evento()->exists()) {
+            session()->flash('error', 'No se puede eliminar esta plantilla porque está enlazada a uno o más eventos.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->confirmingDelete = true;
     }
 }

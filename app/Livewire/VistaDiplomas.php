@@ -15,8 +15,10 @@ class VistaDiplomas extends Component
     public $conferencia;
 
     public $evento;
-    
+
     public $diploma;
+
+    public $uuid;
 
     public function mount(Asistencia $asistencia)
     {
@@ -25,14 +27,13 @@ class VistaDiplomas extends Component
         $this->evento = $asistencia->suscripcion->conferencia->evento;
         $this->conferencia = $asistencia->suscripcion->conferencia;
         $this->diploma = $asistencia->suscripcion->conferencia->evento->diploma;
+        $this->uuid = $asistencia->diplomaGenerado->uuid ?? null;
 
-       
         // obtener el diploma asociado a la persona y la conferencia
 
         if ($this->validacionesPersonaConferencia()) {
-            $this->qrcode = QRCodeService::generateTextQRCode(
-                config('app.url') . '/validarDiploma/' . $asistencia->diplomaGenerado->uuid
-            );
+            $ruta = is_null($this->uuid) ? 'No verificable' : config('app.url') . '/validarDiploma/' . $this->uuid;
+            $this->qrcode = QRCodeService::generateTextQRCode($ruta);
         } else {
             return redirect()->route('conferencias-inscritas');
         }
@@ -47,6 +48,6 @@ class VistaDiplomas extends Component
 
     public function render()
     {
-        return view('livewire.vista-diplomas');
+        return view('livewire.vista-diplomas', ['uuid' => $this->uuid]);
     }
 }

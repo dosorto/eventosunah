@@ -24,62 +24,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
+            background-color:#f3f4f6;
+           /* background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
 
         }
 
 
-        .containerRegister {
+        .containersRegister {
             position: relative;
             max-width: 910px;
             height: 570px;
             width: 90%;
             border-radius: 6px;
             padding: 40px;
-            background-color: #fff;
+            background-color: #ffffff;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .containerRegister h1 {
+        .containersRegister h1 {
             position: relative;
             font-size: 18px;
             font-weight: 500;
             color: #333;
         }
 
-        .containerRegister form {
+        .containersRegister form {
             position: relative;
             margin-top: 16px;
             min-height: 440px;
-            background-color: #fff;
+            background-color: #ffffff;
             overflow: hidden;
         }
 
-        .containerRegister form .formRegister {
+        .containersRegister form .formRegister {
             position: absolute;
-            background-color: #fff;
+            background-color: #ffffff;
             transition: 0.2s ease;
         }
 
-        .containerRegister form .formRegister.second {
+        .containersRegister form .formRegister.second {
             opacity: 0;
             pointer-events: none;
             transform: translateX(100%);
         }
 
-        .containerRegister form.secActive .formRegister.second {
+        .containersRegister form.secActive .formRegister.second {
             opacity: 1;
             pointer-events: auto;
             transform: translateX(0);
         }
 
-        .containerRegister form.secActive .formRegister.first {
+        .containersRegister form.secActive .formRegister.first {
             opacity: 0;
             pointer-events: none;
             transform: translateX(-100%);
         }
 
-        .containerRegister form .title {
+        .containersRegister form .title {
             display: block;
             margin-bottom: 8px;
             font-size: 16px;
@@ -88,14 +89,14 @@
             color: #facc15;
         }
 
-        .containerRegister form .fields {
+        .containersRegister form .fields {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
         }
 
-        .containerRegister form .fields .inputRegister {
+        .containersRegister form .fields .inputRegister {
             display: flex;
             width: calc(100% / 3 - 15px);
             flex-direction: column;
@@ -103,20 +104,20 @@
         }
 
 
-        .containerRegister form .fields .inputRegister .direccion {
+        .containersRegister form .fields .inputRegister .direccion {
             display: flex;
             width: 840px;
             flex-direction: column;
             margin: 4px 0;
         }
 
-        .containerRegister .inputRegister label {
+        .containersRegister .inputRegister label {
             font-size: 12px;
             font-weight: 500;
             color: #2e2e2e;
         }
 
-        .containerRegister .inputRegister input,
+        .containersRegister .inputRegister input,
         select,
         textarea {
             outline: none;
@@ -130,21 +131,21 @@
             margin: 8px 0;
         }
 
-        .containerRegister .inputRegister input :focus,
-        .containerRegister .inputRegister select:focus .inputRegister textarea:focus {
+        .containersRegister .inputRegister input :focus,
+        .containersRegister .inputRegister select:focus .inputRegister textarea:focus {
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
         }
 
-        .containerRegister .inputRegister select,
+        .containersRegister .inputRegister select,
         .inputRegister input .inputRegister textarea[type="date"] {
             color: #707070;
         }
 
-        .containerRegister .inputRegister input[type="date"]:valid {
+        .containersRegister .inputRegister input[type="date"]:valid {
             color: #333;
         }
 
-        .containerRegister form button,
+        .containersRegister form button,
         .backBtn {
             display: flex;
             align-items: center;
@@ -166,54 +167,54 @@
             cursor: pointer;
         }
 
-        .containerRegister form .btnText {
+        .containersRegister form .btnText {
             font-weight: 500;
             font-size: 14px;
         }
 
-        .containerRegister form button:hover {
+        .containersRegister form button:hover {
             --tw-bg-opacity: 1;
             background-color: rgb(202 138 4 / var(--tw-bg-opacity))
                 /* #ca8a04 */
             ;
         }
 
-        .containerRegister form button i,
+        .containersRegister form button i,
         form .backBtn i {
             margin: 0 6px;
         }
 
-        .containerRegister form .backBtn i {
+        .containersRegister form .backBtn i {
             transform: rotate(180deg);
         }
 
-        .containerRegister form .buttons {
+        .containersRegister form .buttons {
             display: flex;
             align-items: center;
         }
 
-        .containerRegister form .buttons button,
+        .containersRegister form .buttons button,
         .backBtn {
             margin-right: 14px;
             margin-left: 10px;
         }
 
         @media (max-width: 750px) {
-            .containerRegister form {
+            .containersRegister form {
                 overflow-y: scroll;
             }
 
-            .containerRegister form::-webkit-scrollbar {
+            .containersRegister form::-webkit-scrollbar {
                 display: none;
             }
 
-            .containerRegister form .fields .inputRegister {
+            .containersRegister form .fields .inputRegister {
                 width: calc(100% / 2 - 15px);
             }
         }
 
         @media (max-width: 550px) {
-            .containerRegister form .fields .inputRegister {
+            .containersRegister form .fields .inputRegister {
                 width: 100%;
             }
         }
@@ -222,7 +223,7 @@
             max-width: 430px;
         }
 
-        .container {
+        .containers {
             position: relative;
             border-radius: 10px;
             overflow: hidden;
@@ -230,7 +231,7 @@
             margin: 0 20px;
         }
 
-        .container .forms {
+        .containers .forms {
             display: flex;
             align-items: center;
             height: 540px;
@@ -239,7 +240,7 @@
         }
 
 
-        .container .form {
+        .containers .form {
             width: 50%;
             height: 540px;
             padding: 30px;
@@ -247,34 +248,34 @@
             transition: margin-left 0.10s ease;
         }
 
-        .container.active .login {
+        .containers.active .login {
             margin-left: -50%;
             opacity: 0;
             transition: margin-left 0.10s ease, opacity 0.12s ease;
         }
 
-        .container .signup {
+        .containers .signup {
 
             opacity: 0;
             transition: opacity 0.08s ease;
         }
 
-        .container.active .signup {
+        .containers.active .signup {
             opacity: 1;
             transition: opacity 0.2s ease;
         }
 
-        .container.active .forms {
+        .containers.active .forms {
             height: 600px;
         }
 
-        .container .form .title {
+        .containers .form .title {
             position: relative;
             font-size: 27px;
             font-weight: 600;
         }
 
-        .container .form .title::before {
+        .containers .form .title::before {
             content: '';
             position: absolute;
             left: 0;
@@ -285,14 +286,14 @@
             border-radius: 25px;
         }
 
-        .container .form .input-field {
+        .containers .form .input-field {
             position: relative;
             height: 50px;
             width: 100%;
             margin-top: 30px;
         }
 
-        .container .input-field input {
+        .containers .input-field input {
             position: absolute;
             height: 100%;
             width: 100%;
@@ -305,11 +306,11 @@
             transition: all 0.2s ease;
         }
 
-        .container .input-field input:is(:focus, :valid) {
+        .containers .input-field input:is(:focus, :valid) {
             border-bottom-color: #facc15;
         }
 
-        .container .input-field i {
+        .containers .input-field i {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -318,7 +319,7 @@
             transition: all 0.2s ease;
         }
 
-        .container .input-field input:is(:focus, :valid)~i {
+        .containers .input-field input:is(:focus, :valid)~i {
             color: #facc15;
         }
 
@@ -326,48 +327,48 @@
             left: 0;
         }
 
-        .container .input-field i.showHidePw {
+        .containers .input-field i.showHidePw {
             right: 0;
             cursor: pointer;
             padding: 10px;
         }
 
-        .container .form .checkbox-text {
+        .containers .form .checkbox-text {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-top: 20px;
         }
 
-        .container .checkbox-text .checkbox-content {
+        .containers .checkbox-text .checkbox-content {
             display: flex;
             align-items: center;
         }
 
-        .container .checkbox-content input {
+        .containers .checkbox-content input {
             margin-right: 10px;
             accent-color: #facc15;
         }
 
-        .container .form .text {
+        .containers .form .text {
             color: #333;
             font-size: 14px;
         }
 
-        .container .form a.text {
+        .containers .form a.text {
             color: #1254a1;
             text-decoration: none;
         }
 
-        .container .form a:hover {
+        .containers .form a:hover {
             text-decoration: underline;
         }
 
-        .container .form .button {
+        .containers .form .button {
             margin-top: 35px;
         }
 
-        .container .form .button input {
+        .containers .form .button input {
             border: none;
             color: #000;
             font-size: 17px;
@@ -382,132 +383,21 @@
             transition: all 0.3s ease;
         }
 
-        .container .button input:hover {
+        .containers .button input:hover {
             --tw-bg-opacity: 1;
             background-color: rgb(202 138 4 / var(--tw-bg-opacity))
                 /* #ca8a04 */
             ;
         }
 
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            z-index: 1;
-        }
-
-        header .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .navbar .logo {
-            color: #fff;
-            font-weight: 600;
-            font-size: 2.1rem;
-            text-decoration: none;
-        }
-
-        .navbar .logo span {
-            color: #facc15;
-        }
-
-        .navbar .menu-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            transition: 0.2s ease;
-        }
-
-        .navbar a:hover {
-            color: #facc15;
-        }
-
-        #close-menu-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            cursor: pointer;
-            display: none;
-        }
-
-        #hamburger-btn {
-            color: #fff;
-            cursor: pointer;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 10px;
-            }
-
-            header.show-mobile-menu::before {
-                content: "";
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                backdrop-filter: blur(5px);
-            }
-
-            .navbar .logo {
-                font-size: 1.7rem;
-            }
-
-
-            #hamburger-btn,
-            #close-menu-btn {
-                display: block;
-            }
-
-            .navbar .menu-links {
-                position: fixed;
-                top: 0;
-                left: -250px;
-                width: 250px;
-                height: 100vh;
-                background: #fff;
-                flex-direction: column;
-                padding: 70px 40px 0;
-                transition: left 0.2s ease;
-            }
-
-            header.show-mobile-menu .navbar .menu-links {
-                left: 0;
-            }
-
-            .navbar a {
-                color: #000;
-            }
-        }
     </style>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <a class="logo" href="#">EVENTOS <span>UNAH</span></a>
-            <ul class="menu-links">
-                <span id="close-menu-btn" class="material-symbols-outlined">close</span>
-                <li><a href="/">Home</a></li>
-            </ul>
-            <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
-        </nav>
-    </header>
-    <div class="container max ">
+@extends('layouts.login-layout')
+<x-nav/>
+
+    <div class="containers max mt-20">
         <div class="forms">
             <div class="form login active dark:bg-gray-900">
                 <span class="title">Registro De Usuario</span>
@@ -595,16 +485,16 @@
 
     const signUp = document.querySelector(".signup-link");
     const login = document.querySelector(".login-link");
-    const container = document.querySelector(".container");
+    const containers = document.querySelector(".containers");
 
     signUp.addEventListener("click", () => {
-        container.classList.add("active");
-        container.classList.remove("max");
+        containers.classList.add("active");
+        containers.classList.remove("max");
     });
 
     login.addEventListener("click", () => {
-        container.classList.remove("active");
-        container.classList.add("max");
+        containers.classList.remove("active");
+        containers.classList.add("max");
 
     });
 </script>

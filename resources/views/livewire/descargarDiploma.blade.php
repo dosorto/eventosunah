@@ -12,7 +12,6 @@
                     height: 100vh;
                     margin: 0;
                     padding: 0;
-
                 }
 
                 .certificado {
@@ -57,6 +56,7 @@
                 }
 
                 .certificado-title {
+                    margin-top: 70px;
                     font-size: 3.6em;
                     color: black;
                     font-weight: 800;
@@ -75,7 +75,6 @@
                     font-size: 1em;
                     margin: 5px 0;
                     padding: 0;
-
                 }
 
                 .recipient-name {
@@ -84,12 +83,12 @@
                     font-weight: 400;
                     letter-spacing: 3px;
                     font-family: 'Great Vibes', cursive;
-                    margin: 20px 0;
+                  
                 }
 
                 .certificado-body {
                     text-align: center;
-                    font-size: 12px;
+                    font-size: 15px;
                     padding: 0 7%;
                     color: black;
                     margin-bottom: 60px;
@@ -111,38 +110,28 @@
                 }
 
                 .firmass {
-                    display: flex;
-                    justify-content: space-around;
+                   
                     margin-top: 1px;
                     font-size: 10px;
-                    margin-left: 190px;
-                    margin-right: 190px;
                     font-weight: bold;
                     z-index: 2;
-
                 }
 
                 .firmas {
-                    display: flex;
-                    flex-direction: column;
                     text-align: center;
-                    margin: 0 30px;
-
-
+                    margin: 0 5px; 
+                    align-items: center;
                 }
 
                 .firma {
                     margin-top: -30px;
-                    margin-left: 25px;
                     align-items: center;
-
                 }
 
                 .firma .fondo {
                     height: 84px;
                     width: 84px;
                     margin-bottom: -40px;
-                    margin-right: 30px;
                 }
 
                 .qr-code {
@@ -164,7 +153,6 @@
                     z-index: 2;
                 }
             </style>
-
         </header>
 
         <body>
@@ -176,60 +164,55 @@
                     <div class="certificado-title">CERTIFICADO</div>
                     <div class="certificado-title2">DE RECONOCIMIENTO</div>
                     <div class="certificado-title3">OTORGADO A:</div>
-                    <div class="recipient-name">{{ $Nombre }}
-                        {{ $Apellido }}
-                    </div>
+                    <div class="recipient-name">{{ $Nombre }} {{ $Apellido }}</div>
                 </div>
                 <div class="certificado-body">
-                    Por su destacada asistencia y participación en la conferencia
-                    "{{ $Conferencia }}", presentada por el distinguido
-                    {{ $TituloConferencista }}
-                    {{ $Conferencista }}
-                    celebrada el
-                    {{ \Carbon\Carbon::parse($FechaConferencia)->format('d \d\e F \d\e Y') }}
-                    en el marco del evento "{{ $Evento }}".
+                    Por su destacada asistencia y participación en la conferencia "{{ $Conferencia }}", presentada por el distinguido {{ $TituloConferencista }} {{ $Conferencista }} celebrada el {{ \Carbon\Carbon::parse($FechaConferencia)->format('d \d\e F \d\e Y') }} en el marco del evento "{{ $Evento }}".
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
                 </div>
                 <div class="firmass">
-                    <div class="firmas">
-                        <div class="firma">
-                            <img class="fondo" src="{{ $Firma1}}" />
-                        </div>
-                        <p>________________________</p>
-                        <div class="sello">
-                            <img class="fondo" src="{{ $Sello1}}" />
-                        </div>
-                        <div>{{ $NombreFirma1 }}</div>
-                        <div>{{ $Titulo1 }}</div>
-                    </div>
-                    <div class="firmas">
-                        <div class="firma">
-                            <img class="fondo" src="{{ $Firma2 }}" />
-                        </div>
-                        <p>________________________</p>
-                        <div class="sello">
-                            <img class="fondo" src="{{$Sello2 }}" />
-                        </div>
-                        <div>{{ $NombreFirma2 }}</div>
-                        <div>{{ $Titulo2 }}</div>
-                    </div>
-                    <div class="firmas">
-                        <div class="firma">
-                            <img class="fondo" src="{{$Firma3 }}" />
-                        </div>
-                        <p>________________________</p>
-                        <div class="sello">
-                            <img class="fondo" src="{{ $Sello3 }}" />
-                        </div>
-                        <div>{{ $NombreFirma3 }}</div>
-                        <div>{{ $Titulo3 }}</div>
-                    </div>
+                    <table style="width: 100%; text-align: center;">
+                        <tr>
+                            <td class="firmas">
+                                <div class="firma">
+                                    <img class="fondo" src="{{ $Firma1 }}" />
+                                </div>
+                                <p>______________________________</p>
+                                <div class="sello">
+                                    <img class="fondo" src="{{ $Sello1 }}" />
+                                </div>
+                                <div>{{ $NombreFirma1 }}</div>
+                                <div>{{ $Titulo1 }}</div>
+                            </td>
+                            <td class="firmas">
+                                <div class="firma">
+                                    <img class="fondo" src="{{ $Firma2 }}" />
+                                </div>
+                                <p>______________________________</p>
+                                <div class="sello">
+                                    <img class="fondo" src="{{ $Sello2 }}" />
+                                </div>
+                                <div>{{ $NombreFirma2 }}</div>
+                                <div>{{ $Titulo2 }}</div>
+                            </td>
+                            <td class="firmas">
+                                <div class="firma">
+                                    <img class="fondo" src="{{ $Firma3 }}" />
+                                </div>
+                                <p>______________________________</p>
+                                <div class="sello">
+                                    <img class="fondo" src="{{ $Sello3 }}" />
+                                </div>
+                                <div>{{ $NombreFirma3 }}</div>
+                                <div>{{ $Titulo3 }}</div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <p class="codigo">Código: {{$uuid}}</p>
             </div>
         </body>
     </x-layouts.reportes>
-
 </div>
