@@ -3,47 +3,48 @@
 @section('app-content')
 
 <x-nav/>
-    <div class="container max ">
-        <div class="forms">
-            <div class="form login active dark:bg-gray-900">
-                <span class="title">Iniciar sesión</span>
+<div class="container max">
+    <div class="forms">
+        <div class="form login active bg-white dark:bg-gray-800">
+            <span class="title text-black dark:text-white">Iniciar sesión</span>
 
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="input-field">
-                        <input type="email" id="email" name="email" placeholder="Correo electrónico" required
-                            autofocus>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="password" name="password" class="password" placeholder="Contraseña"
-                            required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="remember_me" name="remember">
-                            <label for="remember_me" class="text">Recuérdame</label>
-                        </div>
-
-                        <a href="{{ route('password.request') }}" class="text">¿No recuerdas la contraseña?</a>
-                    </div>
-
-                    <div class="input-field button">
-                        <input type="submit" value="Iniciar">
-                    </div>
-                </form>
-
-                <div class="login-signup">
-                    <span class="text">¿No tienes cuenta?
-                        <a href="/register" class="text signup-link">Registrarse</a>
-                    </span>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="input-field">
+                    <input type="email" id="email" name="email" placeholder="Correo electrónico" required
+                        class="dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500 placeholder-gray-500 dark:placeholder-gray-300">
+                    <i class="uil uil-envelope text-black dark:text-white icon"></i>
                 </div>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" placeholder="Contraseña"
+                        required class="password dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500 placeholder-gray-500 dark:placeholder-gray-300">
+                    <i class="uil uil-lock icon text-black dark:text-white"></i>
+                    <i class="uil uil-eye-slash text-black dark:text-white showHidePw"></i>
+                </div>
+
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="remember_me" name="remember">
+                        <label for="remember_me" class="text text-black dark:text-white">Recuérdame</label>
+                    </div>
+
+                    <a href="{{ route('password.request') }}" class="text text-blue-800 dark:text-white">¿No recuerdas la contraseña?</a>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Iniciar" class="bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-600 dark:hover:bg-yellow-700">
+                </div>
+            </form>
+
+            <div class="login-signup">
+                <span class="text text-black dark:text-white">¿No tienes cuenta?
+                    <a href="/register" class="text text-blue-800 dark:text-white signup-link">Registrarse</a>
+                </span>
             </div>
         </div>
     </div>
+</div>
+@endsection
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const tipoPerfil = document.getElementById('IdTipoPerfil');
@@ -103,4 +104,3 @@
         closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
     
-@endsection

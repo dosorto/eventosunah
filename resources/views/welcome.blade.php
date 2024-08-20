@@ -8,8 +8,8 @@
 <section>
     <x-nav />
 </section>
-<section class="hero-section">
-    <div class="content">
+<section class="hero-section dark:bg-gray-900">
+    <div class="content dark:text-white text-black">
         <h2>Sistema De Gestión De Eventos</h2>
         <p>La gestión de eventos es una parte fundamental de la administración de una organización.</p>
         <button><a href="/login" style="text-decoration: none; color: #000; font-weight: 500;">Acceder
@@ -18,7 +18,7 @@
 </section>
 
 <section class="event-section">
-    <div class="content-wrapper">
+    <div class="content-wrapper dark:bg-gray-900">
         <h2 class="font-extrabold text-4xl text-black leading-tight dark:text-white mb-2 ml-8">
             Eventos Disponibles
         </h2>

@@ -24,8 +24,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color:#f3f4f6;
-           /* background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
+
+            /* background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
 
         }
 
@@ -314,7 +314,6 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            color: #000;
             font-size: 23px;
             transition: all 0.2s ease;
         }
@@ -389,44 +388,48 @@
                 /* #ca8a04 */
             ;
         }
-
     </style>
 </head>
 
 <body>
-@extends('layouts.login-layout')
-<x-nav/>
+    @extends('layouts.login-layout')
+    <x-nav />
 
-    <div class="containers max mt-20">
-        <div class="forms">
-            <div class="form login active dark:bg-gray-900">
-                <span class="title">Registro De Usuario</span>
+    <div class="containers max mt-20 bg-white dark:bg-gray-800">
+        <div class="forms bg-white dark:bg-gray-800">
+            <div class="form login active bg-white dark:bg-gray-800">
+                <span class="title text-black dark:text-white">Registro De Usuario</span>
 
                 <form method="POST" action="{{ route('registerpost') }}">
                     @csrf
                     <div class="input-field">
-                        <input type="text" placeholder="Nombre completo" id="name" name="name" required>
-                        <i class="uil uil-user"></i>
+                        <input type="text" placeholder="Nombre completo" id="name" name="name" required
+                            class="placeholder-gray-500 dark:placeholder-gray-300 dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500">
+                        <i class="uil uil-user text-black dark:text-white"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Correo electrónico" id="email" name="email" required>
-                        <i class="uil uil-envelope icon"></i>
+                        <input type="email" placeholder="Correo electrónico" id="email" name="email" required
+                            class="placeholder-gray-500 dark:placeholder-gray-300 dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500">
+                        <i class="uil uil-envelope icon text-black dark:text-white"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Crear contraseña" id="password"
-                            name="password" required>
-                        <i class="uil uil-lock icon"></i>
+                        <input type="password"
+                            class="placeholder-gray-500 dark:placeholder-gray-300 password dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500"
+                            placeholder="Crear contraseña" id="password" name="password" required>
+                        <i class="uil uil-lock icon text-black dark:text-white"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirmar contraseña"
-                            id="password_confirmation" name="password_confirmation" autocomplete="new-password"
-                            required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
+                        <input type="password"
+                            class="password placeholder-gray-500 dark:placeholder-gray-300 dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500"
+                            placeholder="Confirmar contraseña" id="password_confirmation" name="password_confirmation"
+                            autocomplete="new-password" required>
+                        <i class="uil uil-lock text-black dark:text-white icon"></i>
+                        <i class="uil uil-eye-slash text-black dark:text-white showHidePw"></i>
                     </div>
 
                     <div class="input-field button text">
-                        <input type="submit" style="text-align: center;" value="Siguiente">
+                        <input type="submit" style="text-align: center;" value="Siguiente"
+                            class="bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-600 dark:hover:bg-yellow-700">
                     </div>
                 </form>
             </div>

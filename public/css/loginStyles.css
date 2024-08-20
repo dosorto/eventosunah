@@ -13,9 +13,6 @@
      display: flex;
      align-items: center;
      justify-content: center;
-     background-color: #f3f4f6;
-   /*  background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);*/
-
  }
 
 
@@ -26,7 +23,7 @@
      width: 90%;
      border-radius: 6px;
      padding: 40px;
-     background-color: #fff;
+ 
      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
  }
 
@@ -41,13 +38,13 @@
      position: relative;
      margin-top: 16px;
      min-height: 440px;
-     background-color: #fff;
+   
      overflow: hidden;
  }
 
  .containerRegister form .formRegister {
      position: absolute;
-     background-color: #fff;
+
      transition: 0.15s ease;
  }
 
@@ -103,7 +100,6 @@
  .containerRegister .inputRegister label {
      font-size: 12px;
      font-weight: 500;
-     color: #2e2e2e;
  }
 
  .containerRegister .inputRegister input,
@@ -112,7 +108,6 @@
      outline: none;
      font-size: 14px;
      font-weight: 400;
-     color: #333;
      border-radius: 5px;
      border: 1px solid #aaa;
      padding: 0 15px;
@@ -144,7 +139,6 @@
      width: 100%;
      border: none;
      outline: none;
-     color: #000;
      font-weight: 500;
      border-radius: 5px;
      margin: 18px 0;
@@ -174,7 +168,7 @@
  }
 
  .containerRegister form .backBtn i {
-     transformRegister: rotate(180deg);
+     transform: rotate(180deg);
  }
 
  .containerRegister form .buttons {
@@ -231,7 +225,7 @@
  .container .form {
      width: 50%;
      padding: 30px;
-     background-color: #fff;
+     
      transition: margin-left 0.20s ease;
  }
 
@@ -338,12 +332,10 @@
  }
 
  .container .form .text {
-     color: #333;
      font-size: 14px;
  }
 
- .container .form a.text {
-     color: #1254a1;
+ .container .form a .text {
      text-decoration: none;
  }
 
@@ -357,7 +349,6 @@
 
  .container .form .button input {
      border: none;
-     color: #000;
      font-size: 17px;
      font-weight: 500;
      letter-spacing: 1px;
