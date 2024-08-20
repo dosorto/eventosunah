@@ -192,7 +192,6 @@ class Conferencias extends Component
         }
 
         $this->openModal();
-        $this->render();
     }
 
     public function delete()

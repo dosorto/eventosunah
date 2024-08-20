@@ -5,10 +5,7 @@
 @endsection
 @extends('layouts.login-layout')
 @section('app-content')
-
-
 <x-nav />
-
 <div class="container dark:bg-gray-900 max">
 
     <div class="forms">
