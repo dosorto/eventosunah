@@ -80,12 +80,12 @@
                                     <td class="px-6 py-4 text-center">
                                         <div class="flex space-x-2 justify-center">
                                             <button wire:click="marcarAsistencia({{ $suscripcion->id }})"
-                                                class="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700">Asistencia</button>
+                                                class="px-3 py-1 w-28 h-10 bg-green-600 text-white rounded-lg hover:bg-green-700">Asistencia</button>
                                             <button wire:click="marcarAusencia({{ $suscripcion->id }})"
-                                                class="px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700">No Asistió</button>
+                                                class="px-3 py-1 w-28 h-10 bg-red-600 text-white rounded-lg hover:bg-red-700">No Asistió</button>
                                             @if ($asistencia && $asistencia->Asistencia)
                                                 <a href="{{ route('vistaDiploma', ['asistencia' => $asistencia->id]) }}"
-                                                    class="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Ver Diploma</a>
+                                                    class="px-3 py-3 w-28 h-10 text-center bg-blue-600 text-white rounded-lg hover:bg-blue-700">Ver Diploma</a>
                                             @endif
                                         </div>
                                     </td>
