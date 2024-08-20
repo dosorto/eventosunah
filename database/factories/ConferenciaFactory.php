@@ -21,6 +21,7 @@ class ConferenciaFactory extends Factory
         $conferencistaId = Conferencista::inRandomOrder()->first()->id;
         return [
             'IdEvento' => $eventoId,
+            'Foto' => $this->faker->imageUrl(),
            'nombre' => $this->faker->sentence,
             'descripcion' => $this->faker->paragraph,
             'fecha' => $this->faker->date(),

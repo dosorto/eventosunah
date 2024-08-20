@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('conferencias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('IdEvento');
+            $table->string('foto')->nullable();
             $table->string('nombre');
             $table->string('descripcion',500);
             $table->date('fecha');

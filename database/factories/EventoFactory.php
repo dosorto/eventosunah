@@ -21,7 +21,7 @@ class EventoFactory extends Factory
     {
         $ModalidadId = Modalidad::inRandomOrder()->first()-> id;
         $LocalidadId = Localidad::inRandomOrder()->first()->id;
-        $diploma = Diploma::inRandomOrder()->first();
+        $diploma = Diploma::inRandomOrder()->first()->id;
         
         return [
             'logo' => $this->faker->imageUrl(),
@@ -34,7 +34,7 @@ class EventoFactory extends Factory
             'horafin' => $this->faker->time,
             'idmodalidad'=> $ModalidadId,
             'idlocalidad' =>$LocalidadId,
-            'IdDiploma' => $diploma ? $diploma->id : null,
+            'IdDiploma' => $diploma ,
             'created_by' => 1
         ];
     }

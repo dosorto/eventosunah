@@ -11,7 +11,7 @@ class Conferencia extends BaseModel
     use SoftDeletes;
 
     protected $table = 'conferencias';
-    protected $fillable = ['IdEvento','nombre','descripcion','fecha','horaInicio','horaFin','lugar','linkreunion', 'idConferencista'];
+    protected $fillable = ['IdEvento','foto','nombre','descripcion','fecha','horaInicio','horaFin','lugar','linkreunion', 'idConferencista'];
     public function conferencista()
     {
         return $this->belongsTo(Conferencista::class, 'idConferencista');

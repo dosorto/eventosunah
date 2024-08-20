@@ -35,7 +35,6 @@ class VistaDiplomas extends Component
             $ruta = is_null($this->uuid) ? 'No verificable' : config('app.url') . '/validarDiploma/' . $this->uuid;
             $this->qrcode = QRCodeService::generateTextQRCode($ruta);
         } else {
-            // redireccionar a la vista de error de que el usuario no esta inscrito en la conferencia
             return redirect()->route('conferencias-inscritas');
         }
     }
