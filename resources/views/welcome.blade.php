@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+<link rel="stylesheet" href="{{ asset('css/fondo.css') }}">
 @endsection
 
 @section('content')
@@ -9,10 +10,13 @@
     <x-nav />
 </section>
 <section class="hero-section dark:bg-gray-900">
-    <div class="content dark:text-white text-black">
+    <img style="z-index: 1;" src="{{ asset('Logo/imagesfondo/left.svg') }}" id="left" />
+    <img style="z-index: 1;"  src="{{ asset('Logo/imagesfondo/right.svg') }}" id="right" />
+
+    <div class="content dark:text-white text-white" style="z-index: 2;" >
         <h2>Sistema De Gestión De Eventos</h2>
-        <p>La gestión de eventos es una parte fundamental de la administración de una organización.</p>
-        <button><a href="/login" style="text-decoration: none; color: #000; font-weight: 500;">Acceder
+        <p>La gestión de eventos es una parte fundamental en la administración de una organización.</p>
+        <button><a href="/login" style="text-decoration: none; color: #fff; font-weight: 500;">Acceder
                 ahora</a></button>
     </div>
 </section>
@@ -24,7 +28,7 @@
         </h2>
         @if($Eventos->isEmpty())
             <div id="alert-additional-content-4"
-                class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-yellow-500 dark:border-yellow-800"
+                class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-white dark:bg-gray-800 dark:text-yellow-500 dark:border-yellow-800"
                 role="alert">
                 <div class="flex items-center">
                     <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

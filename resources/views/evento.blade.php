@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/evento.css') }}">
+<link rel="stylesheet" href="{{ asset('css/fondo.css') }}">
 @endsection
 <style>
     .menu-links {
@@ -12,6 +13,8 @@
 </style>
 @section('content')
 <section>
+<img style="z-index: -1;"  src="{{ asset('Logo/imagesfondo/left.svg') }}" id="left"/>
+<img style="z-index: -1;"  src="{{ asset('Logo/imagesfondo/right.svg') }}"  id="right"/>
     <section>
         <x-nav />
         <section class="hero-section">

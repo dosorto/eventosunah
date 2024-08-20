@@ -487,6 +487,10 @@
     </style>
 </head>
 @extends('layouts.login-layout')
+@section('styles')
+ {{-- <link rel="stylesheet" href="{{ asset('css/fondo.css') }}"> --}} 
+<link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
+@endsection
 <body class="bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
     <!-- Registro Usuario -->
     

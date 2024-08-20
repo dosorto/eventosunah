@@ -389,10 +389,14 @@
             ;
         }
     </style>
+    @section('styles')
+   {{-- <link rel="stylesheet" href="{{ asset('css/fondo.css') }}"> --}} 
+    <link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
+    @endsection
 </head>
-
-<body>
+<body class="bg-gray-100 dark:bg-gray-900">
     @extends('layouts.login-layout')
+
     <x-nav />
 
     <div class="containers max mt-20 bg-white dark:bg-gray-800">
