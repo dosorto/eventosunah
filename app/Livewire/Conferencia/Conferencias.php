@@ -140,15 +140,15 @@ class Conferencias extends Component
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:500',
             'fecha' => 'required|date',
-            'horaInicio' => 'required|date_format:H:i',
-            'horaFin' => 'required|date_format:H:i|after:horaInicio',
+            'horaInicio' => 'required',
+            'horaFin' => 'required|after:horaInicio',
             'lugar' => 'required|string|max:255',
             'linkreunion' => 'required|url',
             'idConferencista' => 'required|exists:conferencistas,id'
         ]);
 
         if ($this->foto) {
-            $this->foto = $this->foto->store('public/eventos');
+            $this->foto = $this->foto->store('public/conferencias');
         } else {
             $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
         }
