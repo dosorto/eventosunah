@@ -84,20 +84,20 @@
                             @forelse($suscripciones as $suscripcion)
                                                         @php
                                                             $asistencia = $suscripcion->asistencias->first();
-                                                            $rowClass = $asistencia ? ($asistencia->Asistencia ? 'bg-green-100' : 'bg-red-100') : 'bg-gray-100';
+                                                            $rowClass = $asistencia ? ($asistencia->Asistencia ? 'dark:bg-green-400 bg-green-200' : 'dark:bg-red-400 bg-red-200') : 'bg-gray-100';
                                                         @endphp
                                                         <tr
-                                                            class="{{ $rowClass }} border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="{{ $rowClass }} border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-200">
+                                                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
                                                                 {{ $suscripcion->id }}
                                                             </td>
-                                                            <td class="px-6 py-4">
+                                                            <td class="px-6 py-4 dark:text-gray-900">
                                                                 {{ $suscripcion->persona->nombre }} {{ $suscripcion->persona->apellido }}
                                                             </td>
-                                                            <td class="px-6 py-4">
+                                                            <td class="px-6 py-4 dark:text-gray-900">
                                                                 {{ $suscripcion->conferencia->nombre }}
                                                             </td>
-                                                            <td class="px-6 py-4">
+                                                            <td class="px-6 py-4 dark:text-gray-900">
                                                                 @if($asistencia)
                                                                     {{ $asistencia->Asistencia ? 'Presente' : 'Ausente' }}
                                                                 @else
@@ -107,7 +107,7 @@
                                                             <td class="px-6 py-4 text-center">
                                                                 <div class="flex space-x-2 justify-center">
                                                                     <button wire:click="marcarAsistencia({{ $suscripcion->id }})"
-                                                                        class="px-3 py-1 w-28 h-10 bg-green-600 text-white rounded-lg hover:bg-green-700">Asistió</button>
+                                                                        class="px-3 py-1 w-28 h-10 bg-green-500 text-white rounded-lg hover:bg-green-600">Asistió</button>
                                                                     <button wire:click="marcarAusencia({{ $suscripcion->id }})"
                                                                         class="px-3 py-1 w-28 h-10 bg-red-600 text-white rounded-lg hover:bg-red-700">No
                                                                         Asistió</button>
