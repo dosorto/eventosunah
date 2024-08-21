@@ -47,7 +47,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                         <tr>
                             <th scope="col" class="px-6 py-3">No.</th>
-                            <th scope="col" class="px-6 py-3">Foto</th>
+                            <th scope="col" class="px-6 py-3">Imagen</th>
                             <th scope="col" class="px-6 py-3">Evento</th>
                             <th scope="col" class="px-6 py-3">Nombre</th>
                             <th scope="col" class="px-6 py-3">Lugar</th>
@@ -62,9 +62,10 @@
                                     {{ $conferencia->id }}</td>
                                     <td class="px-6 py-4">
                                         @if($conferencia->foto)
-                                            <img src="{{ Storage::url($conferencia->foto) }}" alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                            <img src="{{ asset(str_replace('public', 'storage', $conferencia->foto)) }}"
+                                                alt="Logo del Evento" class="w-12 h-12 object-cover">
                                         @else
-                                            <img src="{{ asset('images/default-profile.png') }}" alt="Sin foto" class="w-12 h-12 object-cover rounded-full">
+                                        <img src="{{ asset('images/default-profile.png') }}" alt="Imagen" class="w-12 h-12 object-cover">
                                         @endif
                                     </td>
 

@@ -155,7 +155,7 @@ class Conferencias extends Component
 
         Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
             'IdEvento' => $this->IdEvento,
-            'foto' => $this->foto,
+            'foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'fecha' => $this->fecha,

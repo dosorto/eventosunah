@@ -38,7 +38,7 @@
 
                     <div class="mb-4">
                         <label for="foto"
-                            class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Foto:</label>
+                            class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Imagen:</label>
                         <input type="file" wire:model="foto"
                             class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
                         @if ($foto)
