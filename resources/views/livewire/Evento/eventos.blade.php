@@ -74,7 +74,7 @@
                                     <td class="px-6 py-4">
                                         @if($nombreevento->logo)
                                             <img src="{{ asset(str_replace('public', 'storage', $nombreevento->logo)) }}"
-                                                alt="Logo del Evento" class="w-12 h-12 object-cover rounded-full">
+                                                alt="Logo del Evento" class="w-12 h-12 object-cover">
                                         @else
                                             Sin foto
                                         @endif
@@ -86,7 +86,7 @@
                                     <td class="px-6 py-4">
                                     @if($nombreevento->diploma->Plantilla)
                                             <img src="{{ asset(str_replace('public', 'storage', $nombreevento->diploma->Plantilla)) }}"
-                                                alt="Plantilla" class="w-12 h-12 object-cover rounded-full">
+                                                alt="Plantilla" class="w-12 h-12 object-cover">
                                         @else
                                             Sin Plantilla
                                         @endif

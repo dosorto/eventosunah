@@ -75,7 +75,7 @@
                                     <td class="px-6 py-4">
                                         @if($diploma->Plantilla)
                                             <img src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}"
-                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
+                                                alt="Foto" class="w-12 h-12 object-cover">
                                         @else
                                             Sin Plantilla
                                         @endif
