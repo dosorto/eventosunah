@@ -34,7 +34,7 @@
                             class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                             type="text" placeholder="Buscar evento..." readonly>
                         @error('IdEvento') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
+                    </div>
 
                     <div class="mb-4">
                         <label for="foto"
@@ -89,8 +89,7 @@
 
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div class="mb-4">
-                            <label for="horaInicio"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Inicio:</label>
+                            <label for="horaInicio" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Inicio:</label>
                             <input type="time"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="horaInicio" wire:model="horaInicio">
@@ -98,8 +97,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="horaFin" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora
-                                Fin:</label>
+                            <label for="horaFin" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Fin:</label>
                             <input type="time"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="horaFin" wire:model="horaFin">
@@ -140,7 +138,7 @@
 
                 <div class="bg-gray-50 px-6 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button type="submit" wire:click.prevent="store()"
+                        <button type="submit"
                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                             Guardar
                         </button>
@@ -155,5 +153,5 @@
             </form>
         </div>
     </div>
-
+    
 </div>

@@ -136,7 +136,7 @@ class Conferencias extends Component
     {
         $this->validate([
             'IdEvento' => 'required|exists:eventos,id',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'nullable|image|max:1024',
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:500',
             'fecha' => 'required|date',
@@ -149,6 +149,10 @@ class Conferencias extends Component
 
         if ($this->foto) {
             $this->foto = $this->foto->store('public/conferencias');
+        } elseif ($this->conferencia_id) {
+            // Si no se seleccionó una nueva foto pero se está editando, mantener la foto actual
+            $conferencia = Conferencia::findOrFail($this->conferencia_id);
+            $this->foto = $conferencia->foto;
         } else {
             $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
         }
