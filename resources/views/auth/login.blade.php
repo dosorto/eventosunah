@@ -6,23 +6,22 @@
 
 @section('app-content')
 <x-nav />
+<br>
 <div class="container dark:bg-gray-900 max">
-
+    <br>
+    {{-- Alerta de error de Flowbite --}}
+        @if ($errors->any())
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-800 dark:text-red-300" role="alert">
+                <span class="font-medium">Error:</span> Las credenciales ingresadas son incorrectas. Por favor, inténtalo de nuevo.
+            </div>
+        @endif
     <div class="forms">
+        
         <div class="form login active bg-white dark:bg-gray-800">
+            
             <span class="title text-black dark:text-white">Iniciar sesión</span>
 
-            <!-- Mostrar Errores de Validación -->
-            @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <strong class="font-bold">{{ __('¡Oh no! Algo salió mal.') }}</strong>
-                    <ul class="mt-2 list-disc list-inside text-sm">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+           
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
