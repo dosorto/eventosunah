@@ -71,11 +71,15 @@ class HistorialConferencias extends Component
             return;
         }
 
-        // Crear o actualizar la entrada en la tabla DiplomaGenerado
-        $diplomaGenerado = DiplomaGenerado::firstOrCreate(
-            ['IdAsistencia' => $IdAsistencia],
-            ['uuid' => \Str::uuid()]
-        );
+        // Buscar la entrada en la tabla DiplomaGenerado
+        $diplomaGenerado = DiplomaGenerado::where('IdAsistencia', $IdAsistencia)->first();
+
+        if (!$diplomaGenerado) {
+            // Manejar el caso en que no se encuentre el diploma generado
+            session()->flash('error', 'No se encontró el diploma generado correspondiente al IdAsistencia');
+            return;
+        }
+
         $uuidDiploma = $diplomaGenerado->uuid;
 
         // Generar el código QR
@@ -98,7 +102,7 @@ class HistorialConferencias extends Component
             'Titulo1' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo1,
             'Titulo2' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo2,
             'Titulo3' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo3,
-            'Plantilla' =>  $asistencia->suscripcion->conferencia->evento->diploma->Plantilla ,
+            'Plantilla' => $asistencia->suscripcion->conferencia->evento->diploma->Plantilla,
             'Firma1' => $asistencia->suscripcion->conferencia->evento->diploma->Firma1,
             'Firma2' => $asistencia->suscripcion->conferencia->evento->diploma->Firma2,
             'Firma3' => $asistencia->suscripcion->conferencia->evento->diploma->Firma3,
