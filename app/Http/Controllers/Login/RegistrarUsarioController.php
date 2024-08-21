@@ -53,7 +53,7 @@ class RegistrarUsarioController extends Controller
         // dd($user->password);
         $nacionalidades = Nacionalidad::all();
         $tipoperfiles = Tipoperfil::all();
-        return view('auth.nueva-persona', ['user' => $user, 'password' => $user->password,  'nacionalidades' => $nacionalidades, 'tipoperfiles' => $tipoperfiles]);
+        return view('auth.nueva-persona', ['user' => $user, 'password' => $user->password, 'nacionalidades' => $nacionalidades, 'tipoperfiles' => $tipoperfiles]);
     }
 
     public function passwordRules()
@@ -68,6 +68,32 @@ class RegistrarUsarioController extends Controller
 
     public function registrarPersona(Request $request)
     {
+        // Validar los campos de nombre y apellido
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'dni' => 'required|string|max:20',
+            'correo' => 'required|string|email|max:255|unique:personas',
+            'correoInstitucional' => 'nullable|string|email|max:255',
+            'fechaNacimiento' => 'required|date',
+            'sexo' => 'required|string|max:1',
+            'direccion' => 'required|string|max:255',
+            'telefono' => 'required|string|max:20',
+            'numeroCuenta' => 'nullable|string|max:20',
+            'IdNacionalidad' => 'required|integer',
+            'IdTipoPerfil' => 'required|integer',
+        ]);
+
+        // Función para formatear nombres y apellidos
+        function formatName($name)
+        {
+            return ucwords(strtolower($name));
+        }
+
+        // Formatear el nombre y el apellido
+        $nombre = formatName($request->nombre);
+        $apellido = formatName($request->apellido);
+
         $userData = json_decode($request->User, true);
 
         // Crear una nueva instancia del modelo User con los datos decodificados
@@ -76,12 +102,11 @@ class RegistrarUsarioController extends Controller
         $user->save();
 
         $user->roles()->attach(2);
-        
         $persona = new Persona();
         $persona->IdUsuario = $user->id;
         $persona->dni = $request->dni;
-        $persona->nombre = $request->nombre;
-        $persona->apellido = $request->apellido;
+        $persona->nombre = $nombre; // Guardar el nombre formateado
+        $persona->apellido = $apellido; // Guardar el apellido formateado
         $persona->correo = $request->correo;
         $persona->correoInstitucional = $request->correoInstitucional;
         $persona->fechaNacimiento = $request->fechaNacimiento;
@@ -102,7 +127,6 @@ class RegistrarUsarioController extends Controller
 
         return redirect()->route('eventoVista');
     }
-
 
 
 

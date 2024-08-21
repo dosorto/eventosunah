@@ -121,11 +121,11 @@
 
  .containerRegister .inputRegister select,
  .inputRegister input .inputRegister textarea[type="date"] {
-     color: #707070;
+     color: #fff;
  }
 
  .containerRegister .inputRegister input[type="date"]:valid {
-     color: #333;
+     color: #fff;
  }
 
  .containerRegister form button,
