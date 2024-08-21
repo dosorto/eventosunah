@@ -120,43 +120,49 @@
 
     </div>
     @if (session()->has('error'))
-                    <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
-                        <div class="fixed inset-0 transition-opacity">
-                            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                        </div>
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
 
-                        <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                            <div class="p-6">
-                                <h3 class="text-lg font-semibold mb-4">Error</h3>
-                                <p>{{ session('error') }}</p>
-                                <div class="mt-4 flex justify-end">
-                                    <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
-                                        Aceptar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Error</h3>
+                    <p>{{ session('error') }}</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)"
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Aceptar
+                        </button>
                     </div>
-                @elseif ($confirmingDelete)
-                    <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
-                        <div class="fixed inset-0 transition-opacity">
-                            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                        </div>
+                </div>
+            </div>
+        </div>
+    @elseif ($confirmingDelete)
+        <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
 
-                        <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                            <div class="p-6">
-                                <h3 class="text-lg font-semibold mb-4">Confirmación de Eliminación</h3>
-                                <p>¿Estás seguro de que deseas eliminar la modalidad: "<strong>{{ $nombreAEliminar }}</strong>"? Esta acción no se puede deshacer.</p>
-                                <div class="mt-4 flex justify-end">
-                                    <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
-                                        Cancelar
-                                    </button>
-                                    <button wire:click="delete" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                                        Eliminar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Confirmación de Eliminación</h3>
+                    <p>¿Estás seguro de que deseas eliminar la modalidad: "<strong>{{ $nombreAEliminar }}</strong>"? Esta
+                        acción no se puede deshacer.</p>
+                    <div class="mt-4 flex justify-end">
+                        <button wire:click="$set('confirmingDelete', false)"
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                            Cancelar
+                        </button>
+                        <button wire:click="delete"
+                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                            Eliminar
+                        </button>
                     </div>
-                @endif
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

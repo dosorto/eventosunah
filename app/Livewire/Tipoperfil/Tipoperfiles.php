@@ -6,7 +6,6 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Tipoperfil;
 use App\Models\Persona;
-
 class Tipoperfiles extends Component
 {
     use WithPagination;
@@ -80,13 +79,13 @@ class Tipoperfiles extends Component
             $tipoperfil = Tipoperfil::find($this->IdAEliminar);
 
             if (!$tipoperfil) {
-                session()->flash('error', 'localidad no encontrada.');
+                session()->flash('error', 'Tipo de perfil no encontrado.');
                 $this->confirmingDelete = false;
                 return;
             }
 
-            $tipoperfil->forceDelete();
-            session()->flash('message', 'tipo perfil eliminado correctamente!');
+            $tipoperfil->delete();
+            session()->flash('message', 'Tipo de perfil eliminado correctamente!');
             $this->confirmingDelete = false;
         }
     }
@@ -96,12 +95,12 @@ class Tipoperfiles extends Component
         $tipoperfil = Tipoperfil::find($id);
 
         if (!$tipoperfil) {
-            session()->flash('error', 'tipo perfil no encontrado.');
+            session()->flash('error', 'Tipo de perfil no encontrado.');
             return;
         }
 
-        if ($tipoperfil && !$tipoperfil->personas()->exists()) {
-            session()->flash('error', 'No se puede eliminar el tipo de perfil: '. $tipoperfil->tipoperfil .', porque está enlazado a una o más personas');
+        if ($tipoperfil->personas()->exists()) {
+            session()->flash('error', 'No se puede eliminar el tipo de perfil: ' . $tipoperfil->tipoperfil . ', porque está enlazado a una persona.');
             return;
         }
 
@@ -109,5 +108,4 @@ class Tipoperfiles extends Component
         $this->nombreAEliminar = $tipoperfil->tipoperfil;
         $this->confirmingDelete = true;
     }
-
 }

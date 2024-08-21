@@ -4,16 +4,18 @@ namespace App\Livewire\Evento;
 
 use App\Models\Modalidad;
 use App\Models\Localidad;
+use DiplomaComponent;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use App\Models\Evento;
+use App\Models\Diploma;
 
 class Eventos extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $logo, $nombreevento, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $evento_id, $search;
+    public $logo, $nombreevento, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $IdDiploma, $evento_id, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
     public $eventoIdAEliminar;
@@ -22,7 +24,7 @@ class Eventos extends Component
 
     public function render()
     {
-        $nombreeventos = Evento::with('modalidad', 'localidad')
+        $nombreeventos = Evento::with('modalidad', 'localidad', 'diploma')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'DESC')
             ->paginate(8);
@@ -30,12 +32,13 @@ class Eventos extends Component
         return view('livewire.Evento.eventos', ['nombreeventos' => $nombreeventos]);
     }
 
-    public $modalidades, $localidades, $conferencias;
+    public $modalidades, $localidades, $diplomas;
 
     public function mount()
     {
         $this->modalidades = Modalidad::all();
         $this->localidades = Localidad::all();
+        $this->diplomas = Diploma::all();
     }
 
     public function create()
@@ -66,6 +69,7 @@ class Eventos extends Component
         $this->horafin = '';
         $this->idmodalidad = '';
         $this->idlocalidad = '';
+        $this->IdDiploma = '';
     }
 
     public function store()
@@ -76,11 +80,12 @@ class Eventos extends Component
             'descripcion' => 'required',
             'organizador' => 'required',
             'fechainicio' => 'required',
-            'fechafinal' => 'required',
+            'fechafinal' => 'required|after:fechainicio',
             'horainicio' => 'required',
-            'horafin' => 'required',
+            'horafin' => 'required|after:horainicio',
             'idmodalidad' => 'required',
             'idlocalidad' => 'required',
+            'IdDiploma' => 'required',
         ]);
 
         $defaultLogo = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
@@ -106,6 +111,7 @@ class Eventos extends Component
             'horafin' => $this->horafin,
             'idmodalidad' => $this->idmodalidad,
             'idlocalidad' => $this->idlocalidad,
+            'IdDiploma' => $this->IdDiploma,
         ]);
 
         session()->flash('message', 
@@ -131,10 +137,7 @@ class Eventos extends Component
         $this->horafin = $nombreevento->horafin;
         $this->idmodalidad = $nombreevento->idmodalidad;
         $this->idlocalidad = $nombreevento->idlocalidad;
-
-       
-
-
+        $this->IdDiploma = $nombreevento->IdDiploma;
         $this->openModal();
     }
 

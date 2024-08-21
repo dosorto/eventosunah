@@ -121,7 +121,7 @@ class Asistencias extends Component
                 return;
             }
 
-            $asistencia->Forcedelete();
+            $asistencia->delete();
             session()->flash('message', 'Asistencia eliminado correctamente!');
             $this->confirmingDelete = false; // Cierra el modal de confirmación
         }
