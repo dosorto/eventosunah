@@ -294,7 +294,6 @@
      position: absolute;
      top: 50%;
      transform: translateY(-50%);
-     color: #000;
      font-size: 23px;
      transition: all 0.5s ease;
  }

@@ -59,16 +59,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // Crear el usuario
-    $user = User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-    ]);
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
 
-    $defaultRoleId = 4; 
-
-    $user->roles()->attach($defaultRoleId);
-    // redireccionar a la ruta practica
-    return redirect()->route('practica');
-}
+        $defaultRoleId = 4;
+        session()->flash('message', $data['name']? 'Usuario actualizado correctamente!' : 'Usuario creado correctamente!');
+        $user->roles()->attach($defaultRoleId);
+        // redireccionar a la ruta practica
+        return redirect()->route('practica');
+    }
 }
