@@ -131,7 +131,7 @@
                                     wire:model="IdDiploma">
                                     <option value="">Plantilla del diploma</option>
                                     @foreach($diplomas as $diploma)
-                                        <option value="{{ $diploma->id }}">Plantilla Número: {{ $diploma->id }}</option>
+                                        <option value="{{ $diploma->id }}">Plantilla Diploma: {{ $diploma->Nombre }}</option>
                                     @endforeach
                                 </select>
                                 @error('IdDiploma') <span class="text-red-500">{{ $message }}</span>@enderror
