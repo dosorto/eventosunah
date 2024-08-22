@@ -130,14 +130,7 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
         }
 
-        .containerRegister .inputRegister select,
-        .inputRegister input .inputRegister textarea[type="date"] {
-            color: #707070;
-        }
-
-        .containerRegister .inputRegister input[type="date"]:valid {
-            color: #333;
-        }
+       
 
         .containerRegister form button,
         .backBtn {

@@ -3,7 +3,7 @@
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
 @endsection
-
+<body class="dark:bg-gray-900">
 @section('app-content')
 <x-nav />
 <br>
@@ -123,3 +123,4 @@
     // Close mobile menu on close button click
     closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
 </script>
+</body>
