@@ -24,7 +24,7 @@ class ConferenciaFactory extends Factory
             'Foto' => $this->faker->imageUrl(),
            'nombre' => $this->faker->sentence,
             'descripcion' => $this->faker->paragraph,
-            'fecha' => $this->faker->date(),
+            'fecha' => $this->faker->dateTimeBetween('now', '+1 year')->format('Y-m-d'),
             'horaInicio' => $this->faker->time(),
             'horaFin' => $this->faker->time(),
             'lugar' => $this->faker->address,
