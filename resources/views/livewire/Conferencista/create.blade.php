@@ -33,7 +33,7 @@
                             <label for="foto" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Foto:</label>
                             <input type="file" wire:model="foto"
                                 class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                            @if ($foto)
+                            @if ($foto && $foto instanceof \Illuminate\Http\UploadedFile)
                                 <img src="{{ $foto->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
                             @endif
                         </div>
@@ -82,7 +82,7 @@
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                                 <option value="Otro">Otro</option>
-                                <!-- Agrega más opciones si es necesario -->
+                                
                             </select>
                             @error('persona.sexo') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
@@ -248,30 +248,53 @@
                         </div>
                         <div class="mb-4">
                             <label for="tipoPerfil" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Tipo de Perfil:</label>
-                            <select wire:model="IdTipoPerfil"
+                            <select wire:model.live="IdTipoPerfil"
                                 class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 id="tipoPerfil">
                                 <option value="" disabled selected>Seleccione un tipo de perfil</option>
                                 @foreach($tipoperfiles as $tipoPerfil)
-                                        <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
-                                    @endforeach
+                                    <option value="{{ $tipoPerfil->id }}">{{ $tipoPerfil->tipoperfil }}</option>
+                                @endforeach
                             </select>
                             @error('persona.IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-4">
-                            <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
-                            <input type="email" wire:model="correoInstitucional"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="correoInstitucional" placeholder="Correo Institucional">
-                            @error('persona.correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
-                            <input type="text" wire:model="numeroCuenta"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="numeroCuenta" placeholder="Número de Cuenta">
-                            @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+
+
+                        @if($IdTipoPerfil == 1 ) 
+                            <div class="mb-4">
+                                <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                                <input type="email" wire:model="correoInstitucional"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="correoInstitucional" placeholder="Correo Institucional">
+                                @error('persona.correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
+                                <input type="text" wire:model="numeroCuenta"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="numeroCuenta" placeholder="Número de Cuenta">
+                                @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+                        @endif
+                        @if($IdTipoPerfil == 3) 
+                            <div class="mb-4">
+                                <label for="correoInstitucional" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Correo Institucional:</label>
+                                <input type="email" wire:model="correoInstitucional"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="correoInstitucional" placeholder="Correo Institucional">
+                                @error('persona.correoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="numeroCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Código de docente:</label>
+                                <input type="text" wire:model="numeroCuenta"
+                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    id="numeroCuenta" placeholder="Número de Cuenta">
+                                @error('persona.numeroCuenta') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+                        @endif
+
 
                         <div class="mb-4">
                             <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
@@ -280,10 +303,26 @@
                                 id="descripcion" placeholder="Descripción"></textarea>
                             @error('descripcion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
+                        <div class="mb-4">
+                            <label for="firma" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma:</label>
+                            <input type="file" wire:model="firma"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($firma && $firma instanceof \Illuminate\Http\UploadedFile)
+                                <img src="{{ $firma->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="sello" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sello:</label>
+                            <input type="file" wire:model="sello"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($sello && $sello instanceof \Illuminate\Http\UploadedFile)
+                                <img src="{{ $sello->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
 
                     </div>
 
-                   
 
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
                         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

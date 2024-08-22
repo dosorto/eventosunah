@@ -24,14 +24,16 @@ class DatabaseSeeder extends Seeder
            RolSeeder::class,
            FirmaSeeder::class,
            TipoPerfilSeeder::class,
-           DepartamentoSeeder::class,
-           CarreraSeeder::class,
            LocalidadSeeder::class,
            PersonaSeeder::class,
            ConferencistaSeeder::class,
+           DiplomaSeeder::class,
            EventoSeeder::class,
            ConferenciaSeeder::class,
-           DiplomaSeeder::class,
+         
+
+            
+          
           
        ]);
     }

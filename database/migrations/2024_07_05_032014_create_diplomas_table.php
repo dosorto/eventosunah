@@ -13,21 +13,25 @@ return new class extends Migration
     {
         Schema::create('diplomas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo')->unique();
-            $table->string('URL');
-            $table->date('Fecha');
-            $table->unsignedBigInteger('IdConferencia')->nullable();
-            $table->unsignedBigInteger('IdEvento')->nullable();
-            $table->unsignedBigInteger('IdFirma');
+            $table->string('Codigo')->unique();
+            $table->string('Plantilla');
+            $table->string('Nombre');
+            $table->string('Titulo1');
+            $table->string('NombreFirma1');
+            $table->string('Firma1');
+            $table->string('Sello1')->nullable();
+            $table->string('Titulo2')->nullable();
+            $table->string('NombreFirma2')->nullable();
+            $table->string('Firma2')->nullable();
+            $table->string('Sello2')->nullable();
+           
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
-            $table->foreign('IdFirma')->references('id')->on('firmas')->onDelete('restrict');
-
+        //    $table->foreign('IdConferencia')->references('id')->on('conferencias')->onDelete('restrict');
         });
     }
 

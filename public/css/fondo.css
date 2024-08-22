@@ -1,0 +1,45 @@
+body, html {
+    min-height:100%;
+    height: 100%;
+    margin: 0;
+}
+
+
+body {
+    background: url('/Logo/imagesfondo/bg.svg') no-repeat;
+    background-size:cover;
+    z-index: -1;
+}
+
+#left {
+    position: absolute;
+    margin-left: -126px;
+    top: 60%;
+    width: 252px;
+    height: 252px;
+    -webkit-transition: margin-left 3s; /* For Safari 3.1 to 6.0 */
+    /*transition: margin-left 5s*/
+}
+
+#left:hover {
+    margin-left: 30px;
+
+}
+
+#right {
+    position: absolute;
+    top:20%;
+    right: 0;
+    z-index: 3;
+    width: 217px;
+    height: 372px;
+    -webkit-transition: height 3s;
+
+}
+
+#right:hover {
+    height: calc(100% * 1.2);
+}
+
+
+

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Diploma;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Modalidad;
 use App\Models\Localidad;
@@ -18,8 +19,9 @@ class EventoFactory extends Factory
      */
     public function definition(): array
     {
-        $ModalidadId = Modalidad::inRandomOrder()->first()->id;
+        $ModalidadId = Modalidad::inRandomOrder()->first()-> id;
         $LocalidadId = Localidad::inRandomOrder()->first()->id;
+        $diploma = Diploma::inRandomOrder()->first()->id;
         
         return [
             'logo' => $this->faker->imageUrl(),
@@ -32,6 +34,7 @@ class EventoFactory extends Factory
             'horafin' => $this->faker->time,
             'idmodalidad'=> $ModalidadId,
             'idlocalidad' =>$LocalidadId,
+            'IdDiploma' => $diploma ,
             'created_by' => 1
         ];
     }

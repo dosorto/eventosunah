@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->unsignedBigInteger('IdPersona')->nullable();
             $table->string('titulo')->nullable();
+            $table->string('firma')->nullable();
+            $table->string('sello')->nullable();
             $table->string('descripcion', 500)->nullable();
-            $table->integer('created_by'); 
+            $table->integer('created_by')->nullable(); 
             $table->integer('deleted_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

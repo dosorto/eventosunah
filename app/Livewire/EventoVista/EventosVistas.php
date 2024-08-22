@@ -7,6 +7,7 @@ use App\Models\Localidad;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Evento;
+use Carbon\Carbon;
 
 class EventosVistas extends Component
 {
@@ -17,12 +18,14 @@ class EventosVistas extends Component
 
     public function render()
     {
-        $targetasEventos = Evento::with('modalidad', 'localidad')
+        $Eventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'ASC')
+            ->where('fechaInicio', '<=', Carbon::today())
+            ->where('fechaFinal', '>=', Carbon::today())
+            ->orderBy('id', 'DESC')
             ->paginate(9);
 
-        return view('livewire.EventoVista.eventos-vista', ['targetasEventos' => $targetasEventos]);
+        return view('livewire.EventoVista.eventos-vista', ['Eventos' => $Eventos]);
     }
 
     public $modalidades, $localidades;
@@ -33,3 +36,4 @@ class EventosVistas extends Component
         $this->localidades = Localidad::all();
     }
 }
+
