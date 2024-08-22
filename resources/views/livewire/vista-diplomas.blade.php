@@ -74,7 +74,8 @@
                     padding: 0;
                 }
 
-                .recipient-name {
+                .recipient-name,
+                .conferencista-name {
                     text-align: center;
                     font-size: 3.2em;
                     font-weight: 400;
@@ -155,16 +156,16 @@
                 <div class="gold-swirls">
                     <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}" />
                 </div>
-                <div class="certificado-header" style="">
+                <div class="certificado-header">
                     <div class="certificado-title">CERTIFICADO</div>
                     <div class="certificado-title2">DE RECONOCIMIENTO</div>
                     <div class="certificado-title3">OTORGADO A:</div>
-                    <div class="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
+                    <div class="recipient-name" id="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
                 </div>
                 <div class="certificado-body">
                     Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada
                     por el distinguido {{$conferencia->conferencista->titulo}}
-                    {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}},
+                    <span id="conferencista-name">{{ $conferencia->conferencista->persona->nombre }} {{$conferencia->conferencista->persona->apellido}}</span>,
                     celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco
                     del evento "{{$evento->nombreevento}}".
                     <div>
@@ -236,7 +237,7 @@
                         @endif
                         <p>______________________________</p>
                         @if($conferencia->conferencista->persona->nombre)
-                        <div>{{$conferencia->conferencista->persona->nombre }} {{$conferencia->conferencista->persona->apellido}}</div>
+                        <div id="conferencista-name-2">{{ $conferencia->conferencista->persona->nombre }} {{$conferencia->conferencista->persona->apellido}}</div>
                         @endif
 
                         @if($conferencia->conferencista->titulo)
@@ -260,6 +261,33 @@
         </button>
 
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function capitalizeName(name) {
+                    return name.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
+                }
+
+                // Aplicar la capitalización al nombre y apellido del destinatario
+                const recipientNameElement = document.getElementById('recipient-name');
+                if (recipientNameElement) {
+                    const [nombre, apellido] = recipientNameElement.innerText.split(' ');
+                    recipientNameElement.innerText = `${capitalizeName(nombre)} ${capitalizeName(apellido)}`;
+                }
+
+                // Aplicar la capitalización al nombre y apellido del conferencista
+                const conferencistaNameElement = document.getElementById('conferencista-name');
+                if (conferencistaNameElement) {
+                    const [nombre, apellido] = conferencistaNameElement.innerText.split(' ');
+                    conferencistaNameElement.innerText = `${capitalizeName(nombre)} ${capitalizeName(apellido)}`;
+                }
+
+                // Aplicar la capitalización al nombre y apellido del conferencista en la firma
+                const conferencistaNameElement2 = document.getElementById('conferencista-name-2');
+                if (conferencistaNameElement2) {
+                    const [nombre, apellido] = conferencistaNameElement2.innerText.split(' ');
+                    conferencistaNameElement2.innerText = `${capitalizeName(nombre)} ${capitalizeName(apellido)}`;
+                }
+            });
+
             function imprimir() {
                 // Configurar el tamaño del papel en carta y ponerlo en modo horizontal
                 var css = '@page { size: letter landscape; margin: 0; } body { margin: 0; padding: 0; }',
