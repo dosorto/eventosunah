@@ -93,8 +93,14 @@
             @foreach ($conferencias as $suscripcion)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
-                            alt="Imagen Conferencia" class="rounded-t-lg" />
+                        @if($suscripcion->conferencia->foto)
+                            <img src="{{ asset(str_replace('public', 'storage', $suscripcion->conferencia->foto)) }}" alt="Logo del Evento"
+                                class="w-full h-60 object-cover rounded-t-lg">
+                        @else
+                            <img src="https://th.bing.com/th/id/R.653172c106ff8be48c9881731a77cf82?rik=SPJhwr7DH8CK0A&riu=http%3a%2f%2fwww.puertopixel.com%2fwp-content%2fuploads%2f2011%2f03%2fFondos-web-Texturas-web-abtacto-7.jpg&ehk=jq2ET132JWRHBPfnU8ZZR5pOfWyPfrDZQmlNxKipMqc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+                                alt="Imagen Conferencia" class="rounded-t-lg" />
+                        @endif
+
                     </a>
                     <div class="p-5">
                         <a href="#">
