@@ -132,71 +132,73 @@ class Conferencias extends Component
         $this->IdEvento = '';
     }
 
-    public function store()
-    {
-        $this->validate([
-            'IdEvento' => 'required|exists:eventos,id',
-            'foto' => 'nullable|image|max:1024',
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:500',
-            'fecha' => 'required|date',
-            'horaInicio' => 'required',
-            'horaFin' => 'required|after:horaInicio',
-            'lugar' => 'required|string|max:255',
-            'linkreunion' => 'required|url',
-            'idConferencista' => 'required|exists:conferencistas,id'
-        ]);
+   public function edit($id)
+{
+    $conferencia = Conferencia::findOrFail($id);
+    $this->conferencia_id = $id;
+    $this->IdEvento = $conferencia->IdEvento;
+    $this->nombre = $conferencia->nombre;
+    $this->descripcion = $conferencia->descripcion;
+    $this->fecha = $conferencia->fecha;
+    $this->horaInicio = $conferencia->horaInicio;
+    $this->horaFin = $conferencia->horaFin;
+    $this->lugar = $conferencia->lugar;
+    $this->linkreunion = $conferencia->linkreunion;
+    $this->idConferencista = $conferencia->idConferencista;
 
-        if ($this->foto) {
-            $this->foto = $this->foto->store('public/conferencias');
-        } elseif ($this->conferencia_id) {
-            // Si no se seleccionó una nueva foto pero se está editando, mantener la foto actual
-            $conferencia = Conferencia::findOrFail($this->conferencia_id);
-            $this->foto = $conferencia->foto;
-        } else {
-            $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
-        }
-
-        Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
-            'IdEvento' => $this->IdEvento,
-            'foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion,
-            'fecha' => $this->fecha,
-            'horaInicio' => $this->horaInicio,
-            'horaFin' => $this->horaFin,
-            'lugar' => $this->lugar,
-            'linkreunion' => $this->linkreunion,
-            'idConferencista' => $this->idConferencista,
-        ]);
-
-        session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
-        $this->closeModal();
-        $this->resetInputFields();
-        return redirect(request()->header('Referer'));  // Recarga la página
+    // Cargar el nombre del conferencista seleccionado
+    $conferencista = Conferencista::find($this->idConferencista);
+    if ($conferencista) {
+        $this->inputSearchConferencista = $conferencista->persona->nombre . ' ' . $conferencista->persona->apellido;
     }
 
-    public function edit($id)
-    {
-        $conferencia = Conferencia::findOrFail($id);
-        $this->conferencia_id = $id;
-        $this->IdEvento = $conferencia->IdEvento;
-        $this->nombre = $conferencia->nombre;
-        $this->descripcion = $conferencia->descripcion;
-        $this->fecha = $conferencia->fecha;
-        $this->horaInicio = $conferencia->horaInicio;
-        $this->horaFin = $conferencia->horaFin;
-        $this->lugar = $conferencia->lugar;
-        $this->linkreunion = $conferencia->linkreunion;
-        $this->idConferencista = $conferencia->idConferencista;
+    // Abrir el modal para edición
+    $this->openModal();
+}
 
-        $conferencista = Conferencista::find($this->idConferencista);
-        if ($conferencista) {
-            $this->inputSearchConferencista = $conferencista->persona->nombre . ' ' . $conferencista->persona->apellido;
-        }
+public function store()
+{
+    $this->validate([
+        'IdEvento' => 'required|exists:eventos,id',
+        'foto' => 'nullable|image|max:1024',
+        'nombre' => 'required|string|max:255',
+        'descripcion' => 'required|string|max:500',
+        'fecha' => 'required|date',
+        'horaInicio' => 'required',
+        'horaFin' => 'required|after:horaInicio',
+        'lugar' => 'required|string|max:255',
+        'linkreunion' => 'required|url',
+        'idConferencista' => 'required|exists:conferencistas,id'
+    ]);
 
-        $this->openModal();
+    // Manejo de foto
+    if ($this->foto) {
+        $this->foto = $this->foto->store('public/conferencias');
+    } else {
+        $conferencia = Conferencia::find($this->conferencia_id);
+        $this->foto = $conferencia ? $conferencia->foto : 'default-image-url';
     }
+
+    // Crear o actualizar la conferencia
+    Conferencia::updateOrCreate(['id' => $this->conferencia_id], [
+        'IdEvento' => $this->IdEvento,
+        'foto' => $this->foto,
+        'nombre' => $this->nombre,
+        'descripcion' => $this->descripcion,
+        'fecha' => $this->fecha,
+        'horaInicio' => $this->horaInicio,
+        'horaFin' => $this->horaFin,
+        'lugar' => $this->lugar,
+        'linkreunion' => $this->linkreunion,
+        'idConferencista' => $this->idConferencista,
+    ]);
+
+    session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');
+    $this->closeModal();
+    $this->resetInputFields();
+    return redirect(request()->header('Referer'));  // Recarga la página
+}
+
 
     public function delete()
     {
