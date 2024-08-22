@@ -72,7 +72,7 @@ class Diplomas extends Component
 
     public function render()
     {
-        $diplomas = Diploma::where('Codigo', 'like', '%' . $this->search . '%')
+        $diplomas = Diploma::where('Nombre', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'DESC')
             ->paginate(5);
         // dd($diplomas);
