@@ -175,39 +175,48 @@
                 <div class="firmass">
                     <table style="width: 100%; text-align: center;">
                         <tr>
+                        @if($Firma1 || $Sello1 || $NombreFirma1 || $Titulo1)
                             <td class="firmas">
                                 <div class="firma">
                                     <img class="fondo" src="{{ $Firma1 }}" />
                                 </div>
                                 <p>______________________________</p>
+                                <div></div>
                                 <div class="sello">
                                     <img class="fondo" src="{{ $Sello1 }}" />
                                 </div>
                                 <div>{{ $NombreFirma1 }}</div>
                                 <div>{{ $Titulo1 }}</div>
                             </td>
+                            @endif
+                            @if($Firma2 || $Sello2 || $NombreFirma2 || $Titulo2)
                             <td class="firmas">
                                 <div class="firma">
                                     <img class="fondo" src="{{ $Firma2 }}" />
                                 </div>
                                 <p>______________________________</p>
+                                <div></div>
                                 <div class="sello">
                                     <img class="fondo" src="{{ $Sello2 }}" />
                                 </div>
                                 <div>{{ $NombreFirma2 }}</div>
                                 <div>{{ $Titulo2 }}</div>
                             </td>
+                            @endif
+                            @if($FirmaConferencista || $SelloConferencista || $Conferencista || $TituloConferencista)
                             <td class="firmas">
                                 <div class="firma">
-                                    <img class="fondo" src="{{ $Firma3 }}" />
+                                    <img class="fondo" src="{{ $FirmaConferencista }}" />
                                 </div>
                                 <p>______________________________</p>
+                                <div></div>
                                 <div class="sello">
-                                    <img class="fondo" src="{{ $Sello3 }}" />
+                                    <img class="fondo" src="{{ $SelloConferencista }}" />
                                 </div>
-                                <div>{{ $NombreFirma3 }}</div>
-                                <div>{{ $Titulo3 }}</div>
+                                <div>{{ $Conferencista }}</div>
+                                <div>{{ $TituloConferencista }}</div>
                             </td>
+                            @endif
                         </tr>
                     </table>
                 </div>
