@@ -50,6 +50,7 @@
                                 <th scope="col" class="px-6 py-3">No.</th>
                                 <th scope="col" class="px-6 py-3">Código</th>
                                 <th scope="col" class="px-6 py-3">Plantilla</th>
+                                <th scope="col" class="px-6 py-3">Nombre</th>
                                {{-- <th scope="col" class="px-6 py-3">Conferencia</th>--}}
                                 <th scope="col" class="px-6 py-3">Cargo1</th>
                                 <th scope="col" class="px-6 py-3">Persona1</th>
@@ -59,10 +60,6 @@
                                 <th scope="col" class="px-6 py-3">Persona2</th>
                                 <th scope="col" class="px-6 py-3">Firma2</th>
                                 <th scope="col" class="px-6 py-3">Sello2</th>
-                                <th scope="col" class="px-6 py-3">Cargo3</th>
-                                <th scope="col" class="px-6 py-3">Persona3</th>
-                                <th scope="col" class="px-6 py-3">Firma3</th>
-                                <th scope="col" class="px-6 py-3">Sello3</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
@@ -80,6 +77,7 @@
                                             Sin Plantilla
                                         @endif
                                     </td>
+                                    <td class="px-6 py-4">{{ $diploma->Nombre }}</td>
                               {{--      <td class="px-6 py-4">{{ $diploma->conferencia->nombre }}</td>--}}
                                     <td class="px-6 py-4">{{ $diploma->Titulo1 }}</td>
                                     <td class="px-6 py-4">{{ $diploma->NombreFirma1 }}</td>
@@ -117,24 +115,7 @@
                                             Sin Sellar
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4">{{ $diploma->Titulo3 }}</td>
-                                    <td class="px-6 py-4">{{ $diploma->NombreFirma3 }}</td>
-                                    <td class="px-6 py-4">
-                                        @if($diploma->Firma3)
-                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Firma3)) }}"
-                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
-                                        @else
-                                            Sin Firmar
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        @if($diploma->Sello3)
-                                            <img src="{{ asset(str_replace('public', 'storage', $diploma->Sello3)) }}"
-                                                alt="Foto" class="w-12 h-12 object-cover rounded-full">
-                                        @else
-                                            Sin Sellar
-                                        @endif
-                                    </td>
+                                
 
                                     <td class="px-6 py-4">
                                         <button wire:click="edit({{ $diploma->id }})"

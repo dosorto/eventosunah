@@ -18,7 +18,7 @@ class Diplomas extends Component
 
     public// $Codigo,
     $Plantilla,
-    // $IdConferencia,
+    $Nombre,
     $Titulo1,
     $NombreFirma1,
     $Firma1,
@@ -51,20 +51,16 @@ class Diplomas extends Component
     protected $rules = [
         // 'Codigo' => 'required',
         'Plantilla' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        //  'IdConferencia' => 'required',
+        'Nombre' => 'required',
         'Titulo1' => 'required',
         'NombreFirma1' => 'required',
-        'Firma1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Firma1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'Sello1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'Titulo2' => 'required',
-        'NombreFirma2' => 'required',
+        'Titulo2' => 'nullable',
+        'NombreFirma2' => 'nullable',
         'Firma2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'Sello2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'Titulo3' => 'required',
-        'NombreFirma3' => 'required',
-        'Firma3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'Sello3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ];
+        ];
 
     public $conferencias;
     public $firmas;
@@ -159,7 +155,7 @@ class Diplomas extends Component
     private function resetInputFields()
     {
         $this->Plantilla = '';
-        //  $this->IdConferencia = '';
+        $this->Nombre = '';
         $this->Titulo1 = '';
         $this->NombreFirma1 = '';
         $this->Firma1 = '';
@@ -168,10 +164,7 @@ class Diplomas extends Component
         $this->NombreFirma2 = '';
         $this->Firma2 = '';
         $this->Sello2 = '';
-        $this->Titulo3 = '';
-        $this->NombreFirma3 = '';
-        $this->Firma3 = '';
-        $this->Sello3 = '';
+      
         $this->diploma_id = null;
         //  $this->inputSearchConferencia = '';
         //   $this->searchConferencias = [];
@@ -212,16 +205,7 @@ class Diplomas extends Component
             $this->Firma2 = null;
         }
 
-        if ($this->Firma3) {
-            $this->Firma3 = $this->Firma3->store('public/firmas');
-        }elseif($this->diploma_id){
-            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
-            $diploma = Diploma::findOrFail($this->diploma_id);
-            $this->Firma3 = $diploma->Firma3;
-        } else {
-            $this->Firma3 = null;
-        }
-
+       
         if ($this->Sello1) {
             $this->Sello1 = $this->Sello1->store('public/sellos');
         }elseif($this->diploma_id){
@@ -243,20 +227,12 @@ class Diplomas extends Component
             $this->Sello2 = null;
         }
 
-        if ($this->Sello3) {
-            $this->Sello3 = $this->Sello3->store('public/sellos');
-        }elseif($this->diploma_id){
-            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
-            $diploma = Diploma::findOrFail($this->diploma_id);
-            $this->Sello3 = $diploma->Sello3;
-        } else {
-            $this->Sello3 = null;
-        }
+        
 
         Diploma::updateOrCreate(['id' => $this->diploma_id], [
             'Codigo' => $this->generateUniqueCode(),
             'Plantilla' => $this->Plantilla ? str_replace('public/', 'storage/', $this->Plantilla) : null,
-            //   'IdConferencia' => $this->IdConferencia,
+            'Nombre' => $this->Nombre,
             'Titulo1' => $this->Titulo1,
             'NombreFirma1' => $this->NombreFirma1,
             'Firma1' => $this->Firma1 ? str_replace('public/', 'storage/', $this->Firma1) : null,
@@ -265,10 +241,6 @@ class Diplomas extends Component
             'NombreFirma2' => $this->NombreFirma2,
             'Firma2' => $this->Firma2 ? str_replace('public/', 'storage/', $this->Firma2) : null,
             'Sello2' => $this->Sello2 ? str_replace('public/', 'storage/', $this->Sello2) : null,
-            'Titulo3' => $this->Titulo3,
-            'NombreFirma3' => $this->NombreFirma3,
-            'Firma3' => $this->Firma3 ? str_replace('public/', 'storage/', $this->Firma3) : null,
-            'Sello3' => $this->Sello3 ? str_replace('public/', 'storage/', $this->Sello3) : null,
         ]);
 
         session()->flash('message', $this->diploma_id ? 'Diploma actualizado correctamente!' : 'Diploma creado correctamente!');
@@ -290,15 +262,12 @@ class Diplomas extends Component
     {
         $diploma = Diploma::findOrFail($id);
         $this->diploma_id = $id;
+        $this->Nombre= $diploma->Nombre;
         $this->Titulo1 = $diploma->Titulo1;
         $this->NombreFirma1 = $diploma->NombreFirma1;
 
         $this->Titulo2 = $diploma->Titulo2;
         $this->NombreFirma2 = $diploma->NombreFirma2;
-
-        $this->Titulo3 = $diploma->Titulo3;
-        $this->NombreFirma3 = $diploma->NombreFirma3;
-
 
 
         /*  $conferencia = Conferencia::find($this->IdConferencia);

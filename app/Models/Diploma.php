@@ -13,7 +13,7 @@ class Diploma extends BaseModel
     protected $fillable = [
         'Codigo',
         'Plantilla',
-       // 'IdConferencia',
+       'Nombre',
         'Titulo1',
         'NombreFirma1',
         'Firma1',
@@ -22,10 +22,7 @@ class Diploma extends BaseModel
         'NombreFirma2',
         'Firma2',
         'Sello2',
-        'Titulo3',
-        'NombreFirma3',
-        'Firma3',
-        'Sello3',
+       
     ];
 
   /*  public function conferencia()
