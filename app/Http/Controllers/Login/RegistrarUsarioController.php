@@ -127,8 +127,4 @@ class RegistrarUsarioController extends Controller
 
         return redirect()->route('eventoVista');
     }
-
-
-
-
 }

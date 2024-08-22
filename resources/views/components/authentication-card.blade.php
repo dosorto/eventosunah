@@ -1,8 +1,4 @@
-<style>
-        body{
-            background: linear-gradient(to bottom, #1254a1 23%, #facc15 95%);
-        }
-    </style>
+
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 dark:bg-gray-900">
     <div>
         {{ $logo }}
