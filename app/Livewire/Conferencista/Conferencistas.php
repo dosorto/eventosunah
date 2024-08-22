@@ -9,7 +9,6 @@ use App\Models\Conferencista;
 use App\Models\Nacionalidad;
 use App\Models\Tipoperfil;
 use App\Models\Persona;
-use Illuminate\Support\Facades\Log;
 
 class Conferencistas extends Component
 {
@@ -20,14 +19,15 @@ class Conferencistas extends Component
     public $nacionalidades, $tipoperfiles;
 
     public $isOpen = 0;
+    public $currentFoto, $currentFirma, $currentSello; // Para mantener las fotos actuales
 
     protected $rules = [
         'titulo' => 'required',
         'descripcion' => 'required',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'foto' => 'nullable|image|max:1024',
+        'firma' => 'nullable|image|max:1024',
+        'sello' => 'nullable|image|max:1024',
         'persona_id' => 'required|exists:personas,id',
-        'firma' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'sello' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
     public function mount()
@@ -76,7 +76,7 @@ class Conferencistas extends Component
         $this->foto = null;
         $this->firma = null;
         $this->sello = null;
-        $this->persona_id = '';
+        $this->persona_id = null;
         $this->dni = '';
         $this->nombre = '';
         $this->apellido = '';
@@ -89,75 +89,75 @@ class Conferencistas extends Component
         $this->numeroCuenta = '';
         $this->IdNacionalidad = '';
         $this->IdTipoPerfil = '';
+        $this->currentFoto = null;
+        $this->currentFirma = null;
+        $this->currentSello = null;
     }
 
     public function store()
     {
-        $this->validate();
-
         try {
-            // Manejo de la foto
-            if ($this->foto) {
-                $this->foto = $this->foto->store('public/conferencistas');
-            } else {
-                $this->foto = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
-            }
+            $this->validate([
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'firma' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'sello' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'dni' => 'required|string|max:20',
+                'nombre' => 'required|string|max:255',
+                'apellido' => 'required|string|max:255',
+                'titulo' => 'required|string|max:255',
+                'correo' => 'nullable|email|max:255',
+                'fechaNacimiento' => 'nullable|date',
+                'sexo' => 'nullable|string|max:10',
+                'telefono' => 'nullable|string|max:20',
+                'IdNacionalidad' => 'required|exists:nacionalidads,id',
+                'descripcion' => 'nullable|string',
+                'direccion' => 'nullable|string|max:255',
+                'IdTipoPerfil' => 'required|exists:tipoperfils,id',
+                'numeroCuenta' => 'nullable|string|max:20',
+                'correoInstitucional' => 'nullable|email|max:255',
+            ]);
 
-            // Manejo de firma
-            if ($this->firma) {
-                $this->firma = $this->firma->store('public/firmas');
-            } elseif ($this->conferencista_id) {
-                $conferencista = Conferencista::findOrFail($this->conferencista_id);
-                $this->firma = $conferencista->firma;
-            } else {
-                $this->firma = null;
-            }
+            // Manejo de archivos
+            $this->foto = $this->foto ? $this->foto->store('public/conferencistas') : ($this->conferencista_id ? $this->currentFoto : 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg');
+            $this->firma = $this->firma ? $this->firma->store('public/conferencistas') : $this->currentFirma;
+            $this->sello = $this->sello ? $this->sello->store('public/conferencistas') : $this->currentSello;
 
-            // Manejo de sello
-            if ($this->sello) {
-                $this->sello = $this->sello->store('public/sellos');
-            } elseif ($this->conferencista_id) {
-                $conferencista = Conferencista::findOrFail($this->conferencista_id);
-                $this->sello = $conferencista->sello;
-            } else {
-                $this->sello = null;
-            }
-
-            // Verifica el valor de auth()->id()
+            // Datos del usuario autenticado
             $createdBy = auth()->id();
             if (!$createdBy) {
                 throw new \Exception('No user is authenticated.');
             }
 
-            // Datos para guardar
-            $dataPersona = [
-                'dni' => $this->dni,
-                'nombre' => $this->nombre,
-                'apellido' => $this->apellido,
-                'correo' => $this->correo,
-                'fechaNacimiento' => $this->fechaNacimiento,
-                'sexo' => $this->sexo,
-                'telefono' => $this->telefono,
-                'IdNacionalidad' => $this->IdNacionalidad,
-                'direccion' => $this->direccion,
-                'IdTipoPerfil' => $this->IdTipoPerfil,
-                'correoInstitucional' => $this->correoInstitucional ?: null,
-                'numeroCuenta' => $this->numeroCuenta ?: null,
-                'created_by' => $createdBy,
-            ];
+            // Actualizar o crear la persona
+            $persona = Persona::updateOrCreate(
+                ['dni' => $this->dni], // Condición para actualizar
+                [
+                    'nombre' => $this->nombre,
+                    'apellido' => $this->apellido,
+                    'correo' => $this->correo,
+                    'fechaNacimiento' => $this->fechaNacimiento,
+                    'sexo' => $this->sexo,
+                    'telefono' => $this->telefono,
+                    'IdNacionalidad' => $this->IdNacionalidad,
+                    'direccion' => $this->direccion,
+                    'IdTipoPerfil' => $this->IdTipoPerfil,
+                    'correoInstitucional' => $this->correoInstitucional ?: null,
+                    'numeroCuenta' => $this->numeroCuenta ?: null,
+                    'created_by' => $createdBy,
+                ]
+            );
 
-            $persona = Persona::updateOrCreate(['id' => $this->persona_id], $dataPersona);
-
+            // Datos del conferencista
             $dataConferencista = [
                 'IdPersona' => $persona->id,
-                'foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : null,
+                'foto' => $this->foto ? str_replace('public/', 'storage/', $this->foto) : $this->currentFoto,
+                'firma' => $this->firma ? str_replace('public/', 'storage/', $this->firma) : $this->currentFirma,
+                'sello' => $this->sello ? str_replace('public/', 'storage/', $this->sello) : $this->currentSello,
                 'titulo' => $this->titulo,
-                'firma' => $this->firma ? str_replace('public/', 'storage/', $this->firma) : null,
-                'sello' => $this->sello ? str_replace('public/', 'storage/', $this->sello) : null,
                 'descripcion' => $this->descripcion,
             ];
 
-            // Guardar o actualizar el conferencista
+            // Crear o actualizar el conferencista
             if ($this->conferencista_id) {
                 $conferencista = Conferencista::findOrFail($this->conferencista_id);
                 $conferencista->update($dataConferencista);
@@ -165,16 +165,13 @@ class Conferencistas extends Component
                 Conferencista::create($dataConferencista);
             }
 
-            // Mensaje de éxito
             session()->flash('message', $this->conferencista_id ? 'Conferencista actualizado correctamente!' : 'Conferencista creado correctamente!');
 
-            // Cerrar el modal y reiniciar los campos
             $this->closeModal();
             $this->resetInputFields();
+            $this->render();
         } catch (\Exception $e) {
-            // Mostrar el mensaje de error si algo sale mal
-            session()->flash('error', 'Error: ' . $e->getMessage());
-            Log::error('Error en el proceso de almacenar conferencista: ' . $e->getMessage());
+            session()->flash('error', $e->getMessage());
         }
     }
 
@@ -198,10 +195,10 @@ class Conferencistas extends Component
         $this->IdNacionalidad = $conferencista->persona->IdNacionalidad;
         $this->IdTipoPerfil = $conferencista->persona->IdTipoPerfil;
 
-        // Cargar la información para editar
-        $this->foto = $conferencista->foto;
-        $this->firma = $conferencista->firma;
-        $this->sello = $conferencista->sello;
+        // Almacenar las URLs actuales de las fotos
+        $this->currentFoto = $conferencista->foto;
+        $this->currentFirma = $conferencista->firma;
+        $this->currentSello = $conferencista->sello;
 
         $this->openModal();
     }
@@ -221,12 +218,7 @@ class Conferencistas extends Component
                 return;
             }
 
-            if ($conferencista->conferencias()->exists()) {
-                session()->flash('error', 'No se puede eliminar el conferencista: ' . $conferencista->persona->nombre . ' ' . $conferencista->persona->apellido . ', porque está enlazado a una o más conferencias.');
-                return;
-            }
-
-            $conferencista->delete();
+            $conferencista->forceDelete();
             session()->flash('message', 'Conferencista eliminado correctamente!');
             $this->confirmingDelete = false;
         }
@@ -242,7 +234,7 @@ class Conferencistas extends Component
         }
 
         if ($conferencista->conferencias()->exists()) {
-            session()->flash('error', 'No se puede eliminar el conferencista: ' . $conferencista->persona->nombre . ' ' . $conferencista->persona->apellido . ', porque está enlazado a una o más conferencias.');
+            session()->flash('error', 'No se puede eliminar el conferencista: '.$conferencista->persona->nombre .' '.$conferencista->persona->apellido .', porque está enlazado a una o más conferencias.');
             return;
         }
 
