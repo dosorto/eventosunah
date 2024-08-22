@@ -10,13 +10,12 @@ use Spatie\Permission\Models\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class Personas extends Component
 {
     use WithPagination;
 
-    public $name, $email, $password; // Campos para el usuario
+    public $name, $email, $password; // Campos para el usuario (opcional)
     public $persona_id, $IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
@@ -28,7 +27,6 @@ class Personas extends Component
 
     public function mount()
     {
-        $this->user = User::all();
         $this->nacionalidades = Nacionalidad::all();
         $this->tipoperfiles = Tipoperfil::all();
     }
@@ -66,7 +64,7 @@ class Personas extends Component
     private function resetInputFields()
     {
         $this->persona_id = '';
-        $this->IdUsuario = '';
+        $this->IdUsuario = ''; // No es necesario para persona
         $this->name = '';
         $this->email = '';
         $this->password = '';
@@ -86,10 +84,15 @@ class Personas extends Component
 
     public function store()
 {
-    $this->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:8',
+    // Validar solo si el usuario debe ser creado
+    $userValidation = [
+        'name' => 'nullable|string|max:255',
+        'email' => 'nullable|email|unique:users,email',
+        'password' => 'nullable|string|min:8',
+    ];
+
+    // Validaciones para el campo de persona
+    $personaValidation = [
         'dni' => 'required|unique:personas,dni,' . $this->persona_id,
         'nombre' => 'required',
         'apellido' => 'required',
@@ -102,24 +105,35 @@ class Personas extends Component
         'numeroCuenta' => 'nullable|unique:personas,numeroCuenta,' . $this->persona_id,
         'IdNacionalidad' => 'required|exists:nacionalidads,id',
         'IdTipoPerfil' => 'required|exists:tipoperfils,id',
-    ]);
+    ];
 
-    // Crear el usuario
-    $user = User::create([
-        'name' => $this->name,
-        'email' => $this->email,
-        'password' => Hash::make($this->password),
-    ]);
+    // Si se proporcionan datos para el usuario, valida también esos datos
+    $validationRules = $this->name && $this->email && $this->password
+        ? array_merge($userValidation, $personaValidation)
+        : $personaValidation;
 
-    // Asignar el rol de Participante al usuario
-    $role = Role::where('name', 'Participante')->first(); // Obtén el rol de Participante
-    if ($role) {
-        $user->roles()->attach($role->id); // Asocia el rol al usuario
+    $this->validate($validationRules);
+
+    // Solo crear el usuario si se proporciona el nombre, email y password
+    if ($this->name && $this->email && $this->password) {
+        $user = User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => Hash::make($this->password),
+        ]);
+
+        // Asignar el rol de Participante al usuario
+        $role = Role::where('name', 'Participante')->first(); // Obtén el rol de Participante
+        if ($role) {
+            $user->roles()->attach($role->id); // Asocia el rol al usuario
+        }
+    } else {
+        $user = null; // No se crea usuario si no se proporcionan los datos necesarios
     }
 
     // Crear o actualizar la persona
     Persona::updateOrCreate(['id' => $this->persona_id], [
-        'IdUsuario' => $user->id,
+        'IdUsuario' => $user ? $user->id : ($this->IdUsuario ?: null), 
         'dni' => $this->dni,
         'nombre' => $this->nombre,
         'apellido' => $this->apellido,
@@ -138,9 +152,7 @@ class Personas extends Component
 
     $this->closeModal();
     $this->resetInputFields();
-    $this->render(); 
 }
-
 
     public function edit($id)
     {

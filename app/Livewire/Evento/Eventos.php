@@ -82,7 +82,7 @@ class Eventos extends Component
             'fechainicio' => 'required',
             'fechafinal' => 'required|after:fechainicio',
             'horainicio' => 'required',
-            'horafin' => 'required|after:horainicio',
+            'horafin' => 'required',
             'idmodalidad' => 'required',
             'idlocalidad' => 'required',
             'IdDiploma' => 'required',

@@ -57,16 +57,8 @@
                                 <th scope="col" class="px-6 py-3">Título</th>
                                 <th scope="col" class="px-6 py-3">Nombre</th>
                                 <th scope="col" class="px-6 py-3">Apellido</th>
-                               <!-- <th scope="col" class="px-6 py-3">Correo</th>
-                                <th scope="col" class="px-6 py-3">Fecha de Nacimiento</th>
-                                <th scope="col" class="px-6 py-3">Sexo</th>
-                                <th scope="col" class="px-6 py-3">Nacionalidad</th>
-                                <th scope="col" class="px-6 py-3">Número de Teléfono</th>
-                                <th scope="col" class="px-6 py-3">Dirección</th>
-                                <th scope="col" class="px-6 py-3">Tipo de Perfil</th>
-                                <th scope="col" class="px-6 py-3">Correo Institucional</th>
-                                <th scope="col" class="px-6 py-3">Número de Cuenta</th>
-                                <th scope="col" class="px-6 py-3">Descripción</th>-->
+                                <th scope="col" class="px-6 py-3">Firma</th>
+                                <th scope="col" class="px-6 py-3">Sello</th>
                                 <th scope="col" class="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
@@ -86,16 +78,22 @@
                                     <td class="px-6 py-4">{{ $conferencista->titulo }}</td>
                                     <td class="px-6 py-4">{{ $conferencista->persona->nombre }}</td>
                                     <td class="px-6 py-4">{{ $conferencista->persona->apellido }}</td>
-                                   <!--   <td class="px-6 py-4">{{ $conferencista->persona->correo }}</td>
-                                   <td class="px-6 py-4">{{ $conferencista->persona->fechaNacimiento }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->sexo }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->nacionalidad->nombre }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->telefono }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->direccion }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->tipoPerfil->nombre }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->correoInstitucional }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->persona->numeroCuenta }}</td>
-                                    <td class="px-6 py-4">{{ $conferencista->descripcion }}</td>-->
+                                    <td class="px-6 py-4">
+                                        @if($conferencista->firma)
+                                            <img src="{{ asset(str_replace('public', 'storage', $conferencista->firma)) }}"
+                                                alt="firma" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            No puso firma
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if($conferencista->sello)
+                                            <img src="{{ asset(str_replace('public', 'storage', $conferencista->sello)) }}"
+                                                alt="sello" class="w-12 h-12 object-cover rounded-full">
+                                        @else
+                                            No tiene sello
+                                        @endif
+                                    </td>
                                     <td class="px-6 py-4">
                                     <button wire:click="edit({{ $conferencista->id }})"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">

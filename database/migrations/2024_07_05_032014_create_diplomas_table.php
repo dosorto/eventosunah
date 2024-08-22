@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Codigo')->unique();
             $table->string('Plantilla');
-         //   $table->unsignedBigInteger('IdConferencia')->nullable();
+            $table->string('Nombre');
             $table->string('Titulo1');
             $table->string('NombreFirma1');
             $table->string('Firma1');
@@ -24,10 +24,6 @@ return new class extends Migration
             $table->string('NombreFirma2')->nullable();
             $table->string('Firma2')->nullable();
             $table->string('Sello2')->nullable();
-            $table->string('Titulo3')->nullable();
-            $table->string('NombreFirma3')->nullable();
-            $table->string('Firma3')->nullable();
-            $table->string('Sello3')->nullable();
            
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();

@@ -39,7 +39,15 @@
                                     class="mt-2 w-20 h-20 object-cover rounded-full">
                             @endif
                         </div>
-
+                        <div class="mb-4">
+                            <label for="Nombre" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre:</label>
+                            <input type="text" wire:model="Nombre"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="Nombre" placeholder="Nombre del diploma">
+                            @error('Nombre')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
                      {{--  <div class="mb-4">
                             <label for="conferencia"
                                 class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Conferencia:</label>
@@ -146,47 +154,7 @@
                             @endif
                         </div>
 
-                        <div class="mb-4">
-                            <label for="Titulo3"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Cargo 3:</label>
-                            <input type="text" wire:model="Titulo3"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="Titulo3" placeholder="Titulo de la tercera persona">
-                            @error('Titulo3')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="NombreFirma3"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre Persona:</label>
-                            <input type="text" wire:model="NombreFirma3"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="NombreFirma3" placeholder="Nombre de la tercera persona">
-                            @error('NombreFirma3')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="Firma3"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma3:</label>
-                            <input type="file" wire:model="Firma3"
-                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                            @if ($Firma3)
-                                <img src="{{ $Firma3->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
-                            @endif
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="Sello3"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sello3:</label>
-                            <input type="file" wire:model="Sello3"
-                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                            @if ($Sello3)
-                                <img src="{{ $Sello3->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
-                            @endif
-                        </div>
+                        
 
 
                     </div>

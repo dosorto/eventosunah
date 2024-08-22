@@ -33,7 +33,7 @@
                             <label for="foto" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Foto:</label>
                             <input type="file" wire:model="foto"
                                 class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                            @if ($foto)
+                            @if ($foto && $foto instanceof \Illuminate\Http\UploadedFile)
                                 <img src="{{ $foto->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
                             @endif
                         </div>
@@ -303,10 +303,26 @@
                                 id="descripcion" placeholder="Descripción"></textarea>
                             @error('descripcion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
+                        <div class="mb-4">
+                            <label for="firma" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Firma:</label>
+                            <input type="file" wire:model="firma"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($firma && $firma instanceof \Illuminate\Http\UploadedFile)
+                                <img src="{{ $firma->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="sello" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Sello:</label>
+                            <input type="file" wire:model="sello"
+                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                            @if ($sello && $sello instanceof \Illuminate\Http\UploadedFile)
+                                <img src="{{ $sello->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                            @endif
+                        </div>
 
                     </div>
 
-                   
 
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
                         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

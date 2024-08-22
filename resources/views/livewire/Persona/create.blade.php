@@ -35,21 +35,21 @@
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre de Usuario</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="text" placeholder="Ingrese el nombre de usuario" id="name" name="name" wire:model="name" required>
+                                    type="text" placeholder="Ingrese el nombre de usuario" id="name" name="name" wire:model="name">
                                 @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo Electrónico</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="email" placeholder="Ingrese el correo electrónico" id="email" name="email" wire:model="email" required>
+                                    type="email" placeholder="Ingrese el correo electrónico" id="email" name="email" wire:model="email">
                                 @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="password" placeholder="Ingrese la contraseña" id="password" name="password" wire:model="password" required>
+                                    type="password" placeholder="Ingrese la contraseña" id="password" name="password" wire:model="password">
                                 @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 

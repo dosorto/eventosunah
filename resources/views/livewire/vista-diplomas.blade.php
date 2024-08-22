@@ -11,7 +11,6 @@
                     align-items: center;
                     height: 100vh;
                     margin: 0;
-
                 }
 
                 .certificado {
@@ -73,10 +72,10 @@
                     font-size: 1em;
                     margin: 5px 0;
                     padding: 0;
-
                 }
 
-                .recipient-name {
+                .recipient-name,
+                .conferencista-name {
                     text-align: center;
                     font-size: 3.2em;
                     font-weight: 400;
@@ -114,13 +113,11 @@
                     margin-left: 190px;
                     margin-right: 190px;
                     font-weight: bold;
-
                 }
 
                 .firmas {
                     text-align: center;
                     margin: 0 30px;
-
                 }
 
                 .firma {
@@ -133,7 +130,6 @@
                     height: 84px;
                     width: 84px;
                     margin-bottom: -17px;
-
                 }
 
                 .qr-code {
@@ -153,7 +149,6 @@
                     margin-right: 410px;
                 }
             </style>
-
         </header>
 
         <body>
@@ -161,19 +156,16 @@
                 <div class="gold-swirls">
                     <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Plantilla)) }}" />
                 </div>
-                <div class="certificado-header" style="">
-                    <div class="certificado-header">
-                        <div class="certificado-title">CERTIFICADO</div>
-                        <div class="certificado-title2">DE RECONOCIMIENTO</div>
-                        <div class="certificado-title3">OTORGADO A:</div>
-                        <div class="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
-                    </div>
-
+                <div class="certificado-header">
+                    <div class="certificado-title">CERTIFICADO</div>
+                    <div class="certificado-title2">DE RECONOCIMIENTO</div>
+                    <div class="certificado-title3">OTORGADO A:</div>
+                    <div class="recipient-name" id="recipient-name">{{ $persona->nombre }} {{$persona->apellido}}</div>
                 </div>
                 <div class="certificado-body">
                     Por su destacada asistencia y participación en la conferencia "{{$conferencia->nombre}}", presentada
                     por el distinguido {{$conferencia->conferencista->titulo}}
-                    {{$conferencia->conferencista->persona->nombre}} {{$conferencia->conferencista->persona->apellido}},
+                    <span id="conferencista-name">{{ $conferencia->conferencista->persona->nombre }} {{$conferencia->conferencista->persona->apellido}}</span>,
                     celebrada el {{ \Carbon\Carbon::parse($conferencia->fecha)->format('d \d\e F \d\e Y') }} en el marco
                     del evento "{{$evento->nombreevento}}".
                     <div>
@@ -182,69 +174,120 @@
                 </div>
 
                 <div class="firmass">
+                    @if($diploma->Firma1 || $diploma->Sello1 || $diploma->NombreFirma1 || $diploma->Titulo1)
                     <div class="firmas">
+                        @if($diploma->Firma1)
                         <div class="firma">
                             <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma1)) }}" />
                         </div>
-                        <ul>
-                            <li>
-                                <ul
-                                    class="pt-2 mt-2 space-y-2 font-medium w-40 border-t border-gray-900 dark:border-gray-900">
-                            </li>
-                        </ul>
+                        @endif
+
+                        @if($diploma->Sello1)
                         <div class="sello">
                             <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello1)) }}" />
                         </div>
+                        @endif
+
+                        @if($diploma->NombreFirma1)
                         <div>{{$diploma->NombreFirma1}}</div>
+                        @endif
+
+                        @if($diploma->Titulo1)
                         <div>{{$diploma->Titulo1}}</div>
+                        @endif
                     </div>
+                    @endif
+
+                    @if($diploma->Firma2 || $diploma->Sello2 || $diploma->NombreFirma2 || $diploma->Titulo2)
                     <div class="firmas">
+                        @if($diploma->Firma2)
                         <div class="firma">
                             <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma2)) }}" />
                         </div>
-                        <ul>
-                            <li>
-                                <ul
-                                    class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
-                            </li>
-                        </ul>
+                        @endif
+
+                        @if($diploma->Sello2)
                         <div class="sello">
                             <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello2)) }}" />
                         </div>
-                        <div>{{$diploma->NombreFirma2}}</div>
-                        <div>{{$diploma->Titulo2}}</div>
-                    </div>
+                        @endif
 
-                    <div class="firmas">
-                        <div class="firma">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Firma3)) }}" />
-                        </div>
-                        <ul>
-                            <li>
-                                <ul
-                                    class="pt-2 mt-2 space-y-2 w-40 font-medium border-t border-gray-900 dark:border-gray-900">
-                            </li>
-                        </ul>
-                        <div class="sello">
-                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $diploma->Sello3)) }}" />
-                        </div>
-                        <div>{{$diploma->NombreFirma3}}</div>
-                        <div>{{$diploma->Titulo3}}</div>
+                        @if($diploma->NombreFirma2)
+                        <div>{{$diploma->NombreFirma2}}</div>
+                        @endif
+
+                        @if($diploma->Titulo2)
+                        <div>{{$diploma->Titulo2}}</div>
+                        @endif
                     </div>
+                    @endif
+
+                    @if($conferencia->conferencista->firma || $conferencia->conferencista->sello || $conferencia->conferencista->persona->nombre || $conferencia->conferencista->titulo)
+                    <div class="firmas">
+                        @if($conferencia->conferencista->firma)
+                        <div class="firma">
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $conferencia->conferencista->firma)) }}" />
+                        </div>
+                        @endif
+
+                        @if($conferencia->conferencista->sello)
+                        <div class="sello">
+                            <img class="fondo" src="{{ asset(str_replace('public', 'storage', $conferencia->conferencista->sello)) }}" />
+                        </div>
+                        @endif
+                        <p>______________________________</p>
+                        @if($conferencia->conferencista->persona->nombre)
+                        <div id="conferencista-name-2">{{ $conferencia->conferencista->persona->nombre }} {{$conferencia->conferencista->persona->apellido}}</div>
+                        @endif
+
+                        @if($conferencia->conferencista->titulo)
+                        <div>{{$conferencia->conferencista->titulo}}</div>
+                        @endif
+                    </div>
+                    @endif
                 </div>
+
                 @if (is_null($uuid))
-                    <p class="codigo">Certificado sin validación, un no extendido</p>
+                <p class="codigo">Certificado sin validación, un no extendido</p>
                 @else
-                    <p class="codigo">Código: {{ $uuid }}</p>
+                <p class="codigo">Código: {{ $uuid }}</p>
                 @endif
             </div>
         </body>
+
         <button onclick="imprimir()" id="imprimir"
             class="absolute top-4 right-4 inline-flex items-center px-4 py-2 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 rounded-lg">
             Imprimir
         </button>
 
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function capitalizeName(name) {
+                    return name.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
+                }
+
+                // Aplicar la capitalización al nombre y apellido del destinatario
+                const recipientNameElement = document.getElementById('recipient-name');
+                if (recipientNameElement) {
+                    const [nombre, apellido] = recipientNameElement.innerText.split(' ');
+                    recipientNameElement.innerText = `${capitalizeName(nombre)} ${capitalizeName(apellido)}`;
+                }
+
+                // Aplicar la capitalización al nombre y apellido del conferencista
+                const conferencistaNameElement = document.getElementById('conferencista-name');
+                if (conferencistaNameElement) {
+                    const [nombre, apellido] = conferencistaNameElement.innerText.split(' ');
+                    conferencistaNameElement.innerText = `${capitalizeName(nombre)} ${capitalizeName(apellido)}`;
+                }
+
+                // Aplicar la capitalización al nombre y apellido del conferencista en la firma
+                const conferencistaNameElement2 = document.getElementById('conferencista-name-2');
+                if (conferencistaNameElement2) {
+                    const [nombre, apellido] = conferencistaNameElement2.innerText.split(' ');
+                    conferencistaNameElement2.innerText = `${capitalizeName(nombre)} ${capitalizeName(apellido)}`;
+                }
+            });
+
             function imprimir() {
                 // Configurar el tamaño del papel en carta y ponerlo en modo horizontal
                 var css = '@page { size: letter landscape; margin: 0; } body { margin: 0; padding: 0; }',
@@ -287,8 +330,6 @@
                     document.getElementById('imprimir').style.display = 'block';
                 }, 500);
             }
-
         </script>
     </x-layouts.reportes>
-
 </div>

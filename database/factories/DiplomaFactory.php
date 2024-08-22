@@ -25,6 +25,7 @@ class DiplomaFactory extends Factory
         return [
             'codigo' => $this->faker->uuid,
             'plantilla' => $this->faker->imageUrl(),
+            'Nombre' => $this->faker->name(),
           //  'IdConferencia' => $conferenciaId,
             
             'titulo1' => $this->faker->title(),
@@ -36,11 +37,6 @@ class DiplomaFactory extends Factory
             'nombrefirma2' => $this->faker->name(),
             'firma2' => $this->faker->imageUrl(),
             'sello2' => $this->faker->imageUrl(),
-
-            'titulo3' => $this->faker->title(),
-            'nombrefirma3' => $this->faker->name(),
-            'firma3' => $this->faker->imageUrl(),
-            'sello3' => $this->faker->imageUrl(),
 
             'created_by' => 1,
         ];

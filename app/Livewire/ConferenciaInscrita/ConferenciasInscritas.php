@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire\ConferenciaInscrita;
 
 use App\Models\Asistencia;
@@ -25,28 +24,13 @@ class ConferenciasInscritas extends Component
     {
         $this->modoHistorial = $modoHistorial;
         $IdUsuario = Auth::id();
-        $persona = Persona::where('IdUsuario', $IdUsuario)->first();
-    
-        if ($persona) {
-            $IdPersona = $persona->id;
+        $IdPersona = Persona::where('IdUsuario', $IdUsuario)->value('id');
 
-            if ($this->modoHistorial) {
-                // Filtrar conferencias donde la asistencia es verdadera (1 == presente)
-                $this->conferencias = Suscripcion::where('IdPersona', $IdPersona)
-                    ->whereHas('asistencias', function ($query) {
-                        $query->where('asistencia', 1); // Asistencia marcada como 1
-                    })
-                    ->with('conferencia')
-                    ->get();
-            } else {
-                // Filtrar conferencias donde no se ha marcado asistencia (ausente o sin asistencia)
-                $this->conferencias = Suscripcion::where('IdPersona', $IdPersona)
-                    ->whereDoesntHave('asistencias', function ($query) {
-                        $query->where('asistencia', 1); // Excluir asistencia marcada como 1
-                    })
-                    ->with('conferencia')
-                    ->get();
-            }
+        if ($IdPersona) {
+            $this->conferencias = Suscripcion::where('IdPersona', $IdPersona)
+                ->whereDoesntHave('asistencias') // Excluir conferencias que tienen cualquier registro de asistencia
+                ->with('conferencia')
+                ->get();
         } else {
             $this->conferencias = collect();
         }
@@ -101,4 +85,6 @@ class ConferenciasInscritas extends Component
         ]);
     }
 }
+
+
 
