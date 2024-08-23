@@ -20,7 +20,6 @@ class EventosVistas extends Component
     {
         $Eventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->where('fechaInicio', '<=', Carbon::today())
             ->where('fechaFinal', '>=', Carbon::today())
             ->orderBy('id', 'DESC')
             ->paginate(9);

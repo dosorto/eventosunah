@@ -98,9 +98,9 @@ class Conferencistas extends Component
     {
         try {
             $this->validate([
-                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'firma' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'sello' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+                'firma' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+                'sello' => 'nullable|image|mimes:jpeg,png,jpg,gif',
                 'dni' => 'required|string|max:20',
                 'nombre' => 'required|string|max:255',
                 'apellido' => 'required|string|max:255',
