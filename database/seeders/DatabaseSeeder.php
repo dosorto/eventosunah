@@ -25,16 +25,7 @@ class DatabaseSeeder extends Seeder
            FirmaSeeder::class,
            TipoPerfilSeeder::class,
            LocalidadSeeder::class,
-           PersonaSeeder::class,
-           ConferencistaSeeder::class,
-           DiplomaSeeder::class,
-           EventoSeeder::class,
-           ConferenciaSeeder::class,
-         
-
-            
-          
-          
+           PersonaSeeder::class,         
        ]);
     }
 }
