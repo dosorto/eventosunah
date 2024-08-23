@@ -21,7 +21,7 @@ return new class extends Migration
             $table->time('horaInicio');
             $table->time('horaFin');
             $table->string('lugar');
-            $table->string('linkreunion');
+            $table->string('linkreunion')->nullable();
             $table->unsignedBigInteger('idConferencista');
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();

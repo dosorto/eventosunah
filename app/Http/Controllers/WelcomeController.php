@@ -11,7 +11,6 @@ class WelcomeController extends Controller
     {
         // Obtener los eventos paginados
         $Eventos = Evento::with('modalidad')
-        ->where('fechaInicio', '<=', Carbon::today())
         ->where('fechaFinal', '>=', Carbon::today())
         ->orderBy('created_at', 'ASC')->paginate(12);
 

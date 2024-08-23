@@ -167,7 +167,7 @@ public function store()
         'horaInicio' => 'required',
         'horaFin' => 'required|after:horaInicio',
         'lugar' => 'required|string|max:255',
-        'linkreunion' => 'required|url',
+        'linkreunion' => 'nullable|url',
         'idConferencista' => 'required|exists:conferencistas,id'
     ]);
 

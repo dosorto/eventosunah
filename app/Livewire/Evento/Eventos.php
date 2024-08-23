@@ -75,12 +75,12 @@ class Eventos extends Component
     public function store()
     {
         $this->validate([
-            'logo' => 'nullable|image|max:1024',
+            'logo' => 'nullable|image',
             'nombreevento' => 'required',
             'descripcion' => 'required',
             'organizador' => 'required',
             'fechainicio' => 'required',
-            'fechafinal' => 'required|after:fechainicio',
+            'fechafinal' => 'required',
             'horainicio' => 'required',
             'horafin' => 'required',
             'idmodalidad' => 'required',
