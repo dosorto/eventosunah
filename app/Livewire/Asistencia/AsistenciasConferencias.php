@@ -135,8 +135,8 @@ class AsistenciasConferencias extends Component
                     'Firma3' => $asistencia->suscripcion->conferencia->evento->diploma->Firma3,
                     'Sello1' => $asistencia->suscripcion->conferencia->evento->diploma->Sello1,
                     'Sello2' => $asistencia->suscripcion->conferencia->evento->diploma->Sello2,
-                    'FirmaConferencista' => $asistencia->suscripcion->conferencia->conferencista->Firma,
-                    'SelloConferencista' =>$asistencia->suscripcion->conferencia-> conferencista->SelloConferencista,
+                    'FirmaConferencista' => $asistencia->suscripcion->conferencia->conferencista->firma,
+                    'SelloConferencista' =>$asistencia->suscripcion->conferencia-> conferencista->sello,
                    
                     'uuid' => $uuid,
                     'qrcode' => $qrcode,
