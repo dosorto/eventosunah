@@ -125,19 +125,15 @@ class AsistenciasConferencias extends Component
                     'Evento' => $asistencia->suscripcion->conferencia->evento->nombreevento,
                     'NombreFirma1' => $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma1,
                     'NombreFirma2' => $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma2,
-                    
                     'Titulo1' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo1,
                     'Titulo2' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo2,
-    
                     'Plantilla' => $asistencia->suscripcion->conferencia->evento->diploma->Plantilla,
                     'Firma1' => $asistencia->suscripcion->conferencia->evento->diploma->Firma1,
                     'Firma2' => $asistencia->suscripcion->conferencia->evento->diploma->Firma2,
-                    'Firma3' => $asistencia->suscripcion->conferencia->evento->diploma->Firma3,
                     'Sello1' => $asistencia->suscripcion->conferencia->evento->diploma->Sello1,
                     'Sello2' => $asistencia->suscripcion->conferencia->evento->diploma->Sello2,
                     'FirmaConferencista' => $asistencia->suscripcion->conferencia->conferencista->firma,
-                    'SelloConferencista' =>$asistencia->suscripcion->conferencia-> conferencista->sello,
-                   
+                    'SelloConferencista' =>$asistencia->suscripcion->conferencia->conferencista->sello,
                     'uuid' => $uuid,
                     'qrcode' => $qrcode,
                 ];
