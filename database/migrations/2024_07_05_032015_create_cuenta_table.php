@@ -11,17 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('firmas', function (Blueprint $table) {
-            $table->id();
-            $table->string("Nombre");
-            $table->integer("Firma");
-            $table->integer("Sello");
-            $table->integer("created_by");
+        Schema::create('cuentas', function (Blueprint $table) {
+            $table->id();     
+            $table->string('numeroDeCuenta')->unique();
+            $table->string('CuentaHabiente');
+            $table->string('Banco'); 
+            $table->string('TipoCuenta');
+            $table->decimal('saldoActual', 15, 2)->default(0);  
+            $table->integer("created_by")->nullable();
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes();
+        
         });
+
     }
 
     /**
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('firmas');
+        Schema::dropIfExists('eventos');
     }
 };

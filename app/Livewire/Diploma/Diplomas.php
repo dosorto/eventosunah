@@ -50,16 +50,16 @@ class Diplomas extends Component
 
     protected $rules = [
         // 'Codigo' => 'required',
-        'Plantilla' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Plantilla' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         'Nombre' => 'required',
         'Titulo1' => 'required',
         'NombreFirma1' => 'required',
-        'Firma1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'Sello1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Firma1' => 'required|image|mimes:jpeg,png,jpg,gif',
+        'Sello1' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         'Titulo2' => 'nullable',
         'NombreFirma2' => 'nullable',
-        'Firma2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'Sello2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Firma2' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        'Sello2' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ];
 
     public $conferencias;
@@ -269,12 +269,6 @@ class Diplomas extends Component
         $this->Titulo2 = $diploma->Titulo2;
         $this->NombreFirma2 = $diploma->NombreFirma2;
 
-
-        /*  $conferencia = Conferencia::find($this->IdConferencia);
-          if ($conferencia) {
-              $this->inputSearchConferencia = $conferencia->nombre;
-          }
-  */
 
         $this->openModal();
     }

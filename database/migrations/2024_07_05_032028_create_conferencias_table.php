@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('lugar');
             $table->string('linkreunion')->nullable();
             $table->unsignedBigInteger('idConferencista');
+            $table->string('estado');
+            $table->decimal('precio', 8, 2)->nullable(); 
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();

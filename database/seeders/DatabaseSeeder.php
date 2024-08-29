@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
            ModalidadSeeder::class,
            UserTableSeeder::class,
            RolSeeder::class,
-           FirmaSeeder::class,
            TipoPerfilSeeder::class,
            LocalidadSeeder::class,
            PersonaSeeder::class,         

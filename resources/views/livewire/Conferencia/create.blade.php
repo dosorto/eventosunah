@@ -10,11 +10,8 @@
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form wire:submit.prevent="store">
                 <div class="bg-white px-6 pt-5 pb-4 sm:p-6 sm:pb-6 dark:bg-gray-900">
-                    <div
-                        class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Conferencia
-                        </h3>
+                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Conferencia</h3>
                         <button wire:click="closeModal()" type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -34,7 +31,7 @@
                             class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                             type="text" placeholder="Buscar evento..." readonly>
                         @error('IdEvento') <span class="text-red-500">{{ $message }}</span> @enderror
-                    </div>
+                    </div>
 
                     <div class="mb-4">
                         <label for="foto"
@@ -105,7 +102,6 @@
                         </div>
                     </div>
 
-
                     <div class="mb-4 col-span-2">
                         <label for="linkreunion" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Link
                             Reunion:</label>
@@ -134,24 +130,44 @@
                         @endif
                         @error('idConferencista') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
-                </div>
 
-                <div class="bg-gray-50 px-6 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
-                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button type="submit"
-                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Guardar
-                        </button>
-                    </span>
-                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                        <button wire:click="closeModal()" type="button"
-                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Cancelar
-                        </button>
-                    </span>
-                </div>
-            </form>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Estado:</label>
+                        <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                            id="estado" name="estado" wire:model.live="estado" required>
+                            <option value="" >Seleccione estado</option>
+                            <option value="Gratis">Gratis</option>
+                            <option value="Pagado">Pagado</option>
+                        </select>
+                        @error('estado') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+
+                    @if($estado == 'Pagado') 
+                        <div class="mb-4">
+                            <label for="precio" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Precio:</label>
+                            <input type="number" wire:model="precio"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="precio" placeholder="Precio" step="0.01" min="0">
+                            @error('precio') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                    @endif
+
+                    <div class="bg-gray-50 px-6 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-800">
+                        <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                            <button type="submit"
+                                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                Guardar
+                            </button>
+                        </span>
+                        <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                            <button wire:click="closeModal()" type="button"
+                                class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                Cancelar
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    
 </div>

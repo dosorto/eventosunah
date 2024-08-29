@@ -2,43 +2,45 @@
 
 namespace App\Livewire\Evento;
 
-use App\Models\Modalidad;
-use App\Models\Localidad;
-use DiplomaComponent;
+use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use Livewire\Component;
 use App\Models\Evento;
+use App\Models\Cuenta;
+use App\Models\Modalidad;
+use App\Models\Localidad;
 use App\Models\Diploma;
 
 class Eventos extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $logo, $nombreevento, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $IdDiploma, $evento_id, $search;
+    public $logo, $nombreevento, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $IdDiploma, $IdCuenta, $evento_id, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
     public $eventoIdAEliminar;
     public $nombreEventoAEliminar;
-
-
-    public function render()
-    {
-        $nombreeventos = Evento::with('modalidad', 'localidad', 'diploma')
-            ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->orderBy('id', 'DESC')
-            ->paginate(8);
-
-        return view('livewire.Evento.eventos', ['nombreeventos' => $nombreeventos]);
-    }
-
+    public $showDetails = false;
+    public $selectedEvento;
     public $modalidades, $localidades, $diplomas;
+    public $cuentas, $createNewCuenta = false, $cuentaNombre, $cuentaNumeroDeCuenta, $cuentaBanco, $cuentaTipoCuenta, $cuentaSaldoActual;
 
     public function mount()
     {
         $this->modalidades = Modalidad::all();
         $this->localidades = Localidad::all();
         $this->diplomas = Diploma::all();
+        $this->cuentas = Cuenta::all();
+    }
+
+    public function render()
+    {
+        $eventos = Evento::with('modalidad', 'localidad', 'diploma', 'cuenta')
+            ->where('nombreevento', 'like', '%' . $this->search . '%')
+            ->orderBy('id', 'DESC')
+            ->paginate(8);
+
+        return view('livewire.evento.eventos', ['eventos' => $eventos]);
     }
 
     public function create()
@@ -70,6 +72,13 @@ class Eventos extends Component
         $this->idmodalidad = '';
         $this->idlocalidad = '';
         $this->IdDiploma = '';
+        $this->IdCuenta = '';
+        $this->createNewCuenta = false;
+        $this->cuentaNombre = '';
+        $this->cuentaNumeroDeCuenta = '';
+        $this->cuentaBanco = '';
+        $this->cuentaTipoCuenta = '';
+        $this->cuentaSaldoActual = 0;
     }
 
     public function store()
@@ -86,18 +95,40 @@ class Eventos extends Component
             'idmodalidad' => 'required',
             'idlocalidad' => 'required',
             'IdDiploma' => 'required',
+            'IdCuenta' => 'nullable|exists:cuentas,id',
         ]);
 
+        // Manejo de archivo logo
         $defaultLogo = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
-
         if ($this->logo) {
             $this->logo = $this->logo->store('public/eventos');
         } elseif ($this->evento_id) {
-            // Si no se seleccionó un nuevo logo pero se está editando, mantener el logo actual
-            $nombreevento = Evento::findOrFail($this->evento_id);
-            $this->logo = $nombreevento->logo;
-        }else{
+            $evento = Evento::findOrFail($this->evento_id);
+            $this->logo = $evento->logo;
+        } else {
             $this->logo = $defaultLogo;
+        }
+
+        // Si se está creando una nueva cuenta
+        if ($this->createNewCuenta) {
+            $this->validate([
+                'cuentaNombre' => 'required|string',
+                'cuentaNumeroDeCuenta' => 'required|string|unique:cuentas,numeroDeCuenta',
+                'cuentaBanco' => 'required|string',
+                'cuentaTipoCuenta' => 'required|string',
+                'cuentaSaldoActual' => 'required|numeric',
+            ]);
+
+            $cuenta = Cuenta::create([
+                'numeroDeCuenta' => $this->cuentaNumeroDeCuenta,
+                'CuentaHabiente' => $this->cuentaNombre,
+                'Banco' => $this->cuentaBanco,
+                'TipoCuenta' => $this->cuentaTipoCuenta,
+                'saldoActual' => $this->cuentaSaldoActual,
+                'created_by' => auth()->id(),
+            ]);
+
+            $this->IdCuenta = $cuenta->id;
         }
 
         Evento::updateOrCreate(['id' => $this->evento_id], [
@@ -112,6 +143,7 @@ class Eventos extends Component
             'idmodalidad' => $this->idmodalidad,
             'idlocalidad' => $this->idlocalidad,
             'IdDiploma' => $this->IdDiploma,
+            'IdCuenta' => $this->IdCuenta  ?: null,
         ]);
 
         session()->flash('message', 
@@ -119,25 +151,24 @@ class Eventos extends Component
 
         $this->closeModal();
         $this->resetInputFields();
-
-        
     }
 
     public function edit($id)
     {
-        $nombreevento = Evento::findOrFail($id);
+        $evento = Evento::findOrFail($id);
         $this->evento_id = $id;
-       
-        $this->nombreevento = $nombreevento->nombreevento;
-        $this->descripcion = $nombreevento->descripcion;
-        $this->organizador = $nombreevento->organizador;
-        $this->fechainicio = $nombreevento->fechainicio;
-        $this->fechafinal = $nombreevento->fechafinal;
-        $this->horainicio = $nombreevento->horainicio;
-        $this->horafin = $nombreevento->horafin;
-        $this->idmodalidad = $nombreevento->idmodalidad;
-        $this->idlocalidad = $nombreevento->idlocalidad;
-        $this->IdDiploma = $nombreevento->IdDiploma;
+        $this->nombreevento = $evento->nombreevento;
+        $this->descripcion = $evento->descripcion;
+        $this->organizador = $evento->organizador;
+        $this->fechainicio = $evento->fechainicio;
+        $this->fechafinal = $evento->fechafinal;
+        $this->horainicio = $evento->horainicio;
+        $this->horafin = $evento->horafin;
+        $this->idmodalidad = $evento->idmodalidad;
+        $this->idlocalidad = $evento->idlocalidad;
+        $this->IdDiploma = $evento->IdDiploma;
+        $this->IdCuenta = $evento->IdCuenta;
+        $this->logo = $evento->logo;
         $this->openModal();
     }
 
@@ -153,7 +184,7 @@ class Eventos extends Component
 
             $evento->delete();
             session()->flash('message', 'Evento eliminado correctamente!');
-            $this->confirmingDelete = false; // Cierra el modal de confirmación
+            $this->confirmingDelete = false;
         }
     }
 
@@ -164,34 +195,33 @@ class Eventos extends Component
             session()->flash('error', 'No se puede eliminar el evento: ' .$evento->nombreevento .', porque está enlazado a una o más conferencias.');
             return;
         }
-     
-            $this->eventoIdAEliminar = $id;
-            $this->nombreEventoAEliminar = $evento->nombreevento; // Obtén el nombre del evento
-            $this->confirmingDelete = true;
-        
-    }
-/*
 
-*/
-    public $showDetails = false;
-    public $selectedEvento;
+        $this->eventoIdAEliminar = $id;
+        $this->nombreEventoAEliminar = $evento->nombreevento;
+        $this->confirmingDelete = true;
+    }
+
     public function viewDetails($id)
     {
         $this->selectedEvento = Evento::find($id);
         $this->showDetails = true;
     }
 
-
     public function closeDetails()
     {
         $this->showDetails = false;
     }
 
-    /*public function detalles($id)
+    public function toggleCreateNewCuenta()
     {
-        $evento = Evento::findOrFail($id);
-        return view('evento.detalles', compact('evento'));
-    }*/
-        
-
+        $this->createNewCuenta = !$this->createNewCuenta;
+        if (!$this->createNewCuenta) {
+            // Si se desactiva la creación de una nueva cuenta, restablecer los campos
+            $this->cuentaNombre = '';
+            $this->cuentaNumeroDeCuenta = '';
+            $this->cuentaBanco = '';
+            $this->cuentaTipoCuenta = '';
+            $this->cuentaSaldoActual = 0;
+        }
+    }
 }

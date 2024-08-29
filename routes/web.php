@@ -72,6 +72,7 @@ Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPerso
 // VALIDAR DIPLOMA
 Route::get('/validarDiploma/{uuid}', ValidarDiploma::class)->name('validarDiploma');
 
+Route::post('/pagar', [PagoController::class, 'procesarPago'])->name('pagar');
 
 
 

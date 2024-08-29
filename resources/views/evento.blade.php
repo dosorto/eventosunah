@@ -135,6 +135,31 @@
                                                 {{ $conferencia->horaInicio }} a {{ $conferencia->horaFin }}
                                             </td>
                                         </tr>
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td scope="row"
+                                                class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                                <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                </svg>
+                                                Estado
+                                            </td>
+                                            <td class="px-6 py-2">
+                                                {{ $conferencia->estado}} 
+                                            </td>
+                                        </tr>
+                                        @if ($conferencia->estado === 'Pagado')
+                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                                    Precio
+                                                </td>
+                                                <td class="px-6 py-2">
+                                                    {{ $conferencia->precio }}
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </table>
                                     <div class="pt-5">
                                         <a href="/login "

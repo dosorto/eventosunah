@@ -13,7 +13,7 @@ class Conferencias extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $foto, $nombre, $descripcion, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
+    public $foto, $nombre, $descripcion, $estado, $precio, $fecha, $horaInicio, $horaFin, $lugar, $linkreunion, $idConferencista, $conferencia_id, $search, $IdEvento;
     public $isOpen = false;
     public $inputSearchConferencista = '';
     public $searchConferencistas = [];
@@ -130,6 +130,8 @@ class Conferencias extends Component
         $this->inputSearchConferencista = '';
         $this->searchConferencistas = [];
         $this->IdEvento = '';
+        $this->estado = '';
+        $this->precio = '';
     }
 
    public function edit($id)
@@ -145,6 +147,8 @@ class Conferencias extends Component
     $this->lugar = $conferencia->lugar;
     $this->linkreunion = $conferencia->linkreunion;
     $this->idConferencista = $conferencia->idConferencista;
+    $this->estado = $conferencia->estado;
+    $this->precio = $conferencia->precio;
 
     // Cargar el nombre del conferencista seleccionado
     $conferencista = Conferencista::find($this->idConferencista);
@@ -168,7 +172,10 @@ public function store()
         'horaFin' => 'required|after:horaInicio',
         'lugar' => 'required|string|max:255',
         'linkreunion' => 'nullable|url',
-        'idConferencista' => 'required|exists:conferencistas,id'
+        'idConferencista' => 'required|exists:conferencistas,id',
+        'estado' => 'required|string|max:255',
+        'precio' => 'nullable',
+
     ]);
 
     // Manejo de foto
@@ -191,6 +198,8 @@ public function store()
         'lugar' => $this->lugar,
         'linkreunion' => $this->linkreunion,
         'idConferencista' => $this->idConferencista,
+        'estado' => $this->estado,
+        'precio' => $this->precio,
     ]);
 
     session()->flash('message', $this->conferencia_id ? 'Conferencia actualizada correctamente!' : 'Conferencia creada correctamente!');

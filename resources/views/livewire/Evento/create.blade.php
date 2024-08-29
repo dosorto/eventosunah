@@ -9,15 +9,14 @@
 
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full dark:bg-gray-900"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            <form>
+            <form wire:submit.prevent="store">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-gray-900">
                     <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Evento
+                            {{ $evento_id ? 'Editar Evento' : 'Crear Evento' }}
                         </h3>
                         <button wire:click="closeModal()" type="button"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="defaultModal">
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -137,6 +136,72 @@
                                 @error('IdDiploma') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         </div>
+
+                        <!-- Opción para agregar una nueva cuenta -->
+                        <div class="mt-4">
+                            <label for="createNewCuenta" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">
+                                Crear Nueva Cuenta
+                            </label>
+                            <input type="checkbox" id="createNewCuenta" wire:model.live="createNewCuenta">
+                        </div>
+
+                        @if($createNewCuenta)
+                            <!-- Formulario para nueva cuenta -->
+                            <div class="mt-4">
+                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Detalles de la Nueva Cuenta</h4>
+                                <div class="mb-4">
+                                    <label for="cuentaNombre"
+                                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre del Titular:</label>
+                                    <input type="text" id="cuentaNombre" wire:model="cuentaNombre"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                    @error('cuentaNombre') <span class="text-red-500">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="mb-4">
+                                    <label for="cuentaNumeroDeCuenta"
+                                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Número de Cuenta:</label>
+                                    <input type="text" id="cuentaNumeroDeCuenta" wire:model="cuentaNumeroDeCuenta"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                    @error('cuentaNumeroDeCuenta') <span class="text-red-500">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="mb-4">
+                                    <label for="cuentaBanco"
+                                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Banco:</label>
+                                    <select id="cuentaBanco" wire:model="cuentaBanco"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                        <option value="" disabled selected>Seleccione un banco</option>
+                                        <option value="Banco Atlántida">Banco Atlántida</option>
+                                        <option value="Banco de Occidente">Banco de Occidente</option>
+                                        <option value="Banco Ficohsa">Banco Ficohsa</option>
+                                        <option value="Banco Popular">Banco Popular</option>
+                                        <option value="Banco del Pais">Banco del Pais</option>
+                                        <option value="Bac Honduras">Bac Honduras</option>
+                                        <option value="Banco Nacional de Desarrollo Agrícola">Banco Nacional de Desarrollo Agrícola</option>
+                                     
+                                    </select>
+                                    @error('cuentaBanco') <span class="text-red-500">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="mb-4">
+                                    <label for="cuentaTipoCuenta"
+                                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Tipo de Cuenta:</label>
+                                    <select id="cuentaTipoCuenta" wire:model="cuentaTipoCuenta"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                        <option value="" disabled selected>Seleccione un tipo de cuenta</option>
+                                        <option value="Ahorro">Ahorro</option>
+                                        <option value="Corriente">Corriente</option>
+                                        <option value="Cheques">Cheques</option>
+                                    </select>
+                                    @error('cuentaTipoCuenta') <span class="text-red-500">{{ $message }}</span>@enderror
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="cuentaSaldoActual"
+                                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Saldo Actual:</label>
+                                    <input type="number" id="cuentaSaldoActual" wire:model="cuentaSaldoActual"
+                                        class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                    @error('cuentaSaldoActual') <span class="text-red-500">{{ $message }}</span>@enderror
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
 

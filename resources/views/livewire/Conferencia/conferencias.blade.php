@@ -185,6 +185,12 @@
                                 <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Hora Fin:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->horaFin }}</td>
                             </tr>
                             <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Estado:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->estado }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Precio:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->precio }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
                                 <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Lugar:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->lugar }}</td>
                             </tr>
                             <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
@@ -244,6 +250,12 @@
                             </tr>
                             <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
                                 <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Hora Fin:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->horaFin }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Estado:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->estado }}</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Precio:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->precio }}</td>
                             </tr>
                             <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-gray-800 dark:border-gray-700">
                                 <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white"><strong>Lugar:</strong></td><td class="px-6 py-2">  {{ $selectedConferencia->lugar }}</td>

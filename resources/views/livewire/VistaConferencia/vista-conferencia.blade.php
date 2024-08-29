@@ -151,6 +151,30 @@
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                    <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                            d="M4.37 7.657c2.063.528 2.396 2.806 3.202 3.87 1.07 1.413 2.075 1.228 3.192 2.644 1.805 2.289 1.312 5.705 1.312 6.705M20 15h-1a4 4 0 0 0-4 4v1M8.587 3.992c0 .822.112 1.886 1.515 2.58 1.402.693 2.918.351 2.918 2.334 0 .276 0 2.008 1.972 2.008 2.026.031 2.026-1.678 2.026-2.008 0-.65.527-.9 1.177-.9H20M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Estado
+                                </td>
+                                <td class="px-6 py-2">
+                                    {{ $conferencia->estado }}
+                                </td>
+                            </tr>
+                            @if ($conferencia->estado === 'Pagado')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
+                                        Precio
+                                    </td>
+                                    <td class="px-6 py-2">
+                                        {{ $conferencia->precio }}
+                                    </td>
+                                </tr>
+                            @endif
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" class="flex items-center pl-2 py-4 text-gray-900 font-bold dark:text-white">
                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -263,46 +287,87 @@
             @endforeach
         </div>
     @endif
-    <!-- Modal de mostrar la confirmación de conferencia -->
-    <div x-data="{ open: @entangle('showConfirmModal') }" x-cloak x-show="open" @keydown.escape.window="open = false"
-        class="fixed inset-0 flex items-center justify-center z-50 overflow-y-auto ease-out duration-400"
-        aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-        <div class="relative flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6">
-                <div>
-                    <div class="flex items-start">
-                        <div
-                            class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 sm:h-10 sm:w-10">
-                            <svg class="h-6 w-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 11-10 10A10 10 0 0112 2z" />
-                            </svg>
-                        </div>
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Confirmación de
-                                Inscripción</h3>
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-500">¿Estás segura de que quieres inscribirte a la
-                                    conferencia?</p>
-                            </div>
+ <!-- Modal de mostrar la confirmación de conferencia -->
+<div x-data="{ open: @entangle('showConfirmModal') }" x-cloak x-show="open" @keydown.escape.window="open = false"
+    class="fixed inset-0 flex items-center justify-center z-50 overflow-y-auto ease-out duration-400"
+    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    <div class="relative flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6">
+            <div>
+                <div class="flex items-start">
+                    <div
+                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 sm:h-10 sm:w-10">
+                        <svg class="h-6 w-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 11-10 10A10 10 0 0112 2z" />
+                        </svg>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Confirmación de
+                            Inscripción</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">¿Estás segura de que quieres inscribirte a la
+                                conferencia?</p>
                         </div>
                     </div>
                 </div>
-                <div class="mt-5 flex flex-row-reverse">
-                    <button wire:click="inscribirse" type="button"
-                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:ml-3 sm:w-auto sm:text-sm">
-                        Sí, inscribirme
-                    </button>
-                    <button @click="open = false; $wire.cancel()" type="button"
-                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-auto sm:text-sm">
-                        Cancelar
-                    </button>
-                </div>
+            </div>
+            <div class="mt-5 flex flex-row-reverse">
+                <button wire:click="inscribirse" type="button"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Sí, inscribirme
+                </button>
+                <button @click="open = false; $wire.cancel()" type="button"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancelar
+                </button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal de pago -->
+<div x-data="{ open: @entangle('showPaymentModal') }" x-cloak x-show="open" @keydown.escape.window="open = false"
+    class="fixed inset-0 flex items-center justify-center z-50 overflow-y-auto ease-out duration-400"
+    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    <div class="relative flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6">
+            <div>
+                <div class="flex items-start">
+                    <div
+                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:h-10 sm:w-10">
+                        <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Pago Requerido</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">Debe realizar el pago de esta conferencia para poder
+                                inscribirse.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 flex flex-row-reverse">
+                <button wire:click="redirectToPayment" type="button"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Realizar Pago
+                </button>
+                <button @click="open = false; $wire.cancel()" type="button"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Modal de mostrar que ya se ha suscrito -->
     <div x-data="{ open: @entangle('SuscripciónYaRealizada') }" x-cloak x-show="open"
