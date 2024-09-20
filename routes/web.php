@@ -1,15 +1,11 @@
 <?php
-use App\Http\Controllers\EventoVistaController;
-use App\Livewire\DescargarDiploma;
+use App\Livewire\Pago\Pagos;
 use App\Livewire\Tipoperfil\Tipoperfiles;
 use App\Livewire\VistaDiplomas;
-use App\Models\Evento;
-use App\Models\Persona;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Nacionalidad\Nacionalidades;
 use App\Livewire\Modalidad\Modalidades;
 use App\Livewire\Localidad\Localidades;
-use App\Livewire\MarcarAsistencia\MarcarAsistencias;
 use App\Livewire\Persona\Personas;
 use App\Livewire\ValidarDiploma;
 use App\Livewire\EventoVista\EventosVistas;
@@ -17,7 +13,6 @@ use App\Livewire\Rol\Roles;
 use App\Livewire\Diploma\Diplomas;
 use App\Livewire\Conferencia\Conferencias;
 use App\Livewire\VistaConferencia\VistaConferencias;
-use App\Livewire\Conferencia\CrearConferencia;
 use App\Livewire\Conferencista\Conferencistas;
 use App\Livewire\Evento\Eventos;
 use App\Livewire\ConferenciaInscrita\ConferenciasInscritas;
@@ -29,7 +24,6 @@ use Illuminate\Http\Request;
 use App\Livewire\ReporteEvento\ReporteEventos;
 use App\Livewire\Asistencia\AsistenciasConferencias;
 use App\Livewire\HistorialConferencia\HistorialConferencias;
-use App\Livewire\vista_Diploma;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\EventoController;
 
@@ -62,6 +56,7 @@ Route::middleware([
     Route::get('/asistencia-conferencia/{conferencia}', AsistenciasConferencias::class)->name('asistencias-Conferencia');
     Route::get('/vistaDiploma/asistencia/{asistencia?}', VistaDiplomas::class)->name('vistaDiploma');
     Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
+    Route::get('/pago/{conferencia}', Pagos::class)->name('pago');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
@@ -72,7 +67,7 @@ Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPerso
 // VALIDAR DIPLOMA
 Route::get('/validarDiploma/{uuid}', ValidarDiploma::class)->name('validarDiploma');
 
-Route::post('/pagar', [PagoController::class, 'procesarPago'])->name('pagar');
+
 
 
 

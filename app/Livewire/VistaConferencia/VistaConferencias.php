@@ -81,6 +81,6 @@ class VistaConferencias extends Component
     public function redirectToPayment()
     {
         // Redirige a la página de pago
-        return redirect()->route('pago.conferencia', ['conferencia' => $this->selectedConferencia]);
+        return redirect()->route('pago', ['conferencia' => $this->selectedConferencia]);
     }
 }
