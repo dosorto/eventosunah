@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\EventoVistaController;
 use App\Livewire\DescargarDiploma;
+use App\Livewire\PaginaInicial;
+use App\Livewire\TemasCongreso;
 use App\Livewire\Tipoperfil\Tipoperfiles;
 use App\Livewire\VistaDiplomas;
 use App\Models\Evento;
@@ -62,6 +64,8 @@ Route::middleware([
     Route::get('/asistencia-conferencia/{conferencia}', AsistenciasConferencias::class)->name('asistencias-Conferencia');
     Route::get('/vistaDiploma/asistencia/{asistencia?}', VistaDiplomas::class)->name('vistaDiploma');
     Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
+    Route::get('/paginaInicio', PaginaInicial::class)->name('paginaInicio');
+    Route::get('/temas', TemasCongreso::class)->name('temas');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
