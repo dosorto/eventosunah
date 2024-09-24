@@ -51,7 +51,7 @@
         <div class="flex flex-col justify-center max-w-sm">
         @if ($tarjetasEvento->estado === 'Pagado')
       <p
-      class="inline-flex md:ml-0 md:mr-8 sm:ml-0 sm:mr-8 lg:ml-8 lg:mr-0 items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+      class="inline-flex md:ml-0 md:mr-8 sm:ml-0 sm:mr-8 lg:ml-4 lg:mr-0 items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
       Inscribirse
       <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
