@@ -15,6 +15,6 @@ class WelcomeController extends Controller
         ->orderBy('created_at', 'ASC')->paginate(12);
 
         // Retornar la vista de bienvenida con los eventos
-        return view('welcome', compact('Eventos'));
+        return view('pagina-inicial', compact('Eventos'));
     }
 }

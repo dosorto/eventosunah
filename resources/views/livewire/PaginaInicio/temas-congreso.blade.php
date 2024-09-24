@@ -1,7 +1,8 @@
-<div>
-    <x-layouts.reportes>
+@extends('layouts.congreso')
+@section('app-content')
         <section class="bg-gray-50 dark:bg-gray-900">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
+        <x-nav />
+            <div class="py-8 px-4 mx-auto mt-8 max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
                 <div class="flex flex-col justify-center">
                     <h1
                         class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -12,7 +13,7 @@
                     
                 </div>
                 <div id="mega-menu-full-dropdown"
-                    class="mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600">
+                    class="mt-1 bg-white border-gray-200 shadow-sm rounded-lg border-y dark:bg-gray-800 dark:border-gray-600">
                     <div
                         class="grid max-w-screen-xl mt-4 px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:grid-cols-2 md:px-6">
                         <ul aria-labelledby="mega-menu-full-dropdown-button">
@@ -107,5 +108,4 @@
                 </div>
             </div>
         </section>
-    </x-layouts.reportes>
-</div>
+@endsection

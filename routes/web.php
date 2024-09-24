@@ -35,10 +35,6 @@ use App\Livewire\vista_Diploma;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\EventoController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -64,22 +60,18 @@ Route::middleware([
     Route::get('/asistencia-conferencia/{conferencia}', AsistenciasConferencias::class)->name('asistencias-Conferencia');
     Route::get('/vistaDiploma/asistencia/{asistencia?}', VistaDiplomas::class)->name('vistaDiploma');
     Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
-    Route::get('/paginaInicio', PaginaInicial::class)->name('paginaInicio');
-    Route::get('/temas', TemasCongreso::class)->name('temas');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
 Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('registerpost');
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/evento/{evento}', [EventoController::class, 'show'])->name('evento');
 Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPersona'])->name('nueva-persona');
 // VALIDAR DIPLOMA
 Route::get('/validarDiploma/{uuid}', ValidarDiploma::class)->name('validarDiploma');
-
 Route::post('/pagar', [PagoController::class, 'procesarPago'])->name('pagar');
 
-
-
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/temas', TemasCongreso::class)->name('temas');
 
 
 
