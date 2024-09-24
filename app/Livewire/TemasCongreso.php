@@ -8,6 +8,6 @@ class TemasCongreso extends Component
 {
     public function render()
     {
-        return view('livewire.PaginaInicio.temas-congreso');
+        return view('temas-congreso');
     }
 }

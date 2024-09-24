@@ -1,6 +1,6 @@
 <div>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
-        Historial de Conferencias
+        Historial de Eventos
     </h2>
 
     <div class="dark:bg-gray-900">
@@ -36,9 +36,9 @@
                                 placeholder="Buscar...">
                         </div>
                         <div class="mr-32"></div>
-                        <a  href="{{ route('historial-eventos') }}"
+                        <a href="{{ route('historial-conferencias') }}"
                             class="mb-1 px-3 py-2 text-sm ml-96 font-medium text-white inline-flex items-center bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
-                            Historial de eventos
+                            Historial de conferencias
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -54,16 +54,16 @@
                                     Evento
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Conferencia
+                                    Organizador
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Conferencista
+                                    Modalidad
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Fecha
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Lugar
+                                    Costo
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Acción
@@ -75,11 +75,10 @@
                                 <tr
                                     class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $item['conferencia']->evento->nombreevento }}</td>
-                                    <td class="px-6 py-4">{{ $item['conferencia']->nombre }}</td>
-                                    <td class="px-6 py-4">{{ $item['conferencia']->conferencista->persona->nombre }}
-                                        {{ $item['conferencia']->conferencista->persona->apellido }}</td>
-                                    <td class="px-6 py-4">{{ $item['conferencia']->fecha }}</td>
-                                    <td class="px-6 py-4">{{ $item['conferencia']->lugar }}</td>
+                                    <td class="px-6 py-4">{{$item['conferencia']->evento->organizador }}</td>
+                                    <td class="px-6 py-4">{{$item['conferencia']->evento->modalidad->modalidad }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->evento->fechainicio }}</td>
+                                    <td class="px-6 py-4">{{ $item['conferencia']->evento->estado }}</td>
                                     <td class="px-6 py-4">
                                         <button wire:click="descargarDiploma({{ $item['asistencia_id'] }})"
                                             class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
