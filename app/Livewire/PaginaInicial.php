@@ -8,6 +8,6 @@ class PaginaInicial extends Component
 {
     public function render()
     {
-        return view('livewire.PaginaInicio.pagina-inicial');
+        return view('pagina-inicial');
     }
 }
