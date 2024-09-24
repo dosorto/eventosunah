@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('IdEvento');
             $table->unsignedBigInteger('IdPersona');
+            $table->unsignedBigInteger('IdRecibo');
+            $table->string('Status')->default('pendiente'); 
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
@@ -22,6 +24,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('IdEvento')->references('id')->on('eventos')->onDelete('restrict');
+            $table->foreign('IdRecibo')->references('id')->on('recibopagos')->onDelete('restrict');
             $table->foreign('IdPersona')->references('id')->on('personas')->onDelete('restrict');
         });
     }
