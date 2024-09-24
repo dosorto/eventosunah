@@ -21,6 +21,8 @@ return new class extends Migration
             $table->date('fechafinal');
             $table->time('horainicio');
             $table->time('horafin');
+            $table->string('estado');
+            $table->decimal('precio', 8, 2)->nullable(); 
             $table->unsignedBigInteger('idmodalidad');
             $table->unsignedBigInteger('idlocalidad');
             $table->unsignedBigInteger('IdDiploma');

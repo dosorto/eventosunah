@@ -43,9 +43,11 @@
       <div class="evento-details">
       <h2 class="name-evento">{{ $tarjetasEvento->nombreevento }}</h2>
       <p class="evento-creador">{{ $tarjetasEvento->organizador }}</p>
+      <p class="inline-flex items-center px-3 py-2 text-sm font-semibold text-center text-black bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Inscribirse</p>
       <p class="fecha-creacion">{{ $tarjetasEvento->created_at->diffForHumans() }}</p>
-      {{-- <p class="fecha-creacion">{{ $tarjetasEvento->created_at->translatedFormat('F j, Y') }}</p> --}}
-
+     {{-- @if ($tarjetasEvento->estado === 'Pagado')
+            
+      @endif --}}
       </div>
       </div>
       </a>

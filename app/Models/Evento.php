@@ -10,7 +10,7 @@ class Evento extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['logo','nombreevento','descripcion','organizador', 'fechainicio', 'fechafinal', 'horainicio', 'horafin','idmodalidad','idlocalidad', 'IdDiploma','IdCuenta'];
+    protected $fillable = ['logo','nombreevento','descripcion','organizador', 'fechainicio', 'fechafinal', 'horainicio', 'horafin','idmodalidad','idlocalidad', 'IdDiploma','IdCuenta','estado','precio'];
 
     public function modalidad()
     {

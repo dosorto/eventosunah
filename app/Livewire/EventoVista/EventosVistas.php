@@ -15,7 +15,10 @@ class EventosVistas extends Component
 
     public $nombreevento, $descripcion, $organizador, $idmodalidad, $idlocalidad, $evento_id, $search;
     public $isOpen = 0;
-
+    public $showConfirmModal = false;
+    public $selectedConferencia;
+    public $showPaymentModal = false; 
+    public $SuscripciónYaRealizada = false;
     public function render()
     {
         $Eventos = Evento::with('modalidad', 'localidad')
@@ -33,6 +36,52 @@ class EventosVistas extends Component
     {
         $this->modalidades = Modalidad::all();
         $this->localidades = Localidad::all();
+    }
+    public function confirmInscription($EventoId)
+    {
+        $this->selectedEvento= $EventoId;
+        $evento = Evento::find($EventoId);
+
+        if ($evento  && $evento ->estado === 'Pagado') {
+            $this->showPaymentModal = true;
+        } else {
+            $this->showConfirmModal = true;
+        }
+    }
+
+    public function inscribirse()
+    {
+        $evento = Evento::find($this->selectedEvento);
+
+        if ($conferencia) {
+            // Verificar si ya está suscrito a la conferencia
+            $suscripcionExistente = Auth::user()->persona->inscripciones()
+                ->where('IdEvento', $evento->id)
+                ->exists();
+
+            if ($suscripcionExistente) {
+                $this->SuscripciónYaRealizada = true; 
+            } else {
+                // Crear la suscripción si no existe
+                Auth::user()->persona->inscripciones()->updateOrCreate([
+                    'IdEvento' => $evento->id,
+                    'created_by' => Auth::id()
+                ]);
+
+                session()->flash('success', 'Te has inscrito al evento.');
+            }
+        }
+
+        $this->showConfirmModal = false;
+        $this->selectedConferencia = null;
+        // Asegúrate de cerrar el modal de pago si estaba abierto
+    }
+
+    public function cancel()
+    {
+        $this->showConfirmModal = false;
+        // Asegúrate de cerrar el modal de pago si estaba abierto
+        $this->selectedConferencia = null;
     }
 }
 
