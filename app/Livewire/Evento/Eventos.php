@@ -15,7 +15,7 @@ class Eventos extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $logo, $nombreevento, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $IdDiploma, $IdCuenta, $evento_id, $search;
+    public $logo, $nombreevento, $estado,$precio, $descripcion, $organizador, $fechainicio, $fechafinal, $horainicio, $horafin, $idmodalidad, $idlocalidad, $IdDiploma, $IdCuenta, $evento_id, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
     public $eventoIdAEliminar;
@@ -73,6 +73,8 @@ class Eventos extends Component
         $this->idlocalidad = '';
         $this->IdDiploma = '';
         $this->IdCuenta = '';
+        $this->estado = '';
+        $this->precio = '';
         $this->createNewCuenta = false;
         $this->cuentaNombre = '';
         $this->cuentaNumeroDeCuenta = '';
@@ -96,6 +98,8 @@ class Eventos extends Component
             'idlocalidad' => 'required',
             'IdDiploma' => 'required',
             'IdCuenta' => 'nullable|exists:cuentas,id',
+            'estado' => 'required|string|max:255',
+            'precio' => 'nullable',
         ]);
 
         // Manejo de archivo logo
@@ -144,6 +148,8 @@ class Eventos extends Component
             'idlocalidad' => $this->idlocalidad,
             'IdDiploma' => $this->IdDiploma,
             'IdCuenta' => $this->IdCuenta  ?: null,
+            'estado' => $this->estado,
+            'precio' => $this->precio,
         ]);
 
         session()->flash('message', 
@@ -169,6 +175,8 @@ class Eventos extends Component
         $this->IdDiploma = $evento->IdDiploma;
         $this->IdCuenta = $evento->IdCuenta;
         $this->logo = $evento->logo;
+        $this->estado = $conferencia->estado;
+        $this->precio = $conferencia->precio;
         $this->openModal();
     }
 

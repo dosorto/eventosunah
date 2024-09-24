@@ -16,7 +16,7 @@ class Suscripcion extends Model
 
     public function evento()
     {
-        return $this->belongsTo(Conferencia::class, 'IdConferencia');
+        return $this->belongsTo(Evento::class, 'IdEvento');
     }
 
     public function persona()

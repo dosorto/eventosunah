@@ -95,6 +95,27 @@
                                 @error('horafin') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         </div>
+                        <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Estado:</label>
+                        <select class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                            id="estado" name="estado" wire:model.live="estado" required>
+                            <option value="" >Seleccione estado</option>
+                            <option value="Gratis">Gratis</option>
+                            <option value="Pagado">Pagado</option>
+                        </select>
+                        @error('estado') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+
+                    @if($estado == 'Pagado') 
+                        <div class="mb-4">
+                            <label for="precio" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Precio:</label>
+                            <input type="number" wire:model="precio"
+                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                id="precio" placeholder="Precio" step="0.01" min="0">
+                            @error('precio') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                    @endif
+
                         <div class="grid grid-cols-2 gap-4 mt-4">
                             <div class="mb-4">
                                 <label for="modalidadSelect"
