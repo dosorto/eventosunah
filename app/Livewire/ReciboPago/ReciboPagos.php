@@ -38,7 +38,7 @@ class ReciboPagos extends Component
         $recibo = Recibopago::create([
             'idEvento' => $this->evento->id,
             'idPersona' => $this->persona->id,
-            'fecha' => $this->fecha,
+            'fecha' => $this->fecha, // Asegúrate de incluir 'fecha' aquí
             'foto' => $path,
         ]);
 
@@ -48,6 +48,7 @@ class ReciboPagos extends Component
             'IdPersona' => $this->persona->id,
             'IdRecibo' => $recibo->id, 
             'Status' => 'pendiente',
+          
         ]);
 
         // Mensaje de éxito
