@@ -30,7 +30,7 @@ use App\Livewire\Asistencia\AsistenciasConferencias;
 use App\Livewire\HistorialConferencia\HistorialConferencias;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\EventoController;
-
+use App\Livewire\ReciboPago\ReciboPagos;
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -47,6 +47,7 @@ Route::middleware([
     Route::get('/conferencista', Conferencistas::class)->name('conferencista');
     Route::get('/eventos', Eventos::class)->name('eventos');
     Route::get('/persona', Personas::class)->name('persona');
+    Route::get('/recibo/{evento}', ReciboPagos::class)->name('recibo');
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/diploma', Diplomas::class)->name('diploma');
