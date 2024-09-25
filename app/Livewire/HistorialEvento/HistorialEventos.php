@@ -88,15 +88,11 @@ class HistorialEventos extends Component
         );
 
         // Generar el PDF del diploma
-        $pdf = PDF::loadView('livewire.descargarDiploma', [
+        $pdf = PDF::loadView('livewire.diploma-evento', [
             'Nombre' => $asistencia->suscripcion->persona->nombre,
             'Apellido' => $asistencia->suscripcion->persona->apellido,
-            'Conferencia' => $asistencia->suscripcion->conferencia->nombre,
-            'Conferencista' => $asistencia->suscripcion->conferencia->conferencista->persona->nombre . ' ' . $asistencia->suscripcion->conferencia->conferencista->persona->apellido,
-            'TituloConferencista' => $asistencia->suscripcion->conferencia->conferencista->titulo,
-            'FirmaConferencista' =>  $asistencia->suscripcion->conferencia->conferencista->firma,
-            'SelloConferencista' =>  $asistencia->suscripcion->conferencia->conferencista->sello,
-            'FechaConferencia' => $asistencia->suscripcion->conferencia->fecha,
+            'FechaInicio' => $asistencia->suscripcion->conferencia->evento->fechainicio,
+            'Organizador' => $asistencia->suscripcion->conferencia->evento->organizador,
             'Evento' => $asistencia->suscripcion->conferencia->evento->nombreevento,
             'NombreFirma1' => $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma1,
             'NombreFirma2' => $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma2,
