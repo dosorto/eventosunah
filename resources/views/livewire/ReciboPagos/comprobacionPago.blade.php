@@ -1,6 +1,6 @@
 <div x-data="{ showModal: false, message: '' }" @show-modal.window="showModal = true; message = $event.detail" class="flex flex-col min-h-screen">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
-        Inscripciones
+        Comprobantes de pago
     </h2>
 
     <div class="dark:bg-gray-900">
@@ -65,7 +65,7 @@
                                     <td class="px-6 py-4 text-center">
                                         <div class="flex space-x-2 justify-center">
                                             <button wire:click="marcarComprobado({{ $inscripcion->id }})" class="px-3 py-1 w-28 h-10 bg-green-500 text-white rounded-lg hover:bg-green-600">Aceptar</button>
-                                            <button wire:click="rechazarComprobacion({{ $inscripcion->id }})" class="px-3 py-1 w-28 h-10 bg-red-600 text-white rounded-lg hover:bg-red-700">Rechazar</button>
+                                            <button wire:click="confirmDelete({{ $inscripcion->id }})" class="px-3 py-1 w-28 h-10 bg-red-600 text-white rounded-lg hover:bg-red-700">Rechazar</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -80,6 +80,46 @@
                     {{ $inscripciones->links() }}
                     <br>
                 </div>
+                @if (session()->has('error'))
+                    <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+                        <div class="fixed inset-0 transition-opacity">
+                            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+
+                        <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                            <div class="p-6">
+                                <h3 class="text-lg font-semibold mb-4">Error</h3>
+                                <p>{{ session('error') }}</p>
+                                <div class="mt-4 flex justify-end">
+                                    <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                                        Aceptar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif ($confirmingDelete)
+                    <div class="fixed z-50 inset-0 flex items-center justify-center overflow-y-auto ease-out duration-400">
+                        <div class="fixed inset-0 transition-opacity">
+                            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+
+                        <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                            <div class="p-6">
+                                <h3 class="text-lg font-semibold mb-4">Rechazar Comprobante</h3>
+                                <p>¿Deseas rechazar este comprobante de pago de: "<strong>{{ $inscripcion->evento->nombreevento }}</strong>"? Esta acción no se puede deshacer.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <button wire:click="$set('confirmingDelete', false)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
+                                        Cancelar
+                                    </button>
+                                    <button wire:click="delete" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

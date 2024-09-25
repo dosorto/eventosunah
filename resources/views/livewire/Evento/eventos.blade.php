@@ -84,7 +84,7 @@
                                     <td class="px-6 py-4">{{ $nombreevento->modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">{{ $nombreevento->localidad->localidad }}</td>
                                     <td class="px-6 py-4">
-                                    @if($nombreevento->diploma->Plantilla)
+                                        @if($nombreevento->diploma->Plantilla)
                                             <img src="{{ asset(str_replace('public', 'storage', $nombreevento->diploma->Plantilla)) }}"
                                                 alt="Plantilla" class="w-12 h-12 object-cover">
                                         @else
@@ -105,7 +105,7 @@
                                             Ver más
                                         </a>
                                         <a href="{{ route('conferencia', ['evento' => $nombreevento->id]) }}"
-                                            class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                                            class="mb-1 w-full  px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -113,28 +113,23 @@
                                                     stroke-width="2"
                                                     d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                             </svg>
-
-
                                             Conferencia
-
-
                                         </a>
-                                     @if($nombreevento->estado == 'Pagado') 
-                                        <a href="{{ route('inscripcion-evento', ['evento' => $nombreevento->id]) }}"
-                                             class="mb-1 w-28 h-10 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
-                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+
+                                        @if($nombreevento->estado == 'Pagado')
+                                            <a href="{{ route('inscripcion-evento', ['evento' => $nombreevento->id]) }}"
+                                                class="mb-1 w-full h-10 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                                                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                     viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                        d="M18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z"
-                                                        clip-rule="evenodd" />
-                                                <path fill-rule="evenodd"
-                                                        d="M15.026 21.534A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c2.51 0 4.802.924 6.558 2.45l-7.635 7.636L7.707 8.87a1 1 0 0 0-1.414 1.414l3.923 3.923a1 1 0 0 0 1.414 0l8.3-8.3A9.956 9.956 0 0 1 22 12a9.994 9.994 0 0 1-.466 3.026A2.49 2.49 0 0 0 20 14.5h-.5V14a2.5 2.5 0 0 0-5 0v.5H14a2.5 2.5 0 0 0 0 5h.5v.5c0 .578.196 1.11.526 1.534Z"
-                                                        clip-rule="evenodd" />
-                                            </svg>
-                                            Inscripción
-                                        </a>
-                                    @endif
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 8h6m-6 4h6m-6 4h6M6 3v18l2-2 2 2 2-2 2 2 2-2 2 2V3l-2 2-2-2-2 2-2-2-2 2-2-2Z" />
+                                                </svg>
+
+                                                Pagos
+                                            </a>
+                                        @endif
                                         <button wire:click="edit({{ $nombreevento->id }})"
                                             class="mb-1 w-full px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"

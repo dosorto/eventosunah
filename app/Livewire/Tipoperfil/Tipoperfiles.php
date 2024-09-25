@@ -100,7 +100,7 @@ class Tipoperfiles extends Component
         }
 
         if ($tipoperfil->personas()->exists()) {
-            session()->flash('error', 'No se puede eliminar el tipo de perfil: ' . $tipoperfil->tipoperfil . ', porque está enlazado a una persona.');
+            session()->flash('error', 'No se puede eliminar el tipo de perfil: ' .  $this->nombreAEliminar. ', porque está enlazado a una persona.');
             return;
         }
 

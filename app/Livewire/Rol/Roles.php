@@ -138,7 +138,7 @@ class Roles extends Component
         $role  = Role::find($id);
 
         if (! $role ) {
-            session()->flash('error', 'localidad no encontrada.');
+            session()->flash('error', 'rol no encontrado.');
             return;
         }
 

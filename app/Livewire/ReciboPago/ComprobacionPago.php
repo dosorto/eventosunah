@@ -15,6 +15,10 @@ class ComprobacionPago extends Component
     public $modalOpen = false;
     public $modalMessage = '';
 
+    public $confirmingDelete = false;
+    public $IdAEliminar;
+    public $nombreAEliminar;
+
     protected $paginationTheme = 'tailwind';
 
     public function mount($evento = null)
@@ -37,30 +41,30 @@ class ComprobacionPago extends Component
         $this->modalOpen = true;
     }
 
-    public function rechazarComprobacion($inscripcionId)
+   /* public function rechazarComprobacion($inscripcionId)
     {
         Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Rechazado']);
         $this->modalMessage = 'Comprobación rechazada correctamente.';
         $this->modalOpen = true;
     }
-
+*/
     public function marcarTodos($status)
-{
-    $inscripciones = Inscripcion::where('IdEvento', $this->evento_id)->get();
+    {
+        $inscripciones = Inscripcion::where('IdEvento', $this->evento_id)->get();
 
-    if ($inscripciones->isEmpty()) {
-        $this->modalMessage = 'No hay inscripciones para comprobar.';
+        if ($inscripciones->isEmpty()) {
+            $this->modalMessage = 'No hay inscripciones para comprobar.';
+            $this->modalOpen = true;
+            return;
+        }
+
+        foreach ($inscripciones as $inscripcion) {
+            Inscripcion::where('id', $inscripcion->id)->update(['Status' => $status]);
+        }
+
+        $this->modalMessage = 'Todas las comprobaciones fueron marcadas como ' . $status . '.';
         $this->modalOpen = true;
-        return;
     }
-
-    foreach ($inscripciones as $inscripcion) {
-        Inscripcion::where('id', $inscripcion->id)->update(['Status' => $status]);
-    }
-
-    $this->modalMessage = 'Todas las comprobaciones fueron marcadas como ' . $status . '.';
-    $this->modalOpen = true;
-}
 
 
     public function render()
@@ -69,7 +73,7 @@ class ComprobacionPago extends Component
             ->where('IdEvento', $this->evento_id)
             ->whereHas('persona', function ($query) {
                 $query->where('nombre', 'like', '%' . $this->search . '%')
-                      ->orWhere('apellido', 'like', '%' . $this->search . '%');
+                    ->orWhere('apellido', 'like', '%' . $this->search . '%');
             })
             ->paginate(8);
 
@@ -77,5 +81,36 @@ class ComprobacionPago extends Component
             'inscripciones' => $inscripciones,
             'evento_id' => $this->evento_id,
         ]);
+    }
+
+    public function delete()
+    {
+        if ($this->confirmingDelete) {
+            $inscripcion = Inscripcion::find($this->IdAEliminar);
+
+            if (!$inscripcion) {
+                session()->flash('error', 'Incripción no encontrada.');
+                $this->confirmingDelete = false;
+                return;
+            }
+
+            $inscripcion->delete();
+            session()->flash('message', 'Inscripción rechazada!');
+            $this->confirmingDelete = false;
+        }
+    }
+
+    public function confirmDelete($id)
+    {
+        $comprobacion = Inscripcion::find($id);
+
+        if (!$comprobacion) {
+            session()->flash('error', 'Incripción no encontrada.');
+            return;
+        }
+
+        $this->IdAEliminar = $id;
+        $this->nombreAEliminar = $comprobacion->persona->nombre . ' ' . $comprobacion->persona->apellido;
+        $this->confirmingDelete = true;
     }
 }
