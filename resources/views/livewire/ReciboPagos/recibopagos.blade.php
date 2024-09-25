@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block mb-1 dark:text-gray-300">Foto del Pago:</label>
+                        <label class="block mb-1 dark:text-gray-300">Comprobante:</label>
                         <input type="file" wire:model="foto" class="bg-gray-100 dark:bg-gray-700 dark:text-white w-full p-2 rounded">
                         @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
