@@ -1,6 +1,6 @@
 <div x-data="{ showDeleteModal: @entangle('showDeleteModal') }">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
-        Pago del Evento: {{ $evento->nombreEvento }}
+        Pago del Evento: {{ $evento->nombreevento }}
     </h2>
 
     <div class="dark:bg-gray-900">
