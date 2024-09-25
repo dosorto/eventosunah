@@ -1,6 +1,6 @@
 <div x-data="{ showDeleteModal: @entangle('showDeleteModal') }">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
-        Pago del Evento: {{ $evento->nombreevento }}
+        Comprobante para: {{ $evento->nombreevento }}
     </h2>
 
     <div class="dark:bg-gray-900">
@@ -29,11 +29,12 @@
 
                     <div class="mb-4">
                         <label class="block mb-1 dark:text-gray-300">Comprobante:</label>
-                        <input type="file" wire:model="foto" class="bg-gray-100 dark:bg-gray-700 dark:text-white w-full p-2 rounded">
+                        <input type="file" wire:model="foto" class="rounded-lg bg-gray-100 cursor-pointer dark:bg-gray-700 dark:text-white w-full p-2">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Formatos aceptados: PNG, JPG.</p>
                         @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
 
-                    <button type="submit" class="w-full bg-blue-500 text-white rounded p-2 hover:bg-blue-600">Realizar Pago</button>
+                    <button type="submit" class="w-full bg-blue-500 text-white rounded p-2 hover:bg-blue-600">Subir Comprobante</button>
                 </form>
             </div>
         </div>

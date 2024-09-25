@@ -39,7 +39,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                         <tr>
                             <th scope="col" class="px-6 py-3">No.</th>
-                            <th scope="col" class="px-6 py-3">ID Usuario</th>
+                            <th scope="col" class="px-6 py-3">Usuario</th>
                             <th scope="col" class="px-6 py-3">DNI</th>
                             <th scope="col" class="px-6 py-3">Nombre</th>
                             <th scope="col" class="px-6 py-3">Apellido</th>

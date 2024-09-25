@@ -5,6 +5,8 @@ namespace App\Livewire\ReciboPago;
 use App\Models\Inscripcion;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Notifications\ComprobanteRechazado;
+use Illuminate\Support\Facades\Notification;
 
 class ComprobacionPago extends Component
 {
@@ -41,13 +43,13 @@ class ComprobacionPago extends Component
         $this->modalOpen = true;
     }
 
-   /* public function rechazarComprobacion($inscripcionId)
-    {
-        Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Rechazado']);
-        $this->modalMessage = 'Comprobación rechazada correctamente.';
-        $this->modalOpen = true;
-    }
-*/
+    /* public function rechazarComprobacion($inscripcionId)
+     {
+         Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Rechazado']);
+         $this->modalMessage = 'Comprobación rechazada correctamente.';
+         $this->modalOpen = true;
+     }
+ */
     public function marcarTodos($status)
     {
         $inscripciones = Inscripcion::where('IdEvento', $this->evento_id)->get();
@@ -94,8 +96,13 @@ class ComprobacionPago extends Component
                 return;
             }
 
+            // Enviar notificación por correo electrónico
+            Notification::route('mail', $inscripcion->persona->correo)
+                ->notify(new ComprobanteRechazado($inscripcion));
+
+
             $inscripcion->delete();
-            session()->flash('message', 'Inscripción rechazada!');
+            session()->flash('message', 'Inscripción rechazada! Se ha enviado un correo electrónico a ' . $inscripcion->persona->nombre .' '. $inscripcion->persona->apellido .' ('. $inscripcion->persona->correo . ') notificandole.');
             $this->confirmingDelete = false;
         }
     }
@@ -106,6 +113,7 @@ class ComprobacionPago extends Component
 
         if (!$comprobacion) {
             session()->flash('error', 'Incripción no encontrada.');
+            $this->confirmingDelete = true;
             return;
         }
 
@@ -114,3 +122,4 @@ class ComprobacionPago extends Component
         $this->confirmingDelete = true;
     }
 }
+

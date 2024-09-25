@@ -83,22 +83,25 @@
                                     <!-- Modal para ya inscrito -->
                                     <div id="inscrito-modal-{{ $tarjetasEvento->id }}" tabindex="-1" aria-hidden="true"
                                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                        <div class="relative p-4 w-full max-w-md max-h-full">
+                                        <!-- Fondo opaco -->
+                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                        <div class="relative p-4 w-full max-w-md max-h-full mx-auto">
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <div class="p-4 md:p-5">
                                                     <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">
-                                                         Ya estas inscrito a "{{$tarjetasEvento->nombreevento}}"
+                                                        Ya estas inscrito a "{{ $tarjetasEvento->nombreevento }}"
                                                     </h3>
-                                                    <p class="text-gray-500 dark:text-gray-400 mb-6">Si tu comprobante de pago ya fue aceptado ya debes poder inscribirte a las conferencias de este evento.
-                                                    <p>
-                                                        <!-- Modal footer -->
+                                                    <p class="text-gray-500 dark:text-gray-400 mb-6">Si tu comprobante de pago ya fue
+                                                        aceptado ya debes poder inscribirte a las conferencias de este evento.</p>
+                                                    <!-- Modal footer -->
                                                     <div class="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
                                                         <button data-modal-hide="inscrito-modal-{{ $tarjetasEvento->id }}" type="button"
                                                             class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
                                                         <a href="{{ route('vistaconferencia', ['evento' => $tarjetasEvento->id]) }}"
                                                             data-modal-hide="inscrito-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ver conferencias</a>
+                                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ver
+                                                            conferencias</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,15 +113,15 @@
                         </div>
                         <div id="progress-modal-{{ $tarjetasEvento->id}}" tabindex="-1" aria-hidden="true"
                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="fixed inset-0 bg-black opacity-50"></div>
                             <div class="relative p-4 w-full max-w-md max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                     <div class="p-4 md:p-5">
                                         <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">
-                                            {{$tarjetasEvento->nombreevento}} debe
-                                            ser pagado
+                                            "{{$tarjetasEvento->nombreevento}}" tiene un costo
                                         </h3>
-                                        <p class="text-gray-500 dark:text-gray-400 mb-6">Por favor, sube el recibo de pago para
+                                        <p class="text-gray-500 dark:text-gray-400 mb-6">Por favor, sube tu comprobante de pago para
                                             completar tu
                                             inscripción.
                                         <p>
