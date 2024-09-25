@@ -1,52 +1,66 @@
 <?php
 
-namespace App\Livewire\Pago;
+namespace App\Livewire\ReciboPago;
 
 use App\Models\Evento;
 use App\Models\Recibopago;
-use Livewire\Component;
 use App\Models\Inscripcion;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
 class ReciboPagos extends Component
 {
+    use WithFileUploads;
+
     public $evento;
     public $persona;
     public $fecha;
     public $foto;
 
-    public function mount($evento)
+    public function mount(Evento $evento) 
     {
-        $this->evento = Conferencia::find($evento);
+        $this->evento = $evento;
         $this->persona = auth()->user()->persona;
         $this->fecha = now()->format('Y-m-d'); 
     }
 
     public function realizarPago()
     {
+        
         $this->validate([
-            'foto' => 'required|image|max:2048', 
+            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif', 
         ]);
 
-        $path = $this->foto->store('fotos', 'public');
+        // Guardar la foto
+        $path = $this->foto->store('recibo', 'public');
 
-        Recibopago::create([
+        // Crear el recibo
+        $recibo = Recibopago::create([
             'idEvento' => $this->evento->id,
             'idPersona' => $this->persona->id,
             'fecha' => $this->fecha,
             'foto' => $path,
         ]);
+
+        // Crear la inscripción
         Inscripcion::create([
             'IdEvento' => $this->evento->id,
             'IdPersona' => $this->persona->id,
             'IdRecibo' => $recibo->id, 
             'Status' => 'pendiente',
         ]);
+
+        // Mensaje de éxito
+        session()->flash('message', 'Pago realizado con éxito.');
         
+        // Opcional: Resetear campos
+        $this->reset(['foto']);
     }
 
     public function render()
     {
-        return view('livewire.ReciboPagos.recibopagos', [
-            'eventos' => $this->evento,
+        return view('livewire.reciboPagos.recibopagos', [
+            'evento' => $this->evento,
             'persona' => $this->persona,
         ]);
     }

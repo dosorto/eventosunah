@@ -10,14 +10,14 @@ class Recibopago extends BaseModel
     use HasFactory;
 
     protected $fillable = [
-        'IdEvento',
+        'idEvento',
         'IdPersona',
         'foto',
     ];
 
     public function evento()
     {
-        return $this->belongsTo(Evento::class, 'IdEvento');
+        return $this->belongsTo(Evento::class, 'idEvento');
     }
 
     public function persona()

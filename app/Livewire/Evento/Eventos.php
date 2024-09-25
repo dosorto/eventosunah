@@ -112,7 +112,7 @@ class Eventos extends Component
         } else {
             $this->logo = $defaultLogo;
         }
-
+        
         // Si se está creando una nueva cuenta
         if ($this->createNewCuenta) {
             $this->validate([
@@ -149,7 +149,7 @@ class Eventos extends Component
             'IdDiploma' => $this->IdDiploma,
             'IdCuenta' => $this->IdCuenta  ?: null,
             'estado' => $this->estado,
-            'precio' => $this->precio,
+            'precio' => $this->precio?: null,
         ]);
 
         session()->flash('message', 
@@ -175,8 +175,8 @@ class Eventos extends Component
         $this->IdDiploma = $evento->IdDiploma;
         $this->IdCuenta = $evento->IdCuenta;
         $this->logo = $evento->logo;
-        $this->estado = $conferencia->estado;
-        $this->precio = $conferencia->precio;
+        $this->estado = $evento->estado;
+        $this->precio = $evento->precio;
         $this->openModal();
     }
 
