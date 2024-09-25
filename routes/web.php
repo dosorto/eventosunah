@@ -69,7 +69,7 @@ Route::get('/validarDiploma/{uuid}', ValidarDiploma::class)->name('validarDiplom
 Route::post('/pagar', [PagoController::class, 'procesarPago'])->name('pagar');
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/temas', TemasCongreso::class)->name('temas');
+Route::get('/temascongreso', TemasCongreso::class)->name('temascongreso');
 
 
 
