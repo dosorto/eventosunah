@@ -23,6 +23,8 @@ use App\Livewire\ConferenciaInscrita\ConferenciasInscritas;
 use App\Livewire\Asistencia\Asistencias;
 use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\PagoController;
+use App\Http\Controllers\TemasCongresoController;
 use App\Livewire\Usuario\Usuarios;
 use Illuminate\Http\Request;
 use App\Livewire\ReporteEvento\ReporteEventos;
@@ -72,7 +74,7 @@ Route::get('/validarDiploma/{uuid}', ValidarDiploma::class)->name('validarDiplom
 Route::post('/pagar', [PagoController::class, 'procesarPago'])->name('pagar');
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/temascongreso', TemasCongreso::class)->name('temascongreso');
+Route::get('/temascongreso', [TemasCongresoController::class, 'index'])->name('temascongreso');
 
 
 
