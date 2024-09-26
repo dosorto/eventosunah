@@ -23,7 +23,7 @@
                     <strong>Este diploma es válido y está asociado a la conferencia.</strong>
                 </div>
 
-                <div class="flex">
+                {{-- <div class="flex">
                     <a href="{{ route('vistaDiploma', ['asistencia' => $asistencia->IdAsistencia]) }}"
                         class="text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <svg class="me-2 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -32,6 +32,17 @@
                                 d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
                         </svg>
                         Ver Diploma
+                    </a>
+                </div>--}}
+                <div class="flex">
+                    <a href="{{ route('pagina-inicial') }}"
+                        class="text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h14M5 12l4-4m-4 4 4 4" />
+                        </svg>
+                        EVENTIS
                     </a>
                 </div>
             </div>
@@ -54,14 +65,14 @@
                     validez legal ni jurídica sin el respaldo de la página electrónica.
                 </div>
                 <div class="flex">
-                    <a href="{{ route('eventoVista') }}"
+                    <a href="{{ route('pagina-inicial') }}"
                         class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                        <svg class="me-2 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 14">
-                            <path
-                                d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h14M5 12l4-4m-4 4 4 4" />
                         </svg>
-                        Regresar
+                        EVENTIS
                     </a>
 
                 </div>
