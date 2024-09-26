@@ -102,7 +102,7 @@ class ComprobacionPago extends Component
                 ->notify(new ComprobanteRechazado($inscripcion));
 
 
-            $inscripcion->delete();
+            $inscripcion->forceDelete();
             session()->flash('message', 'Inscripción rechazada! Se ha enviado un correo electrónico a ' . $inscripcion->persona->nombre .' '. $inscripcion->persona->apellido .' ('. $inscripcion->persona->correo . ') notificandole.');
             $this->confirmingDelete = false;
         }

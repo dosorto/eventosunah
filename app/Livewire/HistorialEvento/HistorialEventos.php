@@ -35,7 +35,7 @@ class HistorialEventos extends Component
     {
         return true;
     }
-
+    public $confirmingDelete = false; 
     public function loadEventos()
     {
         $personaId = Auth::user()->persona->id;

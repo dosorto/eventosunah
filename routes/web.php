@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\EventoVistaController;
+use App\Http\Controllers\ValidarDiplomaController;
 use App\Livewire\DescargarDiploma;
 use App\Livewire\HistorialEvento\HistorialEventos;
 use App\Livewire\PaginaInicial;
@@ -71,10 +72,9 @@ Route::post('/registrar', [RegistrarUsarioController::class, 'store'])->name('re
 Route::get('/evento/{evento}', [EventoController::class, 'show'])->name('evento');
 Route::post('/nueva-persona', [RegistrarUsarioController::class, 'registrarPersona'])->name('nueva-persona');
 // VALIDAR DIPLOMA
-Route::get('/validarDiploma/{uuid}', ValidarDiploma::class)->name('validarDiploma');
-Route::post('/pagar', [PagoController::class, 'procesarPago'])->name('pagar');
+Route::get('/validarDiploma/{uuid}', [ValidarDiplomaController::class, 'validarDiploma'])->name('validarDiploma');
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('pagina-inicial');
 Route::get('/temascongreso', [TemasCongresoController::class, 'index'])->name('temascongreso');
 
 
