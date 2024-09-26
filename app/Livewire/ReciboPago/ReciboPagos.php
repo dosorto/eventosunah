@@ -37,8 +37,8 @@ class ReciboPagos extends Component
         // Crear el recibo
         $recibo = Recibopago::updateOrCreate(
             [
-                'IdPersona' => $this->persona->id,
-                'IdEvento' => $this->evento->id,
+                'idPersona' => $this->persona->id,
+                'idEvento' => $this->evento->id,
             ],
             [
                 'fecha' => $this->fecha,
