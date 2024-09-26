@@ -54,7 +54,7 @@ class ReciboPagos extends Component
             ],
             [
                 'IdRecibo' => $recibo->id,
-                'Status' => 'pendiente',
+                'Status' => 'Pendiente',
 
             ]
         );
