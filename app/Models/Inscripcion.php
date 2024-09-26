@@ -23,11 +23,9 @@ class Inscripcion extends Model
     {
         return $this->belongsTo(Persona::class, 'IdPersona');
     }
-
     public function recibo()
     {
-        return $this->belongsTo(ReciboPago::class, 'IdRecibo');
+        return $this->belongsTo(Recibopago::class, 'IdRecibo');
     }
-
 
 }

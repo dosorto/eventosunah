@@ -21,7 +21,17 @@
                     class="evento-list dark:bg-gray-900 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
                     @foreach($Eventos as $tarjetasEvento)
                             <div class="evento-card">
-                                <a href="{{ route('vistaconferencia', ['evento' => $tarjetasEvento->id]) }}">
+                                @php
+                                    $inscripcion = Auth::user()->persona->inscripciones()->where('IdEvento', $tarjetasEvento->id)->first();
+                                    $estadoInscripcion = $inscripcion ? $inscripcion->Status : null;
+                                    $yaInscrito = $estadoInscripcion === 'Aceptado';
+                                @endphp
+
+                                <a href="{{ 
+                                                        ($tarjetasEvento->estado === 'Pagado' && !$yaInscrito)
+                            ? route('subir-comprobante', ['evento' => $tarjetasEvento->id])
+                            : route('vistaconferencia', ['evento' => $tarjetasEvento->id]) 
+                                                    }}">
                                     <div class="thumbnail-container">
                                         @if($tarjetasEvento->logo == "")
                                             <img src="http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg"
@@ -97,11 +107,13 @@
                                                     <!-- Modal footer -->
                                                     <div class="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
                                                         <button data-modal-hide="inscrito-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                            class="py-2.5 px-5 text-gray-600 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white text-sm font-semibold dark:hover:bg-gray-700">Cancelar</button>
-                                                        <a href="{{ route('vistaconferencia', ['evento' => $tarjetasEvento->id]) }}"
+                                                            class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cerrar</button>
+                                                            @if ($estadoInscripcion == 'Aceptado')
+                                                            <a href="{{ route('vistaconferencia', ['evento' => $tarjetasEvento->id]) }}"
                                                             data-modal-hide="inscrito-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                            class="text-black text-sm font-semibold bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300  rounded-lg px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Ver
+                                                            class="text-white bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Ver
                                                             conferencias</a>
+                                                            @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,10 +140,10 @@
                                             <!-- Modal footer -->
                                         <div class="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
                                             <button data-modal-hide="progress-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                class="py-2.5 px-5 text-sm font-semibold text-gray-600 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-yellow-700 focus:z-10 focus:ring-4 focus:ring-yellow-100 dark:focus:ring-yellow-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
+                                                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cerrar</button>
                                             <a href="{{ route('recibo', ['evento' => $tarjetasEvento->id]) }}"
                                                 data-modal-hide="progress-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                class="text-black text-sm font-semibold  bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Subir
+                                                class="text-white bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Subir
                                                 Comprobante</a>
                                         </div>
                                     </div>

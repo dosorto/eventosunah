@@ -123,4 +123,3 @@ class ComprobacionPago extends Component
         $this->confirmingDelete = true;
     }
 }
-

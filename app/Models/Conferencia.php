@@ -25,7 +25,7 @@ class Conferencia extends BaseModel
         return $this->hasMany(Suscripcion::class, 'IdConferencia');
     }
     public function inscripciones() {
-        return $this->hasMany(Inscripcion::class, 'IdEvento');
+        return $this->belongsTo(Inscripcion::class, 'IdEvento');
     }
     
 }

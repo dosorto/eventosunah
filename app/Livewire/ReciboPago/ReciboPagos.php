@@ -28,7 +28,7 @@ class ReciboPagos extends Component
     {
 
         $this->validate([
-            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif',
+            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif,jfif',
         ]);
 
         // Guardar la foto
@@ -64,6 +64,7 @@ class ReciboPagos extends Component
 
         // Opcional: Resetear campos
         $this->reset(['foto']);
+        return redirect()->route('eventoVista');
     }
 
     public function render()

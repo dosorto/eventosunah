@@ -34,5 +34,9 @@ class Evento extends BaseModel
     {
         return $this->belongsTo(Diploma::class, 'IdDiploma');
     }
+    public function inscripciones()
+{
+    return $this->hasMany(Inscripcion::class, 'IdEvento');
+}
 
 }

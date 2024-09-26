@@ -34,7 +34,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\EventoController;
 use App\Livewire\ReciboPago\ReciboPagos;
 use App\Livewire\ReciboPago\ComprobacionPago;
-
+use App\Livewire\VistaConferencia\VistasConferencias;
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -55,6 +55,7 @@ Route::middleware([
     Route::get('/usuario', Usuarios::class)->name('usuario');
     Route::get('/eventoVista', EventosVistas::class)->name('eventoVista');
     Route::get('/diploma', Diplomas::class)->name('diploma');
+    Route::get('/eventos/{evento}/conferencias', VistasConferencias::class)->name('subir-comprobante');   
     Route::get('/evento/{evento}/conferencias', VistaConferencias::class)->name('vistaconferencia');
     Route::get('/conferencias-inscritas', ConferenciasInscritas::class)->name('conferencias-inscritas');
     Route::get('/historial-conferencias', HistorialConferencias::class)->name('historial-conferencias');
