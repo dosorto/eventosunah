@@ -18,7 +18,11 @@ class Recibopago extends BaseModel
 
     public function evento()
     {
-        return $this->belongsTo(Evento::class, 'idEvento');
+        return $this->hasMany(Evento::class, 'idEvento');
+    }
+    public function inscripcion()
+    {
+        return $this->hasOne(Inscripcion::class, 'idRecibo');
     }
 
     public function persona()

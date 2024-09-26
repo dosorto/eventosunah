@@ -17,45 +17,54 @@ class ReciboPagos extends Component
     public $fecha;
     public $foto;
 
-    public function mount(Evento $evento) 
+    public function mount(Evento $evento)
     {
         $this->evento = $evento;
         $this->persona = auth()->user()->persona;
-        $this->fecha = now()->format('Y-m-d'); 
+        $this->fecha = now()->format('Y-m-d');
     }
 
     public function realizarPago()
     {
-        
+
         $this->validate([
-            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif', 
+            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif,jfif',
         ]);
 
         // Guardar la foto
         $path = $this->foto->store('recibo', 'public');
 
         // Crear el recibo
-        $recibo = Recibopago::create([
-            'idEvento' => $this->evento->id,
-            'idPersona' => $this->persona->id,
-            'fecha' => $this->fecha, // Asegúrate de incluir 'fecha' aquí
-            'foto' => $path,
-        ]);
+        $recibo = Recibopago::updateOrCreate(
+            [
+                'idPersona' => $this->persona->id,
+                'idEvento' => $this->evento->id,
+            ],
+            [
+                'fecha' => $this->fecha,
+                'foto' => $path,
+            ]
+        );
 
         // Crear la inscripción
-        Inscripcion::create([
-            'IdEvento' => $this->evento->id,
-            'IdPersona' => $this->persona->id,
-            'IdRecibo' => $recibo->id, 
-            'Status' => 'pendiente',
-          
-        ]);
+        Inscripcion::updateOrCreate(
+            [
+                'IdEvento' => $this->evento->id,
+                'IdPersona' => $this->persona->id,
+            ],
+            [
+                'IdRecibo' => $recibo->id,
+                'Status' => 'pendiente',
+
+            ]
+        );
 
         // Mensaje de éxito
-        session()->flash('message', 'Pago realizado con éxito.');
-        
+        session()->flash('message', 'El comprobante se ha subido con éxito.');
+
         // Opcional: Resetear campos
         $this->reset(['foto']);
+        return redirect()->route('eventoVista');
     }
 
     public function render()

@@ -47,9 +47,16 @@
                                 placeholder="Buscar...">
                         </div>
 
-                        <div class="mr-32"></div>
+                        <div class="mr-56"></div>
                         <button wire:click="marcarTodos('Aceptado')"
                             class="mb-1 px-3 py-2 text-sm ml-96 font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 7 2 2 4-4m-5-9v4h4V3h-4Z" />
+                            </svg>
                             Aceptar Todos
                         </button>
 
@@ -81,8 +88,8 @@
                                         {{ $inscripcion->Status }}
                                     </td>
                                     <td class="px-6 py-4 dark:text-gray-900 text-center">
-                                        <button data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal"
-                                        class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-green-800"
+                                        <button data-modal-target="large-modal" data-modal-toggle="large-modal"
+                                            class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-green-800"
                                             type="button">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -95,9 +102,9 @@
                                         </button>
                                     </td>
                                     <!-- Extra Large Modal -->
-                                    <div id="extralarge-modal" tabindex="-1"
+                                    <div id="large-modal" tabindex="-1"
                                         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                        <div class="relative w-full max-w-7xl max-h-full">
+                                        <div class="relative w-full max-w-lg max-h-full">
                                             <div class="fixed inset-0 bg-black opacity-50"></div>
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -110,7 +117,7 @@
                                                     </h3>
                                                     <button type="button"
                                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                        data-modal-hide="extralarge-modal">
+                                                        data-modal-hide="large-modal">
                                                         <svg class="w-3 h-3" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 14 14">
@@ -124,9 +131,13 @@
                                                 <!-- Modal body -->
                                                 <div class="p-4 md:p-5 space-y-4">
                                                     <div>
-                                                        <img class="h-auto max-w-full rounded-lg"
-                                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg"
-                                                            alt="">
+                                                        @if($inscripcion->recibo)
+                                                            <img class="h-auto max-w-full rounded-lg"
+                                                                src="{{ asset('storage/' . $inscripcion->recibo->foto) }}"
+                                                                alt="Comprobante">
+                                                        @else
+                                                            <p>Sin comprobante</p>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <!-- Modal footer -->
@@ -198,7 +209,8 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
                                         Cancelar
                                     </button>
-                                    <button wire:click="delete" data-modal-hide="rechazar-modal" onclick="handleButtonClick()"
+                                    <button wire:click="delete" data-modal-hide="rechazar-modal"
+                                        onclick="handleButtonClick()"
                                         class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
                                         Confirmar
                                     </button>

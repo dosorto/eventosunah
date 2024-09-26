@@ -71,7 +71,7 @@ class ComprobacionPago extends Component
 
     public function render()
     {
-        $inscripciones = Inscripcion::with(['persona', 'evento'])
+        $inscripciones = Inscripcion::with(['persona', 'evento', 'recibo'])
             ->where('IdEvento', $this->evento_id)
             ->whereHas('persona', function ($query) {
                 $query->where('nombre', 'like', '%' . $this->search . '%')
@@ -82,6 +82,7 @@ class ComprobacionPago extends Component
         return view('livewire.ReciboPagos.comprobacionPago', [
             'inscripciones' => $inscripciones,
             'evento_id' => $this->evento_id,
+
         ]);
     }
 
@@ -122,4 +123,3 @@ class ComprobacionPago extends Component
         $this->confirmingDelete = true;
     }
 }
-
