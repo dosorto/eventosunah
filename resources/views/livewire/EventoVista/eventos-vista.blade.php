@@ -97,10 +97,10 @@
                                                     <!-- Modal footer -->
                                                     <div class="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
                                                         <button data-modal-hide="inscrito-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                            class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
+                                                            class="py-2.5 px-5 text-gray-600 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white text-sm font-semibold dark:hover:bg-gray-700">Cancelar</button>
                                                         <a href="{{ route('vistaconferencia', ['evento' => $tarjetasEvento->id]) }}"
                                                             data-modal-hide="inscrito-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ver
+                                                            class="text-black text-sm font-semibold bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300  rounded-lg px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Ver
                                                             conferencias</a>
                                                     </div>
                                                 </div>
@@ -128,10 +128,10 @@
                                             <!-- Modal footer -->
                                         <div class="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
                                             <button data-modal-hide="progress-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
+                                                class="py-2.5 px-5 text-sm font-semibold text-gray-600 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-yellow-700 focus:z-10 focus:ring-4 focus:ring-yellow-100 dark:focus:ring-yellow-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
                                             <a href="{{ route('recibo', ['evento' => $tarjetasEvento->id]) }}"
                                                 data-modal-hide="progress-modal-{{ $tarjetasEvento->id }}" type="button"
-                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Subir
+                                                class="text-black text-sm font-semibold  bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Subir
                                                 Comprobante</a>
                                         </div>
                                     </div>

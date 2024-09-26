@@ -25,5 +25,10 @@ class Recibopago extends BaseModel
     {
         return $this->hasOne(Persona::class, 'idPersona');
     }
+    
+    public function inscripcion()
+    {
+        return $this->hasOne(Inscripcion::class, 'idRecibo');
+    }
 
 }

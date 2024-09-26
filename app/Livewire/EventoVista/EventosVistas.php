@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Evento;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EventosVistas extends Component
 {
@@ -53,7 +54,7 @@ class EventosVistas extends Component
     {
         $evento = Evento::find($this->selectedEvento);
 
-        if ($conferencia) {
+        if ($evento) {
             // Verificar si ya está suscrito a la conferencia
             $suscripcionExistente = Auth::user()->persona->inscripciones()
                 ->where('IdEvento', $evento->id)
