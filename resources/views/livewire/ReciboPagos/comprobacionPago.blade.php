@@ -50,7 +50,7 @@
                         <div class="mr-32"></div>
                         <button wire:click="marcarTodos('Aceptado')"
                             class="mb-1 px-3 py-2 text-sm ml-96 font-medium text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
-                            Marcar Todos
+                            Aceptar Todos
                         </button>
 
                     </div>
@@ -67,24 +67,31 @@
                         </thead>
                         <tbody>
                             @forelse($inscripciones as $inscripcion)
-                                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-200">
-                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
+                                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $inscripcion->id }}
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-900">
+                                    <td class="px-6 py-4 dark:text-white">
                                         {{ $inscripcion->persona->nombre }} {{ $inscripcion->persona->apellido }}
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-900">
+                                    <td class="px-6 py-4 dark:text-white">
                                         {{ $inscripcion->evento->nombreevento }}
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-900">
+                                    <td class="px-6 py-4 dark:text-white">
                                         {{ $inscripcion->Status }}
                                     </td>
                                     <td class="px-6 py-4 dark:text-gray-900 text-center">
                                         <button data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal"
-                                            class="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-green-800"
                                             type="button">
-                                            Ver
+                                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 8h6m-6 4h6m-6 4h6M6 3v18l2-2 2 2 2-2 2 2 2-2 2 2V3l-2 2-2-2-2 2-2-2-2 2-2-2Z" />
+                                            </svg>
+                                            Ver comprobante
                                         </button>
                                     </td>
                                     <!-- Extra Large Modal -->
@@ -128,10 +135,11 @@
                                                     <div class="px-6 py-4 text-center">
                                                         <div class="flex space-x-2 justify-center">
                                                             <button type="button"
-                                                                wire:click="marcarComprobado({{ $inscripcion->id ?? ''}})" onclick="handleButtonClick()"
+                                                                wire:click="marcarComprobado({{ $inscripcion->id ?? ''}})"
+                                                                onclick="handleButtonClick()"
                                                                 class="px-3 py-1 w-28 h-10 bg-green-500 text-white rounded-lg hover:bg-green-600">Aceptar</button>
                                                             <button type="button"
-                                                                wire:click="confirmDelete({{ $inscripcion->id ?? ''}})" 
+                                                                wire:click="confirmDelete({{ $inscripcion->id ?? ''}})"
                                                                 class="px-3 py-1 w-28 h-10 bg-red-600 text-white rounded-lg hover:bg-red-700">Rechazar</button>
                                                         </div>
                                                     </div>
@@ -190,7 +198,7 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
                                         Cancelar
                                     </button>
-                                    <button wire:click="delete" data-modal-hide="rechazar-modal"
+                                    <button wire:click="delete" data-modal-hide="rechazar-modal" onclick="handleButtonClick()"
                                         class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
                                         Confirmar
                                     </button>
@@ -207,6 +215,6 @@
     function handleButtonClick() {
         setTimeout(() => {
             location.reload();
-        }, 500); // Espera 500 ms para asegurarse de que la acción de Livewire se complete
+        }, 1000); // Espera 500 s para asegurarse de que la acción de Livewire se complete
     }
 </script>
