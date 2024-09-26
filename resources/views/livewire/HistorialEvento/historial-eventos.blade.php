@@ -71,16 +71,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($conferencias as $item)
+                            @forelse($eventos as $item)
                                 <tr
                                     class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="px-6 py-4">{{ $item['conferencia']->evento->nombreevento }}</td>
-                                    <td class="px-6 py-4">{{$item['conferencia']->evento->organizador }}</td>
-                                    <td class="px-6 py-4">{{$item['conferencia']->evento->modalidad->modalidad }}</td>
-                                    <td class="px-6 py-4">{{ $item['conferencia']->evento->fechainicio }}</td>
-                                    <td class="px-6 py-4">{{ $item['conferencia']->evento->estado }}</td>
+                                    <td class="px-6 py-4">{{ $item['evento']->nombreevento }}</td>
+                                    <td class="px-6 py-4">{{ $item['evento']->organizador }}</td>
+                                    <td class="px-6 py-4">{{ $item['evento']->modalidad->modalidad }}</td>
+                                    <td class="px-6 py-4">{{ $item['evento']->fechainicio }}</td>
+                                    <td class="px-6 py-4">{{ $item['evento']->estado }}</td>
                                     <td class="px-6 py-4">
-                                        <button wire:click="descargarDiploma({{ $item['asistencia_id'] }})"
+                                        <button wire:click="descargarDiploma({{ $item['inscripcion_id'] }})"
                                             class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
                                             Diploma
                                             <svg class="w-6 h-6 text-white ms-2 dark:text-white" aria-hidden="true"
@@ -96,7 +96,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="px-6 py-4 text-center">No has asistido a ninguna conferencia.
+                                    <td colspan="7" class="px-6 py-4 text-center">No has asistido a ningun evento.
                                     </td>
                                 </tr>
                             @endforelse

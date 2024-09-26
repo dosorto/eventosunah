@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Services\QRCodeService;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Livewire\WithFileUploads;
+use App\Models\Inscripcion;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -19,17 +20,13 @@ class HistorialEventos extends Component
 
     public $asistencia;
     public $uuidDiploma;
-    public $conferencias = [];
+    public $eventos = [];
     public $search = '';
-    public $diploma;
-    public $qrcode;
-    public $persona;
-    public $conferencia;
-    public $evento;
+    
 
     public function mount()
     {
-        $this->loadConferencias();
+        $this->loadEventos();
     }
 
     // validar que la persona este inscrita en la conferencia
@@ -39,25 +36,24 @@ class HistorialEventos extends Component
         return true;
     }
 
-    public function loadConferencias()
+    public function loadEventos()
     {
         $personaId = Auth::user()->persona->id;
-
-        $suscripciones = Asistencia::where('asistencia', 1)
-            ->whereHas('suscripcion', function ($query) use ($personaId) {
+    
+        $inscripciones = Inscripcion::whereHas('evento', function ($query) use ($personaId) {
                 $query->where('IdPersona', $personaId);
             })
-            ->with('suscripcion.conferencia.evento', 'suscripcion.conferencia.conferencista.persona')
+            ->with('evento')
             ->get()
-            ->map(function ($asistencia) {
+            ->map(function ($inscripcion) {
                 return [
-                    'asistencia_id' => $asistencia->id,
-                    'conferencia' => $asistencia->suscripcion->conferencia
+                    'inscripcion_id' => $inscripcion->id,
+                    'evento' => $inscripcion->evento,
                 ];
             })
-            ->unique('conferencia.id');
-
-        $this->conferencias = $suscripciones;
+            ->unique('evento.id');
+    
+        $this->eventos = $inscripciones;
     }
 
     public function descargarDiploma($IdAsistencia)
@@ -128,19 +124,18 @@ class HistorialEventos extends Component
     }
 
     public function render()
-    {
+{
+    $eventos = collect($this->eventos)->filter(function ($item) {
+        return str_contains(strtolower($item['evento']->nombreevento), strtolower($this->search)) ||
+            str_contains(strtolower($item['evento']->id), strtolower($this->search)) ||
+            str_contains(strtolower($item['evento']->organizador), strtolower($this->search)) ||
+            str_contains(strtolower($item['evento']->modalidad->modalidad), strtolower($this->search)) ||
+            str_contains(strtolower($item['evento']->fechainicio), strtolower($this->search)) ||
+            str_contains(strtolower($item['evento']->estado), strtolower($this->search));
+    });
 
-        $conferencias = collect($this->conferencias)->filter(function ($item) {
-            return str_contains(strtolower($item['conferencia']->nombre), strtolower($this->search)) ||
-                str_contains(strtolower($item['conferencia']->evento->nombreevento), strtolower($this->search)) ||
-                str_contains(strtolower($item['conferencia']->evento->id), strtolower($this->search)) ||
-                str_contains(strtolower($item['conferencia']->evento->organizador), strtolower($this->search)) ||
-                str_contains(strtolower($item['conferencia']->evento->modalidad), strtolower($this->search)) ||
-                str_contains(strtolower($item['conferencia']->evento->fechainicio), strtolower($this->search)) ||
-                str_contains(strtolower($item['conferencia']->evento->estado), strtolower($this->search));
-        });
-        return view('livewire.HistorialEvento.historial-eventos', [
-            'conferencias' => $this->conferencias,
-        ]);
-    }
+    return view('livewire.HistorialEvento.historial-eventos', [
+        'eventos' => $eventos,
+    ]);
+}
 }
