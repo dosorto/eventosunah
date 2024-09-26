@@ -33,6 +33,11 @@ class ValidarDiplomaController extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with('error', 'Diploma no encontrado.');
+        return view('livewire.validar-diploma', [
+            'persona' => null,
+            'conferencia' => null,
+            'uuid' => null,
+            'asistencia' => null,
+        ]);
     }
 }
