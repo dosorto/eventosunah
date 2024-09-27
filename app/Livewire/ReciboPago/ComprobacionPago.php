@@ -124,6 +124,11 @@ class ComprobacionPago extends Component
             $this->confirmingDelete = true;
             return;
         }
+        if ($comprobacion->recibo()->exists()) {
+            session()->flash('error', 'No se puede rechazar ya este comprobante porque ya se aceptó como válido.');
+            $this->confirmingDelete = true;
+            return;
+        }
 
         $this->IdAEliminar = $id;
         $this->nombreAEliminar = $comprobacion->persona->nombre . ' ' . $comprobacion->persona->apellido;

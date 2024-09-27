@@ -179,10 +179,10 @@
                         <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                             <div class="p-6">
-                                <h3 class="text-lg font-semibold mb-4">Error</h3>
+                                <h3 class="text-lg font-semibold mb-4">Advertencia</h3>
                                 <p>{{ session('error') }}</p>
                                 <div class="mt-4 flex justify-end">
-                                    <button wire:click="$set('confirmingDelete', false)"
+                                    <button wire:click="$set('confirmingDelete', false)" onclick="handleButtonClick()"
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">
                                         Aceptar
                                     </button>
