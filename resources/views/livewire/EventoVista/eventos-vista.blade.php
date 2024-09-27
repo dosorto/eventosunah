@@ -86,6 +86,14 @@
                                                                         </svg>
                                                                     </p>
                                                                 @endif
+                                                                @if ($tarjetasEvento->estado === 'Pagado')
+                                                                        <p class="inscripcion-status text-sm text-gray-600">
+                                        
+                                                                            <span class="{{ $estadoInscripcion === 'Aceptado' ? 'text-green-500' : 'text-red-500' }}">
+                                                                                Estado: {{ $estadoInscripcion ?? 'No inscrito' }}
+                                                                            </span>
+                                                                        </p>
+                                                                @endif
                                             @endif
                                         </div>
                                     </div>
