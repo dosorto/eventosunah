@@ -167,7 +167,7 @@
                     <div class="recipient-name">{{ $Nombre }} {{ $Apellido }}</div>
                 </div>
                 <div class="certificado-body">
-                    Por su destacada asistencia y participación en la conferencia "{{ $Conferencia }}",  presentada por el distinguido {{ ucwords(strtolower($TituloConferencista)) }} {{ ucwords(strtolower($Conferencista)) }} celebrada el {{ \Carbon\Carbon::parse($FechaConferencia)->format('d \d\e F \d\e Y') }} en el marco del evento "{{ $Evento }}".
+                    Por su destacada asistencia y participación en la conferencia "{{ $Conferencia }}",  presentada por el distinguido {{ ucwords(strtolower($TituloConferencista)) }} {{ ucwords(strtolower($Conferencista)) }} realizada el {{ \Carbon\Carbon::parse($FechaConferencia)->locale('es')->isoFormat('D [de] MMMM [de] YYYY') }} en el marco del evento "{{ $Evento }}".
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>

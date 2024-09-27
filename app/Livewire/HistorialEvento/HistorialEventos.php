@@ -2,15 +2,16 @@
 
 namespace App\Livewire\HistorialEvento;
 
+use App\Models\DiplomaEvento;
 use Livewire\Component;
-use App\Models\Asistencia;
+use App\Models\inscripcion;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DiplomaGenerado;
 use Illuminate\Support\Str;
 use App\Services\QRCodeService;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Livewire\WithFileUploads;
-use App\Models\Inscripcion;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -18,10 +19,12 @@ class HistorialEventos extends Component
 {
     use WithFileUploads;
 
-    public $asistencia;
+    public $inscripcion;
     public $uuidDiploma;
     public $eventos = [];
     public $search = '';
+
+    public $confirmingDelete = false;
     
 
     public function mount()
@@ -56,27 +59,30 @@ class HistorialEventos extends Component
         $this->eventos = $inscripciones;
     }
 
-    public function descargarDiploma($IdAsistencia)
+    public function descargarDiploma($inscripcionId)
     {
-        // Buscar la asistencia correspondiente al IdAsistencia
-        $asistencia = Asistencia::find($IdAsistencia);
+        Carbon::setLocale('es');
+        // Buscar la inscripcion correspondiente al Idinscripcion
+        $inscripcion = Inscripcion::find($inscripcionId);
 
-        if (!$asistencia) {
-            // Manejar el caso en que no se encuentre la asistencia
-            session()->flash('error', 'No se encontró la asistencia correspondiente al IdAsistencia');
+        if (!$inscripcion) {
+            // Manejar el caso en que no se encuentre la inscripcion
+            session()->flash('error', 'No se encontró la inscripcion correspondiente al evento');
+            $this->confirmingDelete = true;
             return;
         }
 
         // Buscar la entrada en la tabla DiplomaGenerado
-        $diplomaGenerado = DiplomaGenerado::where('IdAsistencia', $IdAsistencia)->first();
+        $diplomaEvento = DiplomaEvento::where('inscripcionId', $inscripcionId)->first();
 
-        if (!$diplomaGenerado) {
+        if (!$diplomaEvento) {
             // Manejar el caso en que no se encuentre el diploma generado
-            session()->flash('error', 'No se encontró el diploma generado correspondiente al IdAsistencia');
+            session()->flash('error', 'No se encontró el diploma generado correspondiente a la inscripcion');
+            $this->confirmingDelete = true;
             return;
         }
 
-        $uuidDiploma = $diplomaGenerado->uuid;
+        $uuidDiploma = $diplomaEvento->uuid;
 
         // Generar el código QR
         $qrcode = QRCodeService::generateTextQRCode(
@@ -85,20 +91,20 @@ class HistorialEventos extends Component
 
         // Generar el PDF del diploma
         $pdf = PDF::loadView('livewire.diploma-evento', [
-            'Nombre' => $asistencia->suscripcion->persona->nombre,
-            'Apellido' => $asistencia->suscripcion->persona->apellido,
-            'FechaInicio' => $asistencia->suscripcion->conferencia->evento->fechainicio,
-            'Organizador' => $asistencia->suscripcion->conferencia->evento->organizador,
-            'Evento' => $asistencia->suscripcion->conferencia->evento->nombreevento,
-            'NombreFirma1' => $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma1,
-            'NombreFirma2' => $asistencia->suscripcion->conferencia->evento->diploma->NombreFirma2,
-            'Titulo1' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo1,
-            'Titulo2' => $asistencia->suscripcion->conferencia->evento->diploma->Titulo2,
-            'Plantilla' => $asistencia->suscripcion->conferencia->evento->diploma->Plantilla,
-            'Firma1' => $asistencia->suscripcion->conferencia->evento->diploma->Firma1,
-            'Firma2' => $asistencia->suscripcion->conferencia->evento->diploma->Firma2,
-            'Sello1' => $asistencia->suscripcion->conferencia->evento->diploma->Sello1,
-            'Sello2' => $asistencia->suscripcion->conferencia->evento->diploma->Sello2,
+            'Nombre' => $inscripcion->persona->nombre,
+            'Apellido' => $inscripcion->persona->apellido,
+            'FechaInicio' => $inscripcion->evento->fechainicio,
+            'Organizador' => $inscripcion->evento->organizador,
+            'Evento' => $inscripcion->evento->nombreevento,
+            'NombreFirma1' => $inscripcion->evento->diploma->NombreFirma1,
+            'NombreFirma2' => $inscripcion->evento->diploma->NombreFirma2,
+            'Titulo1' => $inscripcion->evento->diploma->Titulo1,
+            'Titulo2' => $inscripcion->evento->diploma->Titulo2,
+            'Plantilla' => $inscripcion->evento->diploma->Plantilla,
+            'Firma1' => $inscripcion->evento->diploma->Firma1,
+            'Firma2' => $inscripcion->evento->diploma->Firma2,
+            'Sello1' => $inscripcion->evento->diploma->Sello1,
+            'Sello2' => $inscripcion->evento->diploma->Sello2,
             'uuid' => $uuidDiploma,
             'qrcode' => $qrcode,
         ])->setPaper('a4', 'landscape');
@@ -113,8 +119,8 @@ class HistorialEventos extends Component
         // Guardar el PDF temporalmente
         $pdfPath = sprintf(
             'diplomas/Diploma_%s%s_%s.pdf',
-            $asistencia->suscripcion->persona->nombre,
-            $asistencia->suscripcion->persona->apellido,
+            $inscripcion->persona->nombre,
+            $inscripcion->persona->apellido,
             $uuidDiploma
         );
         Storage::put($pdfPath, $pdf->output());

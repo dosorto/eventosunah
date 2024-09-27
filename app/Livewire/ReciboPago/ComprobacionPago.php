@@ -3,9 +3,12 @@
 namespace App\Livewire\ReciboPago;
 
 use App\Models\Inscripcion;
+use App\Models\DiplomaEvento;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Notifications\ComprobanteRechazado;
+use Illuminate\Support\Str;
+
 use Illuminate\Support\Facades\Notification;
 
 class ComprobacionPago extends Component
@@ -38,6 +41,10 @@ class ComprobacionPago extends Component
         // Actualizar el estado de la inscripción
         Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Aceptado']);
 
+        DiplomaEvento::updateOrCreate(
+            ['inscripcionId' => $inscripcionId],
+            ['uuid' => Str::uuid()]
+        );
         // Mensaje de éxito
         $this->modalMessage = 'Comprobación hecha correctamente.';
         $this->modalOpen = true;

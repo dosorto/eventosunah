@@ -1,5 +1,7 @@
 <div>
     <x-layouts.reportes>
+        <div class="flex items-center justify-center">
+            
         @if ($persona && $conferencia)
             <div id="alert-additional-content-3"
                 class="p-4 mb-4 mt-12 mx-10 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
@@ -20,7 +22,7 @@
                     <p><strong>Conferencia:</strong> {{ $conferencia->nombre }}</p>
                     <p><strong>En el marco del evento:</strong> {{ $conferencia->evento->nombreevento }}</p>
                     <p><strong>Código Diploma:</strong> {{ $uuid }}</p>
-                    <strong>Este diploma es válido y está asociado a la conferencia.</strong>
+                    <strong>Este diploma es válido y está respaldado por EVENT-IS.</strong>
                 </div>
 
                 {{-- <div class="flex">
@@ -78,5 +80,6 @@
                 </div>
             </div>
         @endif
+        </div>
     </x-layouts.reportes>
 </div>
