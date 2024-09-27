@@ -1,4 +1,4 @@
-<div x-data="{ showDeleteModal: @entangle('showDeleteModal') }">
+<div x-data="{ showDeleteModal: @entangle('showDeleteModal'), selectedImage: null }">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white mb-7">
         Comprobante para: {{ $evento->nombreevento }}
     </h2>
@@ -29,9 +29,15 @@
 
                     <div class="mb-4">
                         <label class="block mb-1 dark:text-gray-300">Comprobante:</label>
-                        <input type="file" wire:model="foto" class="rounded-lg bg-gray-100 cursor-pointer dark:bg-gray-700 dark:text-white w-full p-2">
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Formatos aceptados: PNG, JPG.</p>
+                        <input type="file" wire:model="foto" @change="selectedImage = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null" class="rounded-lg bg-gray-100 cursor-pointer dark:bg-gray-700 dark:text-white w-full p-2">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Solo se aceptan formatos de imágenes</p>
                         @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+
+                    <!-- Muestra la imagen seleccionada -->
+                    <div x-show="selectedImage" class="mt-4">
+                        <h3 class="mb-2 dark:text-gray-300">Vista previa del comprobante:</h3>
+                        <img :src="selectedImage" class="rounded-lg max-w-full h-auto" alt="Vista previa del comprobante">
                     </div>
 
                     <button type="submit" class="w-full bg-blue-500 text-white rounded p-2 hover:bg-blue-600">Subir Comprobante</button>
@@ -39,6 +45,4 @@
             </div>
         </div>
     </div>
-
-    
 </div>

@@ -50,31 +50,38 @@ class ComprobacionPago extends Component
         $this->modalOpen = true;
     }
 
-     public function rechazarComprobacion($inscripcionId)
-     {
-         Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Rechazado']);
-         session()->flash('message', 'Comprobación rechazada correctamente.');
-         $this->modalOpen = true;
-         $this->confirmingDelete = false;
-     }
+    public function rechazarComprobacion($inscripcionId)
+    {
+        Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Rechazado']);
+        session()->flash('message', 'Comprobación rechazada correctamente.');
+        $this->modalOpen = true;
+        $this->confirmingDelete = false;
+    }
  
     public function marcarTodos($status)
     {
         $inscripciones = Inscripcion::where('IdEvento', $this->evento_id)->get();
-
+     
         if ($inscripciones->isEmpty()) {
             $this->modalMessage = 'No hay inscripciones para comprobar.';
             $this->modalOpen = true;
             return;
         }
-
+         
         foreach ($inscripciones as $inscripcion) {
+             // Actualizar el estado de la inscripción
             Inscripcion::where('id', $inscripcion->id)->update(['Status' => $status]);
+        
+                // Crear o actualizar el diploma para cada inscripción
+            DiplomaEvento::updateOrCreate(
+                ['inscripcionId' => $inscripcion->id],
+                ['uuid' => Str::uuid()]
+            );
         }
-
-        $this->modalMessage = 'Todas las comprobaciones fueron marcadas como ' . $status . '.';
+     
+        $this->modalMessage = 'Todas las comprobaciones fueron marcadas como ' . $status . ' y los diplomas fueron creados.';
         $this->modalOpen = true;
-    }
+     }
 
 
     public function render()

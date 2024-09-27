@@ -103,16 +103,13 @@ class Eventos extends Component
         ]);
 
         // Manejo de archivo logo
-        $defaultLogo = 'http://www.puertopixel.com/wp-content/uploads/2011/03/Fondos-web-Texturas-web-abtacto-17.jpg';
         if ($this->logo) {
             $this->logo = $this->logo->store('public/eventos');
         } elseif ($this->evento_id) {
             $evento = Evento::findOrFail($this->evento_id);
-            $this->logo = $evento->logo;
-        } else {
-            $this->logo = $defaultLogo;
+            $this->logo = $evento->logo; 
         }
-        
+
         // Si se está creando una nueva cuenta
         if ($this->createNewCuenta) {
             $this->validate([
@@ -147,38 +144,39 @@ class Eventos extends Component
             'idmodalidad' => $this->idmodalidad,
             'idlocalidad' => $this->idlocalidad,
             'IdDiploma' => $this->IdDiploma,
-            'IdCuenta' => $this->IdCuenta  ?: null,
+            'IdCuenta' => $this->IdCuenta ?: null,
             'estado' => $this->estado,
-            'precio' => $this->precio?: null,
+            'precio' => $this->precio ?: null,
         ]);
 
         session()->flash('message', 
-            $this->evento_id ? 'Evento Actualizado correctamente!' : 'Evento creado correctamente!');
+            $this->evento_id ? 'Evento creado correctamente!' : 'Evento actualizado correctamente!');
 
         $this->closeModal();
         $this->resetInputFields();
     }
 
+
     public function edit($id)
-    {
-        $evento = Evento::findOrFail($id);
-        $this->evento_id = $id;
-        $this->nombreevento = $evento->nombreevento;
-        $this->descripcion = $evento->descripcion;
-        $this->organizador = $evento->organizador;
-        $this->fechainicio = $evento->fechainicio;
-        $this->fechafinal = $evento->fechafinal;
-        $this->horainicio = $evento->horainicio;
-        $this->horafin = $evento->horafin;
-        $this->idmodalidad = $evento->idmodalidad;
-        $this->idlocalidad = $evento->idlocalidad;
-        $this->IdDiploma = $evento->IdDiploma;
-        $this->IdCuenta = $evento->IdCuenta;
-        $this->logo = $evento->logo;
-        $this->estado = $evento->estado;
-        $this->precio = $evento->precio;
-        $this->openModal();
-    }
+{
+    $evento = Evento::findOrFail($id);
+    $this->evento_id = $id;
+    $this->nombreevento = $evento->nombreevento;
+    $this->descripcion = $evento->descripcion;
+    $this->organizador = $evento->organizador;
+    $this->fechainicio = $evento->fechainicio;
+    $this->fechafinal = $evento->fechafinal;
+    $this->horainicio = $evento->horainicio;
+    $this->horafin = $evento->horafin;
+    $this->idmodalidad = $evento->idmodalidad;
+    $this->idlocalidad = $evento->idlocalidad;
+    $this->IdDiploma = $evento->IdDiploma;
+    $this->IdCuenta = $evento->IdCuenta;
+    $this->logo = null; // Mantener el logo existente sin sobrescribirlo
+    $this->estado = $evento->estado;
+    $this->precio = $evento->precio;
+    $this->openModal();
+}
 
     public function delete()
     {

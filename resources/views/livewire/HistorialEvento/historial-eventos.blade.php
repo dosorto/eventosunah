@@ -72,35 +72,37 @@
                         </thead>
                         <tbody>
                             @forelse($eventos as $item)
-                                <tr
-                                    class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $item['evento']->nombreevento }}</td>
                                     <td class="px-6 py-4">{{ $item['evento']->organizador }}</td>
                                     <td class="px-6 py-4">{{ $item['evento']->modalidad->modalidad }}</td>
                                     <td class="px-6 py-4">{{ $item['evento']->fechainicio }}</td>
                                     <td class="px-6 py-4">{{ $item['evento']->estado }}</td>
                                     <td class="px-6 py-4">
-                                        <button wire:click="descargarDiploma({{ $item['inscripcion_id'] }})"
-                                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
-                                            Diploma
-                                            <svg class="w-6 h-6 text-white ms-2 dark:text-white" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
-                                            </svg>
-                                        </button>
+                                        @if (now()->greaterThan($item['evento']->fechafinal))
+                                            <button wire:click="descargarDiploma({{ $item['inscripcion_id'] }})"
+                                                class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                                                Diploma
+                                                <svg class="w-6 h-6 text-white ms-2 dark:text-white" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                        @else
+                                            <span class="text-gray-500">Diploma disponible después del evento</span>
+                                        @endif
                                     </td>
-
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="px-6 py-4 text-center">No has asistido a ningun evento.
-                                    </td>
+                                    <td colspan="7" class="px-6 py-4 text-center">No has asistido a ningún evento.</td>
                                 </tr>
                             @endforelse
                         </tbody>
+
                     </table>
 
                 </div>
