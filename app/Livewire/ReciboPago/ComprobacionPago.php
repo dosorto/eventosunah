@@ -46,17 +46,18 @@ class ComprobacionPago extends Component
             ['uuid' => Str::uuid()]
         );
         // Mensaje de éxito
-        $this->modalMessage = 'Comprobación hecha correctamente.';
+        session()->flash('message', 'Comprobante Validado.');
         $this->modalOpen = true;
     }
 
-    /* public function rechazarComprobacion($inscripcionId)
+     public function rechazarComprobacion($inscripcionId)
      {
          Inscripcion::where('id', $inscripcionId)->update(['Status' => 'Rechazado']);
-         $this->modalMessage = 'Comprobación rechazada correctamente.';
+         session()->flash('message', 'Comprobación rechazada correctamente.');
          $this->modalOpen = true;
+         $this->confirmingDelete = false;
      }
- */
+ 
     public function marcarTodos($status)
     {
         $inscripciones = Inscripcion::where('IdEvento', $this->evento_id)->get();

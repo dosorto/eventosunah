@@ -88,7 +88,7 @@
                                         {{ $inscripcion->Status }}
                                     </td>
                                     <td class="px-6 py-4 dark:text-gray-900 text-center">
-                                        <button data-modal-target="large-modal" data-modal-toggle="large-modal"
+                                        <button data-modal-target="large-modal-{{$inscripcion->id}}" data-modal-toggle="large-modal-{{$inscripcion->id}}"
                                             class="mb-1 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-green-800"
                                             type="button">
                                             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
@@ -102,7 +102,7 @@
                                         </button>
                                     </td>
                                     <!-- Extra Large Modal -->
-                                    <div id="large-modal" tabindex="-1"
+                                    <div id="large-modal-{{$inscripcion->id}}" tabindex="-1"
                                         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                         <div class="relative w-full max-w-lg max-h-full">
                                             <div class="fixed inset-0 bg-black opacity-50"></div>
@@ -117,7 +117,7 @@
                                                     </h3>
                                                     <button type="button"
                                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                        data-modal-hide="large-modal">
+                                                        data-modal-hide="large-modal-{{$inscripcion->id}}">
                                                         <svg class="w-3 h-3" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 14 14">
@@ -145,12 +145,10 @@
                                                     class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
                                                     <div class="px-6 py-4 text-center">
                                                         <div class="flex space-x-2 justify-center">
-                                                            <button type="button"
-                                                                wire:click="marcarComprobado({{ $inscripcion->id ?? ''}})"
+                                                            <button wire:click="marcarComprobado({{$inscripcion->id}})"
                                                                 onclick="handleButtonClick()"
                                                                 class="px-3 py-1 w-28 h-10 bg-green-500 text-white rounded-lg hover:bg-green-600">Aceptar</button>
-                                                            <button type="button"
-                                                                wire:click="confirmDelete({{ $inscripcion->id ?? ''}})"
+                                                            <button wire:click="rechazarComprobacion({{ $inscripcion->id}})" onclick="handleButtonClick()"
                                                                 class="px-3 py-1 w-28 h-10 bg-red-600 text-white rounded-lg hover:bg-red-700">Rechazar</button>
                                                         </div>
                                                     </div>
