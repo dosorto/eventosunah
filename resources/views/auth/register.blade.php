@@ -273,7 +273,7 @@
             bottom: 0;
             height: 3px;
             width: 30px;
-            background-color: #1254a1;
+            background-color: #facc15;
             border-radius: 25px;
         }
 

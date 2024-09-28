@@ -42,6 +42,14 @@
                                                 class="bg-white dark:bg-gray-800 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white thumbnail">
                                         @endif
                                         <p class="marca">{{ $tarjetasEvento->modalidad->modalidad }}</p>
+                                        @if ($tarjetasEvento->estado === 'Pagado')
+                                                                        <p class="inscripcion-status text-sm estado bg-yellow-400 text-gray-600">
+                                        
+                                                                            <span class="{{ $estadoInscripcion === 'Aceptado' ? 'text-green-600' : 'text-red-600' }}">
+                                                                                {{ $estadoInscripcion ?? 'No inscrito' }}
+                                                                            </span>
+                                                                        </p>
+                                                                @endif
                                     </div>
                                     <div class="evento-info">
                                         <img src="{{ asset('Logo/EVENTIS LOGO.png') }}" alt="foto-creador" class="icon">
@@ -86,14 +94,7 @@
                                                                         </svg>
                                                                     </p>
                                                                 @endif
-                                                                @if ($tarjetasEvento->estado === 'Pagado')
-                                                                        <p class="inscripcion-status text-sm text-gray-600">
-                                        
-                                                                            <span class="{{ $estadoInscripcion === 'Aceptado' ? 'text-green-500' : 'text-red-500' }}">
-                                                                                Estado: {{ $estadoInscripcion ?? 'No inscrito' }}
-                                                                            </span>
-                                                                        </p>
-                                                                @endif
+                                                                
                                             @endif
                                         </div>
                                     </div>

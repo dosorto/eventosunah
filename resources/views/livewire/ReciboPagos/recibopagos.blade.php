@@ -40,7 +40,7 @@
                         <img :src="selectedImage" class="rounded-lg max-w-full h-auto" alt="Vista previa del comprobante">
                     </div>
 
-                    <button type="submit" class="w-full bg-blue-500 text-white rounded p-2 hover:bg-blue-600">Subir Comprobante</button>
+                    <button type="submit" class="w-full text-sm font-medium bg-yellow-500 text-black rounded p-2 hover:bg-yellow-600">Subir Comprobante</button>
                 </form>
             </div>
         </div>

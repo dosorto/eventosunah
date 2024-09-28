@@ -52,8 +52,8 @@
                                     <td class="px-6 py-4">{{ $localidad->localidad }}</td>
                                     <td class="px-6 py-4">
                                     <button wire:click="edit({{ $localidad->id }})"
-                                        class="mb-1 w-auto px-2 py-1 text-xs font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
-                                        <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true"
+                                        class="mb-1 w-auto px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
+                                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
                                             viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -64,8 +64,8 @@
                                     </button>
 
                                     <button wire:click="confirmDelete({{ $localidad->id }})"
-                                        class="px-2 w-auto py-1 text-xs font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
-                                        <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true"
+                                        class="px-3 w-auto py-2 text-sm font-medium text-white inline-flex items-center bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
                                             viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

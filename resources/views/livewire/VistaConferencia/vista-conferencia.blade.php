@@ -300,8 +300,8 @@
     class="fixed inset-0 flex items-center justify-center z-50 overflow-y-auto ease-out duration-400"
     aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-    <div class="relative flex items-center justify-center min-h-screen p-4">
-        <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6">
+    <div class="relative flex items-center justify-center min-h-screen">
+        <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full p-4 sm:p-6">
             <div>
                 <div class="flex items-start">
                     <div
@@ -324,7 +324,7 @@
             </div>
             <div class="mt-5 flex flex-row-reverse">
                 <button wire:click="inscribirse" type="button"
-                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 ml-3 sm:ml-3 sm:w-auto sm:text-sm">
                     Sí, inscribirme
                 </button>
                 <button @click="open = false; $wire.cancel()" type="button"
@@ -342,7 +342,7 @@
     aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
     <div class="relative flex items-center justify-center min-h-screen p-4">
-        <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6">
+        <div class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full p-4 sm:p-6">
             <div>
                 <div class="flex items-start">
                     <div
@@ -364,7 +364,7 @@
             </div>
             <div class="mt-5 flex flex-row-reverse">
                 <button wire:click="redirectToPayment" type="button"
-                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 ml-3 sm:ml-3 sm:w-auto sm:text-sm">
                     Realizar Pago
                 </button>
                 <button @click="open = false; $wire.cancel()" type="button"

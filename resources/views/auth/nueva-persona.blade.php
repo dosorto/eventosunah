@@ -598,7 +598,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-600 dark:hover:bg-yellow-700">
+                <button type="submit" class="submit bg-yellow-500 hover:bg-yellow-600 text-black dark:bg-yellow-600 dark:hover:bg-yellow-700">
                     <span class="btnText">Registrar</span>
                 </button>
             </div>

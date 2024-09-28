@@ -118,7 +118,7 @@
 
                                         @if($nombreevento->estado == 'Pagado')
                                             <a href="{{ route('inscripcion-evento', ['evento' => $nombreevento->id]) }}"
-                                                class="mb-1 w-full h-10 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                                                class="mb-1 w-full h-10 px-3 py-2 text-sm font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-green-800">
                                                 <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                     viewBox="0 0 24 24">

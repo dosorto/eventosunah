@@ -41,23 +41,23 @@
 
                 <div class="checkbox-text">
                     <div class="checkbox-content">
-                        <input type="checkbox" id="remember_me" name="remember">
+                        <input class="text-yellow-600 border-yellow-400" type="checkbox" id="remember_me" name="remember">
                         <label for="remember_me" class="text text-black dark:text-white">Recuérdame</label>
                     </div>
 
-                    <a href="{{ route('password.request') }}" class="text text-blue-800 dark:text-white">¿No
+                    <a href="{{ route('password.request') }}" class="text text-yellow-800 dark:text-yellow-600">¿No
                         recuerdas la contraseña?</a>
                 </div>
 
                 <div class="input-field button">
                     <input type="submit" value="Iniciar"
-                        class="bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-600 dark:hover:bg-yellow-700">
+                        class="bg-yellow-500 hover:bg-yellow-600 text-black dark:bg-yellow-600 dark:hover:bg-yellow-700">
                 </div>
             </form>
 
             <div class="login-signup">
                 <span class="text text-black dark:text-white">¿No tienes cuenta?
-                    <a href="/register" class="text text-blue-800 dark:text-white signup-link">Registrarse</a>
+                    <a href="/register" class="text text-yellow-800 dark:text-yellow-600 signup-link">Registrarse</a>
                 </span>
             </div>
         </div>
@@ -111,17 +111,5 @@
             });
         });
     });
-</script>
-
-<script>
-    const header = document.querySelector("header");
-    const hamburgerBtn = document.querySelector("#hamburger-btn");
-    const closeMenuBtn = document.querySelector("#close-menu-btn");
-
-    // Toggle mobile menu on hamburger button click
-    hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
-
-    // Close mobile menu on close button click
-    closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
 </script>
 </body>
