@@ -167,7 +167,7 @@
                     <div class="recipient-name">{{ $Nombre }} {{ $Apellido }}</div>
                 </div>
                 <div class="certificado-body">
-                    Por su destacada asistencia y participación en el "{{ $Evento }}",  Organizada por {{$Organizador}} realizada el {{ \Carbon\Carbon::parse($FechaInicio)->locale('es')->isoFormat('D [de] MMMM [de] YYYY') }}.
+                    Por su destacada asistencia y participación en el "{{ $Evento }}",  organizado por {{$Organizador}} realizado el {{ \Carbon\Carbon::parse($FechaInicio)->locale('es')->isoFormat('D [de] MMMM [de] YYYY') }}.
                     <div>
                         <img class="qr-code" src="data:image/png;base64,{{ $qrcode }}" alt="Código QR">
                     </div>
