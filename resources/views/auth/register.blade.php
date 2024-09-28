@@ -421,7 +421,7 @@
                         <i class="uil uil-lock text-black dark:text-white icon"></i>
                         <i class="uil uil-eye-slash text-black dark:text-white showHidePw"></i>
                     </div>
-
+                    
                     <div class="input-field button text">
                         <input type="submit" style="text-align: center;" value="Siguiente"
                             class="bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-600 dark:hover:bg-yellow-700">

@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('IdUsuario')->nullable()->unique();
             $table->string('dni')->unique();
+            $table->string('foto')->nullable();
             $table->string('nombre');
             $table->string('apellido');
             $table->string('correo')->unique();
-            $table->string('correoInstitucional')->nullable()->unique();
+            $table->string('correoInstitucional')->nullable();
             $table->date('fechaNacimiento');
             $table->string('sexo');
             $table->string('direccion');
             $table->string('telefono');
-            $table->string('numeroCuenta')->nullable()->unique();
+            $table->string('numeroCuenta')->nullable();
             $table->unsignedBigInteger('IdNacionalidad');
             $table->unsignedBigInteger('IdTipoPerfil');
             $table->integer("created_by");

@@ -9,7 +9,7 @@ class Persona extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['IdUsuario','dni','nombre','apellido','correo','correoInstitucional','fechaNacimiento','sexo', 'direccion', 'telefono', 'numeroCuenta', 'IdNacionalidad','IdTipoPerfil'];
+    protected $fillable = ['IdUsuario','dni','foto','nombre','apellido','correo','correoInstitucional','fechaNacimiento','sexo', 'direccion', 'telefono', 'numeroCuenta', 'IdNacionalidad','IdTipoPerfil'];
     
     public function nacionalidad()
     {

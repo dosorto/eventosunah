@@ -10,13 +10,14 @@ use Spatie\Permission\Models\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithFileUploads;
 
 class Personas extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     public $name, $email, $password; // Campos para el usuario (opcional)
-    public $persona_id, $IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
+    public $persona_id, $foto,$IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
     public $IdAEliminar;
@@ -69,6 +70,7 @@ class Personas extends Component
         $this->email = '';
         $this->password = '';
         $this->dni = '';
+        $this->foto = '';
         $this->nombre = '';
         $this->apellido = '';
         $this->correo = '';
@@ -94,25 +96,29 @@ class Personas extends Component
     // Validaciones para el campo de persona
     $personaValidation = [
         'dni' => 'required|unique:personas,dni,' . $this->persona_id,
+        'foto' => $this->persona_id ? 'nullable|image|mimes:jpeg,png,jpg,gif,jfif' : 'required|image|mimes:jpeg,png,jpg,gif,jfif',
         'nombre' => 'required',
         'apellido' => 'required',
         'correo' => 'required|email|unique:personas,correo,' . $this->persona_id,
-        'correoInstitucional' => 'nullable|email|unique:personas,correoInstitucional,' . $this->persona_id,
+        'correoInstitucional' => 'nullable|email',
         'fechaNacimiento' => 'required|date',
         'sexo' => 'required',
         'direccion' => 'required',
         'telefono' => 'required',
-        'numeroCuenta' => 'nullable|unique:personas,numeroCuenta,' . $this->persona_id,
+        'numeroCuenta' => 'nullable',
         'IdNacionalidad' => 'required|exists:nacionalidads,id',
         'IdTipoPerfil' => 'required|exists:tipoperfils,id',
     ];
 
-    // Si se proporcionan datos para el usuario, valida también esos datos
-    $validationRules = $this->name && $this->email && $this->password
-        ? array_merge($userValidation, $personaValidation)
-        : $personaValidation;
+    $this->validate($personaValidation);
 
-    $this->validate($validationRules);
+    if ($this->foto) {
+        $path = $this->foto->store('persona', 'public');
+    } else {
+        // Si no se ha subido una nueva foto, conservar la foto existente
+        $persona = Persona::find($this->persona_id);
+        $path = $persona ? $persona->foto : null; // Mantener la foto existente
+    }
 
     // Solo crear el usuario si se proporciona el nombre, email y password
     if ($this->name && $this->email && $this->password) {
@@ -122,19 +128,19 @@ class Personas extends Component
             'password' => Hash::make($this->password),
         ]);
 
-        // Asignar el rol de Participante al usuario
-        $role = Role::where('name', 'Participante')->first(); // Obtén el rol de Participante
+        $role = Role::where('name', 'Participante')->first();
         if ($role) {
-            $user->roles()->attach($role->id); // Asocia el rol al usuario
+            $user->roles()->attach($role->id);
         }
     } else {
-        $user = null; // No se crea usuario si no se proporcionan los datos necesarios
+        $user = null;
     }
-
+    
     // Crear o actualizar la persona
-    Persona::updateOrCreate(['id' => $this->persona_id], [
-        'IdUsuario' => $user ? $user->id : ($this->IdUsuario ?: null), 
+    $persona = Persona::updateOrCreate(['id' => $this->persona_id], [
+        'IdUsuario' => $user ? $user->id : ($this->IdUsuario ?: null),
         'dni' => $this->dni,
+        'foto' => $path,
         'nombre' => $this->nombre,
         'apellido' => $this->apellido,
         'correo' => $this->correo,
@@ -149,10 +155,10 @@ class Personas extends Component
     ]);
 
     session()->flash('message', $this->persona_id ? 'Persona actualizada correctamente!' : 'Persona creada correctamente!');
-
     $this->closeModal();
     $this->resetInputFields();
 }
+
 
     public function edit($id)
     {
@@ -160,6 +166,7 @@ class Personas extends Component
         $this->persona_id = $id;
         $this->IdUsuario = $persona->IdUsuario;
         $this->dni = $persona->dni;
+        $this->foto = null; // No asignes la ruta aquí
         $this->nombre = $persona->nombre;
         $this->apellido = $persona->apellido;
         $this->correo = $persona->correo;
@@ -174,6 +181,7 @@ class Personas extends Component
 
         $this->openModal();
     }
+
 
     public function delete()
     {

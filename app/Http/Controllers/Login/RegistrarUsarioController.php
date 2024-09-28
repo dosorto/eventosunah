@@ -73,6 +73,7 @@ class RegistrarUsarioController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'dni' => 'required|string|max:20',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,jfif', 
             'correo' => 'required|string|email|max:255|unique:personas',
             'correoInstitucional' => 'nullable|string|email|max:255',
             'fechaNacimiento' => 'required|date',
@@ -120,6 +121,10 @@ class RegistrarUsarioController extends Controller
         // correo institucional y numero de cuenta son opcionales, registrar si trae
         $persona->correoInstitucional = $request->correo_institucional;
         $persona->numeroCuenta = $request->cuenta_estudiante;
+         if ($request->hasFile('foto')) {
+            $path = $request->file('foto')->store('persona', 'public');
+            $persona->foto = $path; 
+        }
         $persona->save();
 
         // iniciar sesion al usuario actual
