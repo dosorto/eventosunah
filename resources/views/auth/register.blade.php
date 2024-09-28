@@ -292,13 +292,18 @@
             border: none;
             outline: none;
             font-size: 16px;
-            border-bottom: 2px solid #000;
+            border-bottom: 2px solid;
             border-top: 2px solid transparent;
             transition: all 0.2s ease;
         }
 
         .containers .input-field input:is(:focus, :valid) {
             border-bottom-color: #facc15;
+        }
+
+        .containers .input-field input:valid {
+            background-color: #e0f7fa;
+            /* Cambia el color de fondo cuando el input está lleno y es válido */
         }
 
         .containers .input-field i {
@@ -381,10 +386,12 @@
         }
     </style>
     @section('styles')
-   {{-- <link rel="stylesheet" href="{{ asset('css/fondo.css') }}"> --}} 
+    {{--
+    <link rel="stylesheet" href="{{ asset('css/fondo.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
     @endsection
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900">
     @extends('layouts.login-layout')
 

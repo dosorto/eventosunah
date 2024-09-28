@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
 @endsection
 <body class="dark:bg-gray-900">
 @section('app-content')
