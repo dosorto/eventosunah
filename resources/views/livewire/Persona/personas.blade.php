@@ -48,7 +48,7 @@
                             <th scope="col" class="px-6 py-3">Numero de cuenta</th>
                             <th scope="col" class="px-6 py-3">Fecha Nacimiento</th>
                             <th scope="col" class="px-6 py-3">Sexo</th>
-                            <th scope="col" class="px-6 py-3">Direccion</th>
+                            <th scope="col" class="px-6 py-3">Foto</th>
                             <th scope="col" class="px-6 py-3">Telefono</th>
                             <th scope="col" class="px-6 py-3">Nacionalidad</th>
                             <th scope="col" class="px-6 py-3">Tipo Perfil</th>
@@ -68,7 +68,15 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->numeroCuenta }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->fechaNacimiento }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->sexo }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->direccion }}</td>
+                                <td class="px-6 py-4">
+                                    @if($persona->foto)
+                                    
+                                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('storage/' . $persona->foto) }}"
+                                        alt="">
+                                    @else
+                                        sin foto
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->telefono }}</td>
                                 <td class="px-6 py-4">{{ $persona->nacionalidad ? $persona->nacionalidad->nombreNacionalidad : 'Sin Nacionalidad' }}</td>
                                 <td class="px-6 py-4">{{ $persona->tipoperfil ? $persona->tipoperfil->tipoperfil : 'Sin Perfil' }}</td>

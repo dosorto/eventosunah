@@ -491,14 +491,14 @@
         <span class="title">Registro De Usuario</span>
 
 
-        <form method="POST" action="{{ route('nueva-persona') }}">
+        <form method="POST" action="{{ route('nueva-persona') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Campo oculto para el ID del user -->
             <input type="hidden" name="User" id="User" value="{{ $user }}">
             <input type="hidden" name="UserC" id="UserC" value="{{ $password }}">
 
-            <div class="formRegister first">
+            <div class="formRegister first" >
                 <div class="details personal">
                     <h1 class="text-black dark:text-white">Detalles Personales</h1>
                     <div class="fields">
@@ -507,7 +507,11 @@
                             <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
                             @error('dni') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-
+                        <div class="inputRegister">
+                            <label class="text-black dark:text-white">Foto</label>
+                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="file" id="foto" name="foto" >
+                            @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Nombre</label>
                             <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" value="{{ $user->name }}" required>

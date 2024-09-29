@@ -72,7 +72,16 @@
                                     type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
                                 @error('dni') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
-
+                            <div class="input-field">
+                                <label for="foto"
+                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Imagen:</label>
+                                <input type="file" wire:model="foto" required
+                                    class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                                @if ($foto instanceof \Illuminate\Http\UploadedFile)
+                                    <img src="{{ $foto->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
+                                @endif
+                                @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
                             <div class="input-field">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
