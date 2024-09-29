@@ -2,6 +2,7 @@
 use App\Http\Controllers\EventoVistaController;
 use App\Http\Controllers\ValidarDiplomaController;
 use App\Livewire\DescargarDiploma;
+use App\Livewire\Gafete\Gafetes;
 use App\Livewire\HistorialEvento\HistorialEventos;
 use App\Livewire\PaginaInicial;
 use App\Livewire\TemasCongreso;
@@ -33,6 +34,7 @@ use App\Livewire\Asistencia\AsistenciasConferencias;
 use App\Livewire\HistorialConferencia\HistorialConferencias;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\reporteQrController;
 use App\Livewire\ReciboPago\ReciboPagos;
 use App\Livewire\ReciboPago\ComprobacionPago;
 use App\Livewire\VistaConferencia\VistasConferencias;
@@ -65,6 +67,7 @@ Route::middleware([
     Route::get('/inscripcion-evento/{evento}', ComprobacionPago::class)->name('inscripcion-evento');
     Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
     Route::get('/historial-eventos', HistorialEventos::class)->name('historial-eventos');
+    Route::get('/gafete/{evento}', Gafetes::class)->name('gafete');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
@@ -76,6 +79,7 @@ Route::get('/validarDiploma/{uuid}', [ValidarDiplomaController::class, 'validarD
 
 Route::get('/', [WelcomeController::class, 'index'])->name('pagina-inicial');
 Route::get('/temascongreso', [TemasCongresoController::class, 'index'])->name('temascongreso');
+Route::get('/reporteqr/{evento}', [reporteQrController::class, 'reporte'])->name('reporteqr');
 
 
 
