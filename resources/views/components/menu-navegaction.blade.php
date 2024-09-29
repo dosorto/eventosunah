@@ -44,7 +44,9 @@
                         aria-expanded="false" data-dropdown-toggle="dropdown-user">
                         <span class="sr-only">Open user menu</span>
                         <img class="w-9 h-9 rounded-full"
-                           src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&amp;color=000&amp;background=facc15">
+                          {{--src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&amp;color=000&amp;background=facc15"--}}
+                          src="{{ asset('storage/' . Auth::user()->persona->foto) }}"
+                        >
                      </button>
                   </div>
                   <div
