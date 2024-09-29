@@ -17,7 +17,7 @@ class Personas extends Component
     use WithPagination, WithFileUploads;
 
     public $name, $email, $password; // Campos para el usuario (opcional)
-    public $persona_id, $foto,$IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
+    public $persona_id, $foto, $IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
     public $IdAEliminar;

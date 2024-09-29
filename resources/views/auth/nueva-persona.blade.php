@@ -41,9 +41,9 @@
 
         .containerRegister h1 {
             position: relative;
-            font-size: 18px;
-            font-weight: 500;
-            
+            font-size: 27px;
+            font-weight: 600;
+
         }
 
         .containerRegister form {
@@ -130,7 +130,7 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
         }
 
-       
+
 
         .containerRegister form button,
         .backBtn {
@@ -142,7 +142,7 @@
             width: 100%;
             border: none;
             outline: none;
-            
+
             font-weight: 500;
             border-radius: 5px;
             margin: 18px 0;
@@ -372,125 +372,39 @@
                 /* #ca8a04 */
             ;
         }
-
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            z-index: 1;
+        @media (max-width: 910px) {
+        .containerRegister {
+            height: 755px;
         }
-
-        header .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .navbar .logo {
-            color: #fff;
-            font-weight: 600;
-            font-size: 2.1rem;
-            text-decoration: none;
-        }
-
-        .navbar .logo span {
-            color: #facc15;
-        }
-
-        .navbar .menu-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            transition: 0.2s ease;
-        }
-
-        .navbar a:hover {
-            color: #facc15;
-        }
-
-        #close-menu-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            cursor: pointer;
-            display: none;
-        }
-
-        #hamburger-btn {
-            color: #fff;
-            cursor: pointer;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 10px;
-            }
-
-            header.show-mobile-menu::before {
-                content: "";
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                backdrop-filter: blur(5px);
-            }
-
-            .navbar .logo {
-                font-size: 1.7rem;
-            }
-
-
-            #hamburger-btn,
-            #close-menu-btn {
-                display: block;
-            }
-
-            .navbar .menu-links {
-                position: fixed;
-                top: 0;
-                left: -250px;
-                width: 250px;
-                height: 100vh;
-                background: #fff;
-                flex-direction: column;
-                padding: 70px 40px 0;
-                transition: left 0.2s ease;
-            }
-
-            header.show-mobile-menu .navbar .menu-links {
-                left: 0;
-            }
-
-            .navbar a {
-                color: #000;
-            }
-        }
+    }
     </style>
 </head>
 @extends('layouts.login-layout')
 @section('styles')
- {{-- <link rel="stylesheet" href="{{ asset('css/fondo.css') }}"> --}} 
+{{--
+<link rel="stylesheet" href="{{ asset('css/fondo.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
 @endsection
+
 <body class="bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
     <!-- Registro Usuario -->
-    
-    <div class="form signup containerRegister bg-white dark:bg-gray-800">
-        <span class="title">Registro De Usuario</span>
 
+    <div class="form signup containerRegister bg-white dark:bg-gray-800 mx-auto p-6 md:p-8 lg:p-10 rounded-lg shadow-lg ">
 
+        <h1 class="text-black dark:text-white">Detalles Personales</h1>
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="flex-1 mb-4 md:mb-0">
+                <label class="text-black dark:text-white">Foto de perfil</label>
+                <input
+                    class="rounded-lg cursor-pointer w-full p-2 focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                    type="file" id="foto" name="foto" wire:model="foto" accept="image/*" onchange="previewImage(event)">
+                @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
+            <div class="md:ml-4">
+                <img id="preview" class="w-28 h-28 rounded-full border-4 border-yellow-400 object-cover"
+                    src="{{ asset('Logo/EVENTIS LOGO NOMBRE.png') }}" alt="Vista previa de la foto de perfil">
+            </div>
+        </div>
         <form method="POST" action="{{ route('nueva-persona') }}" enctype="multipart/form-data">
             @csrf
 
@@ -498,48 +412,60 @@
             <input type="hidden" name="User" id="User" value="{{ $user }}">
             <input type="hidden" name="UserC" id="UserC" value="{{ $password }}">
 
-            <div class="formRegister first" >
+            <div class="formRegister first">
                 <div class="details personal">
-                    <h1 class="text-black dark:text-white">Detalles Personales</h1>
                     <div class="fields">
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">DNI</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="text" placeholder="Ingrese su DNI" id="dni" name="dni" wire:model="dni" required>
                             @error('dni') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-                        <div class="inputRegister">
-                            <label class="text-black dark:text-white">Foto</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="file" id="foto" name="foto" >
-                            @error('foto') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
+
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Nombre</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" value="{{ $user->name }}" required>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre"
+                                value="{{ $user->name }}" required>
                             @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Apellido</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="apellido" required>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido"
+                                wire:model="apellido" required>
                             @error('apellido') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Correo Electrónico</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="email" placeholder="Ingrese su correo" id="correo" name="correo" value="{{ $user->email }}" required>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="email" placeholder="Ingrese su correo" id="correo" name="correo"
+                                value="{{ $user->email }}" required>
                             @error('correo') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Fecha de Nacimiento</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="date" id="fecha_nacimiento" name="fechaNacimiento" wire:model="fechaNacimiento" required>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="date" id="fecha_nacimiento" name="fechaNacimiento" wire:model="fechaNacimiento"
+                                required>
                             @error('fechaNacimiento') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Sexo</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" id="sexo" name="sexo" wire:model="sexo" required>
-                                <option class="text-black dark:text-white" value="" disabled selected>Seleccione su sexo</option>
+                            <select
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                id="sexo" name="sexo" wire:model="sexo" required>
+                                <option class="text-black dark:text-white" value="" disabled selected>Seleccione su sexo
+                                </option>
                                 <option class="text-black dark:text-white" value="M">Masculino</option>
                                 <option class="text-black dark:text-white" value="F">Femenino</option>
                             </select>
@@ -548,17 +474,24 @@
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Teléfono</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono" wire:model="telefono" required>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="tel" placeholder="Ingrese su teléfono" id="telefono" name="telefono"
+                                wire:model="telefono" required>
                             @error('telefono') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Nacionalidad</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" id="IdNacionalidad" name="IdNacionalidad" wire:model="IdNacionalidad" required>
+                            <select
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                id="IdNacionalidad" name="IdNacionalidad" wire:model="IdNacionalidad" required>
                                 <option value="" disabled selected>Seleccione su nacionalidad</option>
                                 @if(isset($nacionalidades) && count($nacionalidades) > 0)
                                     @foreach($nacionalidades as $nacionalidad)
-                                        <option class="text-black dark:text-white" value="{{ $nacionalidad->id }}">{{ $nacionalidad->nombreNacionalidad }}</option>
+                                        <option class="text-black dark:text-white" value="{{ $nacionalidad->id }}">
+                                            {{ $nacionalidad->nombreNacionalidad }}
+                                        </option>
                                     @endforeach
                                 @else
                                     <option value="" disabled>No hay nacionalidades disponibles</option>
@@ -569,20 +502,28 @@
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Dirección</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" id="direccion" name="direccion" placeholder="Escribe tu dirección..." required></input>
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                id="direccion" name="direccion" placeholder="Escribe tu dirección..." required></input>
                             @error('direccion') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister">
                             <label class="text-black dark:text-white">Tipo Perfil</label>
-                            <select class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" id="IdTipoPerfil" name="IdTipoPerfil" wire:model="TipoPerfil" required>
-                                <option class="text-black dark:text-white" value="" disabled selected>Seleccione su tipo de perfil</option>
+                            <select
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                id="IdTipoPerfil" name="IdTipoPerfil" wire:model="TipoPerfil" required>
+                                <option class="text-black dark:text-white" value="" disabled selected>Seleccione su tipo
+                                    de perfil</option>
                                 @if(isset($tipoperfiles) && count($tipoperfiles) > 0)
                                     @foreach($tipoperfiles as $tipoperfil)
-                                        <option class="text-black dark:text-white" value="{{ $tipoperfil->id }}">{{ $tipoperfil->tipoperfil }}</option>
+                                        <option class="text-black dark:text-white" value="{{ $tipoperfil->id }}">
+                                            {{ $tipoperfil->tipoperfil }}
+                                        </option>
                                     @endforeach
                                 @else
-                                    <option class="text-black dark:text-white" value="" disabled>No hay tipos de perfil disponibles</option>
+                                    <option class="text-black dark:text-white" value="" disabled>No hay tipos de perfil
+                                        disponibles</option>
                                 @endif
                             </select>
                             @error('IdTipoPerfil') <span class="text-red-500">{{ $message }}</span> @enderror
@@ -590,24 +531,44 @@
 
                         <div class="inputRegister estudiante" style="display: none;">
                             <label id="correoLabel" class="text-black dark:text-white">Correo Institucional</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="email" placeholder="Ingrese su correo institucional" id="correo_institucional" name="correo_institucional">
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="email" placeholder="Ingrese su correo institucional" id="correo_institucional"
+                                name="correo_institucional">
                             @error('CorreoInstitucional') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="inputRegister estudiante" style="display: none;">
                             <label id="numeroLabel" class="text-black dark:text-white">Número de cuenta</label>
-                            <input class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" type="text" placeholder="Ingrese su cuenta de estudiante" id="cuenta_estudiante" name="cuenta_estudiante">
+                            <input
+                                class="focus:ring-yellow-500 focus:border-yellow-500 bg-gray-100 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
+                                type="text" placeholder="Ingrese su cuenta de estudiante" id="cuenta_estudiante"
+                                name="cuenta_estudiante">
                             @error('Cuenta') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="submit bg-yellow-500 hover:bg-yellow-600 text-black dark:bg-yellow-600 dark:hover:bg-yellow-700">
+                <button type="submit"
+                    class="submit bg-yellow-500 hover:bg-yellow-600 text-black dark:bg-yellow-600 dark:hover:bg-yellow-700">
                     <span class="btnText">Registrar</span>
                 </button>
             </div>
         </form>
     </div>
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+            reader.onload = function () {
+                const preview = document.getElementById('preview');
+                preview.src = reader.result;
+            }
+            if (input.files && input.files[0]) {
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const tipoPerfil = document.getElementById('IdTipoPerfil');
