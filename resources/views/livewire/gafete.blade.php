@@ -7,11 +7,11 @@
             <div class="bg-gray-100 z-10 w-16 rounded-full"><br></div>
             <img src="{{ asset('Logo/baner1.jpg') }}" class="h-20 me-4 rounded-lg" alt="Logo" />
             <p class="text-xl mx-8 mb-2 font-bold text-gray-900 dark:text-white text-center break-words">{{$evento->nombreevento}}</p>
-            <img class="w-48 h-48 mb-3 border-yellow-400 border-4 rounded-full shadow-lg"
+            <img class="w-48 h-48 mb-2 border-yellow-400 border-4 rounded-full shadow-lg"
                 src="https://th.bing.com/th/id/OIP.QfSY_47Sh6O1l3awl-lHjwHaHa?rs=1&pid=ImgDetMain" alt="Foto Perfil" />
 
-            <h5 class="mb-1 text-xl mx-8 font-bold text-yellow-400 dark:text-white text-center break-words">{{Auth::user()->persona->nombre }} {{Auth::user()->persona->apellido }}</h5>
-            <span class="text-sm mb-8 text-gray-500 dark:text-gray-400">Participante</span>
+            <h5 class="mb-0 text-xl mx-8 font-bold text-yellow-400 dark:text-white text-center break-words">{{Auth::user()->persona->nombre }} {{Auth::user()->persona->apellido }}</h5>
+            <span class="text-lg mb-8 text-gray-500 dark:text-gray-400">Participante</span>
             <div class="flex w-full mt-4 md:mt-6 bg-yellow-400 justify-center h-24">
                 <div class="flex flex-col items-center relative w-full">
                     <div class="bg-yellow-500 w-full h-2 z-10"><br></div>
