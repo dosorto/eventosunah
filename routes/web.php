@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EventoVistaController;
 use App\Http\Controllers\ValidarDiplomaController;
+use App\Livewire\Conferencista\Perfilconferencista;
 use App\Livewire\DescargarDiploma;
 use App\Livewire\Gafete\Gafetes;
 use App\Livewire\HistorialEvento\HistorialEventos;
@@ -68,6 +69,7 @@ Route::middleware([
     Route::get('/evento/{evento}/reporteEvento', ReporteEventos::class)->name('reporteEvento');
     Route::get('/historial-eventos', HistorialEventos::class)->name('historial-eventos');
     Route::get('/gafete/{evento}', Gafetes::class)->name('gafete');
+    Route::get('/perfilconferencista', Perfilconferencista::class)->name('perfilconferencista');
 });
 
 Route::get('/registrar', [RegistrarUsarioController::class, 'index'])->name('register');
