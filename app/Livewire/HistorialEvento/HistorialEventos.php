@@ -4,7 +4,7 @@ namespace App\Livewire\HistorialEvento;
 
 use App\Models\DiplomaEvento;
 use Livewire\Component;
-use App\Models\inscripcion;
+use App\Models\Inscripcion;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DiplomaGenerado;
 use Illuminate\Support\Str;
