@@ -164,7 +164,7 @@ public function store()
 {
     $this->validate([
         'IdEvento' => 'required|exists:eventos,id',
-        'foto' => 'nullable|image|max:1024',
+        'foto' => 'nullable|image',
         'nombre' => 'required|string|max:255',
         'descripcion' => 'required|string|max:500',
         'fecha' => 'required|date',

@@ -57,7 +57,7 @@
 
             <div class="login-signup">
                 <span class="text text-black dark:text-white">¿No tienes cuenta?
-                    <a href="/register" class="text text-yellow-800 dark:text-yellow-600 signup-link">Registrarse</a>
+                    <a href="congreso/registrar" class="text text-yellow-800 dark:text-yellow-600 signup-link">Registrarse</a>
                 </span>
             </div>
         </div>
