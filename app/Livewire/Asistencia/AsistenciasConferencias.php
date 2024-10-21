@@ -176,7 +176,7 @@ class AsistenciasConferencias extends Component
             })
             ->paginate(8);
 
-        return view('livewire.asistencia.asistencias-conferencia', [
+        return view('livewire.Asistencia.asistencias-conferencia', [
             'suscripciones' => $suscripciones,
             'idConferencia' => $this->conferencia_id,
         ]);

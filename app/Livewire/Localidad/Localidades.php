@@ -22,7 +22,7 @@ class Localidades extends Component
     public function render()
     {
         $localidades = Localidad::where('localidad', 'like', '%' . $this->search . '%')->orderBy('id', 'DESC')->paginate(8);
-        return view('livewire.localidad.localidades', ['localidades' => $localidades]);
+        return view('livewire.Localidad.localidades', ['localidades' => $localidades]);
     }
 
     public function create()
