@@ -48,7 +48,7 @@ class Usuarios extends Component
                      ->orderBy('id', 'DESC')
                      ->paginate(5);
 
-        return view('livewire.Usuario.usuarios', ['users' => $users]);
+        return view('livewire.usuario.usuarios', ['users' => $users]);
     }
 
     public function create()

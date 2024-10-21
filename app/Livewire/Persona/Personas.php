@@ -39,7 +39,7 @@ class Personas extends Component
             ->orderBy('id', 'DESC')
             ->paginate(5);
 
-        return view('livewire.Persona.personas', [
+        return view('livewire.persona.personas', [
             'personas' => $personas,
             'nacionalidades' => $this->nacionalidades,
             'tipoperfiles' => $this->tipoperfiles

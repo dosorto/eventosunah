@@ -36,7 +36,7 @@ class Roles extends Component
     {
         $roles = Role::where('name', 'like', '%' . $this->search . '%')->orderBy('id', 'DESC')->paginate(5);
 
-        return view('livewire.Rol.roles', ['roles' => $roles]);
+        return view('livewire.rol.roles', ['roles' => $roles]);
     }
 
     public function create()

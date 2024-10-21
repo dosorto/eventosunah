@@ -40,7 +40,7 @@ class Eventos extends Component
             ->orderBy('id', 'DESC')
             ->paginate(8);
 
-        return view('livewire.Evento.eventos', ['eventos' => $eventos]);
+        return view('livewire.evento.eventos', ['eventos' => $eventos]);
     }
 
     public function create()
