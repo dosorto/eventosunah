@@ -73,7 +73,7 @@
                            <form method="POST" action="{{ route('logout') }}" x-data>
                               @csrf
 
-                              <x-dropdown-link href="{{ route('logout') }}"
+                              <x-dropdown-link href="{{ route('pagina-inicial') }}"
                                  class="text-red-800 dark:text-gray-100 hover:bg-red-100 "
                                  @click.prevent="$root.submit();">
                                  {{ __('Cerrar Sesión') }}

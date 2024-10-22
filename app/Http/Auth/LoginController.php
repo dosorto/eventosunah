@@ -60,7 +60,7 @@ class LoginController extends Controller
         return redirect()->route('/congreso/dashboard');
     } elseif ($user->roles->isEmpty()) {
         auth()->logout();
-        return redirect('/login')->with('error', 'No tiene ningún rol asignado.');
+        return redirect('/congreso/login')->with('error', 'No tiene ningún rol asignado.');
     } else {
         return redirect()->intended($this->redirectPath());
     }
