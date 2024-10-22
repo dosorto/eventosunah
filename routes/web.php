@@ -85,3 +85,4 @@ Route::get('congreso/reporteqr/{evento}', [reporteQrController::class, 'reporte'
 
 
 
+
