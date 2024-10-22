@@ -17,7 +17,7 @@
                 @endif
 
                 @if($isOpen)
-                    @include('livewire.localidad.create')
+                    @include('livewire.Localidad.create')
                 @endif
 
                 <div class="relative overflow-x-auto sm:rounded-lg dark:bg-gray-800">
