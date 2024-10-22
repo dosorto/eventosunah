@@ -28,7 +28,7 @@ class ReciboPagos extends Component
     {
 
         $this->validate([
-            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif,jfif',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,jfif',
         ]);
 
         // Guardar la foto
