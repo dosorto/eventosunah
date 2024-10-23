@@ -65,9 +65,6 @@ class LoginController extends Controller
         return redirect()->intended($this->redirectPath());
     }
     }
-    public function showLoginForm()
-    {
-        return view('auth.login'); // Asegúrate de tener la vista auth/login.blade.php
-    }
+    
 
 }
