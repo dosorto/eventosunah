@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/congreso';
 
     /**
      * Create a new controller instance.
@@ -54,10 +54,10 @@ class LoginController extends Controller
             //return redirect()->route('contribuyente.showHistory', ['id' => $contribuyente->id]);
         } else {
             // Si el perfil del contribuyente no existe, redirigir a una vista de error o a otra página apropiada
-            return redirect('/')->with('error', 'No se encontró el perfil del contribuyente.');
+            return redirect('/congreso')->with('error', 'No se encontró el perfil del contribuyente.');
         }
-    } elseif ($user->hasRole('Administrador')) {
-        return redirect()->route('graficas');
+    } elseif ($user->hasRole('root')) {
+        return redirect()->route('/congreso/dashboard');
     } elseif ($user->roles->isEmpty()) {
         auth()->logout();
         return redirect('/login')->with('error', 'No tiene ningún rol asignado.');

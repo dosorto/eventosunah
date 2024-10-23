@@ -28,7 +28,7 @@ class ReciboPagos extends Component
     {
 
         $this->validate([
-            'foto' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif,jfif',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,jfif',
         ]);
 
         // Guardar la foto
@@ -69,7 +69,7 @@ class ReciboPagos extends Component
 
     public function render()
     {
-        return view('livewire.reciboPagos.recibopagos', [
+        return view('livewire.ReciboPagos.recibopagos', [
             'evento' => $this->evento,
             'persona' => $this->persona,
         ]);

@@ -392,7 +392,7 @@
     <div class="form signup containerRegister bg-white dark:bg-gray-800 mx-auto p-6 md:p-8 lg:p-10 rounded-lg shadow-lg ">
 
         <h1 class="text-black dark:text-white">Detalles Personales</h1>
-        <div class="flex flex-col md:flex-row items-center">
+       <!-- <div class="flex flex-col md:flex-row items-center">
             <div class="flex-1 mb-4 md:mb-0">
                 <label class="text-black dark:text-white">Foto de perfil</label>
                 <input
@@ -404,7 +404,7 @@
                 <img id="preview" class="w-28 h-28 rounded-full border-4 border-yellow-400 object-cover"
                     src="{{ asset('Logo/EVENTIS LOGO NOMBRE.png') }}" alt="Vista previa de la foto de perfil">
             </div>
-        </div>
+        </div> -->
         <form method="POST" action="{{ route('nueva-persona') }}" enctype="multipart/form-data">
             @csrf
 

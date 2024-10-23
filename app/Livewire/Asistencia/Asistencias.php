@@ -60,7 +60,7 @@ class Asistencias extends Component
             ->orderBy('id', 'DESC')
             ->paginate(8);
 
-        return view('livewire.asistencia.asistencias', [
+        return view('livewire.Asistencia.asistencias', [
             'asistencias' => $asistencias,
         ]);
     }
