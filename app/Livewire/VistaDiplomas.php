@@ -32,7 +32,7 @@ class VistaDiplomas extends Component
         // obtener el diploma asociado a la persona y la conferencia
 
         if ($this->validacionesPersonaConferencia()) {
-            $ruta = is_null($this->uuid) ? 'No verificable' : config('app.url') . '/congreso/validarDiploma/' . $this->uuid;
+            $ruta = is_null($this->uuid) ? 'No verificable' : config('app.url') . '/validarDiploma/' . $this->uuid;
             $this->qrcode = QRCodeService::generateTextQRCode($ruta);
         } else {
             return redirect()->route('conferencias-inscritas');
