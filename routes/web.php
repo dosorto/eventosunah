@@ -85,5 +85,5 @@ Route::get('congreso/temascongreso', [TemasCongresoController::class, 'index'])-
 Route::get('congreso/reporteqr/{evento}', [reporteQrController::class, 'reporte'])->name('reporteqr');
 Route::get('congreso/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-
+Route::post('congreso/login', [AuthenticatedSessionController::class, 'store'])->name('login'); // POST para procesar el login
 
