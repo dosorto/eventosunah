@@ -83,7 +83,7 @@ Route::get('congreso/validarDiploma/{uuid}', [ValidarDiplomaController::class, '
 Route::get('/', [WelcomeController::class, 'index'])->name('pagina-inicial');
 Route::get('congreso/temascongreso', [TemasCongresoController::class, 'index'])->name('temascongreso');
 Route::get('congreso/reporteqr/{evento}', [reporteQrController::class, 'reporte'])->name('reporteqr');
-Route::get('congreso/login', [AuthenticatedSessionController::class, 'create'])->name('congreso/login');
+Route::get('congreso/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 
 
