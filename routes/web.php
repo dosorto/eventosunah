@@ -41,6 +41,7 @@ use App\Http\Controllers\reporteQrController;
 use App\Livewire\ReciboPago\ReciboPagos;
 use App\Livewire\ReciboPago\ComprobacionPago;
 use App\Livewire\VistaConferencia\VistasConferencias;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -84,7 +85,7 @@ Route::get('congreso/validarDiploma/{uuid}', [ValidarDiplomaController::class, '
 Route::get('/', [WelcomeController::class, 'index'])->name('pagina-inicial');
 Route::get('congreso/temascongreso', [TemasCongresoController::class, 'index'])->name('temascongreso');
 Route::get('congreso/reporteqr/{evento}', [reporteQrController::class, 'reporte'])->name('reporteqr');
-Route::get('congreso/conferencistas-congreso', [ConferencistasCongresoController::class, 'index'])->name('conferencistas-congreso');
+
 
 
 
