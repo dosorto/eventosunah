@@ -2,6 +2,7 @@
 use App\Http\Controllers\EventoVistaController;
 use App\Http\Controllers\ValidarDiplomaController;
 use App\Livewire\Conferencista\Perfilconferencista;
+use App\Livewire\ConferencistasCongreso;
 use App\Livewire\DescargarDiploma;
 use App\Livewire\Gafete\Gafetes;
 use App\Livewire\HistorialEvento\HistorialEventos;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Login\RegistrarUsarioController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\TemasCongresoController;
+use App\Http\Controllers\ConferencistasCongresoController;
 use App\Livewire\Usuario\Usuarios;
 use Illuminate\Http\Request;
 use App\Livewire\ReporteEvento\ReporteEventos;
@@ -82,7 +84,7 @@ Route::get('congreso/validarDiploma/{uuid}', [ValidarDiplomaController::class, '
 Route::get('/', [WelcomeController::class, 'index'])->name('pagina-inicial');
 Route::get('congreso/temascongreso', [TemasCongresoController::class, 'index'])->name('temascongreso');
 Route::get('congreso/reporteqr/{evento}', [reporteQrController::class, 'reporte'])->name('reporteqr');
-
+Route::get('congreso/conferencistas-congreso', [ConferencistasCongresoController::class, 'index'])->name('conferencistas-congreso');
 
 
 

@@ -13,22 +13,52 @@
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('Logo/logoUNAH.jpg') }}"
+                    <img src="{{ asset('Logo/oxigenacion.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('Logo/baner1.jpg') }}"
+                    <img src="{{ asset('Logo/sembradero.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
                 </div>
                 <!-- Item 4 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('Logo/camarones.jpg') }}"
+                    <img src="{{ asset('Logo/tilapias.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
                 </div>
                 <!-- Item 5 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('Logo/baner1.jpg') }}"
+                    <img src="{{ asset('Logo/productores.jpg') }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+                </div>
+                <!-- Item 6 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('Logo/pesca.jpg') }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+                </div>
+                <!-- Item 7 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('Logo/peces.jpg') }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+                </div>
+                <!-- Item 8 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('Logo/Piscina.jpg') }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+                </div>
+                <!-- Item 9 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('Logo/camaron.jpg') }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+                </div>
+                <!-- Item 10 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('Logo/rojas.jpg') }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+                </div>
+                <!-- Item 11 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('Logo/logoUNAH.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
                 </div>
             </div>
@@ -81,14 +111,14 @@
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="w-full h-60 object-cover rounded-t-lg" src="{{ asset('Logo/conferencistas.jpg') }}" alt="" />
             <div class="p-5">
-                <a href="#">
+                <a href="{{ route('conferencistas-congreso') }}">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Conoce más
                         sobre nuestros conferencistas</h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Cada una de las conferencias será impartida
                     por expertos
                     e investigadores nacionales e internacionales.</p>
-                <a href="#"
+                <a href="{{ route('conferencistas-congreso') }}"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Ver más
                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +150,7 @@
             </div>
         </div>
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img class="w-full h-60 object-cover rounded-t-lg" src="{{ asset('Logo/choluteca2.jpg') }}" alt="" />
+            <img class="w-full h-60 object-cover rounded-t-lg" src="{{ asset('Logo/redes.jpg') }}" alt="" />
             <div class="p-5">
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Métodos de
@@ -163,17 +193,24 @@
 
     </div>
 
-    <div id="default-carousel" class="relative z-0 w-full" data-carousel="slide">
+    <div id="default-carousel" class="relative z-0 w-full" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+            <!-- Item: Video -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" controls>
+                    <source src="{{ asset('Logo/video.mp4') }}" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{ asset('Logo/choluteca2.jpg') }}"
+                <img src="{{ asset('Logo/tilapia.jpg') }}"
                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{ asset('Logo/hotel.jpg') }}"
+                <img src="{{ asset('Logo/camaronn.jpg') }}"
                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
             </div>
             <!-- Item 3 -->
@@ -189,6 +226,10 @@
             <!-- Item 5 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                 <img src="{{ asset('Logo/camarones.jpg') }}"
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
+            </div>
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="{{ asset('Logo/lagunas.jpg') }}"
                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-0" alt="...">
             </div>
         </div>
@@ -234,10 +275,18 @@
         </button>
     </div>
     <div class="flex">
-        <footer class="bg-white rounded-lg w-full shadow m-4 dark:bg-gray-800">
+    <footer class="bg-white rounded-lg w-full shadow m-4 dark:bg-gray-800">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <div class="mb-6 md:mb-0">
-                    <img src="{{ asset('Logo/baner1.jpg') }}" class="h-12 me-4" alt="Logo" />
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-1 mb-4 md:mb-0">
+                    <div>
+                        <img src="{{ asset('Logo/baner1.jpg') }}" class="h-16 md:h-24 lg:h-28 me-4" alt="Logo" />
+                    </div>
+                    <div>
+                        <img src="{{ asset('Logo/Cargil.jpg') }}" class="h-16 md:h-24 lg:h-28 me-4" alt="Logo" />
+                    </div>
+                    <div>
+                        <img src="{{ asset('Logo/Regal.jpg') }}" class="h-16 md:h-24 lg:h-28 me-4" alt="Logo" />
+                    </div>
                 </div>
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Primer congreso de Acuícultura
                     Honduras 2024.
