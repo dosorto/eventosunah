@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="flex">
-        <footer class="bg-white rounded-lg w-full shadow m-4 dark:bg-gray-800">
+    <footer class="bg-white rounded-lg w-full shadow m-4 dark:bg-gray-800">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-1 mb-4 md:mb-0">
                     <div>

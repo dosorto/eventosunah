@@ -98,16 +98,18 @@
 
     </div>
     <div class="flex">
-        <footer class="bg-white rounded-lg w-full shadow m-4 dark:bg-gray-800">
+    <footer class="bg-white rounded-lg w-full shadow m-4 dark:bg-gray-800">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <div class="mb-6 md:mb-0">
-                    <img src="{{ asset('Logo/baner1.jpg') }}" class="h-16 me-4" alt="Logo" />
-                </div>
-                <div class="mb-6 md:mb-0">
-                    <img src="{{ asset('Logo/Cargil.jpg') }}" class="h-12 me-4" alt="Logo" />
-                </div>
-                <div class="mb-6 md:mb-0">
-                    <img src="{{ asset('Logo/Regal.jpg') }}" class="h-16 me-4" alt="Logo" />
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-1 mb-4 md:mb-0">
+                    <div>
+                        <img src="{{ asset('Logo/baner1.jpg') }}" class="h-16 md:h-24 lg:h-28 me-4" alt="Logo" />
+                    </div>
+                    <div>
+                        <img src="{{ asset('Logo/Cargil.jpg') }}" class="h-16 md:h-24 lg:h-28 me-4" alt="Logo" />
+                    </div>
+                    <div>
+                        <img src="{{ asset('Logo/Regal.jpg') }}" class="h-16 md:h-24 lg:h-28 me-4" alt="Logo" />
+                    </div>
                 </div>
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Primer congreso de Acuícultura
                     Honduras 2024.
