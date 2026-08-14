@@ -13,9 +13,8 @@ class TipoPerfilSeeder extends Seeder
     public function run(): void
     {
         $tipoperfiles = [
-            'Estudiante',
             'Empleado',
-            'Docente',
+            'Estudiante',
             'Externo'
         ];
 

@@ -171,8 +171,7 @@ class AsistenciasConferencias extends Component
         $suscripciones = Suscripcion::with(['persona', 'conferencia', 'asistencias'])
             ->where('IdConferencia', $this->conferencia_id)
             ->whereHas('persona', function ($query) {
-                $query->where('nombre', 'like', '%' . $this->search . '%')
-                    ->orWhere('apellido', 'like', '%' . $this->search . '%');
+                $query->searchName($this->search);
             })
             ->paginate(8);
 
@@ -182,4 +181,3 @@ class AsistenciasConferencias extends Component
         ]);
     }
 }
-

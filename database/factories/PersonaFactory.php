@@ -26,8 +26,10 @@ class PersonaFactory extends Factory
         return [
             'IdUsuario' => $usuarioId,
             'dni' => $this->faker->unique()->regexify('[0-9]{8}[A-Z]{1}'), 
-            'nombre' => $this->faker->firstName(),
-            'apellido' => $this->faker->lastName(),
+            'primer_nombre' => $this->faker->firstName(),
+            'segundo_nombre' => null,
+            'primer_apellido' => $this->faker->lastName(),
+            'segundo_apellido' => null,
             'correo' => $this->faker->unique()->safeEmail(),
             'fechaNacimiento' => $this->faker->date(),
             'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),

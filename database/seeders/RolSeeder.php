@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolSeeder extends Seeder
 {
@@ -14,15 +14,62 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
-        // Crea el rol 'Participante'
-        $role = Role::create(['name' => 'Participante', 'guard_name' => 'web']);
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        // Encuentra los permisos 'Admin-Participante' y 'Admin-miAsistencia'
-        $permissions = Permission::whereIn('name', ['admin-Participante', 'admin-miAsistencia','admin-Historial'])->get();
+        $roles = [
+            'super-admin' => Permission::pluck('name')->all(),
+            'admin-eventos' => [
+                'dashboard.view',
+                'catalog.nationalities.manage',
+                'catalog.modalities.manage',
+                'catalog.locations.manage',
+                'catalog.profile-types.manage',
+                'catalog.conference-types.manage',
+                'people.manage',
+                'speakers.manage',
+                'events.manage',
+                'conferences.manage',
+                'attendances.manage',
+                'diplomas.manage',
+                'reports.events.view',
+            ],
+            'gestor-contenido' => [
+                'dashboard.view',
+                'speakers.manage',
+                'events.manage',
+                'conferences.manage',
+                'diplomas.manage',
+                'reports.events.view',
+            ],
+            'participante' => [
+                'participant.portal.access',
+                'participant.registrations.manage',
+                'participant.history.view',
+                'participant.diplomas.view',
+                'diplomas.validate',
+            ],
+            'conferencista' => [
+                'participant.portal.access',
+                'participant.registrations.manage',
+                'participant.history.view',
+                'participant.diplomas.view',
+            ],
+            'staff-evento' => [
+                'dashboard.view',
+                'participant.portal.access',
+                'participant.registrations.manage',
+                'participant.history.view',
+                'participant.diplomas.view',
+                'staff.portal.access',
+                'staff.attendance.scan',
+            ],
+        ];
 
-        // Asigna los permisos al rol
-        if ($permissions) {
-            $role->givePermissionTo($permissions);
+        foreach ($roles as $roleName => $permissions) {
+            $role = Role::findOrCreate($roleName, 'web');
+            $role->syncPermissions($permissions);
         }
+
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
     }
 }

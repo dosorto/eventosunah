@@ -2,12 +2,11 @@
 
 namespace App\Livewire\EventoVista;
 
-use App\Models\Modalidad;
 use App\Models\Localidad;
-use Livewire\WithPagination;
-use Livewire\Component;
 use App\Models\Evento;
-use Carbon\Carbon;
+use App\Models\Modalidad;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class EventosVistas extends Component
 {
@@ -20,8 +19,8 @@ class EventosVistas extends Component
     {
         $Eventos = Evento::with('modalidad', 'localidad')
             ->where('nombreevento', 'like', '%' . $this->search . '%')
-            ->where('fechaFinal', '>=', Carbon::today())
-            ->orderBy('id', 'DESC')
+            ->published()
+            ->latest('published_at')
             ->paginate(9);
 
         return view('livewire.EventoVista.eventos-vista', ['Eventos' => $Eventos]);
@@ -35,4 +34,3 @@ class EventosVistas extends Component
         $this->localidades = Localidad::all();
     }
 }
-

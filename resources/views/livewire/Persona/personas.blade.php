@@ -41,8 +41,10 @@
                             <th scope="col" class="px-6 py-3">No.</th>
                             <th scope="col" class="px-6 py-3">ID Usuario</th>
                             <th scope="col" class="px-6 py-3">DNI</th>
-                            <th scope="col" class="px-6 py-3">Nombre</th>
-                            <th scope="col" class="px-6 py-3">Apellido</th>
+                            <th scope="col" class="px-6 py-3">Primer nombre</th>
+                            <th scope="col" class="px-6 py-3">Segundo nombre</th>
+                            <th scope="col" class="px-6 py-3">Primer apellido</th>
+                            <th scope="col" class="px-6 py-3">Segundo apellido</th>
                             <th scope="col" class="px-6 py-3">Correo</th>
                             <th scope="col" class="px-6 py-3">Correo Institucional</th>
                             <th scope="col" class="px-6 py-3">Numero de cuenta</th>
@@ -61,8 +63,10 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->id }}</td>
                                 <td class="px-6 py-4">{{ $persona->user ? $persona->user->name : 'Sin Usuario' }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->dni }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->nombre }}</td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->apellido }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->primer_nombre }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->segundo_nombre }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->primer_apellido }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->segundo_apellido }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->correo }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->correoInstitucional }}</td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $persona->numeroCuenta }}</td>

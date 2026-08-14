@@ -16,7 +16,8 @@ class Nacionalidades extends Component
     public function render()
     {
         $nacionalidades = Nacionalidad::where('nombreNacionalidad', 'like', '%'.$this->search.'%')->orderBy('nombreNacionalidad','ASC')->paginate(5);
-        return view('livewire.Nacionalidad.nacionalidades', ['nacionalidades' => $nacionalidades]);
+        return view('livewire.Nacionalidad.nacionalidades', ['nacionalidades' => $nacionalidades])
+            ->layout('components.layouts.app');
     }
     public function create()
     {
@@ -30,9 +31,11 @@ class Nacionalidades extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+        $this->resetValidation();
     }
     private function resetInputFields(){
         $this->nombreNacionalidad = '';
+        $this->nacionalidad_id = null;
     }
 
     public function store()

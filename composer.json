@@ -8,11 +8,10 @@
         "php": "^8.2",
         "bacon/bacon-qr-code": "^3.0",
         "barryvdh/laravel-dompdf": "^3.0",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^13.0",
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^4.0",
         "nesbot/carbon": "^3.7",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.6",
@@ -29,6 +28,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "App\\Http\\Controllers\\Auth\\": "app/Http/Auth/",
+            "App\\Livewire\\Tipoperfil\\": "app/Livewire/Tipoperfil/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

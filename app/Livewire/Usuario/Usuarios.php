@@ -16,6 +16,7 @@ class Usuarios extends Component
     public $name;
     public $email;
     public $password;
+    public $password_confirmation;
     public $user;
     public $search = '';
     public $selectedRoles = [];
@@ -41,19 +42,31 @@ class Usuarios extends Component
         $this->roles = Role::all();
     }
 
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $users = User::where('name', 'like', '%' . $this->search . '%')
-                     ->orWhere('email', 'like', '%' . $this->search . '%')
-                     ->orderBy('id', 'DESC')
-                     ->paginate(5);
+        $users = User::query()
+            ->with(['roles', 'persona'])
+            ->where(function ($query) {
+                $query
+                    ->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%');
+            })
+            ->orderByDesc('id')
+            ->paginate(8);
 
-        return view('livewire.usuario.usuarios', ['users' => $users]);
+        return view('livewire.usuario.usuarios', ['users' => $users])
+            ->layout('components.layouts.app');
     }
 
     public function create()
     {
         $this->resetInputFields();
+        $this->user = null;
         $this->roles = Role::all();
         $this->isOpen = true;
     }
@@ -102,6 +115,8 @@ class Usuarios extends Component
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->password = '';
+        $this->password_confirmation = '';
         $this->selectedRoles = $user->roles->pluck('id')->toArray();
         $this->roles = Role::all();
         $this->isOpen = true;
@@ -183,6 +198,9 @@ class Usuarios extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+        $this->user = null;
+        $this->resetInputFields();
+        $this->resetValidation();
     }
 
     private function resetInputFields()
@@ -190,6 +208,7 @@ class Usuarios extends Component
         $this->name = '';
         $this->email = '';
         $this->password = '';
+        $this->password_confirmation = '';
         $this->selectedRoles = [];
     }
 }

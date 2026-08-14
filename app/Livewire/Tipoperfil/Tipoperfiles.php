@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\TipoPerfil;
+namespace App\Livewire\Tipoperfil;
 
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -21,7 +21,8 @@ class Tipoperfiles extends Component
             ->orderBy('id', 'DESC')
             ->paginate(5);
 
-        return view('livewire.Tipoperfil.tipoperfiles', ['tipoperfiles' => $tipoperfiles]);
+        return view('livewire.Tipoperfil.tipoperfiles', ['tipoperfiles' => $tipoperfiles])
+            ->layout('components.layouts.app');
     }
 
     public function create()
@@ -38,6 +39,7 @@ class Tipoperfiles extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+        $this->resetValidation();
     }
 
     private function resetInputFields()

@@ -1,39 +1,48 @@
 import './bootstrap';
-import 'flowbite';
 
-const menuButtons = document.querySelectorAll(".menu-button");
-  const screenOverlay = document.querySelector(".main-layout .screen-overlay");
-  const themeButton = document.querySelector(".navbar .theme-button i");
+const root = document.documentElement;
+const storageKey = 'color-theme';
+const sidebarStorageKey = 'admin-sidebar';
 
-  // Toggle sidebar visibility when menu buttons are clicked
-  menuButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      document.body.classList.toggle("sidebar-hidden");
-    });
-  });
+const applyTheme = (theme) => {
+    const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
 
-  // Toggle sidebar visibility when screen overlay is clicked
-  screenOverlay.addEventListener("click", () => {
-    document.body.classList.toggle("sidebar-hidden");
-  });
+    root.classList.toggle('dark', resolvedTheme === 'dark');
+    root.dataset.theme = resolvedTheme;
+};
 
-  // Initialize dark mode based on localStorage
-  if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    themeButton.classList.replace("uil-moon", "uil-sun");
-  } else {
-    themeButton.classList.replace("uil-sun", "uil-moon");
-  }
+const resolvePreferredTheme = () => {
+    const savedTheme = localStorage.getItem(storageKey);
 
-  // Toggle dark mode when theme button is clicked
-  themeButton.addEventListener("click", () => {
-    const isDarkMode = document.body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
-    themeButton.classList.toggle("uil-sun", isDarkMode);
-    themeButton.classList.toggle("uil-moon", !isDarkMode);
-  });
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+        return savedTheme;
+    }
 
-  // Show sidebar on large screens by default
-  if (window.innerWidth >= 768) {
-    document.body.classList.remove("sidebar-hidden");
-  }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+const applySidebarState = (state) => {
+    const resolvedState = state === 'collapsed' ? 'collapsed' : 'expanded';
+
+    root.dataset.sidebarState = resolvedState;
+};
+
+const resolveSidebarState = () => {
+    const savedState = localStorage.getItem(sidebarStorageKey);
+
+    return savedState === 'collapsed' ? 'collapsed' : 'expanded';
+};
+
+applyTheme(resolvePreferredTheme());
+applySidebarState(resolveSidebarState());
+
+document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-theme-toggle]');
+
+    if (trigger) {
+        const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
+
+        localStorage.setItem(storageKey, nextTheme);
+        applyTheme(nextTheme);
+    }
+});

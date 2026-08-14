@@ -19,7 +19,8 @@ class Modalidades extends Component
     public function render()
     {
         $modalidades = Modalidad::where('modalidad', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(8);
-        return view('livewire.Modalidad.modalidades', ['modalidades' => $modalidades]);
+        return view('livewire.Modalidad.modalidades', ['modalidades' => $modalidades])
+            ->layout('components.layouts.app');
     }
 
     public function create()
@@ -36,6 +37,7 @@ class Modalidades extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+        $this->resetValidation();
     }
 
     private function resetInputFields(){

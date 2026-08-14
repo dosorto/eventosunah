@@ -2,8 +2,8 @@
 
 @php
     $classes = ($active ?? false)
-        ? 'bg-yellow-400 flex transition duration-100 ease-in-out dark:hover:bg-yellow-400 dark:bg-yellow-400 items-center p-2 text-black rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-yellow-400 group'
-        : 'bg-yellow-0 flex dark:hover:bg-yellow-400 transition duration-100 ease-in-out items-center p-2 text-black rounded-lg dark:text-white hover:bg-yellow-400 dark:hover:bg-yellow-400 group';
+        ? 'flex items-center rounded-2xl border border-[#7b5cff]/40 bg-gradient-to-r from-[#251b47] to-[#1a1830] px-3.5 py-3 text-sm font-medium text-white shadow-[0_10px_30px_rgba(123,92,255,0.18)] transition duration-150 ease-in-out'
+        : 'flex items-center rounded-2xl px-3.5 py-3 text-sm font-medium text-slate-500 transition duration-150 ease-in-out hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.04] dark:hover:text-white';
 
 @endphp
 

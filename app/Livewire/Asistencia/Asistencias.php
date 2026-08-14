@@ -29,8 +29,7 @@ class Asistencias extends Component
         $searchTerm = '%' . $this->inputSearchSuscripcion . '%';
         
         $this->searchSuscripciones = Suscripcion::whereHas('persona', function($query) use ($searchTerm) {
-            $query->where('nombre', 'like', $searchTerm)
-                ->orWhere('apellido', 'like', $searchTerm);
+            $query->searchName(trim($this->inputSearchSuscripcion));
         })->orWhereHas('conferencia', function($query) use ($searchTerm) {
             $query->where('nombre', 'like', $searchTerm);
         })->get();
@@ -159,4 +158,3 @@ class Asistencias extends Component
         ]);
     }
 }
-

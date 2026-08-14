@@ -1,87 +1,114 @@
-<div>
-    <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400" x-data="{ refreshAfterCreate: @entangle('isOpen') }" x-init="refreshAfterCreate = false">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 transition-opacity">
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
+<div class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+    <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" wire:click="closeModal"></div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
-
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                <form wire:submit.prevent="store">
-                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-gray-900">
-                        <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $user ? 'Editar Usuario' : 'Crear Usuario' }}</h3>
-                            <button wire:click="closeModal()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="sr-only">Cerrar modal</span>
-                            </button>
-                        </div>
-                        <div>
-                            <!-- Name Field -->
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 dark:text-white font-semibold">Nombre</label>
-                                <input placeholder="Nombre de usuario" wire:model.defer="name" type="text" name="name" class="form-input mt-1 block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="name">
-                                @error('name')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <!-- Email Field -->
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 dark:text-white font-semibold">Correo electrónico</label>
-                                <input placeholder="Ingresar correo electrónico" wire:model.defer="email" type="email" name="email" class="form-input mt-1 block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="email">
-                                @error('email')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <!-- Password Field -->
-                            <div class="mb-4">
-                                <label for="password" class="block text-gray-700 dark:text-white font-semibold">Contraseña</label>
-                                <input placeholder="Contraseña" wire:model.defer="password" type="password" name="password" class="form-input mt-1 block w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="password">
-                                @error('password')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <!-- Password Confirmation Field -->
-                            <div class="mb-4">
-                                <label for="password_confirmation" class="block text-gray-700 dark:text-white font-semibold">Confirmar Contraseña</label>
-                                <input placeholder="Confirmar contraseña" wire:model.defer="password_confirmation" type="password" name="password_confirmation" class="form-input mt-1 block w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" id="password_confirmation">
-                                @error('password_confirmation')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <!-- Roles Field -->
-                            <div class="mb-4">
-                                <label for="roles" class="block text-gray-700 dark:text-white font-semibold">Roles</label>
-                                @foreach($roles as $role)
-                                    <div class=" text-gray-700 dark:text-white  flex items-center">
-                                        <input class=" text-yellow-500 bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:focus:ring-yellow-500 dark:focus:border-yellow-500" wire:model.defer="selectedRoles" type="checkbox" value="{{ $role->id }}" id="role-{{ $role->id }}">
-                                        <label for="role-{{ $role->id }}" class="ml-2">{{ $role->name }}</label>
-                                    </div>
-                                @endforeach
-                                @error('selectedRoles')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse  dark:bg-gray-700">
-                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button wire:click.prevent="store()" type="button"
-                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Guardar
-                        </button>
-                    </span>
-                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                        <button wire:click="closeModal()" type="button"
-                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Cancelar
-                        </button>
-                    </span>
+    <div class="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+        <form wire:submit.prevent="store">
+            <div class="flex items-start justify-between gap-4 border-b border-slate-200 px-6 py-5 dark:border-slate-800">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-violet-600 dark:text-violet-300">Seguridad</p>
+                    <h3 class="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ $user ? 'Editar usuario' : 'Crear usuario' }}</h3>
+                    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Configura los datos de acceso y asigna uno o más roles para controlar los permisos del usuario.</p>
                 </div>
-                </form>
+                <button
+                    wire:click="closeModal"
+                    type="button"
+                    class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-300 text-slate-500 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+                >
+                    <span class="sr-only">Cerrar modal</span>
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414Z" clip-rule="evenodd" />
+                    </svg>
+                </button>
             </div>
-        </div>
+
+            <div class="overflow-y-auto px-6 py-6">
+                <div class="grid gap-5 md:grid-cols-2">
+                    <div class="md:col-span-2">
+                        <label for="name" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Nombre <span class="text-red-500">*</span></label>
+                        <input
+                            id="name"
+                            wire:model.defer="name"
+                            type="text"
+                            class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-violet-400 dark:focus:ring-violet-500/10"
+                            placeholder="Nombre de usuario"
+                        >
+                        @error('name') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="email" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Correo electrónico <span class="text-red-500">*</span></label>
+                        <input
+                            id="email"
+                            wire:model.defer="email"
+                            type="email"
+                            class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-violet-400 dark:focus:ring-violet-500/10"
+                            placeholder="usuario@correo.com"
+                        >
+                        @error('email') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
+                        <label for="password" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
+                            Contraseña @if(!$user)<span class="text-red-500">*</span>@endif
+                        </label>
+                        <input
+                            id="password"
+                            wire:model.defer="password"
+                            type="password"
+                            class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-violet-400 dark:focus:ring-violet-500/10"
+                            placeholder="{{ $user ? 'Dejar vacío para conservarla' : 'Contraseña segura' }}"
+                        >
+                        @error('password') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
+                        <label for="password_confirmation" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Confirmar contraseña</label>
+                        <input
+                            id="password_confirmation"
+                            wire:model.defer="password_confirmation"
+                            type="password"
+                            class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-violet-400 dark:focus:ring-violet-500/10"
+                            placeholder="Repite la contraseña"
+                        >
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Roles <span class="text-red-500">*</span></label>
+                        <div class="grid gap-3 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950/40 sm:grid-cols-2">
+                            @foreach($roles as $role)
+                                <label class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 transition hover:border-violet-300 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-violet-700 dark:hover:bg-violet-950/20">
+                                    <input
+                                        wire:model.defer="selectedRoles"
+                                        type="checkbox"
+                                        value="{{ $role->id }}"
+                                        id="role-{{ $role->id }}"
+                                        class="h-4 w-4 rounded border-slate-300 text-violet-600 focus:ring-violet-500"
+                                    >
+                                    <span>{{ $role->name }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+                        @error('selectedRoles') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                        @error('selectedRoles.*') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col-reverse gap-3 border-t border-slate-200 px-6 py-5 sm:flex-row sm:justify-end dark:border-slate-800">
+                <button
+                    wire:click="closeModal"
+                    type="button"
+                    class="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                >
+                    Cancelar
+                </button>
+                <button
+                    type="submit"
+                    class="inline-flex items-center justify-center rounded-2xl bg-violet-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-violet-700"
+                >
+                    {{ $user ? 'Guardar cambios' : 'Crear usuario' }}
+                </button>
+            </div>
+        </form>
     </div>
+</div>

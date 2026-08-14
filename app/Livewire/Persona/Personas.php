@@ -16,7 +16,7 @@ class Personas extends Component
     use WithPagination;
 
     public $name, $email, $password; // Campos para el usuario (opcional)
-    public $persona_id, $IdUsuario, $dni, $nombre, $apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
+    public $persona_id, $IdUsuario, $dni, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $correo, $correoInstitucional, $fechaNacimiento, $sexo, $direccion, $telefono, $numeroCuenta, $IdNacionalidad, $IdTipoPerfil, $search;
     public $isOpen = 0;
     public $confirmingDelete = false;
     public $IdAEliminar;
@@ -34,7 +34,7 @@ class Personas extends Component
     public function render()
     {
         $personas = Persona::with('user', 'nacionalidad', 'tipoperfil')
-            ->where('nombre', 'like', '%' . $this->search . '%')
+            ->when(filled($this->search), fn ($query) => $query->searchName($this->search))
             ->orderBy('id', 'DESC')
             ->paginate(5);
 
@@ -69,8 +69,10 @@ class Personas extends Component
         $this->email = '';
         $this->password = '';
         $this->dni = '';
-        $this->nombre = '';
-        $this->apellido = '';
+        $this->primer_nombre = '';
+        $this->segundo_nombre = '';
+        $this->primer_apellido = '';
+        $this->segundo_apellido = '';
         $this->correo = '';
         $this->correoInstitucional = '';
         $this->fechaNacimiento = '';
@@ -94,8 +96,10 @@ class Personas extends Component
     // Validaciones para el campo de persona
     $personaValidation = [
         'dni' => 'required|unique:personas,dni,' . $this->persona_id,
-        'nombre' => 'required',
-        'apellido' => 'required',
+        'primer_nombre' => 'required|string|max:255',
+        'segundo_nombre' => 'nullable|string|max:255',
+        'primer_apellido' => 'required|string|max:255',
+        'segundo_apellido' => 'nullable|string|max:255',
         'correo' => 'required|email|unique:personas,correo,' . $this->persona_id,
         'correoInstitucional' => 'nullable|email|unique:personas,correoInstitucional,' . $this->persona_id,
         'fechaNacimiento' => 'required|date',
@@ -122,10 +126,9 @@ class Personas extends Component
             'password' => Hash::make($this->password),
         ]);
 
-        // Asignar el rol de Participante al usuario
-        $role = Role::where('name', 'Participante')->first(); // Obtén el rol de Participante
+        $role = Role::where('name', 'participante')->first();
         if ($role) {
-            $user->roles()->attach($role->id); // Asocia el rol al usuario
+            $user->assignRole($role);
         }
     } else {
         $user = null; // No se crea usuario si no se proporcionan los datos necesarios
@@ -135,8 +138,10 @@ class Personas extends Component
     Persona::updateOrCreate(['id' => $this->persona_id], [
         'IdUsuario' => $user ? $user->id : ($this->IdUsuario ?: null), 
         'dni' => $this->dni,
-        'nombre' => $this->nombre,
-        'apellido' => $this->apellido,
+        'primer_nombre' => $this->primer_nombre,
+        'segundo_nombre' => $this->segundo_nombre ?: null,
+        'primer_apellido' => $this->primer_apellido,
+        'segundo_apellido' => $this->segundo_apellido ?: null,
         'correo' => $this->correo,
         'correoInstitucional' => $this->correoInstitucional,
         'fechaNacimiento' => $this->fechaNacimiento,
@@ -160,8 +165,10 @@ class Personas extends Component
         $this->persona_id = $id;
         $this->IdUsuario = $persona->IdUsuario;
         $this->dni = $persona->dni;
-        $this->nombre = $persona->nombre;
-        $this->apellido = $persona->apellido;
+        $this->primer_nombre = $persona->primer_nombre;
+        $this->segundo_nombre = $persona->segundo_nombre;
+        $this->primer_apellido = $persona->primer_apellido;
+        $this->segundo_apellido = $persona->segundo_apellido;
         $this->correo = $persona->correo;
         $this->correoInstitucional = $persona->correoInstitucional;
         $this->fechaNacimiento = $persona->fechaNacimiento;

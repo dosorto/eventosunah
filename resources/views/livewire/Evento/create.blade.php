@@ -1,158 +1,195 @@
-<div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 transition-opacity">
-            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-        </div>
+<div class="fixed inset-0 z-50 overflow-hidden">
+    <div class="flex min-h-screen items-center justify-center px-4 py-4 sm:py-6">
+        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" wire:click="closeModal"></div>
 
-        <!-- This element is to trick the browser into centering the modal contents. -->
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
-
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full dark:bg-gray-900"
-            role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            <form>
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-gray-900">
-                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Evento
-                        </h3>
-                        <button wire:click="closeModal()" type="button"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="defaultModal">
-                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
+        <div class="relative flex max-h-[calc(100vh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900 sm:max-h-[calc(100vh-3rem)]">
+            <div class="shrink-0 border-b border-slate-200 px-6 py-5 dark:border-slate-800">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-yellow-500">Fase 3</p>
+                        <h3 class="mt-1 text-2xl font-semibold text-slate-900 dark:text-slate-100">Nuevo evento</h3>
+                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                            Registra solo la informacion minima. La configuracion completa y la publicacion se hacen en el siguiente paso.
+                        </p>
                     </div>
-                    <div class="">
-                        <div class="mb-4">
-                            <label for="nombreevento"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Nombre del Evento:</label>
-                            <input type="text"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="nombreevento" placeholder="Nombre Evento" wire:model="nombreevento">
-                            @error('nombreevento') <span class="text-red-500">{{ $message }}</span>@enderror
+
+                    <button
+                        type="button"
+                        wire:click="closeModal"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 text-slate-500 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+                    >
+                        <span class="sr-only">Cerrar</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414Z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <form wire:submit.prevent="store" class="flex min-h-0 flex-1 flex-col">
+                <div class="min-h-0 flex-1 overflow-y-auto px-6 py-6">
+                    <div class="grid gap-5">
+                        <div>
+                            <label for="nombreevento" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Nombre del evento <span class="text-red-500">*</span></label>
+                            <input
+                                id="nombreevento"
+                                type="text"
+                                wire:model.live="nombreevento"
+                                class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                placeholder="Ej. Jornada de Innovacion UNAH"
+                            >
+                            @error('nombreevento') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
-                        <div class="mb-4">
-                            <label for="logo" class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Foto:</label>
-                            <input type="file" wire:model="logo"
-                                class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                            @if ($logo)
-                                <img src="{{ $logo->temporaryUrl() }}" class="mt-2 w-20 h-20 object-cover rounded-full">
-                            @endif
-                        </div>
-                        <div class="mb-4">
-                            <label for="descripcion"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Descripción:</label>
+
+                        <div>
+                            <label for="descripcion" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Descripcion <span class="text-red-500">*</span></label>
                             <textarea
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="descripcion" placeholder="Descripción" wire:model="descripcion"></textarea>
-                            @error('descripcion') <span class="text-red-500">{{ $message }}</span>@enderror
+                                id="descripcion"
+                                rows="5"
+                                wire:model.live="descripcion"
+                                class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                placeholder="Resume el objetivo y alcance del evento."
+                            ></textarea>
+                            @error('descripcion') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
-                        <div class="mb-4">
-                            <label for="organizador"
-                                class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Organizador:</label>
-                            <input type="text"
-                                class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                id="organizador" placeholder="Organizador" wire:model="organizador">
-                            @error('organizador') <span class="text-red-500">{{ $message }}</span>@enderror
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 mt-4">
-                            <div class="mb-4">
-                                <label for="fechainicio"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha Inicio:</label>
-                                <input type="date"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    id="fechainicio" wire:model="fechainicio">
-                                @error('fechainicio') <span class="text-red-500">{{ $message }}</span>@enderror
+
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="organizador" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Organizador <span class="text-red-500">*</span></label>
+                                <input
+                                    id="organizador"
+                                    type="text"
+                                    wire:model.live="organizador"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                    placeholder="Unidad o responsable"
+                                >
+                                @error('organizador') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
-                            <div class="mb-4">
-                                <label for="fechafinal"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Fecha Fin:</label>
-                                <input type="date"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    id="fechafinal" wire:model="fechafinal">
-                                @error('fechafinal') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 mt-4">
-                            <div class="mb-4">
-                                <label for="horainicio"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Inicio:</label>
-                                <input type="time"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    id="horainicio" wire:model="horainicio">
-                                @error('horainicio') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="horafin"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Hora Fin:</label>
-                                <input type="time"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    id="horafin" wire:model="horafin">
-                                @error('horafin') <span class="text-red-500">{{ $message }}</span>@enderror
+
+                            <div>
+                                <label for="tipo_conferencia_id" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Tipo de evento <span class="text-red-500">*</span></label>
+                                <select
+                                    id="tipo_conferencia_id"
+                                    wire:model.live="tipo_conferencia_id"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                >
+                                    <option value="">Selecciona un tipo de evento</option>
+                                    @foreach ($tiposConferencias as $tipoConferencia)
+                                        <option value="{{ $tipoConferencia->id }}">{{ $tipoConferencia->tipo }}</option>
+                                    @endforeach
+                                </select>
+                                @error('tipo_conferencia_id') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-4 mt-4">
-                            <div class="mb-4">
-                                <label for="modalidadSelect"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Modalidad:</label>
-                                <select id="modalidadSelect"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    wire:model="idmodalidad">
-                                    <option value="">Seleccione una Modalidad</option>
-                                    @foreach($modalidades as $modalidad)
+
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="modalidadSelect" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Modalidad <span class="text-red-500">*</span></label>
+                                <select
+                                    id="modalidadSelect"
+                                    wire:model.live="idmodalidad"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                >
+                                    <option value="">Selecciona una modalidad</option>
+                                    @foreach ($modalidades as $modalidad)
                                         <option value="{{ $modalidad->id }}">{{ $modalidad->modalidad }}</option>
                                     @endforeach
                                 </select>
-                                @error('idmodalidad') <span class="text-red-500">{{ $message }}</span>@enderror
+                                @error('idmodalidad') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
-                            <div class="mb-4">
-                                <label for="localidadSelect"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Localidad:</label>
-                                <select id="localidadSelect"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    wire:model="idlocalidad">
-                                    <option value="">Seleccione una Localidad</option>
-                                    @foreach($localidades as $localidad)
-                                        <option value="{{ $localidad->id }}">{{ $localidad->localidad }}</option>
-                                    @endforeach
-                                </select>
-                                @error('idlocalidad') <span class="text-red-500">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="fechainicio" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Fecha de inicio <span class="text-red-500">*</span></label>
+                                <input
+                                    id="fechainicio"
+                                    type="date"
+                                    wire:model.live="fechainicio"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                >
+                                @error('fechainicio') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
-                            <div class="mb-4">
-                                <label for="diplomasSelect"
-                                    class="block text-gray-700 text-sm font-bold mb-2 dark:text-white">Plantilla del diploma:</label>
-                                <select id="diplomasSelect"
-                                    class="shadow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                                    wire:model="IdDiploma">
-                                    <option value="">Plantilla del diploma</option>
-                                    @foreach($diplomas as $diploma)
-                                        <option value="{{ $diploma->id }}">Plantilla Diploma: {{ $diploma->Nombre }}</option>
-                                    @endforeach
+
+                            <div>
+                                <label for="fechafinal" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Fecha final <span class="text-red-500">*</span></label>
+                                <input
+                                    id="fechafinal"
+                                    type="date"
+                                    wire:model.live="fechafinal"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                >
+                                @error('fechafinal') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-slate-800 dark:bg-slate-950/60">
+                            <span class="font-medium text-slate-700 dark:text-slate-200">Cantidad de días del evento:</span>
+                            <span class="ml-2 text-slate-600 dark:text-slate-300">
+                                {{ $this->eventDurationDays ? $this->eventDurationDays . ' ' . \Illuminate\Support\Str::plural('día', $this->eventDurationDays) : 'Define ambas fechas para calcularlo.' }}
+                            </span>
+                        </div>
+
+                        <div>
+                            <label for="localidad" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Localidad <span class="text-red-500">*</span></label>
+                            <input
+                                id="localidad"
+                                type="text"
+                                wire:model.live="localidad_nombre"
+                                class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                placeholder="Ej. Auditorio Alma Mater, Zoom o Centro de Convenciones"
+                            >
+                            @error('localidad_nombre') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="tipo_acceso" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Tipo de acceso <span class="text-red-500">*</span></label>
+                                <select
+                                    id="tipo_acceso"
+                                    wire:model.live="tipo_acceso"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                >
+                                    <option value="gratuita">Gratuita</option>
+                                    <option value="pagada">Pagada</option>
                                 </select>
-                                @error('IdDiploma') <span class="text-red-500">{{ $message }}</span>@enderror
+                                @error('tipo_acceso') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label for="genera_diploma_participacion" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Genera diploma de participación <span class="text-red-500">*</span></label>
+                                <select
+                                    id="genera_diploma_participacion"
+                                    wire:model.live="genera_diploma_participacion"
+                                    class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-yellow-400 dark:focus:ring-yellow-500/10"
+                                >
+                                    <option value="1">Sí</option>
+                                    <option value="0">No</option>
+                                </select>
+                                @error('genera_diploma_participacion') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-700">
-                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button wire:click.prevent="store()" type="button"
-                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Guardar
-                        </button>
-                    </span>
-                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                        <button wire:click="closeModal()" type="button"
-                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                <div class="shrink-0 border-t border-slate-200 bg-white px-6 py-5 dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                        <button
+                            type="button"
+                            wire:click="closeModal"
+                            class="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                        >
                             Cancelar
                         </button>
-                    </span>
+
+                        <button
+                            type="submit"
+                            class="inline-flex items-center justify-center rounded-2xl bg-yellow-500 px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-yellow-400 disabled:cursor-not-allowed disabled:opacity-70"
+                        >
+                            <span wire:loading.remove wire:target="store">Crear y configurar</span>
+                            <span wire:loading wire:target="store">Procesando...</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

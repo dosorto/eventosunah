@@ -11,7 +11,7 @@ class Conferencista extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['titulo', 'foto', 'descripcion', 'IdPersona','firma','sello'];
+    protected $fillable = ['titulo', 'nivel_academico', 'foto', 'descripcion', 'IdPersona','firma','sello'];
 
     public function persona()
     {

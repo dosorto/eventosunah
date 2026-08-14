@@ -1,126 +1,78 @@
-@extends('layouts.login-layout')
+@extends('layouts.base')
 
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/loginStyles.css') }}">
-@endsection
-<body class="dark:bg-gray-900">
-@section('app-content')
-<x-nav />
-<br>
-<div class="container max">
-    <br>
-    {{-- Alerta de error de Flowbite --}}
-    @if ($errors->any())
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-800 dark:text-red-300" role="alert">
-            <span class="font-medium">Error:</span> Las credenciales ingresadas son incorrectas. Por favor, inténtalo de
-            nuevo.
-        </div>
-    @endif
-    <div class="forms">
+@section('content')
+    <x-public-auth-header />
 
-        <div class="form login active bg-white rounded-md dark:bg-gray-800">
+    <div class="orbit-auth-stage px-4 py-8 sm:px-6">
+        <div class="orbit-auth-ambient orbit-auth-ambient--a left-[-6rem] top-[-4rem] h-72 w-72 sm:h-96 sm:w-96"></div>
+        <div class="orbit-auth-ambient orbit-auth-ambient--b right-[-5rem] top-[12%] h-80 w-80 sm:h-[26rem] sm:w-[26rem]"></div>
+        <div class="orbit-auth-ambient orbit-auth-ambient--c bottom-[-7rem] left-[18%] h-72 w-72 sm:h-[24rem] sm:w-[24rem]"></div>
 
-            <span class="title text-black dark:text-white">Iniciar sesión</span>
-
-
-
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="input-field">
-                    <input type="email" id="email" name="email" placeholder="Correo electrónico" required
-                        class="dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500 placeholder-gray-500 dark:placeholder-gray-300">
-                    <i class="uil uil-envelope text-black dark:text-white icon"></i>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="password" name="password" placeholder="Contraseña" required
-                        class="password dark:bg-gray-800 dark:text-white border-b-2 border-black dark:border-yellow-500 placeholder-gray-500 dark:placeholder-gray-300">
-                    <i class="uil uil-lock icon text-black dark:text-white"></i>
-                    <i class="uil uil-eye-slash text-black dark:text-white showHidePw"></i>
+        <div class="relative z-10 flex min-h-[calc(100vh-9rem)] items-center justify-center">
+            <section class="orbit-panel w-full max-w-md p-6 sm:p-8">
+                <div class="space-y-2 text-center">
+                    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-500">Acceso seguro</p>
+                    <h1 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">Bienvenido de nuevo</h1>
+                    <p class="text-sm leading-6 text-slate-500 dark:text-slate-400">
+                        Ingresa con tu correo y contraseña para continuar en el sistema.
+                    </p>
                 </div>
 
-                <div class="checkbox-text">
-                    <div class="checkbox-content">
-                        <input type="checkbox" id="remember_me" name="remember">
-                        <label for="remember_me" class="text text-black dark:text-white">Recuérdame</label>
+                @if (session('status'))
+                    <div class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/30 dark:text-emerald-200">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-200">
+                        Las credenciales ingresadas son incorrectas. Verifica la información e inténtalo de nuevo.
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('login') }}" x-data="{ showPassword: false }" class="mt-6 space-y-5">
+                    @csrf
+
+                    <div>
+                        <label for="email" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Correo electrónico <span class="text-red-500">*</span></label>
+                        <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus autocomplete="username" class="orbit-input" placeholder="tu-correo@dominio.com">
                     </div>
 
-                    <a href="{{ route('password.request') }}" class="text text-blue-800 dark:text-white">¿No
-                        recuerdas la contraseña?</a>
-                </div>
+                    <div>
+                        <div class="mb-2 flex items-center justify-between gap-3">
+                            <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Contraseña <span class="text-red-500">*</span></label>
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="text-sm font-medium text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-300">
+                                    ¿Olvidaste tu contraseña?
+                                </a>
+                            @endif
+                        </div>
 
-                <div class="input-field button">
-                    <input type="submit" value="Iniciar"
-                        class="bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-600 dark:hover:bg-yellow-700">
-                </div>
-            </form>
+                        <div class="relative">
+                            <input id="password" name="password" x-bind:type="showPassword ? 'text' : 'password'" required autocomplete="current-password" class="orbit-input pr-20" placeholder="Ingresa tu contraseña">
+                            <button type="button" @click="showPassword = !showPassword" class="absolute inset-y-0 right-4 inline-flex items-center text-sm font-medium text-slate-500 transition hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+                                <span x-text="showPassword ? 'Ocultar' : 'Mostrar'"></span>
+                            </button>
+                        </div>
+                    </div>
 
-            <div class="login-signup">
-                <span class="text text-black dark:text-white">¿No tienes cuenta?
-                    <a href="/register" class="text text-blue-800 dark:text-white signup-link">Registrarse</a>
-                </span>
-            </div>
+                    <label class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600 dark:border-white/8 dark:bg-white/[0.03] dark:text-slate-300">
+                        <input id="remember_me" name="remember" type="checkbox" class="h-4 w-4 rounded border-slate-300 text-emerald-500 focus:ring-emerald-400">
+                        Recuérdame en este equipo
+                    </label>
+
+                    <button type="submit" class="orbit-button-primary w-full">
+                        Ingresar
+                    </button>
+                </form>
+
+                <div class="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-600 dark:border-white/8 dark:bg-white/[0.03] dark:text-slate-300">
+                    ¿Aún no tienes cuenta?
+                    <a href="{{ route('register') }}" class="font-semibold text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-300">
+                        Regístrate aquí
+                    </a>
+                </div>
+            </section>
         </div>
     </div>
-</div>
 @endsection
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const tipoPerfil = document.getElementById('IdTipoPerfil');
-        const estudianteFields = document.querySelectorAll('.estudiante');
-        const label1 = document.getElementById('correoLabel');
-        const input1 = document.getElementById('correo_institucional');
-        const label2 = document.getElementById('numeroLabel');
-        const input2 = document.getElementById('cuenta_estudiante');
-
-        tipoPerfil.addEventListener('change', () => {
-            if (tipoPerfil.value === 'Estudiante') {
-                estudianteFields.forEach(field => field.style.display = 'flex');
-                label1.textContent = 'Correo Institucional';
-                input1.placeholder = 'Ingrese correo institucional';
-                label2.textContent = 'Número de Cuenta';
-                input2.placeholder = 'Número de cuenta';
-            } else if (tipoPerfil.value === 'Docente') {
-                estudianteFields.forEach(field => field.style.display = 'flex');
-                label1.textContent = 'Correo Institucional';
-                input1.placeholder = 'Ingrese correo Institucional';
-                label2.textContent = 'Identificación de docente';
-                input2.placeholder = 'Numero de empleado';
-            } else {
-                estudianteFields.forEach(field => field.style.display = 'none');
-            }
-        });
-    });
-</script>
-
-<script>
-    const pwShowHide = document.querySelectorAll(".showHidePw");
-    const pwFields = document.querySelectorAll(".password");
-
-    pwShowHide.forEach(eyeIcon => {
-        eyeIcon.addEventListener("click", () => {
-            pwFields.forEach(pwField => {
-                if (pwField.type === "password") {
-                    pwField.type = "text";
-                    eyeIcon.classList.replace("uil-eye-slash", "uil-eye");
-                } else {
-                    pwField.type = "password";
-                    eyeIcon.classList.replace("uil-eye", "uil-eye-slash");
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    const header = document.querySelector("header");
-    const hamburgerBtn = document.querySelector("#hamburger-btn");
-    const closeMenuBtn = document.querySelector("#close-menu-btn");
-
-    // Toggle mobile menu on hamburger button click
-    hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
-
-    // Close mobile menu on close button click
-    closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
-</script>
-</body>

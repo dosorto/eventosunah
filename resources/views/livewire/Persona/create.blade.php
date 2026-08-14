@@ -74,17 +74,31 @@
                             </div>
 
                             <div class="input-field">
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Primer nombre</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" wire:model="nombre" required>
-                                @error('nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                                    type="text" placeholder="Ingrese el primer nombre" id="primer_nombre" name="primer_nombre" wire:model="primer_nombre" required>
+                                @error('primer_nombre') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Apellido</label>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Segundo nombre</label>
                                 <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
-                                    type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido" wire:model="apellido" required>
-                                @error('apellido') <span class="text-red-500">{{ $message }}</span> @enderror
+                                    type="text" placeholder="Ingrese el segundo nombre" id="segundo_nombre" name="segundo_nombre" wire:model="segundo_nombre">
+                                @error('segundo_nombre') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="input-field">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Primer apellido</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese el primer apellido" id="primer_apellido" name="primer_apellido" wire:model="primer_apellido" required>
+                                @error('primer_apellido') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="input-field">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Segundo apellido</label>
+                                <input class="focus:ring-yellow-500 focus:border-yellow-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+                                    type="text" placeholder="Ingrese el segundo apellido" id="segundo_apellido" name="segundo_apellido" wire:model="segundo_apellido">
+                                @error('segundo_apellido') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="input-field">

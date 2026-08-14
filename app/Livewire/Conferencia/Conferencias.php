@@ -79,8 +79,7 @@ class Conferencias extends Component
     public function updatedInputSearchConferencista()
     {
         $this->searchConferencistas = Conferencista::whereHas('persona', function ($query) {
-            $query->where('nombre', 'like', '%' . $this->inputSearchConferencista . '%')
-                  ->orWhere('apellido', 'like', '%' . $this->inputSearchConferencista . '%');
+            $query->searchName($this->inputSearchConferencista);
         })->get();
     }
 

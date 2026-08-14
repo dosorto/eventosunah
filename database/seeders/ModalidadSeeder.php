@@ -13,9 +13,9 @@ class ModalidadSeeder extends Seeder
     public function run(): void
     {
         $modalidades = [
-            'Virtual',
             'Presencial',
-            'Híbrido',
+            'Virtual',
+            'Hibrida (Presencial/Virtual)',
         ];
 
         foreach ($modalidades as $modalidad) {
